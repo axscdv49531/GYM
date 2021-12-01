@@ -10,7 +10,7 @@
 <body>
 	<div style="text-align: center">
 		<c:out value="${loginUser.memberName },歡迎您" />
-		<a href="<c:url value='/member/classReservation' />">課程預約</a><br>
+		<a href="<c:url value='/classReservation' />">課程預約</a><br>
 		<br>
 	</div>
 	<div style="text-align: center">

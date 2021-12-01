@@ -11,54 +11,103 @@ import tw.gym.member.Dao.MemberRepository;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.member.validator.UserNotFoundException;
+import tw.gym.model.ClassBean;
+import tw.gym.model.ClassMemberBean;
+import tw.gym.repository.ClassMemberRepository;
+import tw.gym.repository.ClassRepository;
 
 @Service
 @Transactional
 public class MemberServiceImpl implements MemberService {
 
-	
-	private MemberRepository memberRepository;
-	
-	@Autowired
-	public MemberServiceImpl(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
-	@Override
-	public MemberBean insert(MemberBean memberBean) {
-		return memberRepository.save(memberBean);
-	}
-	@Override
-	public MemberBean update(MemberBean memberBean) {
-		return memberRepository.save(memberBean);
-	}
-	@Override
-	public void deleteById(Integer number) {
-		memberRepository.deleteById(number);
-	}
-	@Override
-	public MemberBean findByNumber(Integer number) {
-		Optional<MemberBean> memberBean = memberRepository.findById(number);
-		return memberBean.get();
-	}
-	@Override
-	public List<MemberBean> findAll() {
-		return memberRepository.findAll();
-	}
+    private MemberRepository memberRepository;
 
-	@Override
-	public MemberBean findByEmail(String email) {
-		Optional<MemberBean> member = memberRepository.findByEmail(email);
-//		System.out.println(email);
-//		System.out.println(member);
-		if(member.isEmpty()) {
-			throw new UserNotFoundException("Can't Find User");
-		}		
-		return member.get();
-	}
-	
-	public List<MemberBean> findByCourse(Integer courseId){
-		return memberRepository.findByCourse(courseId);
-	}
+    // Mark
+    // @Autowired
+    // MemberRepository memRepo;
+    // Mark
+    @Autowired
+    ClassMemberRepository cmRepo;
+    // Mark
+    @Autowired
+    ClassRepository claRepo;
 
+    @Autowired
+    public MemberServiceImpl(MemberRepository memberRepository) {
+        this.memberRepository = memberRepository;
+    }
+
+    @Override
+    public MemberBean insert(MemberBean memberBean) {
+        return memberRepository.save(memberBean);
+    }
+
+    @Override
+    public MemberBean update(MemberBean memberBean) {
+        return memberRepository.save(memberBean);
+    }
+
+    @Override
+    public void deleteById(Integer number) {
+        memberRepository.deleteById(number);
+    }
+
+    @Override
+    public MemberBean findByNumber(Integer number) {
+        Optional<MemberBean> memberBean = memberRepository.findById(number);
+        return memberBean.get();
+    }
+
+    @Override
+    public List<MemberBean> findAll() {
+        return memberRepository.findAll();
+    }
+
+    @Override
+    public MemberBean findByEmail(String email) {
+        Optional<MemberBean> member = memberRepository.findByEmail(email);
+        // System.out.println(email);
+        // System.out.println(member);
+        if (member.isEmpty()) {
+            throw new UserNotFoundException("Can't Find User");
+        }
+        return member.get();
+    }
+
+    public List<MemberBean> findByCourse(Integer courseId) {
+        return memberRepository.findByCourse(courseId);
+    }
+
+    // // Mark
+    // @Override
+    // public MemberBean findByAccountAndPassword(String coachAccount, String coachPassword) {
+    // return memberRepository.findByAccountAndPassword(coachAccount, coachPassword);
+    // }
+
+    // Mark
+    @Override
+    public MemberBean getById(Integer memberId) {
+        return memberRepository.getById(memberId);
+    }
+
+    // Mark
+    @Override
+    public void insertReservation(ClassMemberBean cmBean, Integer a, Integer classId) {
+        claRepo.setAvaliable(a, classId);
+        cmRepo.save(cmBean);
+    }
+
+    // Mark
+    @Override
+    public List<ClassBean> findByMemberId(Integer memberId) {
+        return memberRepository.findByMemberId(memberId);
+    }
+
+    // Mark
+    @Override
+    public void deleteByClassId(Integer classId, Integer a) {
+        claRepo.setAvaliable(a, classId);
+        memberRepository.deleteByClassId(classId);
+    }
 
 }

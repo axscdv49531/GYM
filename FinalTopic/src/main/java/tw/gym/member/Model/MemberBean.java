@@ -20,6 +20,7 @@ import org.springframework.stereotype.Component;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import tw.gym.membercourse.model.Member_Course;
+import tw.gym.model.ClassMemberBean;
 
 @Entity
 @Table(name = "member")
@@ -59,6 +60,10 @@ public class MemberBean {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Member_Course> MC = new LinkedHashSet<Member_Course>();
+
+    // Mark
+    @OneToMany(mappedBy = "mBean")
+    private Set<ClassMemberBean> cmBean = new HashSet<ClassMemberBean>();
 
 	public Set<Member_Course> getMC() {
 		return MC;
@@ -245,7 +250,15 @@ public class MemberBean {
 		this.emergencyPhone = emergencyPhone;
 	}
 
-	@Override
+    public Set<ClassMemberBean> getCmBean() {
+        return cmBean;
+    }
+
+    public void setCmBean(Set<ClassMemberBean> cmBean) {
+        this.cmBean = cmBean;
+    }
+
+    @Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("MemberBean [id=");

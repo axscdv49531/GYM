@@ -11,6 +11,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import tw.gym.member.Model.MemberBean;
+
 @Entity
 @Table(name = "classMember")
 @Component
@@ -26,9 +28,9 @@ public class ClassMemberBean {
     @JoinColumn(name = "fk_class_id")
     private ClassBean cBean;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "fk_member_id")
-//    private MemberBean1 mBean;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "fk_member_id")
+    private MemberBean mBean;
 
     public ClassMemberBean() {
     }
@@ -41,13 +43,13 @@ public class ClassMemberBean {
         this.cBean = cBean;
     }
 
-//    public MemberBean1 getmBean() {
-//        return mBean;
-//    }
-//
-//    public void setmBean(MemberBean1 mBean) {
-//        this.mBean = mBean;
-//    }
+    public MemberBean getmBean() {
+        return mBean;
+    }
+
+    public void setmBean(MemberBean mBean) {
+        this.mBean = mBean;
+    }
 
     public Integer getClassmemberId() {
         return classmemberId;

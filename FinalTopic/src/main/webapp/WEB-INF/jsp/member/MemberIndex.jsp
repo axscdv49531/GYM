@@ -90,7 +90,7 @@
                                           <li class="active"><a href="<c:url value='/' />">主頁</a></li>
                                           <li><a href="about.html">關於</a></li>
                                           <li><a href="team.html">教練師資</a></li>
-                                          <li><a href="news.html">預約私人課程</a></li>
+                                          <li><a href="/classRes">預約私人課程</a></li>
                                           <li><a href="news.html">團課報名</a></li>
                                           <li><a href="news.html">健康餐盒</a></li>
                                           <li><a href="news.html">周邊商品</a></li>

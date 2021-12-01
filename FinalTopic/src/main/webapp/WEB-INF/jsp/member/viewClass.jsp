@@ -64,11 +64,11 @@
                 <td><form:textarea path="classDescription" readonly="true"/><br> <form:errors
                         path="classDescription" />
             </tr>
-<!--             <tr> -->
-<!--                 <td align='right'>課程標籤：</td> -->
-<%--                 <td><form:checkboxes items="${checkBoxData}" path="classLabel" /><br> --%>
-<%--                     <form:errors path="classLabel" /> --%>
-<!--             </tr> -->
+            <tr>
+                <td align='right'>課程標籤：</td>
+                <td><form:checkboxes items="${checkBoxList}" path="classLabel" /><br>
+                    <form:errors path="classLabel" />
+            </tr>
             <tr>
                 <td colspan='2' align='center'><input type='submit' name="edit" value='預約'></td>
             </tr>
