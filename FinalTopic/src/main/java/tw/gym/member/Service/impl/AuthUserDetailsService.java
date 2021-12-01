@@ -22,7 +22,7 @@ public class AuthUserDetailsService implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		System.out.println(email);
+        // System.out.println(email);
 		MemberBean member = memberService.findByEmail(email);
 		return new User(member.getEmail(), member.getPassword(), Collections.emptyList());
 	}

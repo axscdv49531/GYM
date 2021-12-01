@@ -39,7 +39,7 @@ import tw.gym.service.SkillService;
 
 @Controller
 //@RequestMapping(path = "/GymProject")
-//@SessionAttributes(names = {"totalPages", "totalElements"})
+// @SessionAttributes(names = { "totalPages", "totalElements" })
 public class MemberController {
 
 	private MemberService memberService;

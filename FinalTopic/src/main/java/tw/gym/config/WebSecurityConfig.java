@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import tw.gym.member.Service.CustomAuthenticationSuccessHandler;
 import tw.gym.member.Service.impl.AuthUserDetailsService;
 
 @EnableWebSecurity
@@ -16,6 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AuthUserDetailsService userDetailsService;
+
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,7 +52,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .disable()
                 .formLogin()
                 .loginPage("/login/page")
-                .defaultSuccessUrl("/login/welcome");
+                .defaultSuccessUrl("/login/welcome")
+                .successHandler(customAuthenticationSuccessHandler);
 
     }
 
