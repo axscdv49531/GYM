@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+.container{
+	background-color: rgb(33,37,41);
+	width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;	
+}
+
+header img{
+	width:130px;
+}
+
+body { 
+  background-color: #FAF0E6;
+  font-family: verdana;
+  font-size: 15pt;
+}
