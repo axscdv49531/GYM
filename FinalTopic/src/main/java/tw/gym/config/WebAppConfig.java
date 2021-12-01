@@ -1,7 +1,13 @@
 package tw.gym.config;
 
+import java.awt.image.BufferedImage;
+
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.http.converter.BufferedImageHttpMessageConverter;
+import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -65,5 +71,18 @@ public class WebAppConfig implements WebMvcConfigurer {
 	// // registry.addRedirectViewController("/", "membersmain.controller");
 	// // registry.addViewController("/index").setViewName("form");
 	// }
+	
+	@Bean
+	public HttpMessageConverter<BufferedImage> createImageHttpMessageConverter() {
+	    return new BufferedImageHttpMessageConverter();
+	}
+	
+	@Bean
+	public MessageSource messageSource() {
+		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasenames("ValidationMessages");
+		return messageSource;
+	}
+	
 
 }
