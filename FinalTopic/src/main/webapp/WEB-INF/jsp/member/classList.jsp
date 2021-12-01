@@ -34,7 +34,7 @@
 		$
 				.ajax({
 					type : 'post',
-					url : '/member/searchClass/',
+					url : '/searchClass/',
 					data : {
 						cName : className,
 						coaName : coachName,
@@ -155,7 +155,7 @@
 		$
 				.ajax({
 					type : 'post',
-					url : '/member/listAllClass/',
+					url : '/listAllClass/',
 					// 					data : {
 					// 						searchaa : a,
 					// 						sd : startDate,
