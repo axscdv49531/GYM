@@ -80,7 +80,7 @@ public class MemberController {
 //		if (memberBean != null) {
 //			if(memberBean.getId().equals(memberService. == true);
 //			bindingResult.rejectValue("memberId", "", "帳號已存在，請重新輸入");
-//			return "MemberForm";
+//			return "MemberForm"; 
 //		}
 		String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
 		memberBean.setPassword(encodePwd);
