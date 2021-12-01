@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -23,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import tw.gym.courses.model.Course;
+
 @Entity
 @Table(name = "coachList")
 @Component
@@ -34,6 +37,7 @@ public class CoachBean implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer coachId;
+    
     private String coachName;
     private String coachAccount;
     private String coachPassword;
@@ -42,18 +46,26 @@ public class CoachBean implements Serializable {
     private Integer coachExp;
     private String coachAddress;
     private String fileName;
+    
     @Transient
     private MultipartFile cPhoto;
     private Blob coachPhoto;
     private String coachPhotoMineType;
+    
     @Transient
     private String coachBirthTemp;
     private java.sql.Date coachBirth;
+    
     @Column(updatable = false)
     private Date coachRegisterdate;
+   
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "cBean", cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<ClassBean> cBean = new HashSet<ClassBean>();
+    
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "coach", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Set<Course> courses = new LinkedHashSet<Course>();
 
     public CoachBean() {
     }
@@ -182,7 +194,15 @@ public class CoachBean implements Serializable {
         this.coachRegisterdate = coachRegisterdate;
     }
 
-    @Override
+    public Set<Course> getCourses() {
+		return courses;
+	}
+
+	public void setCourses(Set<Course> courses) {
+		this.courses = courses;
+	}
+
+	@Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CoachBean [coachId=");

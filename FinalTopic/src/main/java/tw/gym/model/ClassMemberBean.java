@@ -26,9 +26,9 @@ public class ClassMemberBean {
     @JoinColumn(name = "fk_class_id")
     private ClassBean cBean;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_member_id")
-    private MemberBean mBean;
+//    @ManyToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "fk_member_id")
+//    private MemberBean1 mBean;
 
     public ClassMemberBean() {
     }
@@ -41,13 +41,13 @@ public class ClassMemberBean {
         this.cBean = cBean;
     }
 
-    public MemberBean getmBean() {
-        return mBean;
-    }
-
-    public void setmBean(MemberBean mBean) {
-        this.mBean = mBean;
-    }
+//    public MemberBean1 getmBean() {
+//        return mBean;
+//    }
+//
+//    public void setmBean(MemberBean1 mBean) {
+//        this.mBean = mBean;
+//    }
 
     public Integer getClassmemberId() {
         return classmemberId;
