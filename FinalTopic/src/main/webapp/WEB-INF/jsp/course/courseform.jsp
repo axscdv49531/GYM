@@ -163,7 +163,7 @@ function arrayToJson(formArray){
 						<td><select name="coachId" id="coachId">
 								<option value="NONE" label="請選擇授課老師" />
 								<c:forEach var="oneCoach" items="${coachList}">
-									<option  value="${oneCoach.id}">${oneCoach.coachName}</option>
+									<option  value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 								</c:forEach>
 							</select> </td>
 

@@ -59,13 +59,13 @@
 				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
 			   }else{
 				   var table = $('#showcourse');
-				   table.append("<tr id='ptitle'><th>選課紀錄編號</th><th>課程名稱</th><th>課程總類</th><th></th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>查詢學生</th><th>修改</th><th>刪除</th></tr>");
+				   table.append("<tr id='ptitle'><th>選課紀錄編號</th><th>課程名稱</th><th>課程總類</th><th></th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>查詢學生</th><th>修改</th><th>刪除</th></tr>");
 				   
 				   $.each(data, function(i,n){
 					   var tr = "<tr align='center'>" + "<td>" + n.id + "</td>" +
 					            "<td>" + n.courseName + "</td>" + "<td>" + n.category + "</td>" +
 					            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
-					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.id + "</td>" +"<td>" + n.studentNum + "</td>" +
+					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 					            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
 					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick=''>課程簡介</button></a></td>"+
 					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></a></td>"+

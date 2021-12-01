@@ -1,5 +1,7 @@
 package tw.gym.membercourse.controller;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.gym.courses.model.CourseService;
+import tw.gym.courses.utils.EmailSenderService;
+import tw.gym.member.Service.MemberService;
 import tw.gym.membercourse.model.Member_Course;
 import tw.gym.membercourse.model.Member_CourseService;
 import tw.gym.service.CoachService;
@@ -23,6 +27,9 @@ import tw.gym.service.CoachService;
 public class Member_CourseController {
 
 	@Autowired
+	private MemberService mService;
+
+	@Autowired
 	private CourseService cService;
 
 	@Autowired
@@ -30,6 +37,9 @@ public class Member_CourseController {
 
 	@Autowired
 	private Member_CourseService mcService;
+
+	@Autowired
+	private EmailSenderService emailSerive;
 
 	// 前往會員選課系統頁面
 	@GetMapping("/courseselectionmain.controller")
@@ -65,6 +75,19 @@ public class Member_CourseController {
 	public Member_Course selectcourse(@PathVariable("courseId") Integer courseId) {
 
 		Integer memberNumber = 1;
+		
+		//加選成功信件的內容設定
+		String courseName = cService.findById(courseId).getCourseName();
+		Date date = cService.findById(courseId).getDate();
+		String period = cService.findById(courseId).getPeriod();
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		String courseTime = dateFormat.format(date) +"  " +period;
+		
+		//String toEmail = mService.findByNumber(memberNumber).getEmail();
+		String toEmail = "habypunk@gmail.com";
+		String subject = "加選成功： "+ courseName;
+		String body = "您已加選成功：" +courseTime +" 的 " +courseName + "。\n請準時到課。祝您上課愉快！" ;
+		
 
 		Member_Course mc = new Member_Course();
 		mc.setFk_course_id(courseId);
@@ -87,11 +110,13 @@ public class Member_CourseController {
 			}
 			// 有選課紀錄，但沒有已加選：加選！
 			cService.stuNumPlus(courseId); // 更新Course 人數
+			emailSerive.sendEmail(toEmail,subject, body);
 			return mcService.insertMC(mc);
 
 		} else {
 			// 為空，沒有選課紀錄：加選！
 			cService.stuNumPlus(courseId); // 更新Course 人數
+			emailSerive.sendEmail(toEmail,subject, body);
 			return mcService.insertMC(mc);
 		}
 
@@ -120,7 +145,7 @@ public class Member_CourseController {
 	}
 
 	// 全部選課紀錄
-	@GetMapping("/selectcourserecord.controller") //http://localhost:8081/membercourse/selectcourserecord.controller
+	@GetMapping("/selectcourserecord.controller") // http://localhost:8081/membercourse/selectcourserecord.controller
 	@ResponseBody
 	public List<Member_Course> findselectrecord() {
 		Integer membernumber = 1;

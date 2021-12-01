@@ -247,7 +247,7 @@ function showAllCourse(indexPage){
 	<select name="coachId">
 		<option value="" label="請選擇授課老師" selected="selected"/>
 		<c:forEach var="oneCoach" items="${coachList}">
-			<option  value="${oneCoach.id}" >${oneCoach.coachName}</option>
+			<option  value="${oneCoach.coachId}" >${oneCoach.coachName}</option>
 		</c:forEach>
 	</select>
 	

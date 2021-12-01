@@ -19,7 +19,7 @@ $(document).ready(function(){
     $('#category option[value=${onecourse.category}]').attr('selected', 'selected');
     $('#period option[value="${onecourse.period}"]').attr('selected', 'selected');
     $('#classroom option[value=${onecourse.classroom}]').attr('selected', 'selected');
-    $('#coachId option[value=${onecourse.coach.id}]').attr('selected', 'selected');
+    $('#coachId option[value=${onecourse.coach.coachId}]').attr('selected', 'selected');
 
 });
 
@@ -149,7 +149,7 @@ function arrayToJson(formArray){
 						<td><select name="coachId" id="coachId">
 								<option value="NONE" label="請選擇授課老師" />
 								<c:forEach var="oneCoach" items="${coachList}">
-									<option  value="${oneCoach.id}">${oneCoach.coachName}</option>
+									<option  value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 								</c:forEach>
 							</select> </td>
 
