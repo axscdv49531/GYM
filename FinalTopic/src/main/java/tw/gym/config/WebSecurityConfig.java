@@ -39,18 +39,22 @@ public class WebSecurityConfig {
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
 			http.authorizeRequests()
-//				.antMatchers("/login/Member/**").permitAll()
-				.antMatchers(HttpMethod.GET, "/insertMember").authenticated()
+				.antMatchers(HttpMethod.GET, "/insertMember/**").authenticated()
+				.antMatchers(HttpMethod.GET, "/findAllMember/**").authenticated()
 				.antMatchers(HttpMethod.GET).permitAll()
-				.antMatchers(HttpMethod.POST, "/login/Member").authenticated()
+				.antMatchers(HttpMethod.POST, "/insertMember/**").authenticated()
+				.antMatchers(HttpMethod.POST, "/findAllMember/**").authenticated()
 				.antMatchers(HttpMethod.POST).permitAll()
 				.anyRequest()
-				.authenticated().and().rememberMe().tokenValiditySeconds(86400).key("rememberMe-key")
+				.authenticated()
 				.and()
-				.formLogin()
-//				.loginPage("/login/Member")
-				.loginProcessingUrl("/login/Member")
-				.defaultSuccessUrl("/login/MemberSuccess")
+				.rememberMe()
+				.tokenValiditySeconds(86400)
+				.key("rememberMe-key")
+				.and()
+				.csrf().disable()
+				.formLogin().loginPage("/login/Member")
+				.defaultSuccessUrl("/login/MemberSuccess")				
 				.successHandler(memberCustomAuthenticationSuccessHandler);
 
 		}
