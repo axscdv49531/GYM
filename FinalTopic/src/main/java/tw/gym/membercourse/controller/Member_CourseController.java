@@ -3,9 +3,16 @@ package tw.gym.membercourse.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +26,7 @@ import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Service.MemberService;
 import tw.gym.membercourse.model.Member_Course;
 import tw.gym.membercourse.model.Member_CourseService;
+import tw.gym.membercourse.model.Member_CourseSpec;
 import tw.gym.service.CoachService;
 
 @Controller
@@ -157,14 +165,27 @@ public class Member_CourseController {
 			return null;
 		}
 
-	// 全部選課紀錄
-	@GetMapping("/selectcourserecord.controller") // http://localhost:8081/membercourse/selectcourserecord.controller
-	@ResponseBody
-	public List<Member_Course> findselectrecord() {
-		Integer memberNumber = 1001;
+		// 全部選課紀錄
+		@GetMapping("/selectcourserecord.controller/{pageNo}") // http://localhost:8081/membercourse/selectcourserecord.controller/1
+		@ResponseBody
+		public Map<String, Object> findselectrecord(@PathVariable("pageNo") int pageNo) {
+			Integer memberNumber = 1;
+			
+			int pageSize = 10;
+			Member_CourseSpec mcSpec = new Member_CourseSpec(memberNumber);
+			
+			Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.DESC, "selecttime").and(Sort.by(Direction.ASC, "state")));
+			
+			Page<Member_Course> page = mcService.findByMemberNumber(mcSpec, pageable);
+			
+			Map<String, Object> pagemap = new HashMap<>();
 
-		return mcService.findByMember(memberNumber);
-	}
+			pagemap.put("pageContent", page.getContent());
+			pagemap.put("totalPages", page.getTotalPages());
+			pagemap.put("totalElements", page.getTotalElements());
+
+			return pagemap;
+		}
 
 	// 顯示未來的課程/查詢
 

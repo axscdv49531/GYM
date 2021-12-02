@@ -222,7 +222,7 @@ function next(){
 	
 	
 	<header>
-		
+		<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a>
 		<a href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a>
 		<a href="<c:url value='/myCourseSchedule' />">我的課表</a>
 		<a href="<c:url value='/' />">回首頁</a>

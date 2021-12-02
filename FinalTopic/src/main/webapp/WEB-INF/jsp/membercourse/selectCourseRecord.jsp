@@ -10,73 +10,114 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
-   var indexPage=1;
-   $(document).ready(function(){
-	   load(indexPage);
-   });
-   
-   function change(page){
+var indexPage=1;
+
+
+$(document).ready(function(){
+	   showAllRecord(indexPage);
+});
+
+function change(page){
 	   indexPage = page;
-	   load(indexPage);
-   }
-   
-   function selectCourse(courseId,stuNum,maxStuNum){	  
-	if(confirm("確實要加選"+courseId+"嗎?")){
-		if(stuNum>=maxStuNum){ //檢查選課人數
-			alert(courseId+":課程已額滿");
-		}else{
-			$.ajax({
-				   type:'get',
-				   url:'/membercourse/selectcourse.controller/' + courseId, 
-				   dataType:'JSON',
-				   contentType:'application.json',
-				   success: function(data){
-						alert("已經加選"+courseId+"！"); 
-				   }
-				   });
+	   showAllRecord(indexPage);
+}
+function previous(){
+	   if(indexPage>1){
+		   indexPage--;
+		   showAllRecord(indexPage)
+	   }
+}
+
+function next(){
+	   if(indexPage < $('#nextbutton').val()){
+		  indexPage++;
+		  showAllRecord(indexPage)
+	   }
+	   
+}
+
+   function arrayToJson(formArray){
+		  var dataArray = {};
+		  $.each(formArray,function(){
+		    if(dataArray[this.name]){
+		      if(!dataArray[this.name].push){
+		        dataArray[this.name] = [dataArray[this.name]];
+		      }
+		      dataArray[this.name].push(this.value || '');
+		    }else{
+		      dataArray[this.name] = this.value || '';
+		    }
+		  });
+		  return JSON.stringify(dataArray);
 		}
-	}else{alert("已經取消加選"+courseId+"的操作");
-			  }	
-	} 
- 		
+	
    
-   function load(indexPage){
-	   $.ajax({
-		   type:'post',
-		   url:'/membercourse/queryByPage/' + indexPage, 
-		  // url:'/course/findallcoures.controller',
-		   dataType:'JSON',
-		   contentType:'application.json',
-		   success: function(data){
-			   
-			  // console.log('success:' + data);
-			  // var json = JSON.stringify(data,null,4);
-			   //console.log('json:' + json);
-			   
-			   $('#showcourse').empty("");
-			   
-			   if(data==null){
-				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
-			   }else{
-				   var table = $('#showcourse');
-				   table.append("<tr id='ptitle'><th>選課紀錄編號</th><th>課程名稱</th><th>課程總類</th><th></th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>查詢學生</th><th>修改</th><th>刪除</th></tr>");
-				   
-				   $.each(data, function(i,n){
-					   var tr = "<tr align='center'>" + "<td>" + n.id + "</td>" +
-					            "<td>" + n.courseName + "</td>" + "<td>" + n.category + "</td>" +
-					            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
-					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
-					            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
-					        	"<td><button id='' type='button' class='' onclick=''>課程簡介</button></td>"+
-					        	"<td><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></td>"+
-					            "</tr>";
-					   table.append(tr);
-				   });			   
-			   }
-		   }
-	   });
+   
+   
+ //共同使用的函式：將查詢課程結果印出  
+   function showRecordList(data){
+   	console.log('success:' + data);
+   	var json = JSON.stringify(data,null,4);
+   	console.log('json:' + json);
+   	//console.log(data.totalElements)
+   	
+   	//alert("查詢成功！");
+   	////////////
+   	$('#showrecord').empty("");
+   	   
+   	   if(data.pageContent==null){
+   		   alert("無符合查詢結果！");
+   		   $('#showrecord').append("<tr><td colspan='2'>暫無資料</td></tr>");;
+   	   }else{
+		   var table = $('#showrecord');
+		   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>學生人數上限</th><th>課程狀態</th><th>紀錄時間</th><th>紀錄狀態</th></tr>");
+		   
+		   $.each(data.pageContent, function(i,n){
+			   var tr = "<tr align='center'>" + 
+			   			//"<td>" + n.course.id + "</td>" +
+			            //"<td>" + n.course.courseName + "</td>" + "<td>" + n.course.category + "</td>" +
+			            //"<td>" + n.course.date + "</td>" + "<td>" + n.course.period + "</td>" + 
+			            //"<td>" + n.course.classroom + "</td>" + "<td>" + n.course.coach.coachName + "</td>" +"<td>" + n.course.maxStudentNum + "</td>" +
+			            //"<td>" + n.course.state + 
+			            "</td>" + "<td>" + n.selecttime + "</td>"  + "<td>" + n.state + "</td>"  +
+			            "</tr>";
+			   table.append(tr);
+		   });	
+   	   }
+   	   //////////
+
+   	   var tr2 ="<td>Total Pages: "+ data.totalPages +
+   		    " Total Records: "+data.totalElements+"</td>";
+   	   
+   	   $('#showpage').empty("");
+   	   $('#showpage').append(tr2);
+   	   
+   	   $('#showpage').append("<button onclick='previous()'>Previous</button>");
+   	   
+   	   for(var j=1 ; j <= data.totalPages; j++){
+   		   $('#showpage').append("<button id='myPage' value='"+j+"' onclick='change("+j+")'>"+j+"</button>")
+   	   }
+   	   
+   	   $('#showpage').append("<button id='nextbutton' value='" + data.totalPages + "' onclick='next()'>Next</button>");
+   	
    }
-   
+
+
+
+   //查詢所有選課紀錄
+   function showAllRecord(indexPage){
+   	$.ajax({
+   		type:'get',
+   		url:'/membercourse/selectcourserecord.controller/'+indexPage, 
+   		dataType:'JSON',
+   		contentType:'application/json;charset=utf-8',
+   		success: function(data){
+   			showRecordList(data);
+   		}
+   	});	
+   }
+
+
 
 </script>
 </head>
@@ -93,19 +134,13 @@
 	</header>
 	
 	
+	<table id="showrecord" border="1"></table>
 	
-	<table id="showcourse" border="1"></table>
-	<table id="showpage">
-		<tr>
-			<td>Total Pages:${totalPages} Total Records:${totalElements}</td>
-			<td colspan="3" align="right">Previous <c:forEach var="i"
-					begin="1" end="${totalPages}" step="1">
-					<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
-				</c:forEach>Next
-			</td>
-		</tr>
-	</table>
+
+	<table><tr id="showpage"></tr></table>
 	<br>
+
+	
 <a href="<c:url value='/' />">回首頁</a>
 </body>
 </html>

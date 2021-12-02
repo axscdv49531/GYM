@@ -3,6 +3,8 @@ package tw.gym.membercourse.model;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +27,7 @@ public class Member_CourseServiceImpl implements Member_CourseService {
 		return mcReps.findByFkid(memberNumber, courseId);
 	}
 	
-	public List<Member_Course> findByMember(Integer memberNumber){
-		return mcReps.findByMember(memberNumber);
+	public Page<Member_Course> findByMemberNumber(Member_CourseSpec mcSpec,Pageable pagealbe){
+		return mcReps.findAll(mcSpec, pagealbe);
 	}
 }
