@@ -3,8 +3,8 @@ package tw.gym.courses.model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
-import tw.gym.model.CoachBean;
-import tw.gym.repository.CoachRepository;
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.repository.CoachRepository;
 
 //@Repository
 //@Transactional

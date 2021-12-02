@@ -21,13 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.gym.coach.service.CoachService;
 import tw.gym.courses.model.CourseService;
 import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Service.MemberService;
 import tw.gym.membercourse.model.Member_Course;
 import tw.gym.membercourse.model.Member_CourseService;
+<<<<<<< HEAD
 import tw.gym.membercourse.model.Member_CourseSpec;
 import tw.gym.service.CoachService;
+=======
+>>>>>>> master
 
 @Controller
 @RequestMapping(path = "/membercourse")

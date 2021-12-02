@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+.mainDiv{	
+	border-width:1pt;
+	border-style:soild;
+	border-color:black;
+	width:800px;
+	margin:0 auto;	
+
+
+}
+.FontTitle{
+	font-family:"Courier New";
+	font-size:30px;
+	margin-left:50px;
+	
+}
+div{
+	border-radius:20px;
+}
+.PictureDivL{
+	height:300px;
+	width:300px;
+	margin-top:20px;
+	margin-right:20px;
+	margin-bottom:20px;
+	margin-left:50px;
+	float:left;
+	
+}
+.PictureDivR{
+	height:300px;
+	width:800px;
+	margin-top:20px;
+	margin-right:50px;
+	margin-bottom:20px;
+	margin-left:20px;
+	float:right;
+	
+}
+.img01{
+	height:200px;
+	width:200px;
+}
+
+.inputText{
+	margin-top:10px;
+	border-style:none;
+	font-size:20px;
+	
+	
+}
+.icon{
+	height:25px;
+	width:25px;
+	text-align:right;	
+}
+
+.iconx{
+	position:absolute;
+	height:25px;
+	width:25px;
+	top:10px;
+	right:5px;
+	
+}
+
+.detailDiv01{
+	position:absolute;
+	top: 200px;
+	right: 100px;
+	background-color:#ffffff;
+	height:300px;
+	width:300px;
+	border-width:1pt;
+	border-style:solid;
+	border-color:black;
+	display:none;
+	
+	
+}
+.detailDiv01Font1{
+	width:200px;
+	font-size:20px;
+	margin-top:30px;
+	margin-left:50px;
+	font-family:DFKai-sb;
+	border-style:soild;
+	
+}
+.detailDiv01Font2{
+	font-size:20px;
+	margin-top:30px;
+	margin-left:50px;
+	font-family:DFKai-sb;
+	border-style:none;
+	
+	
+}
+
+ .detailDiv01Font3{
+ 	border-style:none;
+  	font-size:15px;
+  }
+ .detailDiv01Font3:focus{
+ 	border-style:none;
+  	font-size:15px;
+
+  }
+ 
+
+
+
+.InDetailPicture{
+	width:300px;
+	height:300px;
+	margin:0 auto;
+	
+}
+
+
+.InDetailFontName{
+	font-size:30px;
+	font-family:monospace;
+}
+.shoppingCart{
+	height:350px;
+	width:350px;
+	border-width:1pt;
+	border-style:solid;
+	border-color:black;
+	margin-left:20px;
+	text-align:center;
+	margin-top:50px;
+	float:left;
+	margin-bottom:50px;
+
+	
+	
+
+}
+
+
+
+.OrdermenuButton{
+	position:absolute;
+	top:200px;
+	right: 100px;
+	width:200px;
+	font-size:20px;
+	margin-top:30px;
+	margin-left:50px;
+	font-family:DFKai-sb;
+	border-style:soild;
+}
+.OrdermenuButton1{
+	position:absolute;
+	top:300px;
+	right:100px;
+	width:200px;
+	font-size:20px;
+	margin-top:30px;
+	margin-left:50px;
+	font-family:DFKai-sb;
+	border-style:soild;
+	
+}
+
+
+
+
+
+
+

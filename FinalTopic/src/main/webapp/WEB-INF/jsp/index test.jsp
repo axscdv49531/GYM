@@ -130,5 +130,6 @@
 			<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
 			<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a>
 			<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a>
+			<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
 </body>
 </html>

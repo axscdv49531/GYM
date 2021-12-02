@@ -25,8 +25,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import tw.gym.coach.model.CoachBean;
 import tw.gym.membercourse.model.Member_Course;
-import tw.gym.model.CoachBean;
 
 @Entity
 @Table(name = "courses")

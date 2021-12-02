@@ -8,8 +8,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.gym.coach.model.ClassBean;
 import tw.gym.member.Model.MemberBean;
-import tw.gym.model.ClassBean;
 
 public interface MemberRepository extends JpaRepository<MemberBean, Integer>, MemberRepositoryCustom {
 

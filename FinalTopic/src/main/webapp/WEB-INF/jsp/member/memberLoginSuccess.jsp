@@ -14,7 +14,7 @@
 		<br>
 	</div>
 	<div style="text-align: center">
-		<a href="<c:url value='/member/viewReservationClass' />">查看已預約課程
+		<a href="<c:url value='/viewReservationClass' />">查看已預約課程
 		</a><br> <br>
 	</div>
 </body>

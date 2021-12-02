@@ -27,22 +27,23 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.request.WebRequest;
 
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.ClassMemberBean;
+import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassService;
+import tw.gym.coach.service.CoachService;
+import tw.gym.coach.service.SkillService;
+import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.member.validator.MemberValidator;
-import tw.gym.model.ClassBean;
-import tw.gym.model.ClassMemberBean;
-import tw.gym.model.SkillBean;
-import tw.gym.service.ClassService;
-import tw.gym.service.CoachService;
-import tw.gym.service.SkillService;
 
 @Controller
-//@RequestMapping(path = "/GymProject")
+// @RequestMapping(path = "/GymProject")
 // @SessionAttributes(names = { "totalPages", "totalElements" })
 public class MemberController {
 
-	private MemberService memberService;
+    private MemberService memberService;
 
     // Mark
     @Autowired
@@ -54,98 +55,101 @@ public class MemberController {
     @Autowired
     SkillService skiService;
 
-	@Autowired
-	public MemberController(MemberService memberService) {
-		this.memberService = memberService;
-	}
+    @Autowired
+    EmailSenderService emailSerive;
 
-	// 輸入會員資料
-	@GetMapping(path = "/insertMember")
-	public String insertMember(Model m) {
-		MemberBean memberBean = new MemberBean();
-		m.addAttribute("memberBean", memberBean);
-		return "member/MemberForm";
-	}
+    @Autowired
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
 
-	@PostMapping(path = "/insertMember")
-	public String insert(Model m, @ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult) {
-		MemberValidator memberValidator = new MemberValidator();
-		memberValidator.validate(memberBean, bindingResult);
+    // 輸入會員資料
+    @GetMapping(path = "/insertMember")
+    public String insertMember(Model m) {
+        MemberBean memberBean = new MemberBean();
+        m.addAttribute("memberBean", memberBean);
+        return "member/MemberForm";
+    }
 
+    @PostMapping(path = "/insertMember")
+    public String insert(Model m, @ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult) {
+        MemberValidator memberValidator = new MemberValidator();
+        memberValidator.validate(memberBean, bindingResult);
 
-		if (bindingResult.hasErrors()) {
-			System.out.println(bindingResult.getAllErrors());
-			return "member/MemberForm";
-		}
-//		if (memberBean != null) {
-//			if(memberBean.getId().equals(memberService. == true);
-//			bindingResult.rejectValue("memberId", "", "帳號已存在，請重新輸入");
-//			return "MemberForm"; 
-//		}
-		String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
-		memberBean.setPassword(encodePwd);
+        if (bindingResult.hasErrors()) {
+            System.out.println(bindingResult.getAllErrors());
+            return "member/MemberForm";
+        }
+        // if (memberBean != null) {
+        // if(memberBean.getId().equals(memberService. == true);
+        // bindingResult.rejectValue("memberId", "", "帳號已存在，請重新輸入");
+        // return "MemberForm";
+        // }
+        memberBean.setPassword("123456");
+        String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
+        memberBean.setPassword(encodePwd);
         memberBean.setDeposite(0);
-		memberService.insert(memberBean);
-		return "redirect:/member/findAllMember";
-	}
-//	@PostMapping("/insertMember")
-//	@ResponseBody
-//	public MemberBean processInsertMember( @RequestBody MemberBean memberBean) { 
-//		 return memberService.insert(memberBean);
-//	}
+        memberService.insert(memberBean);
+        return "redirect:/member/findAllMember";
+    }
+    // @PostMapping("/insertMember")
+    // @ResponseBody
+    // public MemberBean processInsertMember( @RequestBody MemberBean memberBean) {
+    // return memberService.insert(memberBean);
+    // }
 
-	@GetMapping("/findAllMember")
-	public String selectAll(Model model) {
-		List<MemberBean> memberBean = memberService.findAll();
-		model.addAttribute(memberBean);
-		return "member/ShowMember";
-	}
+    @GetMapping("/findAllMember")
+    public String selectAll(Model model) {
+        List<MemberBean> memberBean = memberService.findAll();
+        model.addAttribute(memberBean);
+        return "member/ShowMember";
+    }
 
-	@GetMapping("/selectMember/{number}")
-	public String findById(Model model, @PathVariable Integer number) {
-		MemberBean memberBean = memberService.findByNumber(number);
-		model.addAttribute("memberBean", memberBean);
-		return "member/ShowMemberDetail";
-	}
+    @GetMapping("/selectMember/{number}")
+    public String findById(Model model, @PathVariable Integer number) {
+        MemberBean memberBean = memberService.findByNumber(number);
+        model.addAttribute("memberBean", memberBean);
+        return "member/ShowMemberDetail";
+    }
 
-	@GetMapping("/modifyMember/{number}")
-	public String updateMember(Model model, @PathVariable Integer number) {
-		MemberBean memberBean = memberService.findByNumber(number);
-//		memberbean.setPassword(memberbean.getPassword());
-		model.addAttribute("memberBean", memberBean);
-		return "member/EditMemberForm";
-	}
+    @GetMapping("/modifyMember/{number}")
+    public String updateMember(Model model, @PathVariable Integer number) {
+        MemberBean memberBean = memberService.findByNumber(number);
+        // memberbean.setPassword(memberbean.getPassword());
+        model.addAttribute("memberBean", memberBean);
+        return "member/EditMemberForm";
+    }
 
-	@PostMapping("/modifyMember/{number}")
-	public String updateMemberdata(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult) {
-		new MemberValidator().validate(memberBean, bindingResult);
+    @PostMapping("/modifyMember/{number}")
+    public String updateMemberdata(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult) {
+        new MemberValidator().validate(memberBean, bindingResult);
 
-		if (bindingResult.hasErrors()) {
-			return "member/EditMemberForm";
-		}
-		memberService.update(memberBean);
-		return "redirect:/member/findAllMember";
-	}
+        if (bindingResult.hasErrors()) {
+            return "member/EditMemberForm";
+        }
+        memberService.update(memberBean);
+        return "redirect:/member/findAllMember";
+    }
 
-	@GetMapping("/deleteMember/{number}")
-	public String deleteMemberData(@PathVariable("number") Integer number) throws SQLException {
-		memberService.deleteById(number);
-		return "redirect:/member/findAllMember";
-	}
+    @GetMapping("/deleteMember/{number}")
+    public String deleteMemberData(@PathVariable("number") Integer number) throws SQLException {
+        memberService.deleteById(number);
+        return "redirect:/member/findAllMember";
+    }
 
-	@InitBinder
-	public void initBinder(WebDataBinder binder, WebRequest request) {
-		// java.util.Date
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		dateFormat.setLenient(false);
-		CustomDateEditor ce = new CustomDateEditor(dateFormat, true);
-		binder.registerCustomEditor(Date.class, ce);
-		// java.sql.Date
-		DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
-		dateFormat2.setLenient(false);
-		CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true);
-		binder.registerCustomEditor(java.sql.Date.class, ce2);
-	}
+    @InitBinder
+    public void initBinder(WebDataBinder binder, WebRequest request) {
+        // java.util.Date
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        dateFormat.setLenient(false);
+        CustomDateEditor ce = new CustomDateEditor(dateFormat, true);
+        binder.registerCustomEditor(Date.class, ce);
+        // java.sql.Date
+        DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat2.setLenient(false);
+        CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true);
+        binder.registerCustomEditor(java.sql.Date.class, ce2);
+    }
 
     // //Mark
     // @GetMapping("memberLogin")
@@ -178,6 +182,7 @@ public class MemberController {
 
         return "/member/memberLoginSuccess";
     }
+
     // Mark
     @GetMapping("classReservation")
     public String memberViewClassList(Model model) {
@@ -249,7 +254,14 @@ public class MemberController {
         cmBean.setRegisterDate(timestamp);
         memberService.insertReservation(cmBean, 1, classId);
 
-        return "redirect:/member/classReservation";
+        String email = mBean.getEmail();
+        String subject = "一對一課程預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
+                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+
+        emailSerive.sendEmail(email, subject, body);
+        return "redirect:/classReservation";
     }
 
     // Mark
@@ -263,12 +275,80 @@ public class MemberController {
     }
 
     // Mark
-    @GetMapping("/cancelClass/{classId}")
-    public String cencelClass(@PathVariable Integer classId, Integer a) {
+    @GetMapping("/member/viewClass/{id}")
+    public String memberViewClassDetail(@PathVariable("id") Integer classId, Model model) {
+        List<String> skList = skiService.listAllSkill();
+        model.addAttribute("checkBoxList", skList);
+        List<String> selectData = new ArrayList<String>();
+        selectData.add("09:00");
+        selectData.add("10:00");
+        selectData.add("11:00");
+        selectData.add("12:00");
+        selectData.add("13:00");
+        selectData.add("14:00");
+        selectData.add("15:00");
+        selectData.add("16:00");
+        selectData.add("17:00");
+        selectData.add("18:00");
+        selectData.add("19:00");
+        selectData.add("20:00");
+        model.addAttribute("selectData", selectData);
+        ClassBean cBean = claService.getClassById(classId);
+        String startTemp = cBean.getClassStartTime().toString();
+        String start = startTemp.substring(0, 5);
+        String endTemp = cBean.getClassEndTime().toString();
+        String end = endTemp.substring(0, 5);
+        cBean.setClassStartTimeTemp(start);
+        cBean.setClassEndTimeTemp(end);
+
+        Set<SkillBean> a = cBean.getsBean();
+        Iterator<SkillBean> aa = a.iterator();
+        String[] st = new String[cBean.getsBean().size()];
+        int i = 0;
+        while (aa.hasNext()) {
+            // System.out.println(aa.next().getSkillName());
+            st[i] = aa.next().getSkillName();
+            i++;
+        }
+        cBean.setClassLabel(st);
+        model.addAttribute("classBean", cBean);
+
+        return "/member/viewClassDetail";
+    }
+
+    // Mark
+    @PostMapping("/member/viewClass/{id}")
+    public String memberViewClassDetailDelete(@PathVariable("id") Integer classId,
+            @SessionAttribute("loginUser") MemberBean mBean) {
 
         memberService.deleteByClassId(classId, 0);
+        ClassBean cBean = claService.getClassById(classId);
+        String email = mBean.getEmail();
+        String subject = "一對一課程取消預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
+                + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n\n\n" + "期待您再次光臨！";
 
-        return "redirect:/member/viewReservationClass";
+        emailSerive.sendEmail(email, subject, body);
+
+        return "redirect:/viewReservationClass";
+    }
+
+    // Mark
+    @GetMapping("/cancelClass/{classId}")
+    public String cencelClass(@PathVariable Integer classId, Integer a,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        memberService.deleteByClassId(classId, 0);
+        ClassBean cBean = claService.getClassById(classId);
+        String email = mBean.getEmail();
+        String subject = "一對一課程取消預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
+                + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n" + "\n\n\n" + "期待您再次光臨！";
+
+        emailSerive.sendEmail(email, subject, body);
+
+        return "redirect:/viewReservationClass";
     }
 
     // Mark

@@ -21,7 +21,7 @@
 					<td>${classes.cBean.coachName}</td>
 					<td>${classes.className}</td>
 					<td><input type="button" value="查看" onclick="location.href='/member/viewClass/${classes.classId}'"></td>
-					<td><input type="button" value="取消預約" onclick="location.href='/member/cancelClass/${classes.classId}'"></td>
+					<td><input type="button" value="取消預約" onclick="location.href='/cancelClass/${classes.classId}'"></td>
 				</tr>
 			</c:forEach>
 		</table>

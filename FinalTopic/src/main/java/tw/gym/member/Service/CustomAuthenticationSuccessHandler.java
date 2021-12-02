@@ -35,7 +35,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
         session.setAttribute("loginUser", mBean.get());
 
-
+ 
         response.sendRedirect("/login/welcome");
 
         // Collection<GrantedAuthority> authorities = null;
