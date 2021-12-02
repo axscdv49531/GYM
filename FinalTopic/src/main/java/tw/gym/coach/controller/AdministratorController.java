@@ -1,5 +1,6 @@
 package tw.gym.coach.controller;
 
+import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Time;
@@ -8,6 +9,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.sql.rowset.serial.SerialBlob;
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -22,6 +26,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
@@ -68,7 +73,17 @@ public class AdministratorController {
     }
 
     @PostMapping(value = "/updateCoach/{name}", params = "edit")
-    public String updateCoachData(CoachBean cBean) {
+    public String updateCoachData(CoachBean cBean) throws IOException, SerialException, SQLException {
+        MultipartFile picture = cBean.getcPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cBean.setCoachPhoto(blob);
+        cBean.setFileName(fileName);
+        cBean.setCoachPhotoMineType(mineType);
         service.updateCoach(cBean);
         return "redirect:/";
     }
@@ -143,6 +158,8 @@ public class AdministratorController {
     @GetMapping("/getCoachPicture")
     public ResponseEntity<byte[]> getCoachPicture(@RequestParam("coachAccount") String coachAccount)
             throws SQLException {
+
+        System.out.println(coachAccount);
         CoachBean cBean = service.getCoachByAccount(coachAccount);
         System.out.println(cBean.getCoachName());
         ResponseEntity<byte[]> re = null;

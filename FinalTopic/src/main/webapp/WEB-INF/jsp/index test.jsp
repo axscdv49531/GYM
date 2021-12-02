@@ -85,7 +85,7 @@
                                        <ul class="nav navbar-nav">
                                           <li class="active"><a href="<c:url value='/' />">主頁</a></li>
                                           <li><a href="about.html">關於</a></li>
-                                          <li><a href="team.html">教練師資</a></li>
+                                          <li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
                                           <li><a href="news.html">預約私人課程</a></li>
                                           <li><a href="<c:url value='/courseSelectSystem' />">團課報名</a></li>
                                           <li><a href="news.html">健康餐盒</a></li>
@@ -131,5 +131,7 @@
 			<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a>
 			<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a>
 			<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
+			<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a>
+			<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a>
 </body>
 </html>

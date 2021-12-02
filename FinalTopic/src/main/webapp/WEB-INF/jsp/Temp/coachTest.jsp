@@ -36,9 +36,9 @@
 //                    table.append("<tr id='ptitle'><th>教練大頭照</th><th>教練姓名</th></tr>");
                    
                    $.each(data, function(i,n){
-                       var div2 = "<div class='col-md-3 column'><div class='card'><img class='img-responsive' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + n.coachAccount + " alt='John' style='width:100%'><div class=''><h4>" + n.coachName + "</h4><p class='title'>" +"</p>"+
-                               "<p><div class='center'><button class='button'>"+"Contact"+"</button></div></p></div></div></div>"
-                               ;
+                       var div2 = "<div class='col-md-3 column'><div class='card'><img class='img-responsive' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + n.coachAccount + " alt='John' style='width:100%'><div class=''><h4>" + n.coachName + "</h4><p class='title'>" + "aaa" +"</p>"+
+                    		   "<p><div class='center'><button class='button'>"+"Contact"+"</button></div></p></div></div></div>"
+                    		   ;
                        div.append(div2);
                    });             
                }

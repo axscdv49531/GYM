@@ -387,4 +387,18 @@ public class MemberController {
 
     }
 
+    @GetMapping("testcoach")
+    public String testCoachList() {
+
+        return "/Temp/coachTest";
+
+    }
+
+    @GetMapping("showCoachList")
+    public String showCoachList() {
+
+        return "/coach/coachList";
+
+    }
+
 }

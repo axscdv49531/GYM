@@ -16,5 +16,8 @@
 	<div style="text-align: center">
 		<a href="<c:url value='/coach/coachClassList' />">課程清單</a><br> <br>
 	</div>
+	<div style="text-align: center">
+		<a href="<c:url value='/administrator/updateCoach/' />${loginUser.coachAccount}" >修改資料</a><br> <br>
+	</div>
 </body>
 </html>
