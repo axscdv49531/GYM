@@ -264,12 +264,63 @@ public class MemberController {
     }
 
     // Mark
+    @GetMapping("/member/viewClass/{id}")
+    public String memberViewClassDetail(@PathVariable("id") Integer classId, Model model) {
+        List<String> skList = skiService.listAllSkill();
+        model.addAttribute("checkBoxList", skList);
+        List<String> selectData = new ArrayList<String>();
+        selectData.add("09:00");
+        selectData.add("10:00");
+        selectData.add("11:00");
+        selectData.add("12:00");
+        selectData.add("13:00");
+        selectData.add("14:00");
+        selectData.add("15:00");
+        selectData.add("16:00");
+        selectData.add("17:00");
+        selectData.add("18:00");
+        selectData.add("19:00");
+        selectData.add("20:00");
+        model.addAttribute("selectData", selectData);
+        ClassBean cBean = claService.getClassById(classId);
+        String startTemp = cBean.getClassStartTime().toString();
+        String start = startTemp.substring(0, 5);
+        String endTemp = cBean.getClassEndTime().toString();
+        String end = endTemp.substring(0, 5);
+        cBean.setClassStartTimeTemp(start);
+        cBean.setClassEndTimeTemp(end);
+
+        Set<SkillBean> a = cBean.getsBean();
+        Iterator<SkillBean> aa = a.iterator();
+        String[] st = new String[cBean.getsBean().size()];
+        int i = 0;
+        while (aa.hasNext()) {
+            // System.out.println(aa.next().getSkillName());
+            st[i] = aa.next().getSkillName();
+            i++;
+        }
+        cBean.setClassLabel(st);
+        model.addAttribute("classBean", cBean);
+
+        return "/member/viewClassDetail";
+    }
+
+    // Mark
+    @PostMapping("/member/viewClass/{id}")
+    public String memberViewClassDetailDelete(@PathVariable("id") Integer classId) {
+
+        memberService.deleteByClassId(classId, 0);
+
+        return "redirect:/viewReservationClass";
+    }
+
+    // Mark
     @GetMapping("/cancelClass/{classId}")
     public String cencelClass(@PathVariable Integer classId, Integer a) {
 
         memberService.deleteByClassId(classId, 0);
 
-        return "redirect:/member/viewReservationClass";
+        return "redirect:/viewReservationClass";
     }
 
     // Mark
