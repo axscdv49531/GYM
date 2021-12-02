@@ -67,8 +67,8 @@
 					            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 					            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
-					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick=''>課程簡介</button></a></td>"+
-					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></a></td>"+
+					        	"<td><button id='' type='button' class='' onclick=''>課程簡介</button></td>"+
+					        	"<td><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></td>"+
 					            "</tr>";
 					   table.append(tr);
 				   });			   

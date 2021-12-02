@@ -107,7 +107,7 @@ public class CourseController {
 		return cService.findAllCourse();
 	}
 
-	// 查詢課程by會員
+	// 查詢課程by會員，已加選課程
 	@GetMapping("/findbymember.controller") // http://localhost:8081/course/findbymember.controller
 	@ResponseBody
 	public List<Course> processFindByMember(Integer memberNum) {
@@ -190,7 +190,6 @@ public class CourseController {
 	@ResponseBody
 	public String queryInformation(@PathVariable("courseId") Integer courseId) {
 		String str = cService.findInfoById(courseId);
-		System.out.println(str + "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		return str;
 	}
 

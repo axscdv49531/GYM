@@ -108,8 +108,8 @@ function next(){
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
-			        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick=''>課程簡介</button></a></td>"+
-			        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></a></td>"+
+			        	"<td><button id='' type='button' class='' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
+			        	"<td><button id='' type='button' class='' onclick='selectCourse(" + n.id + "," + n.studentNum + "," + n.maxStudentNum  + ")'>加選課程</button></td>"+
 			            "</tr>";
 			   table.append(tr);
 		   });	
@@ -193,31 +193,27 @@ function next(){
    	});	
    }
 
- /*
+
  function showInformation(courseId){
-	 
+	 alert(courseId);
 	 
 	 $.ajax({
 		   type:'get',
 		   url:'/course/queryinformation.controller/' + courseId, 
-		   dataType:'json',
+		   dataType:'text',
 		   contentType:'application/json',
-		   success: function(data){
-				//alert("已經加選"+courseId+"！"); 
-				   console.log('success:' + data);
-				   var json = JSON.stringify(data,null,4);
-				   console.log('json:' + json);
-				   alert(data);
-				   alert(json);
+		   success: function(str){
+
+	 			$('#showInformation').empty("");
+	 			$('#showInformation').append("課程簡介："+ str);
+	 			//showAllCourse(indexPage);
 		   }
-		   });
+	});
 	 
-	 alert("show information");
-	 console.log(information);
-	 $('#showInformation').append(information);
+
 	 //load(indexPage);
  }  
-   */
+
 
 </script>
 </head>
@@ -288,10 +284,11 @@ function next(){
 	
 	<table id="showcourse" border="1"></table>
 	
-	<div id='showInformation'></div>
-	
+
 	<table><tr id="showpage"></tr></table>
 	<br>
+	<div id='showInformation'style="border:1px #FFAC55 solid;">課程簡介：</div>
+	
 <a href="<c:url value='/' />">回首頁</a>
 </body>
 </html>

@@ -105,7 +105,7 @@ function showCourseList(data){
 			            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
 			        	"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class=''>查詢選課學生</button></a></td>"+
 			        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class=''>修改</button></a></td>"+
-			        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></a></td>"+
+			        	"<td><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
 			            "</tr>";
 			   table.append(tr);
 		   });

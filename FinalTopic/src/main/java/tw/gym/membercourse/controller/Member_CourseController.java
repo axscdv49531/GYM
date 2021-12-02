@@ -123,26 +123,39 @@ public class Member_CourseController {
 	}
 
 	// 退選課程/更新state欄位
-	@GetMapping("/dropcourse.controller/{courseId}") // http://localhost:8081/membercourse/selectcourse.controller/100
-	public Member_Course dropcourse(@PathVariable("courseId") Integer courseId) {
+		@GetMapping("/dropcourse.controller/{courseId}") // http://localhost:8081/membercourse/selectcourse.controller/100
+		public Member_Course dropcourse(@PathVariable("courseId") Integer courseId) {
 
-		System.out.println("hello");
-		Integer memberNumber = 1001;
+			System.out.println("hello");
+			Integer memberNumber = 1;
+			//加選成功信件的內容設定
+			String courseName = cService.findById(courseId).getCourseName();
+			Date date = cService.findById(courseId).getDate();
+			String period = cService.findById(courseId).getPeriod();
+			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+			String courseTime = dateFormat.format(date) +"  " +period;
+			
+			//String toEmail = mService.findByNumber(memberNumber).getEmail();
+			String toEmail = "habypunk@gmail.com";
+			String subject = "退選課程成功： "+ courseName;
+			String body = "您已退選：" +courseTime +" 的 " +courseName + "。\n歡迎您預約其他課程！" ;
 
-		List<Member_Course> mcList = mcService.findByFkid(memberNumber, courseId);
-		for (Member_Course mc : mcList) {
-			if (mc.getState().equals("已加選")) {
-				mc.setFk_course_id(courseId);
-				mc.setFk_member_num(memberNumber);
-				mc.setSelecttime(new Date());
-				mc.setState("已退選");
+			List<Member_Course> mcList = mcService.findByFkid(memberNumber, courseId);
+			for (Member_Course mc : mcList) {
+				if (mc.getState().equals("已加選")) {
+					mc.setFk_course_id(courseId);
+					mc.setFk_member_num(memberNumber);
+					mc.setSelecttime(new Date());
+					mc.setState("已退選");
 
-				cService.stuNumMinus(courseId); // 更新Course 人數
-				return mcService.updateMC(mc);
+					//退選課程
+					cService.stuNumMinus(courseId); // 更新Course 人數
+					emailSerive.sendEmail(toEmail,subject, body);
+					return mcService.updateMC(mc);
+				}
 			}
+			return null;
 		}
-		return null;
-	}
 
 	// 全部選課紀錄
 	@GetMapping("/selectcourserecord.controller") // http://localhost:8081/membercourse/selectcourserecord.controller

@@ -32,6 +32,7 @@
 				   contentType:'application.json',
 				   success: function(data){
 						alert("已經退選"+courseId+"！"); 
+						load(indexPage);
 				   }
 				   });
 		
@@ -66,14 +67,31 @@
 					            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 					            "<td>" + n.maxStudentNum + "</td>" +
-					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick=''>課程簡介</button></a></td>"+
-					        	"<td><a href='<c:url value=""/>'><button id='' type='button' class='' onclick='dropCourse(" + n.id +")'>退選課程</button></a></td>"+
+					            "<td><button id='' type='button' class='' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
+					        	"<td><button id='' type='button' class='' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
 					            "</tr>";
 					   table.append(tr);
 				   });			   
 			   }
 		   }
 	   });
+   }
+   
+   function showInformation(courseId){
+		 alert(courseId);
+		 
+		 $.ajax({
+			   type:'get',
+			   url:'/course/queryinformation.controller/' + courseId, 
+			   dataType:'text',
+			   contentType:'application/json',
+			   success: function(str){
+
+		 			$('#showInformation').empty("");
+		 			$('#showInformation').append("課程簡介："+ str);
+		 			//showAllCourse(indexPage);
+			   }
+		});
    }
    
 
