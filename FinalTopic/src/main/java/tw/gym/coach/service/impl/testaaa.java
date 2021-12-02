@@ -1,4 +1,4 @@
-package tw.gym.service.impl;
+package tw.gym.coach.service.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,8 +16,8 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gym.model.ClassBean;
-import tw.gym.repository.ClassRepository;
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.repository.ClassRepository;
 
 @Transactional
 @Service

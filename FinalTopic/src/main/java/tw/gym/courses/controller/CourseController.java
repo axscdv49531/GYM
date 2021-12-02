@@ -24,13 +24,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.service.CoachService;
 import tw.gym.courses.model.Course;
 import tw.gym.courses.model.CourseService;
 import tw.gym.courses.model.CourseSpec;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
-import tw.gym.model.CoachBean;
-import tw.gym.service.CoachService;
 
 @Controller
 @RequestMapping(path = "/course")

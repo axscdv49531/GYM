@@ -1,4 +1,4 @@
-package tw.gym.service.impl;
+package tw.gym.coach.service.impl;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gym.model.CoachBean;
-import tw.gym.repository.CoachRepository;
-import tw.gym.service.CoachService;
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.repository.CoachRepository;
+import tw.gym.coach.service.CoachService;
 
 @Transactional
 @Service

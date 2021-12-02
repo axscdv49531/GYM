@@ -27,15 +27,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.request.WebRequest;
 
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.ClassMemberBean;
+import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassService;
+import tw.gym.coach.service.CoachService;
+import tw.gym.coach.service.SkillService;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.member.validator.MemberValidator;
-import tw.gym.model.ClassBean;
-import tw.gym.model.ClassMemberBean;
-import tw.gym.model.SkillBean;
-import tw.gym.service.ClassService;
-import tw.gym.service.CoachService;
-import tw.gym.service.SkillService;
 
 @Controller
 //@RequestMapping(path = "/GymProject")
@@ -250,7 +250,7 @@ public class MemberController {
         cmBean.setRegisterDate(timestamp);
         memberService.insertReservation(cmBean, 1, classId);
 
-        return "redirect:/member/classReservation";
+        return "redirect:/classReservation";
     }
 
     // Mark

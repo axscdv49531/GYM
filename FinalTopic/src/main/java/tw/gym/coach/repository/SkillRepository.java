@@ -1,11 +1,11 @@
-package tw.gym.repository;
+package tw.gym.coach.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import tw.gym.model.SkillBean;
+import tw.gym.coach.model.SkillBean;
 
 public interface SkillRepository extends JpaRepository<SkillBean, Integer> {
 

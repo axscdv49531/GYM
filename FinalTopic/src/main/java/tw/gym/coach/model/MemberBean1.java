@@ -1,3 +1,4 @@
+package tw.gym.coach.model;
 //package tw.gym.model;
 //
 //import java.util.HashSet;

@@ -1,11 +1,11 @@
-package tw.gym.service;
+package tw.gym.coach.service;
 
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gym.model.CoachBean;
+import tw.gym.coach.model.CoachBean;
 
 @Service
 @Transactional

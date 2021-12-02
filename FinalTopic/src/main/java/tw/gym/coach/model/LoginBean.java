@@ -1,4 +1,4 @@
-package tw.gym.model;
+package tw.gym.coach.model;
 
 public class LoginBean {
     String userAccount;

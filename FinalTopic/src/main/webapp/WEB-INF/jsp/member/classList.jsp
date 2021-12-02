@@ -223,7 +223,7 @@
 														+ status
 														+ "</td>"
 														+ "<td>"
-														+ "<input type='button' value='查看' onclick=\"location.href='" + "/member/viewClass/" + n.classId +"'\"></td>"
+														+ "<input type='button' value='查看' onclick=\"location.href='" + "/viewClass/" + n.classId +"'\"></td>"
 														+ "</tr>";
 												table.append(tr);
 											});

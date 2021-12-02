@@ -1,4 +1,4 @@
-package tw.gym.model;
+package tw.gym.coach.model;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;

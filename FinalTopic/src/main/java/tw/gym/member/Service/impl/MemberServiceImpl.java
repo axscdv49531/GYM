@@ -7,14 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.ClassMemberBean;
+import tw.gym.coach.repository.ClassMemberRepository;
+import tw.gym.coach.repository.ClassRepository;
 import tw.gym.member.Dao.MemberRepository;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.member.validator.UserNotFoundException;
-import tw.gym.model.ClassBean;
-import tw.gym.model.ClassMemberBean;
-import tw.gym.repository.ClassMemberRepository;
-import tw.gym.repository.ClassRepository;
 
 @Service
 @Transactional

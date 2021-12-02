@@ -1,4 +1,4 @@
-package tw.gym.controller;
+package tw.gym.coach.controller;
 
 import java.io.IOException;
 import java.sql.Blob;
@@ -28,13 +28,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
-import tw.gym.model.ClassBean;
-import tw.gym.model.CoachBean;
-import tw.gym.model.LoginBean;
-import tw.gym.model.SkillBean;
-import tw.gym.service.ClassService;
-import tw.gym.service.CoachService;
-import tw.gym.service.SkillService;
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.model.LoginBean;
+import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassService;
+import tw.gym.coach.service.CoachService;
+import tw.gym.coach.service.SkillService;
 
 @Controller
 @RequestMapping("/coach")

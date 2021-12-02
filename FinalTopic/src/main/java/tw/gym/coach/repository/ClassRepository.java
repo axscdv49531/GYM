@@ -1,4 +1,4 @@
-package tw.gym.repository;
+package tw.gym.coach.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gym.model.ClassBean;
+import tw.gym.coach.model.ClassBean;
 
 public interface ClassRepository extends JpaRepository<ClassBean, Integer>, JpaSpecificationExecutor<ClassBean> {
     // String hql = "From ClassBean cb where cb.cBean.coachId = :coachId";

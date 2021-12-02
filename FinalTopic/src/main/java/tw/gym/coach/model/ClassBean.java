@@ -1,4 +1,4 @@
-package tw.gym.model;
+package tw.gym.coach.model;
 
 import java.io.Serializable;
 import java.util.HashSet;

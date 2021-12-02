@@ -2,9 +2,9 @@ package tw.gym.member.Service;
 
 import java.util.List;
 
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.member.Model.MemberBean;
-import tw.gym.model.ClassBean;
-import tw.gym.model.ClassMemberBean;
 
 public interface MemberService {
 

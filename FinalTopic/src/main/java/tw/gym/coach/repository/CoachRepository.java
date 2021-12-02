@@ -1,9 +1,9 @@
-package tw.gym.repository;
+package tw.gym.coach.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import tw.gym.model.CoachBean;
+import tw.gym.coach.model.CoachBean;
 
 public interface CoachRepository extends JpaRepository<CoachBean, Integer> {
 

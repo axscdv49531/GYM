@@ -1,3 +1,4 @@
+package tw.gym.coach.controller;
 // package tw.gym.controller;
 //
 // import org.springframework.stereotype.Controller;

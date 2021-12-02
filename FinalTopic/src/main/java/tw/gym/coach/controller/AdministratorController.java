@@ -1,4 +1,4 @@
-package tw.gym.controller;
+package tw.gym.coach.controller;
 
 import java.sql.Blob;
 import java.sql.SQLException;
@@ -23,10 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import tw.gym.model.ClassBean;
-import tw.gym.model.CoachBean;
-import tw.gym.service.ClassService;
-import tw.gym.service.CoachService;
+import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.service.ClassService;
+import tw.gym.coach.service.CoachService;
 
 @Controller
 @RequestMapping("/administrator")
