@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+.editFrom{
+	border-width:1pt;
+	border-style:solid;
+	border-color:black;
+	width:400px;
+	height:400px;
+	margin:0 auto;	
+	border-radius:20px;
+	font-size:30px;
+	margin-top: 150px;
+	font-family:DFKai-sb;
+}
+.menuName{
+	font-size:25px;
+	font-family:DFKai-sb;
+	border-style:none;
+	margin-left:30px;
+	margin-top:25px;
+	
+}
+.price{
+	font-size:25px;
+	font-family:DFKai-sb;
+	border-style:none;
+		margin-left: 30px;
+		margin-top: 25px;
+	
+}
+.qty1{
+	font-size:25px;
+	font-family:DFKai-sb;
+	border-style:none;
+		margin-left: 30px;
+		margin-top: 25px;
+	
+}
+.title{
+	text-align:center;
+	margin-top: 30px;
+}

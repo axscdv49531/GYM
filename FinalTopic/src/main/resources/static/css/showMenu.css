@@ -1,0 +1,45 @@
+@charset "UTF-8";
+.plusIcon{
+	height:15px;
+	width:15px;
+
+}
+
+.minusIcon{
+	height:15px;
+	width:15px;
+	margin-left:50px;
+	margin-right:10px;
+
+}
+
+ .detailDiv01Font3{
+  	border-style:none;
+  	font-size:20px;
+  	border-style:none;
+  	margin-left:10px; 
+  	font-family:DFKai-sb;
+  	
+  }
+  
+  
+  .suggestioncss{
+  	border-bottom-style:solid;
+  	border-bottom-color:white;
+  	border-bottom-width:1px;
+  	width:300px;
+  	margin-left:20px; 
+  	background-color: #E0E0E0;
+  	font-size: 30px;
+  	font-family:DFKai-sb;
+  	
+  }
+  
+   .suggestionScore{
+  	width:300px;
+  	margin-left:20px; 
+  	background-color: #E0E0E0;
+  	font-size: 30px;
+  	font-family:DFKai-sb;
+  	
+  }
