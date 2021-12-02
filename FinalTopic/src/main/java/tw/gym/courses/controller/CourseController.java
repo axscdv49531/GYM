@@ -111,7 +111,7 @@ public class CourseController {
 	@GetMapping("/findbymember.controller") // http://localhost:8081/course/findbymember.controller
 	@ResponseBody
 	public List<Course> processFindByMember(Integer memberNum) {
-		memberNum = 1;
+		memberNum = 1001;
 		return cService.findAllByMember(memberNum);
 	}
 

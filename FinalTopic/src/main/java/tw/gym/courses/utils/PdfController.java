@@ -53,9 +53,9 @@ public class PdfController {
     //顯示我的課程PDF
     @GetMapping("/viewpdf/mycourses") //http://localhost:8081/course/viewpdf/mycourses
     public ModelAndView mycoursesviewpdf() {
-    	Integer memberId = 1;
+    	Integer memberNumber = 1001;
     	
-        List<Course> courseList = cSerivce.findAllByMember(memberId);
+        List<Course> courseList = cSerivce.findAllByMember(memberNumber);
         Map<String, Object> model = new HashMap<>();
         model.put("sheet", courseList);
         ViewPdfUtil viewPdf = new ViewPdfUtil();

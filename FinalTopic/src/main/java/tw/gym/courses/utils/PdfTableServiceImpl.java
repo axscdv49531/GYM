@@ -90,7 +90,7 @@ public class PdfTableServiceImpl implements PdfTableService {
 	public static Paragraph getParagraphText(String text) {
 
 		try {
-			Font font = new Font(BaseFont.createFont(new ClassPathResource("/font/TWKai.TTF").getPath(),
+			Font font = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
 					BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED));
 			font.setColor(BaseColor.GRAY);
 
@@ -113,20 +113,19 @@ public class PdfTableServiceImpl implements PdfTableService {
 
 		PdfPCell cell;
 		int size = 20;
-
-		Font font = new Font(BaseFont.createFont(new ClassPathResource("/font/TWKai.TTF").getPath(),
+		Font font = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
 				BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED));
 		font.setColor(BaseColor.BLACK);
 		font.setSize(10);
 
-		Font font_head = new Font(BaseFont.createFont(new ClassPathResource("/font/TWKai.TTF").getPath(),
+		Font font_head = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
 				BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED));
 		font_head.setColor(BaseColor.BLUE);
 		font_head.setSize(10);
 
-		Font font_title = new Font(BaseFont.createFont(new ClassPathResource("/font/TWKai.TTF").getPath(),
+		Font font_title = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
 				BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED));
-		font_title.setColor(BaseColor.GREEN);
+		font_title.setColor(BaseColor.BLACK);
 		font_title.setSize(16);
 
 		cell = new PdfPCell(new Phrase("課程表", font_title));

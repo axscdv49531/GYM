@@ -78,8 +78,7 @@
    }
    
    function showInformation(courseId){
-		 alert(courseId);
-		 
+		 //alert(courseId);
 		 $.ajax({
 			   type:'get',
 			   url:'/course/queryinformation.controller/' + courseId, 
@@ -122,6 +121,8 @@
 			</td>
 		</tr>
 	</table>
+	<br>
+	<div id='showInformation'></div>
 	<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
 	
 	<br>
