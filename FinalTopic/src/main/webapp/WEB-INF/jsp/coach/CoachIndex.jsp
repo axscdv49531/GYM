@@ -9,17 +9,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
    <!-- Bootstrap CSS -->
-   <link rel="stylesheet" type ="text/css" href="/css/bootstrap.min.css">
+   <link rel="stylesheet" href="../css/bootstrap.min.css">
       <!-- Site CSS -->
-   <link rel="stylesheet" href="/css/style.css">
+   <link rel="stylesheet" href="../css/style.css">
+   <!-- Colors CSS -->
+   <link rel="stylesheet" href="../css/colors.css">
+   <!-- ALL VERSION CSS -->	
+   <link rel="stylesheet" href="../css/versions.css">
    <!-- Responsive CSS -->
-   <link rel="stylesheet" href="/css/responsive.css">
+   <link rel="stylesheet" href="../css/responsive.css">
    <!-- Custom CSS -->
-   <link rel="stylesheet" href="/css/custom.css">
+   <link rel="stylesheet" href="../css/custom.css">
    <!-- font family -->
    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
    <!-- end font family -->
-   <link rel="stylesheet" href="/css/3dslider.css" />
+   <link rel="stylesheet" href="c../ss/3dslider.css" />
    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
    <script src="js/3dslider.js"></script>
@@ -34,23 +38,24 @@
                      <div class="col-md-6">
                         <div class="full">
                            <div class="logo">
-                              <a href="<c:url value='/' />"><img src="/images/logo.gif" alt="index" /></a>
+                              <a href="<c:url value='/' />"><img src="../images/logo.gif" alt="index" /></a>
                            </div>
                         </div>
                      </div>
                      <div class="col-md-6">
                         <div class="right_top_section">
+<%--                 	<c:out value="${loginUser.name },歡迎您" /> --%>
                            <!-- button section -->
                            <ul class="login">
                               <li class="login-modal">                                 	                                 
-								 <a href="<c:url value='/login/Member' />" class="login"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+								 <a href="<c:url value='/login/page' />" class="login"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 								   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-								 </svg><i class="fa fa-user"></i>會員登入</a>
+								 </svg><i class="fa fa-user"></i>教練</a>
                               </li>
-                              <li class="login-modal">
-                                 <a href="/login/Coach" class="login"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                              <li class="logout-modal">
+                                 <a href="<c:url value='/logout' />" class="logout"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
 								   <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
-								 </svg><i class="fa fa-user"></i>教練登入</a>
+								 </svg><i class="fa fa-user"></i>登出</a>
                               </li>
                               <li>
                                  <div class="context-option">                                 
@@ -86,8 +91,8 @@
                                           <li class="active"><a href="<c:url value='/' />">主頁</a></li>
                                           <li><a href="about.html">關於</a></li>
                                           <li><a href="team.html">教練師資</a></li>
-                                          <li><a href="news.html">預約私人課程</a></li>
-                                          <li><a href="<c:url value='/courseSelectSystem' />">團課報名</a></li>
+                                          <li><a href="/classRes">預約私人課程</a></li>
+                                          <li><a href="news.html">團課報名</a></li>
                                           <li><a href="news.html">健康餐盒</a></li>
                                           <li><a href="news.html">周邊商品</a></li>
                                        </ul>
@@ -128,8 +133,5 @@
     </div>
     		<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
 			<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
-			<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a>
-			<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a>
-			<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
 </body>
 </html>

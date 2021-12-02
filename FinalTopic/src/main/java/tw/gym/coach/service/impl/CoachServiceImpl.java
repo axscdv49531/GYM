@@ -1,6 +1,7 @@
 package tw.gym.coach.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +48,11 @@ public class CoachServiceImpl implements CoachService {
     public CoachBean findByAccountAndPassword(String coachAccount, String coachPassword) {
         return coaRepo.findByAccountAndPassword(coachAccount, coachPassword);
     }
+
+	@Override
+	public CoachBean findByEmail(String email) {
+		Optional<CoachBean> cBean= coaRepo.findByEmail(email);
+		return cBean.get();
+	}
 
 }

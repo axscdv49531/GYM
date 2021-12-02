@@ -1,6 +1,7 @@
 package tw.gym.coach.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,5 +23,7 @@ public interface CoachService {
     void deleteById(Integer coachId);
 
     CoachBean findByAccountAndPassword(String coachAccount, String coachPassword);
+    
+    CoachBean findByEmail(String email);
 
 }
