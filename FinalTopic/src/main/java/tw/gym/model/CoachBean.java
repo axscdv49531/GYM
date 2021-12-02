@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import tw.gym.courses.model.Course;
 
@@ -170,9 +171,7 @@ public class CoachBean implements Serializable {
         return coachRegisterdate;
     }
 
-    public void setCoachRegisterdate(Timestamp coachRegisterdate) {
-        this.coachRegisterdate = coachRegisterdate;
-    }
+
 
     public Set<ClassBean> getcBean() {
         return cBean;
@@ -194,6 +193,10 @@ public class CoachBean implements Serializable {
         this.coachRegisterdate = coachRegisterdate;
     }
 
+    //public void setCoachRegisterdate(Timestamp coachRegisterdate) {
+    //    this.coachRegisterdate = coachRegisterdate;
+    //}
+    
     public Set<Course> getCourses() {
 		return courses;
 	}
