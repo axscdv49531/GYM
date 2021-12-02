@@ -44,6 +44,7 @@
                      </div>
                      <div class="col-md-6">
                         <div class="right_top_section">
+		<c:out value="${loginUser.name },歡迎您" />
                            <!-- button section -->
                            <ul class="login">
                               <li class="login-modal">                                 	                                 
