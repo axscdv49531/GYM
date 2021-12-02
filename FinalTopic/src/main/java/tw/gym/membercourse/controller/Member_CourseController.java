@@ -56,14 +56,14 @@ public class Member_CourseController {
 	// 前往我的課程頁面
 	@GetMapping("/mycourseschedulemain.controller")
 	public String mycourseschedulemain(Model m) {
-		Integer memberNumber = 1;
+		Integer memberNumber = 1001;
 		return "membercourse/myCourseSchedule";
 	}
 
 	// 前往選課紀錄頁面
 	@GetMapping("/selectcourserecordmain.controller")
 	public String selectcourserecordmain(Model m) {
-		Integer memberNumber = 1;
+		Integer memberNumber = 1001;
 		return "membercourse/selectCourseRecord";
 	}
 
@@ -74,7 +74,7 @@ public class Member_CourseController {
 	@ResponseBody
 	public Member_Course selectcourse(@PathVariable("courseId") Integer courseId) {
 
-		Integer memberNumber = 1;
+		Integer memberNumber = 1001;
 		
 		//加選成功信件的內容設定
 		String courseName = cService.findById(courseId).getCourseName();
@@ -127,7 +127,7 @@ public class Member_CourseController {
 	public Member_Course dropcourse(@PathVariable("courseId") Integer courseId) {
 
 		System.out.println("hello");
-		Integer memberNumber = 1;
+		Integer memberNumber = 1001;
 
 		List<Member_Course> mcList = mcService.findByFkid(memberNumber, courseId);
 		for (Member_Course mc : mcList) {
@@ -148,9 +148,9 @@ public class Member_CourseController {
 	@GetMapping("/selectcourserecord.controller") // http://localhost:8081/membercourse/selectcourserecord.controller
 	@ResponseBody
 	public List<Member_Course> findselectrecord() {
-		Integer membernumber = 1;
+		Integer memberNumber = 1001;
 
-		return mcService.findByMember(membernumber);
+		return mcService.findByMember(memberNumber);
 	}
 
 	// 顯示未來的課程/查詢
