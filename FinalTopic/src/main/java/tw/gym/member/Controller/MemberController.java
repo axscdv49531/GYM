@@ -82,6 +82,7 @@ public class MemberController {
 //			bindingResult.rejectValue("memberId", "", "帳號已存在，請重新輸入");
 //			return "MemberForm"; 
 //		}
+		memberBean.setPassword("123456");
 		String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
 		memberBean.setPassword(encodePwd);
         memberBean.setDeposite(0);
