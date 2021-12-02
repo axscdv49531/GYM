@@ -27,11 +27,8 @@ import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Service.MemberService;
 import tw.gym.membercourse.model.Member_Course;
 import tw.gym.membercourse.model.Member_CourseService;
-<<<<<<< HEAD
 import tw.gym.membercourse.model.Member_CourseSpec;
-import tw.gym.service.CoachService;
-=======
->>>>>>> master
+
 
 @Controller
 @RequestMapping(path = "/membercourse")
