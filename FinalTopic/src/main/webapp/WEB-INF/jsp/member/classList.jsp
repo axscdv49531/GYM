@@ -1,265 +1,177 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script type="text/javascript">
-	//    var indexPage=1;
-	$(document).ready(function() {
-		load();
-	});
+ <title>Workout &mdash; Website Template by Colorlib</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	//    function change(page){
-	//        indexPage = page;
-	//        load(indexPage);
-	//    }
-	function search() {
-		var className = document.getElementById("searchByClassName").value;
-		var startDate = document.getElementById("searchByDateStart").value;
-		var endDate = document.getElementById("searchByDateEnd").value;
-		var skillTemp = document.getElementById("searchBySkillName");
-		var skillName = skillTemp.value;
-		var coachNameTemp = document.getElementById("searchByCoachName");
-		var coachName = coachNameTemp.value;
-		// 		var statusTemp = document.getElementById("searchByClassStatus");
-		// 		var status = coachNameTemp.value;
-		var statusTemp = document.getElementById("searchByClassStatus");
-		var status = statusTemp.value;
+  
+  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-		$
-				.ajax({
-					type : 'post',
-					url : '/searchClass/',
-					data : {
-						cName : className,
-						coaName : coachName,
-						sName : skillName,
-						sDate : startDate,
-						eDate : endDate,
-						cStatus : status
-					},
-					dataType : 'JSON',
-					//                  contentType : 'application/json',
-					success : function(data) {
-						console.log('success:' + data);
-						var json = JSON.stringify(data, null, 4);
-						console.log('json:' + json);
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/jquery-ui.css">
+  <link rel="stylesheet" href="css/owl.carousel.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
+  <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
-						$('#showclasslist').empty("");
+  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
 
-						if (data == null) {
-							$('table').prepend(
-									"<tr><td colspan='2'>暫無資料</td></tr>");
-							;
-						} else {
-							var table = $('#showclasslist');
-							table
-									.append("<tr id='ptitle'><th>課程名稱</th><th>教練姓名</th><th>開課日期</th><th>課程開始時間</th><th>課程結束時間</th><th>課程時數</th><th>價格</th><th>訓練部位</th><th>報名狀況</th></tr>");
+  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
 
-							$
-									.each(
-											data,
-											function(i, n) {
-												var status = null;
-												if (n.classAvaliable == 0) {
-													status = "未額滿"
-												} else {
-													status = "已額滿"
-												}
-												var a = [];
-												for (i in n.sBean) {
-													a
-															.push(n.sBean[i].skillName)
-												}
-												var tr = "<tr align='center'>"
-														+ "<td>"
-														+ n.className
-														+ "</td>"
-														+ "<td>"
-														+ n.cBean.coachName
-														+ "</td>"
-														+ "<td>"
-														+ n.classDate
-														+ "</td>"
-														+ "<td>"
-														+ n.classStartTime
-														+ "</td>"
-														+ "<td>"
-														+ n.classEndTime
-														+ "</td>"
-														+ "<td>"
-														+ n.classDuration
-														+ "</td>"
-														+ "<td>"
-														+ n.classPrice
-														+ "</td>"
-														+ "<td>"
-														+ a
-														+ "</td>"
-														+ "<td>"
-														+ status
-														+ "</td>"
-														+ "<td>"
-														+ "<input type='button' value='查看' onclick=\"location.href='" + "/member/viewClass/" + n.classId +"'\"></td>"
-														+ "</tr>";
-												table.append(tr);
-											});
-						}
-					}
-				});
+  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
 
-		// 		if (a.length > 0) {
-		// 			if (startDate.length > 0) {
-		// 				if (endDate.length > 0) {
-		// 					load(a, startDate, endDate)
-		// 				} else {
-		// 					load(a)
-		// 					document.getElementById("searchByDateStart").value = ""
-		// 				}
-		// 			} else {
-		// 				load(a)
-		// 				document.getElementById("searchByDateEnd").value = ""
-		// 			}
-		// 		} else {
-		// 			if (startDate.length > 0) {
-		// 				if (endDate.length > 0) {
-		// 					load(null, startDate, endDate)
-		// 				} else {
-		// 					load()
-		// 					document.getElementById("searchByDateStart").value = ""
-		// 				}
-		// 			} else {
-		// 				load()
-		// 				document.getElementById("searchByDateEnd").value = ""
-		// 			}
-		// 		}
-	}
+  <link rel="stylesheet" href="css/aos.css">
+  <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
 
-	function show(asd) {
-		var s;
-		var ss = [];
-		for (var i = 0; i < asd.length; i++) {
-			s = asd[i]['skillName'];
-			console.log(s)
-			ss.push(s)
-		}
-		return 'aaa';
-	}
+  <link rel="stylesheet" href="css/style.css">
 
-	function load(a, startDate, endDate) {
-		$
-				.ajax({
-					type : 'post',
-					url : '/listAllClass/',
-					// 					data : {
-					// 						searchaa : a,
-					// 						sd : startDate,
-					// 						ed : endDate
-					// 					},
-					dataType : 'JSON',
-					// 					contentType : 'application/json',
-					success : function(data) {
-						console.log('success:' + data);
-						var json = JSON.stringify(data, null, 4);
-						console.log('json:' + json);
-
-						$('#showclasslist').empty("");
-
-						if (data == null) {
-							$('table').prepend(
-									"<tr><td colspan='2'>暫無資料</td></tr>");
-							;
-						} else {
-							var table = $('#showclasslist');
-							table
-									.append("<tr id='ptitle'><th>課程名稱</th><th>教練姓名</th><th>開課日期</th><th>課程開始時間</th><th>課程結束時間</th><th>課程時數</th><th>價格</th><th>訓練部位</th><th>報名狀況</th></tr>");
-
-							$
-									.each(
-											data,
-											function(i, n) {
-												var status = null;
-												if (n.classAvaliable == 0) {
-													status = "未額滿"
-												} else {
-													status = "已額滿"
-												}
-												var a = [];
-												for (i in n.sBean) {
-													a
-															.push(n.sBean[i].skillName)
-												}
-												var tr = "<tr align='center'>"
-														+ "<td>"
-														+ n.className
-														+ "</td>"
-														+ "<td>"
-														+ n.cBean.coachName
-														+ "</td>"
-														+ "<td>"
-														+ n.classDate
-														+ "</td>"
-														+ "<td>"
-														+ n.classStartTime
-														+ "</td>"
-														+ "<td>"
-														+ n.classEndTime
-														+ "</td>"
-														+ "<td>"
-														+ n.classDuration
-														+ "</td>"
-														+ "<td>"
-														+ n.classPrice
-														+ "</td>"
-														+ "<td>"
-														+ a
-														+ "</td>"
-														+ "<td>"
-														+ status
-														+ "</td>"
-														+ "<td>"
-														+ "<input type='button' value='查看' onclick=\"location.href='" + "/viewClass/" + n.classId +"'\"></td>"
-														+ "</tr>";
-												table.append(tr);
-											});
-						}
-					}
-				});
-	}
-</script>
 </head>
-<body>
-	<div id="Title">課程清單</div>
-	課程名稱：
-	<input type="text" placeholder="輸入內容" id="searchByClassName">
-	<!-- 	價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
-	教練名稱：
-	<select name="select" id="searchByCoachName">
-		<option selected="selected">請選擇</option>
-		<c:forEach items="${coachList}" var="coach">
-			<option value="${coach}"><c:out value="${coach}" /></option>
-		</c:forEach>
-	</select> 訓練部位：
-	<select name="select" id="searchBySkillName">
-		<option selected="selected">請選擇</option>
-		<c:forEach items="${skillList}" var="skill">
-			<option value="${skill.skillName}"><c:out
-					value="${skill.skillName}" /></option>
-		</c:forEach>
-	</select> 開課狀況：
-	<select name="select" id="searchByClassStatus">
-		<option selected="selected">請選擇</option>
-		<option value="0">未額滿</option>
-		<option value="1">已額滿</option>
-	</select> 開課日期：
-	<input type="date" id="searchByDateStart"> 至
-	<input type="date" id="searchByDateEnd">
-	<button onclick="search()">搜尋</button>
-	<table id="showclasslist" border="1"></table>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+<div class="site-section" id="classes-section">
+      <div class="container">
+        <div class="row justify-content-center text-center mb-5">
+          <div class="col-md-8  section-heading">
+            <span class="subheading">Fitness Class</span>
+            <h2 class="heading mb-3">Our Classes</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis consequatur cum neque?
+            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+          </div>
+        </div>
+<!--         <div class="row"> -->
+<!--           <div class="col-lg-6"> -->
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_1.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #1</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_2.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #2</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_3.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #3</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_4.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #4</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_1.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #5</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+           
+<!--           </div> -->
+<!--           <div class="col-lg-6"> -->
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_1.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #1</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_2.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #2</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_3.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #3</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_4.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #4</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+<!--               </div> -->
+<!--             </div> -->
+            
+<!--             <div class="class-item d-flex align-items-center"> -->
+<!--               <a href="single.html" class="class-item-thumbnail"> -->
+<!--                 <img src="images/img_1.jpg" alt="Image"> -->
+<!--               </a> -->
+<!--               <div class="class-item-text"> -->
+                
+<!--                 <h2><a href="single.html">Fitness Class Name #5</a></h2> -->
+<!--                 <span>By Justin Daniel</span>, -->
+<!--                 <span>30 minutes</span> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 </body>
 </html>
