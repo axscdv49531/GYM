@@ -1,4 +1,4 @@
-package tw.gym.member.validator;
+package tw.gym.login.Validator;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -13,14 +13,19 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.repository.CoachRepository;
 import tw.gym.member.Dao.MemberRepository;
 import tw.gym.member.Model.MemberBean;
 
 @Component
-public class MemberCustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
+public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
 	@Autowired
 	MemberRepository memRepo;
+
+	@Autowired
+	CoachRepository coaRepo;
 
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
@@ -29,11 +34,17 @@ public class MemberCustomAuthenticationSuccessHandler implements AuthenticationS
 		String userName = "";
 		HttpSession session = request.getSession();
 		userName = authentication.getName();
-
+		System.out.println(1);
 		Optional<MemberBean> mBean = memRepo.findByEmail(userName);
+		if (mBean.isEmpty()) {
+			Optional<CoachBean> cBean = coaRepo.findByEmail(userName);
+			System.out.println(2);
+			session.setAttribute("loginUser", cBean.get());
+			response.sendRedirect("/login/CoachSuccess");
+		} else {
 			session.setAttribute("loginUser", mBean.get());
-		response.sendRedirect("/login/MemberSuccess");
-
+			response.sendRedirect("/login/MemberSuccess");
+		}
 	}
 	// Collection<GrantedAuthority> authorities = null;
 	// if (authentication.getPrincipal() instanceof Principal) {

@@ -11,10 +11,10 @@ import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.coach.repository.ClassMemberRepository;
 import tw.gym.coach.repository.ClassRepository;
+import tw.gym.login.Validator.UserNotFoundException;
 import tw.gym.member.Dao.MemberRepository;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
-import tw.gym.member.validator.UserNotFoundException;
 
 @Service
 @Transactional
@@ -73,6 +73,17 @@ public class MemberServiceImpl implements MemberService {
         }
         return member.get();
     }
+    
+    @Override
+    public Optional<MemberBean> findEmail(String email) {
+    	 Optional<MemberBean> member = memberRepository.findByEmail(email);
+         // System.out.println(email);
+         // System.out.println(member);
+//         if (member.isEmpty()) {
+//             throw new UserNotFoundException("Can't Find User");
+//         }
+         return member;
+    }
 
     public List<MemberBean> findByCourse(Integer courseId) {
         return memberRepository.findByCourse(courseId);
@@ -109,5 +120,6 @@ public class MemberServiceImpl implements MemberService {
         claRepo.setAvaliable(a, classId);
         memberRepository.deleteByClassId(classId);
     }
+
 
 }
