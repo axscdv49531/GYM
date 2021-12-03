@@ -1,4 +1,4 @@
-package tw.gym.member.validator;
+package tw.gym.login.Validator;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
