@@ -19,6 +19,7 @@ import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,6 +59,8 @@ public class CoachAddFormController {
         model.addAttribute("radioData", radioData);
         CoachBean cbean = new CoachBean();
         cbean.setCoachPassword("P@ssw0rd");
+        String encodePwd = new BCryptPasswordEncoder().encode(cbean.getCoachPassword());
+        cbean.setCoachPassword(encodePwd);
         model.addAttribute("coachBean", cbean);
         return "/coach/coachAdd";
 
@@ -85,26 +88,30 @@ public class CoachAddFormController {
 
     }
 
-    @GetMapping("coachLogin")
-    public String coachLogin(Model model) {
-        LoginBean lBean = new LoginBean();
-        model.addAttribute("loginBean", lBean);
-        return "coach/coachLogin";
-    }
-
-    @PostMapping("coachLogin")
-    public String coachLoginCheck(LoginBean lBean, Model model, HttpSession session) {
-        CoachBean cBean = null;
-        cBean = service.findByAccountAndPassword(lBean.getUserAccount(), lBean.getUserPassword());
-        if (cBean != null) {
-            session.setAttribute("loginUser", cBean);
-            System.out.println("登入成功");
-        } else {
-            System.out.println("登入失敗");
-        }
-
-        return "/coach/LoginSuccess";
-    }
+//    @GetMapping("coachLogin")
+//    public String coachLogin(Model model) {
+//        LoginBean lBean = new LoginBean();
+//        model.addAttribute("loginBean", lBean);
+//        return "coach/coachLogin";
+//    }
+//
+//    @PostMapping("coachLogin")
+//    public String coachLoginCheck(LoginBean lBean, Model model, HttpSession session) {
+//        CoachBean cBean = null;
+//        cBean = service.findByAccountAndPassword(lBean.getUserAccount(), lBean.getUserPassword());
+//        if (cBean != null) {
+//            session.setAttribute("loginUser", cBean);
+//            System.out.println("登入成功");
+//        } else {
+//            System.out.println("登入失敗");
+//        }
+//
+//        return "/coach/LoginSuccess";
+//    }
+//    @GetMapping("coachLogin")
+//    public String coachLogin(Model model) {
+//    	 return "/coach/LoginSuccess";
+//    }
 
     @GetMapping("coachClassAdd")
     public String coachClassAdd(Model model) {

@@ -62,7 +62,20 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
+    
+    
+    
+//    @GetMapping(path ="/login/Coach")
+//    public String CoachLogin(){
+//    	return "LoginCoach";
+//    }
+//    
+//    @PostMapping(path ="/login/Coach")
+//    public String CoachIndex(){
+//    	return "coach/CoachIndex";
+//    }
 
+    
     // 輸入會員資料
     @GetMapping(path = "/insertMember")
     public String insertMember(Model m) {

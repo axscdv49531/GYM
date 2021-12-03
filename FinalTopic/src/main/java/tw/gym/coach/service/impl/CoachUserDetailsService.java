@@ -1,4 +1,4 @@
-package tw.gym.member.Service.impl;
+package tw.gym.coach.service.impl;
 
 import java.util.Collections;
 
@@ -10,20 +10,22 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import tw.gym.member.Model.MemberBean;
-import tw.gym.member.Service.MemberService;
+import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.service.CoachService;
 
 @Service
 @Transactional
-public class AuthUserDetailsService implements UserDetailsService {
-	
+public class CoachUserDetailsService implements UserDetailsService {
+
 	@Autowired
-	private MemberService memberService;
+	private CoachService coachService;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        // System.out.println(email);
-		MemberBean member = memberService.findByEmail(email);
-		return new User(member.getEmail(), member.getPassword(), Collections.emptyList());
+
+		CoachBean coach = coachService.findByEmail(email);
+
+			return new User(coach.getCoachEmail(), coach.getCoachPassword(), Collections.emptyList());
+		
 	}
 }
