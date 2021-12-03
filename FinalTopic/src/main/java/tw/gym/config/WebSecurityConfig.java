@@ -38,7 +38,9 @@ public class WebSecurityConfig {
 
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
-			http.authorizeRequests()
+			http
+			//.antMatcher("/member/**")
+				.authorizeRequests()
 				.antMatchers(HttpMethod.GET, "/insertMember/**").authenticated()
 				.antMatchers(HttpMethod.GET, "/findAllMember/**").authenticated()
 				.antMatchers(HttpMethod.GET).permitAll()
