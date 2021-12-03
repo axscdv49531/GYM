@@ -1,6 +1,7 @@
 package tw.gym.coach.model;
 
 import java.io.Serializable;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -19,6 +20,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -49,14 +51,18 @@ public class ClassBean implements Serializable {
     String[] classLabel;
     @Column(updatable = false)
     java.sql.Timestamp classCreatedate;
+    String classFileName;
 
+    @Transient
+    MultipartFile claPhoto;
+    Blob classPhoto;
+    String classPhotoMineType;
     Integer classAvaliable;
 
     // , insertable = false, updatable = false
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "fk_coach_id", updatable = false)
     private CoachBean cBean;
-
 
     @OneToMany(mappedBy = "cBean")
     @JsonIgnore
@@ -137,7 +143,6 @@ public class ClassBean implements Serializable {
         this.classDate = classDate;
     }
 
-
     public Integer getClassPrice() {
         return classPrice;
     }
@@ -186,7 +191,6 @@ public class ClassBean implements Serializable {
         this.classCreatedate = classCreatedate;
     }
 
-
     public Integer getClassAvaliable() {
         return classAvaliable;
     }
@@ -201,6 +205,38 @@ public class ClassBean implements Serializable {
 
     public void setsBean(Set<SkillBean> sBean) {
         this.sBean = sBean;
+    }
+
+    public String getClassFileName() {
+        return classFileName;
+    }
+
+    public void setClassFileName(String classFileName) {
+        this.classFileName = classFileName;
+    }
+
+    public MultipartFile getClaPhoto() {
+        return claPhoto;
+    }
+
+    public void setClaPhoto(MultipartFile claPhoto) {
+        this.claPhoto = claPhoto;
+    }
+
+    public Blob getClassPhoto() {
+        return classPhoto;
+    }
+
+    public void setClassPhoto(Blob classPhoto) {
+        this.classPhoto = classPhoto;
+    }
+
+    public String getClassPhotoMineType() {
+        return classPhotoMineType;
+    }
+
+    public void setClassPhotoMineType(String classPhotoMineType) {
+        this.classPhotoMineType = classPhotoMineType;
     }
 
 }

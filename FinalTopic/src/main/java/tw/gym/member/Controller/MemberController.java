@@ -1,5 +1,6 @@
 package tw.gym.member.Controller;
 
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -12,6 +13,10 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -412,6 +417,22 @@ public class MemberController {
 
         return "/coach/coachList";
 
+    }
+
+    @GetMapping("/getClassPicture")
+    public ResponseEntity<byte[]> getCoachPicture(@RequestParam("classId") String classId) throws SQLException {
+        System.out.println(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        ClassBean cBean = claService.getClassById(classIdd);
+        // System.out.println(cBean.getCoachName());
+        ResponseEntity<byte[]> re = null;
+        Blob blob = cBean.getClassPhoto();
+        byte[] b = blob.getBytes(1, (int) blob.length());
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = MediaType.valueOf(cBean.getClassPhotoMineType());
+        headers.setContentType(mediaType);
+        re = new ResponseEntity<byte[]>(b, headers, HttpStatus.OK);
+        return re;
     }
 
 }

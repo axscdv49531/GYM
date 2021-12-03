@@ -146,72 +146,89 @@
 	//     }
 
 	function load(a, startDate, endDate) {
-		$.ajax({
-			type : 'post',
-			url : '/listAllClass/',
-			dataType : 'JSON',
-			//                  contentType : 'application/json',
-			success : function(data) {
-				console.log('success:' + data);
-				var json = JSON.stringify(data, null, 4);
-				console.log('json:' + json);
+		$
+				.ajax({
+					type : 'post',
+					url : '/listAllClass/',
+					dataType : 'JSON',
+					//                  contentType : 'application/json',
+					success : function(data) {
+						console.log('success:' + data);
+						var json = JSON.stringify(data, null, 4);
+						console.log('json:' + json);
 
-				$('#showclasslist').empty("");
+						$('#showclasslist').empty("");
 
-				if (data == null) {
-					$('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");
-					;
-				} else {
-					var div = $('#showclasslist');
-
-					$.each(data, function(i, n) {
-						var status = null;
-						if (n.classAvaliable == 0) {
-							status = "未額滿"
+						if (data == null) {
+							$('table').prepend(
+									"<tr><td colspan='2'>暫無資料</td></tr>");
+							;
 						} else {
-							status = "已額滿"
+							var div = $('#showclasslist');
+
+							$
+									.each(
+											data,
+											function(i, n) {
+												var status = null;
+												if (n.classAvaliable == 0) {
+													status = "未額滿"
+												} else {
+													status = "已額滿"
+												}
+												var a = [];
+												for (i in n.sBean) {
+													a
+															.push(n.sBean[i].skillName)
+												}
+												var div2 = "<div style='width:1115px' class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src=" + "<c:url value='/getClassPicture?classId=' />" + n.classId + " alt='Image'></a><div class='class-item-text'>"
+														+ "<h2><a href='single.html'>"
+														+ n.className
+														+ "</a></h2><div><span>By "
+														+ n.cBean.coachName
+														+ "</span></div><div><span>Date："
+														+ n.classDate
+														+ "</span></div><div><span>Start At：" + n.classStartTime + "</span></div><div><span>Duration：" + n.classDuration + " hours</span></div></div></div>"
+														
+// 														<span style='position:absolute;right:0px;bottom:0px'>"
+//                                                         + n.classDate
+//                                                         + "</span>
+														
+												//                                                         + "<td>"
+												//                                                         + n.className
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.cBean.coachName
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.classDate
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.classStartTime
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.classEndTime
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.classDuration
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + n.classPrice
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + a
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + status
+												//                                                         + "</td>"
+												//                                                         + "<td>"
+												//                                                         + "<input type='button' value='查看' onclick=\"location.href='" + "/viewClass/" + n.classId +"'\"></td>"
+												//                                                         + "</tr>";
+												div.append(div2);
+											});
 						}
-						var a = [];
-						for (i in n.sBean) {
-							a.push(n.sBean[i].skillName)
-						}
-						   var div2 = "<div style='width:1115px' class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src='images/img_1.jpg' alt='Image'></a><div class='class-item-text'>"+
-						   "<h2><a href='single.html'>" + n.className + "</a></h2><span>By " + n.cBean.coachName + "</span>,<span> " + n.classDuration + " hours</span><span style='position:absolute;right:0px;bottom:0px'>" + n.classDate + "</span></div></div>"
-						//                                                         + "<td>"
-						//                                                         + n.className
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.cBean.coachName
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.classDate
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.classStartTime
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.classEndTime
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.classDuration
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + n.classPrice
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + a
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + status
-						//                                                         + "</td>"
-						//                                                         + "<td>"
-						//                                                         + "<input type='button' value='查看' onclick=\"location.href='" + "/viewClass/" + n.classId +"'\"></td>"
-						//                                                         + "</tr>";
-						div.append(div2);
-					});
-				}
-			}
-		});
+					}
+				});
 	}
 </script>
 
@@ -231,135 +248,11 @@
 			</div>
 
 
-			        <div style="text-align: center" class="row">
-			        <div style="text-align: center" class="col-lg-6">
-			<div id="showclasslist" border="1"></div>
-			<!--           <div class="col-lg-6"> -->
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_1.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #1</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_2.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #2</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_3.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #3</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_4.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #4</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_1.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #5</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-
-			<!--           </div> -->
-			<!--           <div class="col-lg-6"> -->
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_1.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #1</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_2.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #2</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_3.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #3</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_4.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #4</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-
-			<!--             <div class="class-item d-flex align-items-center"> -->
-			<!--               <a href="single.html" class="class-item-thumbnail"> -->
-			<!--                 <img src="images/img_1.jpg" alt="Image"> -->
-			<!--               </a> -->
-			<!--               <div class="class-item-text"> -->
-
-			<!--                 <h2><a href="single.html">Fitness Class Name #5</a></h2> -->
-			<!--                 <span>By Justin Daniel</span>, -->
-			<!--                 <span>30 minutes</span> -->
-			<!--               </div> -->
-			<!--             </div> -->
-			<!--           </div> -->
-			 </div>
-			        </div>
+			<div class="row">
+				<div class="col-lg-6">
+					<div id="showclasslist" border="1"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 

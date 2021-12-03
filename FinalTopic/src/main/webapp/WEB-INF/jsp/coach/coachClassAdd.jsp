@@ -68,6 +68,11 @@
 				<td><form:checkboxes items="${checkBoxList}" path="classLabel" /><br>
 					<form:errors path="classLabel" />
 			</tr>
+			<tr>
+                <td align='right'>課程照片：</td>
+                <td><form:input path="claPhoto" type="file" /><br> <form:errors
+                        path="claPhoto" />
+            </tr>
 			<form:input type="hidden" value="0" path="classAvaliable" />
 			<tr>
 				<td colspan='2' align='center'><input type='submit' value='提交'></td>

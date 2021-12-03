@@ -14,7 +14,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
@@ -31,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
-import tw.gym.coach.model.LoginBean;
 import tw.gym.coach.model.SkillBean;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
@@ -139,7 +137,7 @@ public class CoachAddFormController {
 
     @PostMapping("coachClassAdd")
     public String coachClassAddCheck(ClassBean cBean, @SessionAttribute("loginUser") CoachBean cBeann)
-            throws ParseException {
+            throws ParseException, SerialException, SQLException, IOException {
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
         cBean.setClassCreatedate(timestamp);
@@ -156,6 +154,18 @@ public class CoachAddFormController {
             // sBeann.setSkillName(skill[i]);
             sBean.add(sBeann);
         }
+
+        MultipartFile picture = cBean.getClaPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cBean.setClassPhoto(blob);
+        cBean.setClassFileName(fileName);
+        cBean.setClassPhotoMineType(mineType);
+
         cBean.setsBean(sBean);
         classService.save(cBean);
         return "/coach/LoginSuccess";
