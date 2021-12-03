@@ -50,9 +50,9 @@ public class CoachServiceImpl implements CoachService {
     }
 
 	@Override
-	public CoachBean findByEmail(String email) {
+	public Optional<CoachBean> findByEmail(String email) {
 		Optional<CoachBean> cBean= coaRepo.findByEmail(email);
-		return cBean.get();
+		return cBean;
 	}
 
 }

@@ -24,6 +24,6 @@ public interface CoachService {
 
     CoachBean findByAccountAndPassword(String coachAccount, String coachPassword);
     
-    CoachBean findByEmail(String email);
+    Optional<CoachBean> findByEmail(String email);
 
 }

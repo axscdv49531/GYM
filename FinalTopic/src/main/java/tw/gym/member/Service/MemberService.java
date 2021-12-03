@@ -21,6 +21,8 @@ public interface MemberService {
 
     public MemberBean findByEmail(String email);
 
+    public Optional<MemberBean> findEmail(String email);
+
     public List<MemberBean> findByCourse(Integer courseId);
 
     // // Mark
