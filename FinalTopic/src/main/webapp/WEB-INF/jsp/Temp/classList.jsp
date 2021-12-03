@@ -9,15 +9,21 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+<<<<<<< HEAD
 	//    var indexPage=1;
+=======
+>>>>>>> mark_1201
 	$(document).ready(function() {
 		load();
 	});
 
+<<<<<<< HEAD
 	//    function change(page){
 	//        indexPage = page;
 	//        load(indexPage);
 	//    }
+=======
+>>>>>>> mark_1201
 	function search() {
 		var className = document.getElementById("searchByClassName").value;
 		var startDate = document.getElementById("searchByDateStart").value;
@@ -26,8 +32,11 @@
 		var skillName = skillTemp.value;
 		var coachNameTemp = document.getElementById("searchByCoachName");
 		var coachName = coachNameTemp.value;
+<<<<<<< HEAD
 		// 		var statusTemp = document.getElementById("searchByClassStatus");
 		// 		var status = coachNameTemp.value;
+=======
+>>>>>>> mark_1201
 		var statusTemp = document.getElementById("searchByClassStatus");
 		var status = statusTemp.value;
 
@@ -44,7 +53,10 @@
 						cStatus : status
 					},
 					dataType : 'JSON',
+<<<<<<< HEAD
 					//                  contentType : 'application/json',
+=======
+>>>>>>> mark_1201
 					success : function(data) {
 						console.log('success:' + data);
 						var json = JSON.stringify(data, null, 4);
@@ -113,6 +125,7 @@
 					}
 				});
 
+<<<<<<< HEAD
 		// 		if (a.length > 0) {
 		// 			if (startDate.length > 0) {
 		// 				if (endDate.length > 0) {
@@ -138,6 +151,8 @@
 		// 				document.getElementById("searchByDateEnd").value = ""
 		// 			}
 		// 		}
+=======
+>>>>>>> mark_1201
 	}
 
 	function show(asd) {

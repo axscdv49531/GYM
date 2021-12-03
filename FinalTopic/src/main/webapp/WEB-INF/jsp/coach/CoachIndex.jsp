@@ -95,6 +95,7 @@
                                           <li><a href="news.html">團課報名</a></li>
                                           <li><a href="news.html">健康餐盒</a></li>
                                           <li><a href="news.html">周邊商品</a></li>
+                                          <li><a href="/coach/coachClassAdd">新增課程</a></li>
                                        </ul>
                                     </div>
                                  </nav>

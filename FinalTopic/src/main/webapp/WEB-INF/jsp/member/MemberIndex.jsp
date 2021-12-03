@@ -90,7 +90,11 @@
                                        <ul class="nav navbar-nav">
                                           <li class="active"><a href="<c:url value='/' />">主頁</a></li>
                                           <li><a href="about.html">關於</a></li>
+<<<<<<< HEAD
                                           <li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
+=======
+                                          <li><a href="/showCoachList">教練師資</a></li>
+>>>>>>> mark_1201
                                           <li><a href="/classRes">預約私人課程</a></li>
                                           <li><a href="news.html">團課報名</a></li>
                                           <li><a href="news.html">健康餐盒</a></li>
