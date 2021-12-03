@@ -4,46 +4,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
 <meta charset="UTF-8">
 <title>Insert title here</title>
- <title>Workout &mdash; Website Template by Colorlib</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-  
-  <link href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900" rel="stylesheet">
-  <link rel="stylesheet" href="fonts/icomoon/style.css">
-
-  <link rel="stylesheet" href="css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/owl.carousel.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-  <link rel="stylesheet" href="css/owl.theme.default.min.css">
-
-  <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-
-  <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-
-  <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-
-  <link rel="stylesheet" href="css/aos.css">
-  <link href="css/jquery.mb.YTPlayer.min.css" media="all" rel="stylesheet" type="text/css">
-
-  <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
-=======
-<title>Workout &mdash; Website Template by Colorlib</title>
 <meta charset="utf-8">
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
 <link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
-	rel="stylesheet">
+    href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
+    rel="stylesheet">
 <link rel="stylesheet" href="fonts_classlist/icomoon/style.css">
 
 <link rel="stylesheet" href="css_classlist/bootstrap.min.css">
@@ -60,9 +30,12 @@
 
 <link rel="stylesheet" href="css_classlist/aos.css">
 <link href="css_classlist/jquery.mb.YTPlayer.min.css" media="all"
-	rel="stylesheet" type="text/css">
+    rel="stylesheet" type="text/css">
 
 <link rel="stylesheet" href="css_classlist/style.css">
+
+</head>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -187,18 +160,17 @@
 						console.log('success:' + data);
 						var json = JSON.stringify(data, null, 4);
 						console.log('json:' + json);
->>>>>>> mark_1201
 
-<div class="site-section" id="classes-section">
-      <div class="container">
-        <div class="row justify-content-center text-center mb-5">
-          <div class="col-md-8  section-heading">
-            <span class="subheading">Fitness Class</span>
-            <h2 class="heading mb-3">Our Classes</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis consequatur cum neque?
-            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-          </div>
-        </div>
+// <div class="site-section" id="classes-section">
+//       <div class="container">
+//         <div class="row justify-content-center text-center mb-5">
+//           <div class="col-md-8  section-heading">
+//             <span class="subheading">Fitness Class</span>
+//             <h2 class="heading mb-3">Our Classes</h2>
+//             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quis consequatur cum neque?
+//             Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+//           </div>
+//         </div>
 <!--         <div class="row"> -->
 <!--           <div class="col-lg-6"> -->
 <!--             <div class="class-item d-flex align-items-center"> -->
@@ -213,7 +185,6 @@
 <!--               </div> -->
 <!--             </div> -->
 
-<<<<<<< HEAD
 <!--             <div class="class-item d-flex align-items-center"> -->
 <!--               <a href="single.html" class="class-item-thumbnail"> -->
 <!--                 <img src="images/img_2.jpg" alt="Image"> -->
@@ -322,14 +293,13 @@
 <!--                 <h2><a href="single.html">Fitness Class Name #5</a></h2> -->
 <!--                 <span>By Justin Daniel</span>, -->
 <!--                 <span>30 minutes</span> -->
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+//               </div>
+//             </div>
+//           </div>
+//         </div>
+//       </div>
+//     </div>
 
-=======
 						if (data == null) {
 							$('table').prepend(
 									"<tr><td colspan='2'>暫無資料</td></tr>");
@@ -427,6 +397,5 @@
 		</div>
 	</div>
 
->>>>>>> mark_1201
 </body>
 </html>
