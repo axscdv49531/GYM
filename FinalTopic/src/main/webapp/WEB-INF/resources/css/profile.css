@@ -1,0 +1,6 @@
+@charset "UTF-8";
+
+.personalinfo li .title {color: #515365;float: left;font-weight: 500;margin-right: 30px;width: 30%;}
+.personalinfo li .text {color: #888da8;display: block;overflow: hidden;}
+.personalinfo li {margin-bottom: 10px;}
+.personalinfo {list-style: none;margin-bottom: 0;padding: 0;}
