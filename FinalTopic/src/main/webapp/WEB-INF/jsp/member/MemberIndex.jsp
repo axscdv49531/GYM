@@ -27,12 +27,21 @@
 	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 <!-- end font family -->
+
 <link rel="stylesheet" href="../css/3dslider.css" />
+
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
+
 <script src="/js/3dslider.js"></script>
 
+<!-- ALL JS FILES -->
+<script src="../js/all.js"></script>
+
+<!-- ALL PLUGINS -->
+<script src="../js/custom.js"></script>
 
 </head>
 <body>
@@ -45,7 +54,7 @@
 							<div class="col-md-6">
 								<div class="full">
 									<div class="logo">
-										<a href="<c:url value='/' />"><img
+										<a href="<c:url value='/login/MemberSuccess' />"><img
 											src="../images/springfitnesslogo1.png" alt="index" /></a>
 									</div>
 								</div>
@@ -192,10 +201,7 @@
 	</div>
 	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
 	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
-	<!-- ALL JS FILES -->
-	<script src="../js/all.js"></script>
-	<!-- ALL PLUGINS -->
-	<script src="../js/custom.js"></script>
+
 
 </body>
 </html>
