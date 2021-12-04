@@ -42,8 +42,17 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+// 		        $("button[name='1']").each(function() {
+// 		            $(this).prop('disabled', true).text("已額滿");
+// 		        })
 			load();
 		});
+		
+// 		function status(){
+// 			 $("button[name='1']").each(function() {
+// 	                $(this).prop('disabled', true).text("已額滿");
+// 	            })
+// 		}
 		
 		function searchDelete(){
 			document.getElementById("searchByClassName").value = "";
@@ -124,7 +133,17 @@
                                                         a.push(n.sBean[i].skillName)
                                                     }
 //                                                  console.log(i);
+
+
+$("button[name='1']").each(function() {
+                                                            $(this).prop('disabled', true).text("已額滿");
+                                                        })
+
+
                                                     if(j<k){
+//                                                     	$("button[name='1']").each(function() {
+//                                                             $(this).prop('disabled', true).text("已額滿");
+//                                                         })
 //                                                      style='width:1115px'
                                                     var div2 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
                                                             + "<c:url value='/getClassPicture?classId=' />"
@@ -140,10 +159,13 @@
                                                             + n.classStartTime
                                                             + "</span></div><div><span>Duration："
                                                             + n.classDuration
-                                                            + " hours</span></div></div></div>"
+                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
                                                     div.append(div2);
                                                             j++;
                                                     }else{
+//                                                     	$("button[name='1']").each(function() {
+//                                                             $(this).prop('disabled', true).text("已額滿");
+//                                                         })
 //                                                        style='width:1115px'
                                                         var div4 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
                                                                 + "<c:url value='/getClassPicture?classId=' />"
@@ -159,7 +181,7 @@
                                                                 + n.classStartTime
                                                                 + "</span></div><div><span>Duration："
                                                                 + n.classDuration
-                                                                + " hours</span></div></div></div>"
+                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
                                                         div3.append(div4);
                                                                 j++;
                                                         }
@@ -182,6 +204,7 @@
 							var j = 0;
 							var k = 0;
 							console.log(data.length);
+							
 							
 							if(data.length%2 == 1){
 								k=(data.length+1)/2;
@@ -217,7 +240,15 @@
 														a.push(n.sBean[i].skillName)
 													}
 // 													console.log(i);
+
+   $("button[name='1']").each(function() {
+                                                                $(this).prop('disabled', true).text("已額滿");
+                                                            })
 													if(j<k){
+														
+// 											              $("button[name='1']").each(function() {
+// 											                    $(this).prop('disabled', true).text("已額滿");
+// 											                })
 // 														style='width:1115px'
 													var div2 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
 															+ "<c:url value='/getClassPicture?classId=' />"
@@ -232,11 +263,15 @@
 															+ "</span></div><div><span>Start At："
 															+ n.classStartTime
 															+ "</span></div><div><span>Duration："
-															+ n.classDuration
-															+ " hours</span></div></div></div>"
+// 															+ n.classDuration
+															+ " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
 													div.append(div2);
 															j++;
 													}else{
+														
+// 											              $("button[name='1']").each(function() {
+// 											                    $(this).prop('disabled', true).text("已額滿");
+// 											                })
 //	                                                      style='width:1115px'
 	                                                    var div4 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
 	                                                            + "<c:url value='/getClassPicture?classId=' />"
@@ -252,7 +287,7 @@
 	                                                            + n.classStartTime
 	                                                            + "</span></div><div><span>Duration："
 	                                                            + n.classDuration
-	                                                            + " hours</span></div></div></div>"
+	                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
 	                                                    div3.append(div4);
 	                                                            j++;
 	                                                    }
@@ -315,6 +350,8 @@
 			</div>
 		</div>
 	</div>
+	
+<!-- 	<div><button name="1" style="position:absolute; right:0; bottom:0">123</button></div> -->
 
 </body>
 </html>
