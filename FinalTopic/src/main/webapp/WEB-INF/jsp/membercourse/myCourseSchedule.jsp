@@ -137,33 +137,20 @@
 </div>
 
 	<div id="productListTitle">會員選課系統</div>
-	
 
 		<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a>
 		<a href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a>
 		<a href="<c:url value='/myCourseSchedule' />">我的課表</a>
 		<a href="<c:url value='/' />">回首頁</a>
-		<br>
 
-	
-	
-	
 	<table id="showcourse" border="1"></table>
-	<table id="showpage">
-		<tr>
-			<td>Total Pages:${totalPages} Total Records:${totalElements}</td>
-			<td colspan="3" align="right">Previous <c:forEach var="i"
-					begin="1" end="${totalPages}" step="1">
-					<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
-				</c:forEach>Next
-			</td>
-		</tr>
-	</table>
+	<table id="showpage">	</table>
 	<br>
 	<div id='showInformation'></div>
 	<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
 	
 	<br>
 <a href="<c:url value='/' />">回首頁</a>
+<c:import url="/bottom"></c:import>
 </body>
 </html>
