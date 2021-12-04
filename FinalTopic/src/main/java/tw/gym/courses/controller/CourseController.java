@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -110,9 +112,11 @@ public class CourseController {
 	// 查詢課程by會員，已加選課程
 	@GetMapping("/findbymember.controller") // http://localhost:8081/course/findbymember.controller
 	@ResponseBody
-	public List<Course> processFindByMember(Integer memberNum) {
-		memberNum = 1001;
-		return cService.findAllByMember(memberNum);
+	public List<Course> processFindByMember(HttpSession session) {
+		MemberBean member =(MemberBean)session.getAttribute("loginUser");
+		//Integer memberNumber = 1001;
+		Integer memberNumber= member.getNumber();
+		return cService.findAllByMember(memberNumber);
 	}
 
 	// 多條件查詢+分頁 (用於：表單查詢課程、當日課程、全部課程)
