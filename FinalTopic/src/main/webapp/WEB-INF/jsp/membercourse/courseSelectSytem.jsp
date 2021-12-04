@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>會員選課系統</title>
 <link rel="stylesheet" href="/css/coursesystem.css">
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -353,7 +354,7 @@
 		<br>
 		<div>
 			<div class="col-sm-8">
-				<table class='table-hover table-secondary talbe' id="showcourse"
+				<table class="" id="showcourse"
 					border="1"></table>
 				<table>
 					<tr id="showpage"></tr>
