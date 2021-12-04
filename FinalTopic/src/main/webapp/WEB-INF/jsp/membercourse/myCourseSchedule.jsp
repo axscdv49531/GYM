@@ -9,6 +9,39 @@
 <link rel="stylesheet" href="/css/coursesystem.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="../css/style.css">
+<!-- Colors CSS -->
+<link rel="stylesheet" href="../css/colors.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="../css/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="../css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="../css/custom.css">
+<!-- font family -->
+<link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+<!-- end font family -->
+<link rel="stylesheet" href="../css/3dslider.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
+    rel="stylesheet" type="text/css">
+<script src="/js/3dslider.js"></script>
+
+<!-- ALL JS FILES -->
+<script src="../js/all.js"></script>
+<!-- ALL PLUGINS -->
+<script src="../js/custom.js"></script>	
+	
+	
+	
+	
 <script type="text/javascript">
 
    var indexPage=1;
@@ -92,21 +125,26 @@
 			   }
 		});
    }
-   
-
+ 
 </script>
+
 </head>
 <body>
+
+
+<div style="width:1205px;height:194.13px">
+<c:import url="/top"></c:import>
+</div>
+
 	<div id="productListTitle">會員選課系統</div>
 	
-	
-	<header>
+
 		<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a>
 		<a href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a>
 		<a href="<c:url value='/myCourseSchedule' />">我的課表</a>
 		<a href="<c:url value='/' />">回首頁</a>
 		<br>
-	</header>
+
 	
 	
 	

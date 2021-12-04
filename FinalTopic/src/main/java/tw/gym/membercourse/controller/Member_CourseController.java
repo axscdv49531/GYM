@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,6 +26,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import tw.gym.coach.service.CoachService;
 import tw.gym.courses.model.CourseService;
 import tw.gym.courses.utils.EmailSenderService;
+import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.membercourse.model.Member_Course;
 import tw.gym.membercourse.model.Member_CourseService;
@@ -79,29 +82,49 @@ public class Member_CourseController {
 /////////////////////////////////////	
 
 	// 加選一堂課程/
-	@GetMapping("/selectcourse.controller/{courseId}") // http://localhost:8081/membercourse/selectcourse.controller/100
+	@GetMapping("/selectcourse.controller/{courseId}") // http://localhost:8081/membercourse/selectcourse.controller/1
 	@ResponseBody
-	public Member_Course selectcourse(@PathVariable("courseId") Integer courseId) {
+	public Member_Course selectcourse(@PathVariable("courseId") Integer courseId,HttpSession session) {
+System.out.println("success");
 
-		Integer memberNumber = 1001;
+	Date selecttime =new Date(); //加選時間
+
+		MemberBean member =(MemberBean)session.getAttribute("loginUser");
+		//Integer memberNumber = 1001;
+		Integer memberNumber= member.getNumber();
 		
 		//加選成功信件的內容設定
+		
+		String username = member.getName();
 		String courseName = cService.findById(courseId).getCourseName();
-		Date date = cService.findById(courseId).getDate();
-		String period = cService.findById(courseId).getPeriod();
+		String coachName = cService.findById(courseId).getCoach().getCoachName();
+		
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-		String courseTime = dateFormat.format(date) +"  " +period;
+		String date =dateFormat.format(cService.findById(courseId).getDate());
+		String period = cService.findById(courseId).getPeriod();
+		
+		String classroom = cService.findById(courseId).getClassroom();
 		
 		//String toEmail = mService.findByNumber(memberNumber).getEmail();
-		String toEmail = "habypunk@gmail.com";
-		String subject = "加選成功： "+ courseName;
-		String body = "您已加選成功：" +courseTime +" 的 " +courseName + "。\n請準時到課。祝您上課愉快！" ;
+		//String toEmail = "habypunk@gmail.com";
+		String toEmail = member.getEmail();
+		String subject = "課程預約確認： "+ courseName;
+		String body = 
+				"Dear " + username + " 小姐/先生，您好：\n您已成功加選課程。 " +
+				      "課程名稱： " + courseName + "\n" + 
+				      "授課老師： " + coachName + "\n" + 
+				      "上課日期： " + date + "\n" + 
+				      "上課時間： " + period + "\n" + 
+				      "上課教室： " + classroom + " 教室\n\n" + 
+				      "請您至少提早五分鐘到教室報到，若您未準時到課，請您提前取消預約課程。\n"+
+				      "Spring Fitness預祝您上課愉快！\n\n"+
+				      "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
 		
 
 		Member_Course mc = new Member_Course();
 		mc.setFk_course_id(courseId);
 		mc.setFk_member_num(memberNumber);
-		mc.setSelecttime(new Date());
+		mc.setSelecttime(selecttime);
 		mc.setState("已加選");
 
 //		//檢查是否衝堂
@@ -133,28 +156,47 @@ public class Member_CourseController {
 
 	// 退選課程/更新state欄位
 		@GetMapping("/dropcourse.controller/{courseId}") // http://localhost:8081/membercourse/selectcourse.controller/100
-		public Member_Course dropcourse(@PathVariable("courseId") Integer courseId) {
-
-			System.out.println("hello");
-			Integer memberNumber = 1;
-			//加選成功信件的內容設定
+		@ResponseBody
+		public Member_Course dropcourse(@PathVariable("courseId") Integer courseId,HttpSession session) {
+			
+			Date selecttime =new Date(); //退選時間
+			
+			MemberBean member =(MemberBean)session.getAttribute("loginUser");
+			//Integer memberNumber = 1001;
+			Integer memberNumber= member.getNumber();
+			
+			//退選成功信件的內容設定
+			String username = member.getName();
 			String courseName = cService.findById(courseId).getCourseName();
-			Date date = cService.findById(courseId).getDate();
-			String period = cService.findById(courseId).getPeriod();
+			String coachName = cService.findById(courseId).getCoach().getCoachName();
+			
 			DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-			String courseTime = dateFormat.format(date) +"  " +period;
+			String date =dateFormat.format(cService.findById(courseId).getDate());
+			String period = cService.findById(courseId).getPeriod();
+			
+			String classroom = cService.findById(courseId).getClassroom();
 			
 			//String toEmail = mService.findByNumber(memberNumber).getEmail();
-			String toEmail = "habypunk@gmail.com";
-			String subject = "退選課程成功： "+ courseName;
-			String body = "您已退選：" +courseTime +" 的 " +courseName + "。\n歡迎您預約其他課程！" ;
+			//String toEmail = "habypunk@gmail.com";
+			String toEmail = member.getEmail();
+			String subject = "課程取消通知： "+ courseName;
+			String body = 
+					"Dear " + username + " 小姐/先生，您好：\n" +
+							"您已於 " + selecttime + "取消您原本預約的課程：\n"+
+					      "課程名稱： " + courseName + "\n" + 
+					      "授課老師： " + coachName + "\n" + 
+					      "上課日期： " + date + "\n" + 
+					      "上課時間： " + period + "\n" + 
+					      "上課教室： " + classroom + " 教室\n\n" + 
+					        "Spring Fitness歡迎您再次預約其他課程。祝您順心！\n\n"+
+					      "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
 
 			List<Member_Course> mcList = mcService.findByFkid(memberNumber, courseId);
 			for (Member_Course mc : mcList) {
 				if (mc.getState().equals("已加選")) {
 					mc.setFk_course_id(courseId);
 					mc.setFk_member_num(memberNumber);
-					mc.setSelecttime(new Date());
+					mc.setSelecttime(selecttime);
 					mc.setState("已退選");
 
 					//退選課程

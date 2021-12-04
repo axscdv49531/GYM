@@ -23,6 +23,12 @@
    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
    <script src="js/3dslider.js"></script>
+   
+   	<!-- ALL JS FILES -->
+    <script src="../js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="../js/custom.js"></script>
+   
 </head>
 <body>
   <div class="container">
@@ -83,7 +89,24 @@
                                           <li><a href="about.html">關於</a></li>
                                           <li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
                                           <li><a href="news.html">預約私人課程</a></li>
-                                          <li><a href="<c:url value='/courseSelectSystem' />">團課報名</a></li>
+                                          <li><a href="/courseSelectSystem">團體課程</a></li>
+                                          
+                                          <li class="dropdown mega-dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">團體課程<span
+                                                                class="caret"></span></a>
+                                                            <ul class="dropdown-menu mega-dropdown-menu">
+                                                                <li class="col-sm-4">
+                                                                    <ul>
+                                                                        <li class="dropdown-header">Men Collection</li>
+                                                                        <li><a class="dropdown-item" href="/courseSelectSystem">課程表</a></li>
+                                                                        <li><a class="dropdown-item" href="/courseSelectSystem">預約課程</a></li>
+                                                                        <li><a class="dropdown-item" href="#">課程介紹</a></li>
+                                                                        <li><a class="dropdown-item" href="#">我的課程</a></li>
+                                                                      
+                                                                    </ul>
+                                                                </li>
+                                                            </ul></li>
+                                          
+                                          
                                           <li><a href="news.html">健康餐盒</a></li>
                                           <li><a href="news.html">周邊商品</a></li>
                                        </ul>
@@ -129,5 +152,7 @@
 			<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
 			<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a>
 			<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a>
+			
+
 </body>
 </html>
