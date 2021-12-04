@@ -51,6 +51,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/header").setViewName("header");
 		
 		registry.addViewController("/top").setViewName("top");
+		registry.addViewController("/bottom").setViewName("bottom");
 		registry.addViewController("/courseSelectSystem").setViewName("member/courSelectSytem");
 		
 		registry.addRedirectViewController("/courseform", "/course/courseform.controller");

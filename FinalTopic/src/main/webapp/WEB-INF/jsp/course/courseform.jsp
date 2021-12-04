@@ -14,21 +14,23 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
+//今日日期
 
+var todayISO = new Date().toISOString().slice(0,10);
 var index=0;
 var data=[
-	{'courseName':'流行舞蹈','category':'舞蹈類課程','date':'2021-12-16','information':'流行街舞課程會由專業的舞蹈老師，先帶領學員暖身，用熱門流行舞曲、或是充滿感染力的節奏音樂，搭配身體律動、舞蹈基本動作反覆演練，達到熱身的效果。'},
-	{'courseName':'正位瑜珈','category':'瑜珈課程','date':'2021-12-18','information':'正位瑜珈的理念是由國際瑜珈大師 lyengar 的瑜珈體位教學系統作為基礎，回歸身體的本位，利用最基本的水平正位來進行瑜珈體位法的技巧，達成端正姿態的效果。'},
+	{'courseName':'流行舞蹈','category':'舞蹈類課程','date':todayISO,'information':'流行街舞課程會由專業的舞蹈老師，先帶領學員暖身，用熱門流行舞曲、或是充滿感染力的節奏音樂，搭配身體律動、舞蹈基本動作反覆演練，達到熱身的效果。'},
+	{'courseName':'正位瑜珈','category':'瑜珈課程','date':'2021-12-16','information':'正位瑜珈的理念是由國際瑜珈大師 lyengar 的瑜珈體位教學系統作為基礎，回歸身體的本位，利用最基本的水平正位來進行瑜珈體位法的技巧，達成端正姿態的效果。'},
 	{'courseName':'階梯有氧','category':'心肺肌力課程','date':'2021-12-17','information':'階梯有氧運動具有高強度低衝擊的運動特性，階梯有氧運動與一般的有氧舞蹈最大的不同在於踏板的使用，藉由音樂的節奏達到流汗運動效果，運用階梯做有氧舞步變化。'},
 	{'courseName':'飛輪進階','category':'其他','date':'2021-12-15','information':'課程中利用自身體重及啞鈴或者彈力繩等健身器材增加負重訓練，可以平衡飛輪課程較少鍛鍊的肌群，能改善心血管健康幫助全面體能提升，是一個全新思維、利用消耗能量系統轉換的高效能燃脂飛輪課程。'},
 ]
 
 
 function quickInput(){
-	console.log(data[index])
+	//console.log(data[index].date);
 	document.getElementById('courseName').value = data[index].courseName;
 	document.getElementById('category').value = data[index].category;
-	document.getElementById('date').value = data[index].date;
+	document.getElementById('date').value = todayISO;
 	$('#period option[value="14:00-14:50"]').attr('selected', 'selected');
 	$('#classroom option[value="A"]').attr('selected', 'selected');
 	$('#coachId option[value=3]').attr('selected', 'selected');

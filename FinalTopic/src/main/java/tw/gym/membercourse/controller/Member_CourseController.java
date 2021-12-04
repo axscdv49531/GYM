@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.service.CoachService;
 import tw.gym.courses.model.CourseService;
 import tw.gym.courses.utils.EmailSenderService;
@@ -57,11 +58,11 @@ public class Member_CourseController {
 	@GetMapping("/courseselectionmain.controller")
 	public String courseselectionmain(Model m) {
 
-//		List<CoachBean> coachList = coaService.findAllCoachBean();
-//		m.addAttribute("coachList", coachList);
-//		
-//		List<Date> dateList = cService.findAllDate();
-//		m.addAttribute("dateList", dateList);
+		List<CoachBean> coachList = coaService.listAllCoach();
+		m.addAttribute("coachList", coachList);
+		
+		List<Date> dateList = cService.findAllDate();
+		m.addAttribute("dateList", dateList);
 		return "membercourse/courseSelectSytem";
 	}
 
