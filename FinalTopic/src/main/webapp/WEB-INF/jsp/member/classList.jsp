@@ -42,17 +42,36 @@
 		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-// 		        $("button[name='1']").each(function() {
-// 		            $(this).prop('disabled', true).text("已額滿");
-// 		        })
 			load();
 		});
 		
-// 		function status(){
-// 			 $("button[name='1']").each(function() {
-// 	                $(this).prop('disabled', true).text("已額滿");
-// 	            })
-// 		}
+		function resvConfirm(y){
+			x = confirm("請確認是否要預約課程？");
+			console.log(x)
+			console.log(y)
+			if(x){
+			$.ajax({
+                        type : 'post',
+                        url : '/classReservationCheck/',
+                        data : {
+                            classConfirm : x,
+                            classId : y
+                        },
+                        dataType : 'JSON',
+                        complete: function(data) {
+                            load();
+                         }
+                        //                  contentType : 'application/json',
+//                         success : function(data){ 
+//                         	load();
+//                         }
+                        }
+			)
+			}
+			
+			}
+		
+		
 		
 		function searchDelete(){
 			document.getElementById("searchByClassName").value = "";
@@ -84,6 +103,7 @@
 	        $.ajax({
 	                    type : 'post',
 	                    url : '/searchClass/',
+	                    async: false,
 	                    data : {
 	                        cName : className,
 	                        coaName : coachName,
@@ -97,7 +117,7 @@
 	                    success : function(data) {
 	                    	var j = 0;
                             var k = 0;
-                            console.log(data.length);
+//                             console.log(data.length);
                             
                             if(data.length%2 == 1){
                                 k=(data.length+1)/2;
@@ -135,10 +155,9 @@
 //                                                  console.log(i);
 
 
-$("button[name='1']").each(function() {
-                                                            $(this).prop('disabled', true).text("已額滿");
-                                                        })
-
+// $("button[name='1']").each(function() {
+//                                                             $(this).prop('disabled', true).text("已額滿");
+//                                                         })
 
                                                     if(j<k){
 //                                                     	$("button[name='1']").each(function() {
@@ -159,9 +178,10 @@ $("button[name='1']").each(function() {
                                                             + n.classStartTime
                                                             + "</span></div><div><span>Duration："
                                                             + n.classDuration
-                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
+                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
                                                     div.append(div2);
                                                             j++;
+                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
                                                     }else{
 //                                                     	$("button[name='1']").each(function() {
 //                                                             $(this).prop('disabled', true).text("已額滿");
@@ -181,9 +201,10 @@ $("button[name='1']").each(function() {
                                                                 + n.classStartTime
                                                                 + "</span></div><div><span>Duration："
                                                                 + n.classDuration
-                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
+                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
                                                         div3.append(div4);
                                                                 j++;
+                                                                $("button[name='1']").prop('disabled', true).text("已額滿");
                                                         }
                                                 });
                             }
@@ -194,7 +215,7 @@ $("button[name='1']").each(function() {
 		
 		
 
-		function load(a, startDate, endDate) {
+		function load() {
 			$.ajax({
 						type : 'post',
 						url : '/listAllClass/',
@@ -203,7 +224,6 @@ $("button[name='1']").each(function() {
 						success : function(data) {
 							var j = 0;
 							var k = 0;
-							console.log(data.length);
 							
 							
 							if(data.length%2 == 1){
@@ -241,9 +261,9 @@ $("button[name='1']").each(function() {
 													}
 // 													console.log(i);
 
-   $("button[name='1']").each(function() {
-                                                                $(this).prop('disabled', true).text("已額滿");
-                                                            })
+//    $("button[name='1']").each(function() {
+//                                                                 $(this).prop('disabled', true).text("已額滿");
+//                                                             })
 													if(j<k){
 														
 // 											              $("button[name='1']").each(function() {
@@ -264,9 +284,10 @@ $("button[name='1']").each(function() {
 															+ n.classStartTime
 															+ "</span></div><div><span>Duration："
 // 															+ n.classDuration
-															+ " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
+															+ " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
 													div.append(div2);
 															j++;
+															$("button[name='1']").prop('disabled', true).text("已額滿");
 													}else{
 														
 // 											              $("button[name='1']").each(function() {
@@ -287,9 +308,10 @@ $("button[name='1']").each(function() {
 	                                                            + n.classStartTime
 	                                                            + "</span></div><div><span>Duration："
 	                                                            + n.classDuration
-	                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1'>立即預約</button></div></div>"
+	                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
 	                                                    div3.append(div4);
 	                                                            j++;
+	                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
 	                                                    }
 												});
 							}

@@ -67,20 +67,17 @@ public class MemberController {
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
     }
-    
-    
-    
-//    @GetMapping(path ="/login/Coach")
-//    public String CoachLogin(){
-//    	return "LoginCoach";
-//    }
-//    
-//    @PostMapping(path ="/login/Coach")
-//    public String CoachIndex(){
-//    	return "coach/CoachIndex";
-//    }
 
-    
+    // @GetMapping(path ="/login/Coach")
+    // public String CoachLogin(){
+    // return "LoginCoach";
+    // }
+    //
+    // @PostMapping(path ="/login/Coach")
+    // public String CoachIndex(){
+    // return "coach/CoachIndex";
+    // }
+
     // 輸入會員資料
     @GetMapping(path = "/insertMember")
     public String insertMember(Model m) {
@@ -376,6 +373,37 @@ public class MemberController {
         List<ClassBean> cBean = claService.listAllClass();
 
         return cBean;
+    }
+
+    // Mark
+    @PostMapping("classReservationCheck")
+    @ResponseBody
+    public ClassBean classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+            @RequestParam(required = false, name = "classId") String classId,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        // System.out.println(classConfirm);
+        // System.out.println(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        ClassBean cBean = claService.getClassById(classIdd);
+        MemberBean memBean = memberService.getById(mBean.getNumber());
+        ClassMemberBean cmBean = new ClassMemberBean();
+        cmBean.setcBean(cBean);
+        cmBean.setmBean(memBean);
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        cmBean.setRegisterDate(timestamp);
+        memberService.insertReservation(cmBean, 1, classIdd);
+        String email = mBean.getEmail();
+        String subject = "一對一課程預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
+                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+
+        emailSerive.sendEmail(email, subject, body);
+
+        return cBean;
+
+
     }
 
     // Mark
