@@ -119,7 +119,7 @@
 		} else {
 			var table = $('#showcourse');
 			table
-					.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>課程簡介</th><th>加選課程</th><th>刪除</th></tr>");
+					.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>課程簡介</th><th>加選課程</th></tr>");
 
 			$
 					.each(
@@ -167,24 +167,23 @@
 		}
 		//////////
 
-		var tr2 = "<td>Total Pages: " + data.totalPages + " Total Records: "
-				+ data.totalElements + "</td>";
+		var tr2 = "Total Pages: " + data.totalPages + " Total Records: " + data.totalElements;
 
-		$('#showpage').empty("");
-		$('#showpage').append(tr2);
+		$('#showpageInfo').empty("");
+		$('#showpageInfo').append(tr2);
 
-		$('#showpage').append(
-				"<button class='btn' onclick='previous()'>Previous</button>");
+		$('#showpageButton').append(
+				"<button style='float: right;' class='btn' onclick='previous()'>Previous</button>");
 
 		for (var j = 1; j <= data.totalPages; j++) {
-			$('#showpage').append(
-					"<button class='btn' id='myPage' value='" + j
+			$('#showpageButton').append(
+					"<button style='float: right;' class='btn' id='myPage' value='" + j
 							+ "' onclick='change(" + j + ")'>" + j
 							+ "</button>")
 		}
 
-		$('#showpage').append(
-				"<button class='btn' id='nextbutton' value='" + data.totalPages
+		$('#showpageButton').append(
+				"<button style='float: right;' class='btn' id='nextbutton' value='" + data.totalPages
 						+ "' onclick='next()'>Next</button>");
 
 	}
@@ -260,7 +259,7 @@
 			success : function(str) {
 
 				$('#showInformation').empty("");
-				$('#showInformation').append("<h3>課程簡介：</h3>" + str);
+				$('#showInformation').append(str);
 				//showAllCourse(indexPage);
 			}
 		});
@@ -346,7 +345,7 @@
 						<c:forEach var="oneCoach" items="${coachList}">
 							<option value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 						</c:forEach>
-					</select> <input class="form-control form-control-sm" type="button"
+					</select> <input class="form-control" type="button"
 						value="查詢" onclick='sendQuery(1)'>
 				</form>
 			</fieldset>
@@ -354,17 +353,29 @@
 		<br>
 		<div>
 			<div class="col-sm-8">
-				<table class="" id="showcourse"
+				<table class="table table-bordered table-hover" id="showcourse"
 					border="1"></table>
-				<table>
-					<tr id="showpage"></tr>
+				<table class="table">
+					<tr >
+					<td id="showpageInfo"></td>
+					<td id="showpageButton" align="right"></td>
+					</tr>
 				</table>
 			</div>
 
-			<div class="col-sm-2" id='showInformation' style="border: 0px RED solid">課程介紹</div>
-		</div>
+<div class="col-sm-2 ">
 
-	</div>
+		<div class="content-widget top-story" style="background: url(images/top-story-bg.jpg);">
+                     <div class="top-stroy-header">
+                        <h2>課程介紹<a href="#" class="fa fa-fa fa-angle-right"></a></h2>
+                        <span class="date"></span>
+                     </div>
+                     <ul class="other-stroies" id='showInformation'></ul>
+                  </div>
+</div>
+
+</div>
+</div>
 	<c:import url="/bottom"></c:import>
 </body>
 </html>
