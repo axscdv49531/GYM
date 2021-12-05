@@ -127,9 +127,7 @@ public class MemberController {
         model.addAttribute("memberBean", memberBean);
         return "member/ShowMemberDetail";
     }
-    
 
-    
     @GetMapping("/modifyMember/{number}")
     public String updateMember(Model model, @PathVariable Integer number) {
         MemberBean memberBean = memberService.findByNumber(number);
@@ -353,11 +351,13 @@ public class MemberController {
     }
 
     // Mark
-    @GetMapping("/cancelClass/{classId}")
-    public String cencelClass(@PathVariable Integer classId, Integer a,
+    @PostMapping("cancelClass")
+    @ResponseBody
+    public String cencelClass(@RequestParam(required = false, name = "classId") String classId,
             @SessionAttribute("loginUser") MemberBean mBean) {
-        memberService.deleteByClassId(classId, 0);
-        ClassBean cBean = claService.getClassById(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        memberService.deleteByClassId(classIdd, 0);
+        ClassBean cBean = claService.getClassById(classIdd);
         String email = mBean.getEmail();
         String subject = "一對一課程取消預約成功通知信";
         String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
@@ -366,7 +366,12 @@ public class MemberController {
 
         emailSerive.sendEmail(email, subject, body);
 
-        return "redirect:/viewReservationClass";
+        if (cBean.getClassAvaliable() == 0) {
+
+            return "true";
+        } else {
+            return "false";
+        }
     }
 
     // Mark
@@ -395,14 +400,14 @@ public class MemberController {
     @ResponseBody
     public List<ClassBean> memberListAllClass(@SessionAttribute("loginUser") MemberBean mBean) {
         List<ClassBean> cBean = memberService.findByMemberId(mBean.getNumber());
-        
+
         return cBean;
     }
 
     // Mark
     @PostMapping("classReservationCheck")
     @ResponseBody
-    public ClassBean classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
             @RequestParam(required = false, name = "classId") String classId,
             @SessionAttribute("loginUser") MemberBean mBean) {
         // System.out.println(classConfirm);
@@ -425,8 +430,12 @@ public class MemberController {
 
         emailSerive.sendEmail(email, subject, body);
 
-        return cBean;
+        if (cBean.getClassAvaliable() == 1) {
 
+            return "true";
+        } else {
+            return "false";
+        }
 
     }
 
@@ -515,6 +524,11 @@ public class MemberController {
         headers.setContentType(mediaType);
         re = new ResponseEntity<byte[]>(b, headers, HttpStatus.OK);
         return re;
+    }
+
+    @GetMapping("classIntroduction")
+    public String classIntroduction() {
+        return "/member/classIntroduction";
     }
 
 }

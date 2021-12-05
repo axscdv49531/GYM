@@ -156,7 +156,7 @@
 																		<li><a class="dropdown-item"
 																			href="/classReservation">課程預約</a></li>
 																		<li><a class="dropdown-item"
-																			href="">課程介紹</a>
+																			href="/classIntroduction">課程介紹</a>
 																		</li>
 																		<li><a class="dropdown-item"
 																			href="/memberViewClassLists">我的課程

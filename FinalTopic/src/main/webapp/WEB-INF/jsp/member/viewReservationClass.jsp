@@ -47,8 +47,6 @@
         
         function resvConfirm(y){
             x = confirm("請確認是否要預約課程？");
-            console.log(x)
-            console.log(y)
             if(x){
             $.ajax({
                         type : 'post',
@@ -60,6 +58,37 @@
                         dataType : 'JSON',
                         complete: function(data) {
                             load();
+                         }
+                        //                  contentType : 'application/json',
+//                         success : function(data){ 
+//                          load();
+//                         }
+                        }
+            )
+            }
+            
+            }
+        
+        function cancelConfirm(y){
+            x = confirm("請確認是否要取消課程？");
+            console.log(x)
+            console.log(y)
+            if(x){
+            $.ajax({
+                        type : 'post',
+                        url : '/cancelClass/',
+                        data : {
+                            classId : y
+                        },
+                        dataType : 'JSON',
+                        complete: function(data) {
+                        	if(data.responseText == 'true'){
+                                alert("取消成功");
+                            load();
+                            }else{
+                                alert("取消失敗")
+                                load();
+                            }
                          }
                         //                  contentType : 'application/json',
 //                         success : function(data){ 
@@ -167,10 +196,9 @@
                                                             + n.classStartTime
                                                             + "</span></div><div><span>Duration："
                                                             + n.classDuration
-                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
+                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></div></div>"
                                                     div.append(div2);
                                                             j++;
-                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
                                                     }else{
                                                         var div4 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
                                                                 + "<c:url value='/getClassPicture?classId=' />"
@@ -186,10 +214,9 @@
                                                                 + n.classStartTime
                                                                 + "</span></div><div><span>Duration："
                                                                 + n.classDuration
-                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
+                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></div></div>"
                                                         div3.append(div4);
                                                                 j++;
-                                                                $("button[name='1']").prop('disabled', true).text("已額滿");
                                                         }
                                                 });
                             }
@@ -261,10 +288,9 @@
                                                             + n.classStartTime
                                                             + "</span></div><div><span>Duration："
 //                                                          + n.classDuration
-                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
+                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></div></div>"
                                                     div.append(div2);
                                                             j++;
-                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
                                                     }else{
                                                         
                                                         var div4 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
@@ -281,10 +307,9 @@
                                                                 + n.classStartTime
                                                                 + "</span></div><div><span>Duration："
                                                                 + n.classDuration
-                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
+                                                                + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></div></div>"
                                                         div3.append(div4);
                                                                 j++;
-                                                                $("button[name='1']").prop('disabled', true).text("已額滿");
                                                         }
                                                 });
                             }

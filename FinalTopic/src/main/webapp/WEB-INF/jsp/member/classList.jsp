@@ -59,7 +59,13 @@
                         },
                         dataType : 'JSON',
                         complete: function(data) {
+                        	if(data.responseText == 'true'){
+                        		alert("預約成功");
                             load();
+                        	}else{
+                        		alert("預約失敗")
+                        		load();
+                        	}
                          }
                         //                  contentType : 'application/json',
 //                         success : function(data){ 

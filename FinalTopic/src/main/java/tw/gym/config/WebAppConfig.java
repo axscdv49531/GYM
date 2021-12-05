@@ -73,6 +73,10 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/font/**").addResourceLocations("/WEB-INF/resources/font/");
         registry.addResourceHandler("/fonts_classlist/**").addResourceLocations("/WEB-INF/resources/fonts_classlist/");
         registry.addResourceHandler("/css_classlist/**").addResourceLocations("/WEB-INF/resources/css_classlist/");
+        registry.addResourceHandler("/styles_classIntro/**")
+                .addResourceLocations("/WEB-INF/resources/styles_classIntro/");
+        registry.addResourceHandler("/plugins_classIntro/**")
+                .addResourceLocations("/WEB-INF/resources/plugins_classIntro/");
 	}
 
 	// @Override
