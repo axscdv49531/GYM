@@ -70,6 +70,11 @@ public class CourseServiceImpl implements CourseService{
 		return cReps.findAllByMember(memberNum);
 	}
 	
+	public List<Course> findPastByMember(Integer memberNumber){
+		return cReps.findPastByMember(memberNumber);
+		
+	}
+	
 	public String findInfoById(Integer courseId) {
 		return cReps.findInfoById(courseId);
 	}

@@ -12,8 +12,13 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface CourseRepository extends JpaRepository<Course, Integer>,CourseRepositoryCustom, JpaSpecificationExecutor<Course> {
 
+	//我的課表
 	@Query(value="from Course c left join c.MC mc WHERE mc.member.number =?1 and mc.state='已加選' ORDER BY date ASC, period ASC")
 	public List<Course> findAllByMember(Integer memberNum);
+	
+	//上課紀錄
+	@Query(value="from Course c left join c.MC mc WHERE mc.member.number =?1 and mc.state='課程已結束' ORDER BY date ASC, period ASC")
+	public List<Course> findPastByMember(Integer memberNum);
 	
 	@Query(value="select DISTINCT date from Course ORDER BY date ASC" , nativeQuery = false)
 	public List<Date> findAllDate();
