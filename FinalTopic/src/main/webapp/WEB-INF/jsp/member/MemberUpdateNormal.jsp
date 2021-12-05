@@ -22,7 +22,7 @@
 </head>
 <body>
 	<div align="center">
-		<form:form method='POST' modelAttribute="memberBean">
+		<form:form method='POST' modelAttribute="memberBean" >
 			<input type="hidden" name="noname" id='putOrDelete' value="">
 			<c:if test='${memberBean.number != null}'>
 				<form:hidden path="number" />
@@ -100,6 +100,7 @@
 						<td><form:input path="emergencyPhone" /><br>&nbsp; <form:errors
 								path="emergencyPhone" cssClass="error" /></td>
 					</tr>
+
 					<tr>
 						<td colspan='2' align='center'><input type='submit'
 							value='修改' name='updateBtn'

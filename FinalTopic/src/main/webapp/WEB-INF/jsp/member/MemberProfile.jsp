@@ -48,6 +48,7 @@
 					value="會員編號：${loginUser.number}" />
 			</small>
 		</div>
+			<img width='203' height='254' src="<c:url value='/getMemberPicture?email=' />${loginUser.email}" />
 	</div>
 	<div class="col-md-7">
 		<ul class="personalinfo">

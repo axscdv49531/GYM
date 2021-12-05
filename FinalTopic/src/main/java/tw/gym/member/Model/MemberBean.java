@@ -1,5 +1,7 @@
 package tw.gym.member.Model;
 
+import java.io.Serializable;
+import java.sql.Blob;
 import java.sql.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -16,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,8 +28,10 @@ import tw.gym.membercourse.model.Member_Course;
 @Entity
 @Table(name = "member")
 @Component
-public class MemberBean {
+public class MemberBean implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer number;
@@ -44,9 +49,15 @@ public class MemberBean {
 	private Date expirationdate;
 	private String emergencyContact;
 	private String emergencyPhone;
+	private String fileName;
 
 	@Transient
 	private String confirmedPassword;
+
+	@Transient
+	private MultipartFile mPhoto;
+	private Blob memberPhoto;
+	private String memberPhotoMineType;
 
 	@OneToMany(mappedBy = "memberBean")
 	Set<PaymentBean> payment = new HashSet<>();
@@ -61,9 +72,9 @@ public class MemberBean {
 	@JsonIgnore
 	private Set<Member_Course> MC = new LinkedHashSet<Member_Course>();
 
-    // Mark
-    @OneToMany(mappedBy = "mBean")
-    private Set<ClassMemberBean> cmBean = new HashSet<ClassMemberBean>();
+	// Mark
+	@OneToMany(mappedBy = "mBean")
+	private Set<ClassMemberBean> cmBean = new HashSet<ClassMemberBean>();
 
 	public Set<Member_Course> getMC() {
 		return MC;
@@ -79,7 +90,7 @@ public class MemberBean {
 
 	public MemberBean(Integer number, String id, String password, String name, String gender, Date birthday,
 			String phone, String email, String county, String district, String address, Integer deposite,
-			Date expirationdate, String emergencyContact, String emergencyPhone) {
+			Date expirationdate, String emergencyContact, String emergencyPhone, String fileName) {
 		super();
 		this.number = number;
 		this.id = id;
@@ -96,6 +107,7 @@ public class MemberBean {
 		this.expirationdate = expirationdate;
 		this.emergencyContact = emergencyContact;
 		this.emergencyPhone = emergencyPhone;
+		this.fileName = fileName;
 	}
 
 	public Set<DepositeBean> getDepositeBean() {
@@ -250,15 +262,47 @@ public class MemberBean {
 		this.emergencyPhone = emergencyPhone;
 	}
 
-    public Set<ClassMemberBean> getCmBean() {
-        return cmBean;
-    }
+	public Set<ClassMemberBean> getCmBean() {
+		return cmBean;
+	}
 
-    public void setCmBean(Set<ClassMemberBean> cmBean) {
-        this.cmBean = cmBean;
-    }
+	public void setCmBean(Set<ClassMemberBean> cmBean) {
+		this.cmBean = cmBean;
+	}
 
-    @Override
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	public MultipartFile getmPhoto() {
+		return mPhoto;
+	}
+
+	public void setmPhoto(MultipartFile mPhoto) {
+		this.mPhoto = mPhoto;
+	}
+
+	public Blob getMemberPhoto() {
+		return memberPhoto;
+	}
+
+	public void setMemberPhoto(Blob memberPhoto) {
+		this.memberPhoto = memberPhoto;
+	}
+
+	public String getMemberPhotoMineType() {
+		return memberPhotoMineType;
+	}
+
+	public void setMemberPhotoMineType(String memberPhotoMineType) {
+		this.memberPhotoMineType = memberPhotoMineType;
+	}
+
+	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("MemberBean [id=");
@@ -285,6 +329,8 @@ public class MemberBean {
 		builder.append(emergencyPhone);
 		builder.append(", confirmedPassword=");
 		builder.append(confirmedPassword);
+		builder.append(", memberPhoto=");
+		builder.append(memberPhoto);
 		builder.append("]");
 		return builder.toString();
 	}

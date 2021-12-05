@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.CoachBean;
 import tw.gym.member.Model.MemberBean;
 
 public interface MemberRepository extends JpaRepository<MemberBean, Integer>, MemberRepositoryCustom {
@@ -20,6 +21,9 @@ public interface MemberRepository extends JpaRepository<MemberBean, Integer>, Me
 
     @Query(value = "SELECT m from MemberBean m LEFT JOIN m.MC mc where mc.course.id=?1 AND mc.state='已加選'")
     public List<MemberBean> findByCourse(Integer courseId);
+    
+    @Query(value = "select mb from MemberBean mb where mb.email = :email")
+    public MemberBean getMemberByEmail(String email);
 
     // // Mark
     // @Query("FROM MemberBean mb WHERE mb.memberAccount = :memberAccount and mb.memberPassword = :memberPassword")
