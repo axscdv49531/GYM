@@ -103,7 +103,6 @@
 	        $.ajax({
 	                    type : 'post',
 	                    url : '/searchClass/',
-	                    async: false,
 	                    data : {
 	                        cName : className,
 	                        coaName : coachName,
