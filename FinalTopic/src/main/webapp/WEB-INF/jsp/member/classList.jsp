@@ -34,6 +34,14 @@
 
 <link rel="stylesheet" href="css_classlist/style.css">
 
+
+
+
+
+
+
+
+
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target"
 	data-offset="300">
@@ -326,6 +334,9 @@
 	</script>
 </head>
 <body>
+<!--     <div style="width: 1205px; height: 194.13px"> -->
+<%--         <c:import url="/top"></c:import> --%>
+<!--     </div> -->
 
 	<div class="site-section" id="classes-section">
 		<div class="container">
