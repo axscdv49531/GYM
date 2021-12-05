@@ -32,4 +32,7 @@ public interface ClassService {
             String endDate, String classStatus);
 
     List<String> findClassCoach();
+
+    List<ClassBean> memberDynamicQuery(String className, String coachName, String skillName, String startDate,
+            String endDate, String classStatus, List<ClassBean> mcBean);
 }

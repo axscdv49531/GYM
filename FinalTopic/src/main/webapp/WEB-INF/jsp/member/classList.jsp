@@ -326,7 +326,7 @@
 			<div class="row justify-content-center text-center mb-5">
 				<div class="col-md-8  section-heading">
 					<span class="subheading">Fitness Class</span>
-					<h2 class="heading mb-3">Our Classes</h2>
+					<h2 class="heading mb-3">一對一私人課程清單</h2>
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
 						Quis consequatur cum neque? Separated they live in Bookmarksgrove
 						right at the coast of the Semantics, a large language ocean.</p>
