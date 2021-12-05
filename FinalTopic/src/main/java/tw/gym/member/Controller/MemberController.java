@@ -119,7 +119,7 @@ public class MemberController {
     public String selectAll(Model model) {
         List<MemberBean> memberBean = memberService.findAll();
         model.addAttribute(memberBean);
-        return "member/ShowMember";
+        return "administrator/allMember";
     }
 
     @GetMapping("/selectMember/{number}")

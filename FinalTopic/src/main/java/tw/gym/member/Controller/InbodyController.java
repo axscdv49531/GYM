@@ -31,7 +31,7 @@ public class InbodyController {
 		model.addAttribute(inbodyBean);
 //		MemberBean[] beanArray = memberBean.toArray(new MemberBean[0]);
 //		model.addAttribute(beanArray);
-		return "ShowInbody";
+		return "member/ShowInbody";
 	}
 
 	@GetMapping(path = "/insertInbody/{number}")
@@ -42,7 +42,7 @@ public class InbodyController {
 		InbodyBean inbodyBean = new InbodyBean();
 //		inbodyBean.setNumber(number);
 		m.addAttribute("inbodyBean", inbodyBean);
-		return "InbodyForm";
+		return "member/InbodyForm";
 	}
 
 	@PostMapping(path = "/insertInbody/{number}")
@@ -55,6 +55,6 @@ public class InbodyController {
 	@GetMapping("/selectInbody/deleteInbody/{no}")
 	public String deleteMemberData(@PathVariable("no") Integer no ) throws SQLException {
 		inbodyService.deleteById(no);
-		return "redirect:/selectInbody/{number}";
+		return "redirect:/member/selectInbody/{number}";
 	}
 }

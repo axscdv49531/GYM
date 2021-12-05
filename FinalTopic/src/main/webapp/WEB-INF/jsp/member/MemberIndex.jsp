@@ -130,11 +130,11 @@
                                                                                 href="/MemberProfile">個人資料</a>
                                                                         </li>
                                                                         <li><a class="dropdown-item"
-                                                                                href="/MemberProfile">Inbody紀錄</a>
+                                                                                href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a>
                                                                         </li>
-                                                                        <li><a class="dropdown-item" href="#">會費紀錄 </a>
+                                                                        <li><a class="dropdown-item" href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄 </a>
                                                                         </li>
-                                                                        <li><a class="dropdown-item" href="#">儲值紀錄</a>
+                                                                        <li><a class="dropdown-item" href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
                                                                         </li>
                                                                     </ul>
                                                                 </li>
