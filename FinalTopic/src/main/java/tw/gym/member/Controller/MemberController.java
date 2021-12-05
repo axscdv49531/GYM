@@ -11,6 +11,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
@@ -117,7 +119,7 @@ public class MemberController {
     public String selectAll(Model model) {
         List<MemberBean> memberBean = memberService.findAll();
         model.addAttribute(memberBean);
-        return "member/ShowMember";
+        return "administrator/allMember";
     }
 
     @GetMapping("/selectMember/{number}")
@@ -126,7 +128,9 @@ public class MemberController {
         model.addAttribute("memberBean", memberBean);
         return "member/ShowMemberDetail";
     }
+    
 
+    
     @GetMapping("/modifyMember/{number}")
     public String updateMember(Model model, @PathVariable Integer number) {
         MemberBean memberBean = memberService.findByNumber(number);

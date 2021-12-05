@@ -46,6 +46,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/login/CoachSuccess").setViewName("coach/CoachIndex");
 		registry.addViewController("/logout").setViewName("login/logoutResult");
 		registry.addViewController("/logout/page").setViewName("login/logout");
+		registry.addViewController("/MemberProfile").setViewName("member/MemberProfile");
 //		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/header").setViewName("header");
 		

@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import tw.gym.login.Service.MemberUserDetailsService;
+import tw.gym.login.Service.LoginUserDetailsService;
 import tw.gym.login.Validator.CustomAuthenticationSuccessHandler;
 
 @EnableWebSecurity
@@ -22,7 +22,7 @@ public class WebSecurityConfig {
 	public static class MemberLoginSecurity extends WebSecurityConfigurerAdapter {
 
 		@Autowired
-		private MemberUserDetailsService memberUserDetailsService;
+		private LoginUserDetailsService memberUserDetailsService;
 
 		@Autowired
 		private CustomAuthenticationSuccessHandler memberCustomAuthenticationSuccessHandler;

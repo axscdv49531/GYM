@@ -27,14 +27,14 @@ public class PaymentController {
 	public String findAllByMember(Model model, @PathVariable("number") Integer number) {
 		List<PaymentBean> paymentBean = paymentService.findAllByMember(number);
 		model.addAttribute(paymentBean);		
-		return "ShowPayment";		
+		return "member/ShowPayment";		
 	}
 	
 	@GetMapping(path = "/insertPayment/{number}")
 	public String inbodyForm(Model m, @PathVariable("number") Integer number) {
 		PaymentBean paymentBean = new PaymentBean();
 		m.addAttribute("paymentBean", paymentBean);
-		return "PaymentForm";
+		return "member/PaymentForm";
 	}
 
 	@PostMapping(path = "/insertPayment/{number}")

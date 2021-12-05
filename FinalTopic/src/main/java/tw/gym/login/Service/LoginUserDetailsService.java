@@ -1,11 +1,9 @@
 package tw.gym.login.Service;
 
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,13 +14,12 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.service.CoachService;
 import tw.gym.login.Validator.UserNotFoundException;
-import tw.gym.login.util.UserAuthorityUtils;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 
 @Service
 @Transactional
-public class MemberUserDetailsService implements UserDetailsService {
+public class LoginUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private MemberService memberService;

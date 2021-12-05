@@ -34,14 +34,14 @@ public class DepositeController {
 	public String selectAll(Model model, @PathVariable("number") Integer number) {
 		List<DepositeBean> depositeBean = depositeService.findAllByMember(number);
 		model.addAttribute(depositeBean);
-		return "ShowDeposite";
+		return "member/ShowDeposite";
 	}
 
 	@GetMapping(path = "/updateDeposite/{number}")
 	public String insertDeposite(Model m, @PathVariable("number") Integer number) {
 		DepositeBean depositeBean = new DepositeBean();
 		m.addAttribute("depositeBean", depositeBean);
-		return "DepositeForm";
+		return "member/DepositeForm";
 	}
 
 	
