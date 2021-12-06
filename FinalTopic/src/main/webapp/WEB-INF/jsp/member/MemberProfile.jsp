@@ -36,8 +36,8 @@
 
 </head>
 <body>
-	<div style="width: 1205px; height: 194.13px">
-		<c:import url="/top"></c:import>
+	<div style="width: 1205px; height: 194.13px" class ="top">
+		<c:import url="/top_memberlogin"></c:import>
 	</div>
 	<div class="col-md-5">
 		<div class="profileinfoleft">

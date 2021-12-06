@@ -304,16 +304,12 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 </head>
 
 <body class="game-info">
-	<div style="width: 1205px; height: 194.13px">
+	<div style="width: 1205px; height: 194.13px" class="top">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 <!-- ${loginUser} == null -->
 
-<br>
-<br>
-<br>
-		<div class="row">
-			<div class="container">
+		<div class="row" style=margin-left:15px>
 
 				<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a> <a
 					href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a> <a
@@ -358,7 +354,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				</div>
 				<div class="col-md-4"></div>
 			</div>
-			</div>
+			
 			<div class="row">
 				<div class="container">
 				<div class="col-md-1"></div>

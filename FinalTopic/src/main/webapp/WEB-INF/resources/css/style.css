@@ -19,7 +19,6 @@ body {
   font-size: 15pt;
   color: #F0FFFF;
 }
-<<<<<<< HEAD
 legend{
 	 color: #F0FFFF;
 }
@@ -34,29 +33,9 @@ option {
 	background-color:white;
 	color:black;
 }
-=======
-
-legend{
-  color: #F0FFFF;
+.top{
+	margin-bottom:100px;
 }
-
-button{
- color:black;
-}
-
-option {
- background-color:white;
- color:black;
-}
-
-
-select{
-background-color:white;
-color:black;
-}
-
-
->>>>>>> origin/dean1206
 .megamenu .nav,
 .megamenu .collapse,
 .megamenu .dropup,
