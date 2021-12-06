@@ -24,7 +24,8 @@
 </script>
 <body>
 	<div align="center">
-		<form:form method='POST' modelAttribute="memberBean">
+		<form:form method='POST' modelAttribute="memberBean"
+			enctype='multipart/form-data'>
 			<input type="hidden" name="noname" id='putOrDelete' value="">
 			<c:if test='${memberBean.number != null}'>
 				<form:hidden path="number" />
@@ -60,8 +61,8 @@
 					<tr>
 						<td align='right'>生日 <font size='-3' color='blue'>(yyyy-MM-dd)</font>：<br>&nbsp;
 						</td>
-						<td><form:input type="date" path="birthday" /><br>&nbsp; <form:errors
-								path="birthday" cssClass="error" /></td>
+						<td><form:input type="date" path="birthday" /><br>&nbsp;
+							<form:errors path="birthday" cssClass="error" /></td>
 					</tr>
 
 					<tr>
@@ -81,9 +82,10 @@
 					<tr>
 						<td align='right'>地址：<br>&nbsp;
 						</td>
-						<td><div id="twzipcode" ></div> <script>
+						<td><div id="twzipcode"></div> <script>
 							$("#twzipcode").twzipcode();
-							</script><form:input path="address" /><br>&nbsp; <form:errors
+						</script>
+							<form:input path="address" /><br>&nbsp; <form:errors
 								path="address" cssClass="error" /></td>
 					</tr>
 
@@ -107,6 +109,12 @@
 						<td><form:input path="emergencyPhone" /><br>&nbsp; <form:errors
 								path="emergencyPhone" cssClass="error" /></td>
 					</tr>
+					<tr>
+						<td align='right'>大頭照：</td>
+						<td><form:input path="mPhoto" type="file" /><br> <form:errors
+								path="mPhoto" />
+					</tr>
+
 					<tr>
 						<td colspan='2' align='center'><input type='submit'
 							value='修改' name='updateBtn'

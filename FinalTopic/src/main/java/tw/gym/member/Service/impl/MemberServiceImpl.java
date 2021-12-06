@@ -85,6 +85,11 @@ public class MemberServiceImpl implements MemberService {
 //         }
          return member;
     }
+    
+    @Override
+    public MemberBean getMemberByEmail(String email) {
+    	return memberRepository.getMemberByEmail(email);
+    }
 
     public List<MemberBean> findByCourse(Integer courseId) {
         return memberRepository.findByCourse(courseId);
@@ -122,6 +127,7 @@ public class MemberServiceImpl implements MemberService {
         claRepo.setAvaliable(a, classId);
         memberRepository.deleteByClassId(classId);
     }
+
 
 
 }

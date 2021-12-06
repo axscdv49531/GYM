@@ -28,10 +28,11 @@ public class MemberValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "expirationdate", "", "入會時間欄位不能為空");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emergencyContact", "", "緊急聯絡人欄位不能為空");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "emergencyPhone", "", "緊急連絡人電話欄位不能為空");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "mPhoto", "", "請上傳照片");
 
-		if (!mb.getPassword().equals(mb.getConfirmedPassword())) {
-			errors.rejectValue("password", "", "密碼欄與確認密碼不一致");
-		}
+//		if (!mb.getPassword().equals(mb.getConfirmedPassword())) {
+//			errors.rejectValue("password", "", "密碼欄與確認密碼不一致");
+//		}
 	}
 
 }

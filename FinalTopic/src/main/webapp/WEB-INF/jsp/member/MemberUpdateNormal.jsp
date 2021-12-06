@@ -3,12 +3,13 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>編輯會員資料</title>
-</head>
+
 <script type="text/javascript">
 	function confirmUpdate(id) {
 		var result = confirm("確定送出此筆記錄(會員編號:" + id.trim() + ")?");
@@ -20,7 +21,16 @@
 </script>
 
 </head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+	
+<script src="../js/twzipcode.js"></script>	
 <body>
+<!-- 	<div style="width: 1205px; height: 194.13px"> -->
+<%-- 		<c:import url="/top"></c:import> --%>
+<!-- 	</div> -->
 	<div align="center">
 		<form:form method='POST' modelAttribute="memberBean">
 			<input type="hidden" name="noname" id='putOrDelete' value="">
@@ -76,8 +86,13 @@
 					<tr>
 						<td align='right'>地址：<br>&nbsp;
 						</td>
-						<td><form:input path="address" /><br>&nbsp; <form:errors
-								path="address" cssClass="error" /></td>
+						<td>
+							<div id="twzipcode"></div> <script>
+								$("#twzipcode").twzipcode();
+							</script> <br>&nbsp; <form:input type="text" size="40" id="twzipcode"
+								path="address" /><br>&nbsp; <form:errors path="address"
+								cssClass="error" />
+						</td>
 					</tr>
 
 					<tr>
@@ -100,6 +115,7 @@
 						<td><form:input path="emergencyPhone" /><br>&nbsp; <form:errors
 								path="emergencyPhone" cssClass="error" /></td>
 					</tr>
+
 					<tr>
 						<td colspan='2' align='center'><input type='submit'
 							value='修改' name='updateBtn'

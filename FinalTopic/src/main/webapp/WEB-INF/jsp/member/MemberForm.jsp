@@ -17,7 +17,7 @@
 <body>
 
 	<div align="center">
-		<form:form method='POST' modelAttribute="memberBean">
+		<form:form method='POST' modelAttribute="memberBean" enctype='multipart/form-data'>
 			<fieldset class="fieldset-auto-width">
 				<legend>會員資料</legend>
 
@@ -27,19 +27,6 @@
 						</td>
 						<td><form:input path="id" /><br>&nbsp; <form:errors
 								path="id" cssClass="error" /></td>
-					</tr>
-					<tr>
-						<td align='right'>密碼：<br>&nbsp;
-						</td>
-						<td><form:input path="password" /><br>&nbsp; <form:errors
-								path="password" cssClass="error" /></td>
-					</tr>
-
-					<tr>
-						<td align='right'>確認密碼：<br>&nbsp;
-						</td>
-						<td><form:input path="confirmedPassword" /><br>&nbsp; <form:errors
-								path="confirmedPassword" cssClass="error" /></td>
 					</tr>
 
 					<tr>
@@ -81,11 +68,12 @@
 					<tr>
 						<td align='right'>地址：<br>&nbsp;
 						</td>
-						<td>					
-							<div id="twzipcode" ></div> <script>
-							$("#twzipcode").twzipcode();
-							</script> <br>&nbsp; <form:input type="text" size="40" id="twzipcode" path="address"/><br>&nbsp;
-							<form:errors path="address" cssClass="error" />
+						<td>
+							<div id="twzipcode"></div> <script>
+								$("#twzipcode").twzipcode();
+							</script> <br>&nbsp; <form:input type="text" size="40" id="twzipcode"
+								path="address" /><br>&nbsp; <form:errors path="address"
+								cssClass="error" />
 						</td>
 					</tr>
 
@@ -108,6 +96,11 @@
 						</td>
 						<td><form:input path="emergencyPhone" /><br>&nbsp; <form:errors
 								path="emergencyPhone" cssClass="error" /></td>
+					</tr>
+					<tr>
+						<td align='right'>大頭照：</td>
+						<td><form:input path="mPhoto" type="file" /><br> <form:errors
+								path="mPhoto" />
 					</tr>
 					<tr>
 						<td colspan='2' align='center'><input type='submit'

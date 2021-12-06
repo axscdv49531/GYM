@@ -19,6 +19,7 @@ body {
   font-size: 15pt;
   color: #F0FFFF;
 }
+<<<<<<< HEAD
 
 legend{
   color: #F0FFFF;
@@ -40,6 +41,22 @@ color:black;
 }
 
 
+=======
+legend{
+	 color: #F0FFFF;
+}
+
+button{
+	color:black;
+}
+select {
+	color:black;
+}
+option {
+	background-color:white;
+	color:black;
+}
+>>>>>>> origin/ryan1204
 .megamenu .nav,
 .megamenu .collapse,
 .megamenu .dropup,
