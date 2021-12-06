@@ -30,7 +30,7 @@
 <script src="../js/all.js"></script>
 <!-- ALL PLUGINS -->
 <script src="../js/custom.js"></script>
-<section id="top">
+
 <header>
 	<div class="container">
 		<div class="header-top">
@@ -160,5 +160,5 @@
 		</div>
 	</div>
 </header>
-</section>
+
 
