@@ -2,6 +2,7 @@
 .plusIcon{
 	height:15px;
 	width:15px;
+	margin-top: 15px
 
 }
 
@@ -25,21 +26,34 @@
   
   .suggestioncss{
   	border-bottom-style:solid;
-  	border-bottom-color:white;
+  	border-bottom-color:black;
   	border-bottom-width:1px;
-  	width:300px;
+  	width:500px;
   	margin-left:20px; 
-  	background-color: #E0E0E0;
-  	font-size: 30px;
+  	background-color: white;
   	font-family:DFKai-sb;
+  	font-size: 25px;
+  	color: black;
   	
   }
   
    .suggestionScore{
   	width:300px;
   	margin-left:20px; 
-  	background-color: #E0E0E0;
+  	 background-color: white	;
   	font-size: 30px;
   	font-family:DFKai-sb;
+  	color: black;
   	
+  }
+  
+  .showMenutitle{
+  float: left;
+  border-style:none;
+   line-height: 70px;
+  margin-right: 40px;
+  font-size: 20px;
+  background-color:white;
+  color: black;
+  
   }

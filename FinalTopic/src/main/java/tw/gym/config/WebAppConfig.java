@@ -66,6 +66,11 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addRedirectViewController("/allCoursePdf", "/course/viewpdf/allcourses");
 		
 		
+		
+	
+		
+		
+		
 	}
 
 	@Override

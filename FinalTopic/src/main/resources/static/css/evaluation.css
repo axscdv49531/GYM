@@ -1,18 +1,30 @@
 @charset "UTF-8";
 
 
+body{
+	background-image:url('images/hero-1.jpg');
+	background-repeat: no-repeat;
+	background-size: 100%;
+	background-color: rgba(0, 0, 0, .6);
+	
+}
 
 
 
 .maindiv{
 	position:relative;
-	text-align:center;
-	height: 502px;
-	width: 702px;
-	margin:0 auto;	
+	height:500px;
+	width:500px;
 	margin-top: 200px;
-	background-color: #E0E0E0;
-	border-radius: 50px;
+	background-color:#3C3C3C;
+	
+	clear: both;
+	border-style:solid;
+	border-width:1px;
+	border-color:black;   
+	margin-left:60%;
+	color:white;
+	
 }
 
 font{
@@ -32,11 +44,11 @@ font{
 	width:200px;
 	font-size:35px;
 	margin-top:30px;
-	margin-left:250px;
-	font-family:DFKai-sb;
-	border-style:none;	
+	margin-left:20px;
 	text-align: center;
-	background-color: #E0E0E0;	
+	background-color:#3C3C3C;
+	font-family:DFKai-sb;
+	color: white;
 }
 
 
@@ -49,8 +61,10 @@ font{
 	 font-size: 30px;
 	 cursor: pointer;
 	 font-family:DFKai-sb;
+	 clear: both;
 	 
 }
+
 
 
  

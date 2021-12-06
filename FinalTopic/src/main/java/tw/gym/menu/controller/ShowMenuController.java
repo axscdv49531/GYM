@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import tw.gym.member.Model.MemberBean;
 import tw.gym.menu.model.CreatOrderId;
 import tw.gym.menu.model.Menu;
 import tw.gym.menu.model.MenuService;
@@ -30,6 +31,7 @@ public class ShowMenuController {
 	private CreatOrderId creatOrderId;
 	private OrderMenu orderMenu;
 
+
 	@Autowired
 	public ShowMenuController(OrderMenuService oService, MenuService menuService,
 			CreatOrderId creatOrderId, OrderMenu orderMenu) {
@@ -38,7 +40,12 @@ public class ShowMenuController {
 		this.menuService = menuService;
 		this.creatOrderId = creatOrderId;
 		this.orderMenu = orderMenu;
+	
 	}
+	
+	
+
+	
 
 	@GetMapping(path = "/Menumain.controller") // 到form 的網址
 	public String processMainPageAction(Model m, HttpServletRequest request) {
@@ -74,11 +81,16 @@ public class ShowMenuController {
 			oService.insert(chekOrder);
 			return "redirect:shoppingCart.controller";
 		}
+		
+		MemberBean member =(MemberBean)httpSession.getAttribute("loginUser");
+		Integer memberNumber= member.getNumber();
+		System.out.println(memberNumber+"memberNumber");
 
 		Date date = new Date();
 		orderMenu.setOrderTime(date);
 		orderMenu.setOrderId(orderId);
 		orderMenu.setStatuse("未付款");
+		orderMenu.setMemberBean(member);
 		orderMenu.setMenu(menu);
 
 		System.out.println("setDetail");

@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import tw.gym.member.Model.MemberBean;
+
 @Entity
 @Table(name="ordermenu")
 @Component()
@@ -46,8 +48,9 @@ public class OrderMenu {
 	@Column(name="PRICE")
 	private int price;
 	
-	@Column(name="FK_MEMBER_ID")
-	private int fk_member_id;
+	@ManyToOne
+	@JoinColumn(name="FK_MEMBER_ID")
+	private MemberBean memberBean;
 	
 	public OrderMenu() {
 		// TODO Auto-generated constructor stub
@@ -85,9 +88,7 @@ public class OrderMenu {
 		return price;
 	}
 
-	public int getFk_member_id() {
-		return fk_member_id;
-	}
+	
 
 	public void setId(int id) {
 		this.id = id;
@@ -121,16 +122,23 @@ public class OrderMenu {
 		this.price = price;
 	}
 
-	public void setFk_member_id(int fk_member_id) {
-		this.fk_member_id = fk_member_id;
+	public MemberBean getMemberBean() {
+		return memberBean;
+	}
+
+	public void setMemberBean(MemberBean memberBean) {
+		this.memberBean = memberBean;
 	}
 
 	@Override
 	public String toString() {
-		return "OrderMenu [id=" + id + ", orderId=" + orderid + ", qty=" + qty + ", orderTime=" + ordertime
-				+ ", deliveryTime=" + deliverytime + ", statuse=" + statuse + ", menu=" + menu + ", price=" + price
-				+ ", fk_member_id=" + fk_member_id + "]";
+		return "OrderMenu [id=" + id + ", orderid=" + orderid + ", qty=" + qty + ", ordertime=" + ordertime
+				+ ", deliverytime=" + deliverytime + ", statuse=" + statuse + ", menu=" + menu + ", price=" + price
+				+ ", memberBean=" + memberBean + "]";
 	}
+
+
+
 
 
 	

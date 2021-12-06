@@ -1,4 +1,17 @@
 @charset "UTF-8";
+table{
+	border-collapse:collapse;border:none;
+}
+
+td{
+	border:solid #000 1px;
+}
+
+
+tr{
+	border:solid #000 1px;
+}
+
 .reportTable{
 	
 	font-size:30px;
@@ -41,4 +54,8 @@ tr{
 	margin-top: 50px;
 	
 	
+}
+
+body{
+	background-color: gray;
 }

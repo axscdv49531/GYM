@@ -27,6 +27,10 @@ public class CreatOrderId {
 					System.out.println(id);	
 			 }
 			 
+			 if(id.length()<6) {
+				 continue;
+			 }
+			 
 			
 			result=Integer.valueOf(id);
 				if(service.findAllByOrderId(result).size()==0) {
