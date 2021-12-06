@@ -5,8 +5,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 
 public interface CourseService {
 
@@ -34,6 +32,8 @@ public interface CourseService {
 	public Page<Course> findAllByPage(Pageable pageable);
 	
 	public List<Course> findAllByMember(Integer memberNum);
+	
+	public List<Course> findPastByMember(Integer memberNum);
 
 	public Page<Course> findAll(CourseSpec courseSpec, Pageable pageable);
 	

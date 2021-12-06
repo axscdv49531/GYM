@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -109,7 +110,7 @@ public class CourseController {
 		return cService.findAllCourse();
 	}
 
-	// 查詢課程by會員，已加選課程
+	// 查詢課程by會員，已加選課程 (我的課表)
 	@GetMapping("/findbymember.controller") // http://localhost:8081/course/findbymember.controller
 	@ResponseBody
 	public List<Course> processFindByMember(HttpSession session) {
@@ -117,6 +118,34 @@ public class CourseController {
 		//Integer memberNumber = 1001;
 		Integer memberNumber= member.getNumber();
 		return cService.findAllByMember(memberNumber);
+	}
+	
+	// 查詢課程by會員，已加選課程 (我的課表)
+	@GetMapping("/findpastbymember.controller/{pageNo}")
+	@ResponseBody
+	public Map<String, Object> processFindPastByMember(@PathVariable("pageNo") int pageNo,HttpSession session) {
+		MemberBean member =(MemberBean)session.getAttribute("loginUser");
+		//Integer memberNumber = 1001;
+		Integer memberNumber= member.getNumber();
+		
+		List<Course> courses = cService.findPastByMember(memberNumber);
+		
+		int pageSize = 10;// 每頁顯示的筆數
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		
+		//List轉Page
+        int start = (int) pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > courses.size() ? courses.size() : (start + pageable.getPageSize());
+        Page<Course> page = new PageImpl<Course>(courses.subList(start, end), pageable, courses.size());
+        
+        Map<String, Object> pagemap = new HashMap<>();
+
+		pagemap.put("pageContent", page.getContent());
+		pagemap.put("totalPages", page.getTotalPages());
+		pagemap.put("totalElements", page.getTotalElements());
+
+		return pagemap;
+
 	}
 
 	// 多條件查詢+分頁 (用於：表單查詢課程、當日課程、全部課程)

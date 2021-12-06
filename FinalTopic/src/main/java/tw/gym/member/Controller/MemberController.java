@@ -13,10 +13,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+<<<<<<< HEAD
 import javax.servlet.http.HttpSession;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
+=======
+>>>>>>> origin/dean1206
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.HttpHeaders;
@@ -56,7 +59,12 @@ import tw.gym.member.validator.MemberValidator;
 // @SessionAttributes(names = { "totalPages", "totalElements" })
 public class MemberController {
 
+<<<<<<< HEAD
 	private MemberService memberService;
+=======
+    @Autowired
+    private MemberService memberService;
+>>>>>>> origin/dean1206
 
 	// Mark
 	@Autowired
@@ -116,6 +124,7 @@ public class MemberController {
 		byte[] b = picture.getBytes();
 		Blob blob = new SerialBlob(b);
 
+<<<<<<< HEAD
 		String fileName = picture.getOriginalFilename();
 
 		String mineType = picture.getContentType();
@@ -124,6 +133,22 @@ public class MemberController {
 		memberBean.setMemberPhotoMineType(mineType);
 		memberBean.setPassword(encodePwd);
 		memberBean.setDeposite(0);
+=======
+    @GetMapping("/selectMember/{number}")
+    public String findById(Model model, @PathVariable Integer number) {
+        MemberBean memberBean = memberService.findByNumber(number);
+        model.addAttribute("memberBean", memberBean);
+        return "member/ShowMemberDetail";
+    }
+
+    @GetMapping("/modifyMember/{number}")
+    public String updateMember(Model model, @PathVariable Integer number) {
+        MemberBean memberBean = memberService.findByNumber(number);
+        // memberbean.setPassword(memberbean.getPassword());
+        model.addAttribute("memberBean", memberBean);
+        return "member/EditMemberForm";
+    }
+>>>>>>> origin/dean1206
 
 		memberService.insert(memberBean);
 		return "redirect:/findAllMember";
@@ -380,8 +405,24 @@ public class MemberController {
 		List<ClassBean> cBean = memberService.findByMemberId(mBean.getNumber());
 		model.addAttribute(cBean);
 
+<<<<<<< HEAD
 		return "/member/viewReservationClass";
 	}
+=======
+    // Mark
+    @PostMapping("cancelClass")
+    @ResponseBody
+    public String cencelClass(@RequestParam(required = false, name = "classId") String classId,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        Integer classIdd = Integer.parseInt(classId);
+        memberService.deleteByClassId(classIdd, 0);
+        ClassBean cBean = claService.getClassById(classIdd);
+        String email = mBean.getEmail();
+        String subject = "一對一課程取消預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
+                + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n" + "\n\n\n" + "期待您再次光臨！";
+>>>>>>> origin/dean1206
 
 	// Mark
 	@GetMapping("/member/viewClass/{id}")
@@ -410,6 +451,7 @@ public class MemberController {
 		cBean.setClassStartTimeTemp(start);
 		cBean.setClassEndTimeTemp(end);
 
+<<<<<<< HEAD
 		Set<SkillBean> a = cBean.getsBean();
 		Iterator<SkillBean> aa = a.iterator();
 		String[] st = new String[cBean.getsBean().size()];
@@ -421,6 +463,15 @@ public class MemberController {
 		}
 		cBean.setClassLabel(st);
 		model.addAttribute("classBean", cBean);
+=======
+        if (cBean.getClassAvaliable() == 0) {
+
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+>>>>>>> origin/dean1206
 
 		return "/member/viewClassDetail";
 	}
@@ -430,6 +481,7 @@ public class MemberController {
 	public String memberViewClassDetailDelete(@PathVariable("id") Integer classId,
 			@SessionAttribute("loginUser") MemberBean mBean) {
 
+<<<<<<< HEAD
 		memberService.deleteByClassId(classId, 0);
 		ClassBean cBean = claService.getClassById(classId);
 		String email = mBean.getEmail();
@@ -437,9 +489,56 @@ public class MemberController {
 		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
 				+ "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
 				+ cBean.getClassEndTime() + "\n\n\n" + "期待您再次光臨！";
+=======
+    // Mark
+    @GetMapping("memberViewClassLists")
+    public String memberViewClassLists(Model model) {
+        List<ClassBean> allClass = claService.listAllClass();
+        List<SkillBean> sBean = skiService.findAll();
+        List<String> name = claService.findClassCoach();
+        model.addAttribute("coachList", name);
+        model.addAttribute("skillList", sBean);
+        model.addAttribute(allClass);
+        return "/member/viewReservationClass";
+    }
+
+    // Mark
+    @PostMapping("memberListAllClass")
+    @ResponseBody
+    public List<ClassBean> memberListAllClass(@SessionAttribute("loginUser") MemberBean mBean) {
+        List<ClassBean> cBean = memberService.findByMemberId(mBean.getNumber());
+
+        return cBean;
+    }
+
+    // Mark
+    @PostMapping("classReservationCheck")
+    @ResponseBody
+    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+            @RequestParam(required = false, name = "classId") String classId,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        // System.out.println(classConfirm);
+        // System.out.println(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        ClassBean cBean = claService.getClassById(classIdd);
+        MemberBean memBean = memberService.getById(mBean.getNumber());
+        ClassMemberBean cmBean = new ClassMemberBean();
+        cmBean.setcBean(cBean);
+        cmBean.setmBean(memBean);
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        cmBean.setRegisterDate(timestamp);
+        memberService.insertReservation(cmBean, 1, classIdd);
+        String email = mBean.getEmail();
+        String subject = "一對一課程預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
+                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+>>>>>>> origin/dean1206
 
 		emailSerive.sendEmail(email, subject, body);
 
+<<<<<<< HEAD
 		return "redirect:/viewReservationClass";
 	}
 
@@ -454,6 +553,14 @@ public class MemberController {
 		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
 				+ "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
 				+ cBean.getClassEndTime() + "\n" + "\n\n\n" + "期待您再次光臨！";
+=======
+        if (cBean.getClassAvaliable() == 1) {
+
+            return "true";
+        } else {
+            return "false";
+        }
+>>>>>>> origin/dean1206
 
 		emailSerive.sendEmail(email, subject, body);
 
@@ -466,8 +573,41 @@ public class MemberController {
 	public List<ClassBean> listAllClass() {
 		List<ClassBean> cBean = claService.listAllClass();
 
+<<<<<<< HEAD
 		return cBean;
 	}
+=======
+    // Mark
+    @PostMapping("memberSearchClass")
+    @ResponseBody
+    public List<ClassBean> memberSearchClass(@RequestParam(required = false, name = "cName") String className,
+            @RequestParam(required = false, name = "coaName") String coachName,
+            @RequestParam(required = false, name = "sName") String skillName,
+            @RequestParam(required = false, name = "sDate") String startDate,
+            @RequestParam(required = false, name = "eDate") String endDate,
+            @RequestParam(required = false, name = "cStatus") String classStatus,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        // System.out.println(className);
+        // System.out.println(skillName);
+        // System.out.println(startDate);
+        // System.out.println(endDate);
+        // System.out.println(classStatus);
+        List<ClassBean> mcBean = memberService.findByMemberId(mBean.getNumber());
+        if (className.isEmpty() && coachName.equals("請選擇") && skillName.equals("請選擇") && startDate.isEmpty()
+                && endDate.isEmpty() && classStatus.equals("請選擇")) {
+            return mcBean;
+        } else {
+            List<ClassBean> cBean = claService.memberDynamicQuery(className, coachName, skillName, startDate, endDate,
+                    classStatus, mcBean);
+            System.out.println("123");
+            return cBean;
+        }
+
+    }
+
+    @GetMapping("testcoach")
+    public String testCoachList() {
+>>>>>>> origin/dean1206
 
 	// Mark
 	@PostMapping("classReservationCheck")
@@ -495,7 +635,13 @@ public class MemberController {
 
 		emailSerive.sendEmail(email, subject, body);
 
+<<<<<<< HEAD
 		return cBean;
+=======
+    // Mark
+    @GetMapping("showCoachList")
+    public String showCoachList() {
+>>>>>>> origin/dean1206
 
 	}
 
@@ -524,6 +670,7 @@ public class MemberController {
 			return cBean;
 		}
 
+<<<<<<< HEAD
 	}
 
 	@GetMapping("testcoach")
@@ -555,5 +702,28 @@ public class MemberController {
 		re = new ResponseEntity<byte[]>(b, headers, HttpStatus.OK);
 		return re;
 	}
+=======
+    // Mark
+    @GetMapping("/getClassPicture")
+    public ResponseEntity<byte[]> getCoachPicture(@RequestParam("classId") String classId) throws SQLException {
+        System.out.println(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        ClassBean cBean = claService.getClassById(classIdd);
+        // System.out.println(cBean.getCoachName());
+        ResponseEntity<byte[]> re = null;
+        Blob blob = cBean.getClassPhoto();
+        byte[] b = blob.getBytes(1, (int) blob.length());
+        HttpHeaders headers = new HttpHeaders();
+        MediaType mediaType = MediaType.valueOf(cBean.getClassPhotoMineType());
+        headers.setContentType(mediaType);
+        re = new ResponseEntity<byte[]>(b, headers, HttpStatus.OK);
+        return re;
+    }
+>>>>>>> origin/dean1206
+
+    @GetMapping("classIntroduction")
+    public String classIntroduction() {
+        return "/member/classIntroduction";
+    }
 
 }

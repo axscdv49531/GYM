@@ -30,6 +30,7 @@
 <script src="../js/all.js"></script>
 <!-- ALL PLUGINS -->
 <script src="../js/custom.js"></script>
+
 <header>
 	<div class="container">
 		<div class="header-top">
@@ -38,7 +39,7 @@
 					<div class="full">
 						<div class="logo">
 							<a href="<c:url value='/' />"><img
-								src="../images/springfitnesslogo1.png" alt="index" /></a>
+								src="../images/springfitnesslogo3.png" alt="index" /></a>
 						</div>
 					</div>
 				</div>
@@ -132,13 +133,14 @@
 												<ul class="dropdown-menu mega-dropdown-menu classRes">
 													<li class="col-sm-12">
 														<ul>
-															<li class="dropdown-header">Men Collection</li>
+															<li class="dropdown-header">團體課程 Cousres </li>
 															<li><a class="dropdown-item"
 																href="/courseSelectSystem">課程表</a></li>
 															<li><a class="dropdown-item"
 																href="/courseSelectSystem">預約課程</a></li>
 															<li><a class="dropdown-item" href="#">課程介紹</a></li>
 															<li><a class="dropdown-item" href="#">我的課程</a></li>
+															<li><a class="dropdown-item" href="#">上課紀錄</a></li>
 
 														</ul>
 													</li>
@@ -158,4 +160,5 @@
 		</div>
 	</div>
 </header>
+
 

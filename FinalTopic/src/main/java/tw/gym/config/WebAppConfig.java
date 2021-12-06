@@ -50,7 +50,9 @@ public class WebAppConfig implements WebMvcConfigurer {
 //		registry.addViewController("/").setViewName("index");
 		registry.addViewController("/header").setViewName("header");
 		
-		registry.addViewController("/top").setViewName("top");
+		registry.addViewController("/top_memberlogin").setViewName("top_memberlogin");
+		registry.addViewController("/top_coachlogin").setViewName("top_coachlogin");
+		registry.addViewController("/top_nologin").setViewName("top_nologin");
 		registry.addViewController("/bottom").setViewName("bottom");
 		registry.addViewController("/courseSelectSystem").setViewName("member/courSelectSytem");
 		
@@ -73,6 +75,10 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addResourceHandler("/font/**").addResourceLocations("/WEB-INF/resources/font/");
         registry.addResourceHandler("/fonts_classlist/**").addResourceLocations("/WEB-INF/resources/fonts_classlist/");
         registry.addResourceHandler("/css_classlist/**").addResourceLocations("/WEB-INF/resources/css_classlist/");
+        registry.addResourceHandler("/styles_classIntro/**")
+                .addResourceLocations("/WEB-INF/resources/styles_classIntro/");
+        registry.addResourceHandler("/plugins_classIntro/**")
+                .addResourceLocations("/WEB-INF/resources/plugins_classIntro/");
 	}
 
 	// @Override
