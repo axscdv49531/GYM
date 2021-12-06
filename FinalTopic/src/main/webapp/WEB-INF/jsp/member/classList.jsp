@@ -6,39 +6,39 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
 <!-- Mobile Metas -->
-<meta name="viewport"
-	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- <meta name="viewport" -->
+<!-- 	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"> -->
 <!-- Site Metas -->
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
+<!-- <meta name="keywords" content=""> -->
+<!-- <meta name="description" content=""> -->
+<!-- <meta name="author" content=""> -->
 <!-- Site Icons -->
-<link rel="shortcut icon" href="" type="image/x-icon" />
-<link rel="apple-touch-icon" href="">
+<!-- <link rel="shortcut icon" href="" type="image/x-icon" /> -->
+<!-- <link rel="apple-touch-icon" href=""> -->
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <!-- Site CSS -->
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="../css/style.css">
 <!-- Colors CSS -->
-<link rel="stylesheet" href="css/colors.css">
+<link rel="stylesheet" href="../css/colors.css">
 <!-- ALL VERSION CSS -->
-<link rel="stylesheet" href="css/versions.css">
+<link rel="stylesheet" href="../css/versions.css">
 <!-- Responsive CSS -->
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="../css/responsive.css">
 <!-- Custom CSS -->
-<link rel="stylesheet" href="css/custom.css">
+<link rel="stylesheet" href="../css/custom.css">
 <!-- font family -->
 <link
 	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
 <!-- end font family -->
-<link rel="stylesheet" href="css/3dslider.css" />
+<link rel="stylesheet" href="../css/3dslider.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-<script src="js/3dslider.js"></script>
+<script src="../js/3dslider.js"></script>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -254,9 +254,10 @@
                                                         a.push(n.sBean[i].skillName)
                                                     }
                                                         
-                                                    var div2 = "<div class='col-lg-6 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src='images/yoga.jpg' alt=''><div class='news-post-detail'><span class='date'>" + n.classDate + "</span><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div></div></div>"
+                                                    var div2 = "<div class='col-lg-6 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
+                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><span class='date'>" + n.classDate + "</span><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div><div><button class='btn' style='right:0'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div></div>"
                                                     div.append(div2);
-//                                                             $("button[name='1']").prop('disabled', true).text("已額滿");
+                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
                             })
                         }
                     }});
@@ -273,8 +274,8 @@
 	</section>
 	<section id="contant" class="contant">
 		<div class="container">
-			<div style="background-color:gray" class="row">
-				<div class="col-lg-9 col-sm-12 col-xs-12">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-xs-12">
 					<div class="news-post-holder">
 						課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
 						<!--    價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
@@ -297,9 +298,10 @@
 						<hr>
 						開課日期： <input type="date" id="searchByDateStart"> 至 <input
 							type="date" id="searchByDateEnd">
-						<button onclick="search()">搜尋</button>
-						<button onclick="searchDelete()">清除搜尋</button>
+						<button class="btn" onclick="search()">搜尋</button>
+						<button class="btn" onclick="searchDelete()">清除搜尋</button>
 						<hr>
+						
 
 						<div id="showclasslist" border="1"></div>
 
