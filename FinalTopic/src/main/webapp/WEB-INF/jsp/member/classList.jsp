@@ -6,59 +6,53 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- Mobile Metas -->
 <meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
+	content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<!-- Site Metas -->
+<meta name="keywords" content="">
+<meta name="description" content="">
+<meta name="author" content="">
+<!-- Site Icons -->
+<link rel="shortcut icon" href="" type="image/x-icon" />
+<link rel="apple-touch-icon" href="">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- Site CSS -->
+<link rel="stylesheet" href="style.css">
+<!-- Colors CSS -->
+<link rel="stylesheet" href="css/colors.css">
+<!-- ALL VERSION CSS -->
+<link rel="stylesheet" href="css/versions.css">
+<!-- Responsive CSS -->
+<link rel="stylesheet" href="css/responsive.css">
+<!-- Custom CSS -->
+<link rel="stylesheet" href="css/custom.css">
+<!-- font family -->
 <link
-	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
+	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
 	rel="stylesheet">
-<link rel="stylesheet" href="../fonts_classlist/icomoon/style.css">
-
-<link rel="stylesheet" href="../css_classlist/bootstrap.min.css">
-<link rel="stylesheet" href="../css_classlist/jquery-ui.css">
-<link rel="stylesheet" href="../css_classlist/owl.carousel.min.css">
-<link rel="stylesheet" href="../css_classlist/owl.theme.default.min.css">
-<link rel="stylesheet" href="../css_classlist/owl.theme.default.min.css">
-
-<link rel="stylesheet" href="../css_classlist/jquery.fancybox.min.css">
-
-<link rel="stylesheet" href="../css_classlist/bootstrap-datepicker.css">
-
-<link rel="stylesheet" href="../fonts_classlist/flaticon/font/flaticon.css">
-
-<link rel="stylesheet" href="../css_classlist/aos.css">
-<link href="../css_classlist/jquery.mb.YTPlayer.min.css" media="all"
+<!-- end font family -->
+<link rel="stylesheet" href="css/3dslider.css" />
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-
-<link rel="stylesheet" href="../css_classlist/style.css">
-
+<script src="js/3dslider.js"></script>
 
 
-
-
-
-
-
-
-</head>
-<body data-spy="scroll" data-target=".site-navbar-target"
-	data-offset="300">
-
-	<script
-		src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			load();
-		});
-		
-		function resvConfirm(y){
-			x = confirm("請確認是否要預約課程？");
-			console.log(x)
-			console.log(y)
-			if(x){
-			$.ajax({
+        $(document).ready(function() {
+            load();
+        });
+        
+        function resvConfirm(y){
+            x = confirm("請確認是否要預約課程？");
+            console.log(x)
+            console.log(y)
+            if(x){
+            $.ajax({
                         type : 'post',
                         url : '/classReservationCheck/',
                         data : {
@@ -67,68 +61,68 @@
                         },
                         dataType : 'JSON',
                         complete: function(data) {
-                        	if(data.responseText == 'true'){
-                        		alert("預約成功");
+                            if(data.responseText == 'true'){
+                                alert("預約成功");
                             load();
-                        	}else{
-                        		alert("預約失敗")
-                        		load();
-                        	}
+                            }else{
+                                alert("預約失敗")
+                                load();
+                            }
                          }
                         //                  contentType : 'application/json',
 //                         success : function(data){ 
-//                         	load();
+//                          load();
 //                         }
                         }
-			)
-			}
-			
-			}
-		
-		
-		
-		function searchDelete(){
-			document.getElementById("searchByClassName").value = "";
-			document.getElementById("searchByCoachName").selectedIndex=0;
-			document.getElementById("searchBySkillName").selectedIndex=0;
-			document.getElementById("searchByClassStatus").selectedIndex=0;
-			$('input[type=date]').val('');
-			load();
-		}
+            )
+            }
+            
+            }
+        
+        
+        
+        function searchDelete(){
+            document.getElementById("searchByClassName").value = "";
+            document.getElementById("searchByCoachName").selectedIndex=0;
+            document.getElementById("searchBySkillName").selectedIndex=0;
+            document.getElementById("searchByClassStatus").selectedIndex=0;
+            $('input[type=date]').val('');
+            load();
+        }
 
-		
-		function search() {
-	        var className = document.getElementById("searchByClassName").value;
-	        var startDate = document.getElementById("searchByDateStart").value;
-	        var endDate = document.getElementById("searchByDateEnd").value;
-	        var skillTemp = document.getElementById("searchBySkillName");
-	        var skillName = skillTemp.value;
-	        var coachNameTemp = document.getElementById("searchByCoachName");
-	        var coachName = coachNameTemp.value;
-	        //      var statusTemp = document.getElementById("searchByClassStatus");
-	        //      var status = coachNameTemp.value;
-	        var statusTemp = document.getElementById("searchByClassStatus");
-	        var status = statusTemp.value;
-	        
-	        if(startDate.length == 0 || endDate.length == 0){
-	        	$('input[type=date]').val('');
-	        }
+        
+        function search() {
+            var className = document.getElementById("searchByClassName").value;
+            var startDate = document.getElementById("searchByDateStart").value;
+            var endDate = document.getElementById("searchByDateEnd").value;
+            var skillTemp = document.getElementById("searchBySkillName");
+            var skillName = skillTemp.value;
+            var coachNameTemp = document.getElementById("searchByCoachName");
+            var coachName = coachNameTemp.value;
+            //      var statusTemp = document.getElementById("searchByClassStatus");
+            //      var status = coachNameTemp.value;
+            var statusTemp = document.getElementById("searchByClassStatus");
+            var status = statusTemp.value;
+            
+            if(startDate.length == 0 || endDate.length == 0){
+                $('input[type=date]').val('');
+            }
 
-	        $.ajax({
-	                    type : 'post',
-	                    url : '/searchClass/',
-	                    data : {
-	                        cName : className,
-	                        coaName : coachName,
-	                        sName : skillName,
-	                        sDate : startDate,
-	                        eDate : endDate,
-	                        cStatus : status
-	                    },
-	                    dataType : 'JSON',
-	                    //                  contentType : 'application/json',
-	                    success : function(data) {
-	                    	var j = 0;
+            $.ajax({
+                        type : 'post',
+                        url : '/searchClass/',
+                        data : {
+                            cName : className,
+                            coaName : coachName,
+                            sName : skillName,
+                            sDate : startDate,
+                            eDate : endDate,
+                            cStatus : status
+                        },
+                        dataType : 'JSON',
+                        //                  contentType : 'application/json',
+                        success : function(data) {
+                            var j = 0;
                             var k = 0;
 //                             console.log(data.length);
                             
@@ -173,7 +167,7 @@
 //                                                         })
 
                                                     if(j<k){
-//                                                     	$("button[name='1']").each(function() {
+//                                                      $("button[name='1']").each(function() {
 //                                                             $(this).prop('disabled', true).text("已額滿");
 //                                                         })
 //                                                      style='width:1115px'
@@ -196,7 +190,7 @@
                                                             j++;
                                                             $("button[name='1']").prop('disabled', true).text("已額滿");
                                                     }else{
-//                                                     	$("button[name='1']").each(function() {
+//                                                      $("button[name='1']").each(function() {
 //                                                             $(this).prop('disabled', true).text("已額滿");
 //                                                         })
 //                                                        style='width:1115px'
@@ -221,177 +215,102 @@
                                                         }
                                                 });
                             }
-	                    }
-	                    }
-	                )};
-	        
-		
-		
+                        }
+                        }
+                    )};
+            
+        
+        
 
-		function load() {
-			$.ajax({
-						type : 'post',
-						url : '/listAllClass/',
-						dataType : 'JSON',
-						//                  contentType : 'application/json',
-						success : function(data) {
-							var j = 0;
-							var k = 0;
-							
-							
-							if(data.length%2 == 1){
-								k=(data.length+1)/2;
-							}else{
-								k=data.length/2;
-							}
-							
-							
-							
-							console.log('success:' + data);
-							var json = JSON.stringify(data, null, 4);
-							console.log('json:' + json);
-							
-							$('#showclasslist').empty("");
-                            $('#showclasslistsec').empty("");
-							if (data == null) {
-								$('table').prepend(
-										"<tr><td colspan='2'>暫無資料</td></tr>");
-								;
-							} else {
-								var div = $('#showclasslist');
-								var div3 = $('#showclasslistsec');
+        function load() {
+            $.ajax({
+                        type : 'post',
+                        url : '/listAllClass/',
+                        dataType : 'JSON',
+                        //                  contentType : 'application/json',
+                        success : function(data) {
+                            
+                            console.log('success:' + data);
+                            var json = JSON.stringify(data, null, 4);
+                            console.log('json:' + json);
+                            
+                            $('#showclasslist').empty("");
+                            if (data == null) {
+                                $('table').prepend(
+                                        "<tr><td colspan='2'>暫無資料</td></tr>");
+                                ;
+                            } else {
+                                var div = $('#showclasslist');
 
-								$.each(data,function(i, n) {
-													var status = null;
-													if (n.classAvaliable == 0) {
-														status = "未額滿"
-													} else {
-														status = "已額滿"
-													}
-													var a = [];
-													for (i in n.sBean) {
-														a.push(n.sBean[i].skillName)
-													}
-// 													console.log(i);
-
-//    $("button[name='1']").each(function() {
-//                                                                 $(this).prop('disabled', true).text("已額滿");
-//                                                             })
-													if(j<k){
-														
-// 											              $("button[name='1']").each(function() {
-// 											                    $(this).prop('disabled', true).text("已額滿");
-// 											                })
-// 														style='width:1115px'
-													var div2 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
-															+ "<c:url value='/getClassPicture?classId=' />"
-															+ n.classId
-															+ " alt='Image'></a><div class='class-item-text'>"
-															+ "<h2><a href='single.html'>"
-															+ n.className
-															+ "</a></h2><div><span>By "
-															+ n.cBean.coachName
-															+ "</span></div><div><span>Date："
-															+ n.classDate
-															+ "</span></div><div><span>Start At："
-															+ n.classStartTime
-															+ "</span></div><div><span>Duration："
-// 															+ n.classDuration
-															+ " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
-													div.append(div2);
-															j++;
-															$("button[name='1']").prop('disabled', true).text("已額滿");
-													}else{
-														
-// 											              $("button[name='1']").each(function() {
-// 											                    $(this).prop('disabled', true).text("已額滿");
-// 											                })
-//	                                                      style='width:1115px'
-	                                                    var div4 = "<div class='class-item d-flex align-items-center'><a href='single.html' class='class-item-thumbnail'><img src="
-	                                                            + "<c:url value='/getClassPicture?classId=' />"
-	                                                            + n.classId
-	                                                            + " alt='Image'></a><div class='class-item-text'>"
-	                                                            + "<h2><a href='single.html'>"
-	                                                            + n.className
-	                                                            + "</a></h2><div><span>By "
-	                                                            + n.cBean.coachName
-	                                                            + "</span></div><div><span>Date："
-	                                                            + n.classDate
-	                                                            + "</span></div><div><span>Start At："
-	                                                            + n.classStartTime
-	                                                            + "</span></div><div><span>Duration："
-	                                                            + n.classDuration
-	                                                            + " hours</span></div></div><div><button style='position:absolute; right:0; bottom:1'>查看</button><button name='" + n.classAvaliable+"' style='position:absolute; right:2; bottom:1' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div>"
-	                                                    div3.append(div4);
-	                                                            j++;
-	                                                            $("button[name='1']").prop('disabled', true).text("已額滿");
-	                                                    }
-												});
-							}
-						}
-					});
-		}
-	</script>
-</head>
-<body style="line-height: 1.7;font-weight: 300;font-size: 1.1rem;color: #989898;">
-<%-- <jsp:include page="/WEB-INF/jsp/top_memberlogin.jsp" /> --%>
-<body data-spy="scroll" data-target=".site-navbar-target"
-    data-offset="300">
-	<div class="site-section" id="classes-section">
+                                $.each(data,function(i, n) {
+                                                    var status = null;
+                                                    if (n.classAvaliable == 0) {
+                                                        status = "未額滿"
+                                                    } else {
+                                                        status = "已額滿"
+                                                    }
+                                                    var a = [];
+                                                    for (i in n.sBean) {
+                                                        a.push(n.sBean[i].skillName)
+                                                    }
+                                                        
+                                                    var div2 = "<div class='col-lg-6 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src='images/yoga.jpg' alt=''><div class='news-post-detail'><span class='date'>" + n.classDate + "</span><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div></div></div>"
+                                                    div.append(div2);
+//                                                             $("button[name='1']").prop('disabled', true).text("已額滿");
+                            })
+                        }
+                    }});
+        
+        }
+        </script>
+        </head>
+        <!-- <body class="game_info" data-spy="scroll" data-target=".header"> -->
+        <body>
+    <section id="top">
+    <div style="width: 1205px; height: 194.13px" class ="top">
+        <c:import url="/top_memberlogin"></c:import>
+    </div>
+	</section>
+	<section id="contant" class="contant">
 		<div class="container">
-			<div class="row justify-content-center text-center mb-5">
-				<div class="col-md-8  section-heading">
-					<span class="subheading">Fitness Class</span>
-					<h2 class="heading mb-3">一對一私人課程清單</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-						Quis consequatur cum neque? Separated they live in Bookmarksgrove
-						right at the coast of the Semantics, a large language ocean.</p>
-				</div>
-			</div>
+			<div style="background-color:gray" class="row">
+				<div class="col-lg-9 col-sm-12 col-xs-12">
+					<div class="news-post-holder">
+						課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
+						<!--    價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
+						教練名稱： <select name="select" id="searchByCoachName">
+							<option selected="selected">請選擇</option>
+							<c:forEach items="${coachList}" var="coach">
+								<option value="${coach}"><c:out value="${coach}" /></option>
+							</c:forEach>
+						</select> 訓練部位： <select name="select" id="searchBySkillName">
+							<option selected="selected">請選擇</option>
+							<c:forEach items="${skillList}" var="skill">
+								<option value="${skill.skillName}"><c:out
+										value="${skill.skillName}" /></option>
+							</c:forEach>
+						</select> 開課狀況： <select name="select" id="searchByClassStatus">
+							<option selected="selected">請選擇</option>
+							<option value="0">未額滿</option>
+							<option value="1">已額滿</option>
+						</select>
+						<hr>
+						開課日期： <input type="date" id="searchByDateStart"> 至 <input
+							type="date" id="searchByDateEnd">
+						<button onclick="search()">搜尋</button>
+						<button onclick="searchDelete()">清除搜尋</button>
+						<hr>
 
-課程名稱：
-    <input type="text" placeholder="輸入內容" id="searchByClassName">
-    <!--    價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
-    教練名稱：
-    <select name="select" id="searchByCoachName">
-        <option selected="selected">請選擇</option>
-        <c:forEach items="${coachList}" var="coach">
-            <option value="${coach}"><c:out value="${coach}" /></option>
-        </c:forEach>
-    </select> 訓練部位：
-    <select name="select" id="searchBySkillName">
-        <option selected="selected">請選擇</option>
-        <c:forEach items="${skillList}" var="skill">
-            <option value="${skill.skillName}"><c:out
-                    value="${skill.skillName}" /></option>
-        </c:forEach>
-    </select> 開課狀況：
-    <select name="select" id="searchByClassStatus">
-        <option selected="selected">請選擇</option>
-        <option value="0">未額滿</option>
-        <option value="1">已額滿</option>
-    </select> <hr>
-    開課日期：
-    <input type="date" id="searchByDateStart"> 至
-    <input type="date" id="searchByDateEnd">
-    <button onclick="search()">搜尋</button>
-    <button onclick="searchDelete()">清除搜尋</button><hr>
+						<div id="showclasslist" border="1"></div>
 
-			<div class="row">
-				<div class="col-lg-6">
-					<div id="showclasslist" border="1"></div>
-				</div>
-				<div class="col-lg-6">
-					<div id="showclasslistsec" border="1"></div>
+
+
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-<!-- 	<div><button name="1" style="position:absolute; right:0; bottom:0">123</button></div> -->
+	</section>
 
-<!--     <div style="width: 1205px; height: 194.13px" class ="top"> -->
-<%--         <c:import url="/top_memberlogin"></c:import> --%>
-<!--     </div> -->
+
 </body>
 </html>
