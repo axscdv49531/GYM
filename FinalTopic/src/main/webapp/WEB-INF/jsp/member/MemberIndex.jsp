@@ -153,7 +153,7 @@
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 																class="caret"></span></a>
-															<ul class="dropdown-menu mega-dropdown-menu member">
+															<ul class="dropdown-menu mega-dropdown-menu coach">
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">一對一課程</li>

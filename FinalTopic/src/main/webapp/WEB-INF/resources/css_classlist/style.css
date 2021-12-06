@@ -2,11 +2,11 @@
 html {
   overflow-x: hidden; }
 
-body {
-  line-height: 1.7;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: #989898; }
+/* body { */
+/*   line-height: 1.7; */
+/*   font-weight: 300; */
+/*   font-size: 1.1rem; */
+/*   color: #989898; } */
 
 ::-moz-selection {
   background: #000;

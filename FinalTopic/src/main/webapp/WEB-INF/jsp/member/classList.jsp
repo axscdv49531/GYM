@@ -14,25 +14,25 @@
 <link
 	href="https://fonts.googleapis.com/css?family=Muli:300,400,700,900"
 	rel="stylesheet">
-<link rel="stylesheet" href="fonts_classlist/icomoon/style.css">
+<link rel="stylesheet" href="../fonts_classlist/icomoon/style.css">
 
-<link rel="stylesheet" href="css_classlist/bootstrap.min.css">
-<link rel="stylesheet" href="css_classlist/jquery-ui.css">
-<link rel="stylesheet" href="css_classlist/owl.carousel.min.css">
-<link rel="stylesheet" href="css_classlist/owl.theme.default.min.css">
-<link rel="stylesheet" href="css_classlist/owl.theme.default.min.css">
+<link rel="stylesheet" href="../css_classlist/bootstrap.min.css">
+<link rel="stylesheet" href="../css_classlist/jquery-ui.css">
+<link rel="stylesheet" href="../css_classlist/owl.carousel.min.css">
+<link rel="stylesheet" href="../css_classlist/owl.theme.default.min.css">
+<link rel="stylesheet" href="../css_classlist/owl.theme.default.min.css">
 
-<link rel="stylesheet" href="css_classlist/jquery.fancybox.min.css">
+<link rel="stylesheet" href="../css_classlist/jquery.fancybox.min.css">
 
-<link rel="stylesheet" href="css_classlist/bootstrap-datepicker.css">
+<link rel="stylesheet" href="../css_classlist/bootstrap-datepicker.css">
 
-<link rel="stylesheet" href="fonts_classlist/flaticon/font/flaticon.css">
+<link rel="stylesheet" href="../fonts_classlist/flaticon/font/flaticon.css">
 
-<link rel="stylesheet" href="css_classlist/aos.css">
-<link href="css_classlist/jquery.mb.YTPlayer.min.css" media="all"
+<link rel="stylesheet" href="../css_classlist/aos.css">
+<link href="../css_classlist/jquery.mb.YTPlayer.min.css" media="all"
 	rel="stylesheet" type="text/css">
 
-<link rel="stylesheet" href="css_classlist/style.css">
+<link rel="stylesheet" href="../css_classlist/style.css">
 
 
 
@@ -333,11 +333,10 @@
 		}
 	</script>
 </head>
-<body>
-<!--     <div style="width: 1205px; height: 194.13px"> -->
-<%--         <c:import url="/top"></c:import> --%>
-<!--     </div> -->
-
+<body style="line-height: 1.7;font-weight: 300;font-size: 1.1rem;color: #989898;">
+<%-- <jsp:include page="/WEB-INF/jsp/top_memberlogin.jsp" /> --%>
+<body data-spy="scroll" data-target=".site-navbar-target"
+    data-offset="300">
 	<div class="site-section" id="classes-section">
 		<div class="container">
 			<div class="row justify-content-center text-center mb-5">
@@ -391,5 +390,8 @@
 	
 <!-- 	<div><button name="1" style="position:absolute; right:0; bottom:0">123</button></div> -->
 
+<!--     <div style="width: 1205px; height: 194.13px" class ="top"> -->
+<%--         <c:import url="/top_memberlogin"></c:import> --%>
+<!--     </div> -->
 </body>
 </html>
