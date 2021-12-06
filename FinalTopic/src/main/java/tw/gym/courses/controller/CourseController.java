@@ -175,6 +175,7 @@ public class CourseController {
 		String classroom = course.getClassroom();
 		Date date = course.getDate();
 		Integer coachId = course.getCoachId();
+		System.out.println(coachId);
 		CourseSpec courseSpec = new CourseSpec(category, classroom, date, coachId);
 
 		int pageSize = 10;
