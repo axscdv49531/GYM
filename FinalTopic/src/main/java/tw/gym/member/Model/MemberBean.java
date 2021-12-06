@@ -52,6 +52,9 @@ public class MemberBean implements Serializable {
 	private String fileName;
 
 	@Transient
+	private String password1;
+	
+	@Transient
 	private String confirmedPassword;
 
 	@Transient
@@ -302,6 +305,14 @@ public class MemberBean implements Serializable {
 		this.memberPhotoMineType = memberPhotoMineType;
 	}
 
+	public String getPassword1() {
+		return password1;
+	}
+
+	public void setPassword1(String password1) {
+		this.password1 = password1;
+	}
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
@@ -329,6 +340,8 @@ public class MemberBean implements Serializable {
 		builder.append(emergencyPhone);
 		builder.append(", confirmedPassword=");
 		builder.append(confirmedPassword);
+		builder.append(", password1=");
+		builder.append(password1);
 		builder.append(", memberPhoto=");
 		builder.append(memberPhoto);
 		builder.append("]");

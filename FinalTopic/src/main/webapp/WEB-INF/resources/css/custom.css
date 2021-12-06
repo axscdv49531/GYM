@@ -208,6 +208,37 @@ header {
 	color: #fff !important;
 }
 
+.updateMember {
+	float: right;
+	margin: 0;
+	padding-right: 600px;
+	list-style: none;
+}
+.updateMember li {
+	float: left;
+	margin: 0 0 0 10px;
+	font-weight: 500;
+}
+
+.updateMember li a {
+	padding: 9px 25px;
+	color: #fff;
+	font-size: 13px;
+	background: #d8302f;
+	border-radius: 50px;
+	float: left;
+}
+
+.updateMember li a:hover, .updateMember li a:focus {
+	background: #fff;
+	color: #333;
+}
+
+.updateMember li a i {
+	margin: 0 5px 0 0;
+	font-size: 15px;
+}
+
 .login {
 	float: right;
 	margin: 0;

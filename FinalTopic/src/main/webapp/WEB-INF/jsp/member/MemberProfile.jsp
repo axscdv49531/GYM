@@ -32,7 +32,7 @@
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
-<script src="/js/3dslider.js"></script>
+<script src="../js/3dslider.js"></script>
 
 </head>
 <body>
@@ -48,7 +48,8 @@
 					value="會員編號：${loginUser.number}" />
 			</small>
 		</div>
-			<img width='203' height='254' src="<c:url value='/getMemberPicture?email=' />${loginUser.email}" />
+		<img width='203' height='254'
+			src="<c:url value='/getMemberPicture?email=' />${loginUser.email}" />
 	</div>
 	<div class="col-md-7">
 		<ul class="personalinfo">
@@ -74,8 +75,9 @@
 
 		</ul>
 	</div>
-
-
-
+	<ul class="updateMember">
+		<li class="update-modal"><a href="<c:url value='/updateMember' />"
+			class="login">修改</a></li>
+	</ul>
 </body>
 </html>

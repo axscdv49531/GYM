@@ -34,7 +34,7 @@
 
     <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 
-    <script src="/js/3dslider.js"></script>
+    <script src="../js/3dslider.js"></script>
 
     <!-- ALL JS FILES -->
     <script src="../js/all.js"></script>
