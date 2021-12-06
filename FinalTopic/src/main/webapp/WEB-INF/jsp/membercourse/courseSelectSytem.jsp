@@ -75,8 +75,14 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 					dataType : 'JSON',
 					contentType : 'application/json',
 					success : function(data) {
-						alert("已經加選" + courseId + "！");
-						//showAllCourse(indexPage);
+						console.log(data);
+						if(null != data && "" != data){ 
+							alert("加選成功" + courseId + "！");
+							
+						}else{//表示已加選
+							alert("您已經加選" + courseId + "請勿重複選課！");
+						//showAllCourse(indexPage);	
+						}
 					}
 				});
 			}
@@ -276,8 +282,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 
-		<div class="row" style="margin-left:15px;margin-top:50px">
-			<div class="container">
+		<div class="row" style="margin-left:15px;margin-top:150px">
+			<div class="container-fluid">
 
 				<div class="col-md-1"></div>
 				<div  class="col-md-7">

@@ -143,7 +143,8 @@ System.out.println("success");
 			for (Member_Course onemc : mcList) {
 				// 若有一筆紀錄為已加選，表示有選上該課程
 				if (onemc.getState().equals("已加選"))
-					return null;
+					System.out.println("重複");
+					return null ;
 			}
 			// 有選課紀錄，但沒有已加選：加選！
 			cService.stuNumPlus(courseId); // 更新Course 人數

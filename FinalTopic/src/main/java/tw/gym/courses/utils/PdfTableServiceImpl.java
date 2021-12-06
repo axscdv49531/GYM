@@ -1,8 +1,12 @@
 package tw.gym.courses.utils;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -12,6 +16,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.BaseFont;
@@ -34,20 +39,17 @@ public class PdfTableServiceImpl implements PdfTableService {
 			if (!savePath.equals("")) {
 				PdfWriter.getInstance(document, new FileOutputStream(savePath));
 			}
-			document.addTitle("課程表");
-			document.addAuthor("第四組健身中心");
-			document.addSubject("最新刻表");
+			document.addTitle("Spring Fitness：我的團體課程表");
+			document.addAuthor("Spring Fitness");
+			document.addSubject("課表");
 			document.addKeywords("課程");
 			document.open();
-			Paragraph para = getParagraphText(
-					"整個白酒行業從2012年開始，都迅速下滑，銷量和利潤都是大跌。2014年和2015年，茅臺的股價漲得不錯，但也沒有超過同期的白馬股太多，加上利潤增速一直沒有恢復塑化劑之前的狀態，我就一直沒有再買入");
-			document.add(para);
 			
-			/*插入圖片
-			String imagePath = "/data/springboot2/logo.jpg"; // 圖片的絕對路徑
-			Image image = Image.getInstance(imagePath); // 取得圖片物件
+			//插入圖片
+			String imagepath = "src/main/webapp/WEB-INF/resources/images/springfitnesslogo6.png"; // 圖片的絕對路徑
+			Image image = Image.getInstance(imagepath); // 取得圖片物件
 			// 計算得到目標寬高
-			File gifFile = new File(imagePath);
+			File gifFile = new File(imagepath);
 			int origWidth = 0;
 			int origHeight = 0;
 			try {
@@ -65,13 +67,22 @@ public class PdfTableServiceImpl implements PdfTableService {
 			// 得到新的高度和新的寬度
 			float newwidth = document.getPageSize().getWidth() - document.leftMargin() - document.rightMargin();
 			float newHeight = (newwidth * origHeight) / origWidth;
+			newwidth *= 0.3;
+			newHeight *= 0.3;
 
 			image.scaleAbsolute(newwidth, newHeight);
 
 			document.add(image);
-*/
+
+			//建立文字
+
+			Paragraph para = getParagraphText(
+					"Spring Fitness 歡迎你報名我們的團體大眾課程。\n"
+					+ "在此提醒您：請您至需於前5分鐘進到教室，準備上課。\r\n"
+					+ "若您未能準時到課，請您提早於線上系統或來電取消。\n");
+			document.add(para);
 			
-			
+			//建立table
 			PdfPTable table = createTable(courses);
 			document.add(table);
 
@@ -122,7 +133,7 @@ public class PdfTableServiceImpl implements PdfTableService {
 
 		Font font_head = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
 				BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED));
-		font_head.setColor(BaseColor.BLUE);
+		font_head.setColor(BaseColor.RED);
 		font_head.setSize(10);
 
 		Font font_title = new Font(BaseFont.createFont(new ClassPathResource("/font/微軟正黑體.TTF").getPath(),
@@ -130,7 +141,7 @@ public class PdfTableServiceImpl implements PdfTableService {
 		font_title.setColor(BaseColor.BLACK);
 		font_title.setSize(16);
 
-		cell = new PdfPCell(new Phrase("課程表", font_title));
+		cell = new PdfPCell(new Phrase("我的團體課程表", font_title));
 		cell.setColspan(8);// 設定所佔列數
 		cell.setFixedHeight(25);// 設定高度
 		cell.setHorizontalAlignment(Element.ALIGN_CENTER);// 設定水平居中

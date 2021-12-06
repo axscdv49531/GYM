@@ -119,8 +119,8 @@ function showCourseList(data) {
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" +
-			            "<td><button id='' type='button' class='' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
-			        	"<td><button id='' type='button' class='' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
+			            "<td><button id='' type='button' class='btn' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
+			        	"<td><button id='' type='button' class='btn' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
 			            "</tr>";
 			   table.append(tr);
 						});
@@ -227,18 +227,20 @@ function showInformation(courseId) {
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 
-		<div class="row" style="margin-left:15px;margin-top:50px">
+		<div class="row" style="margin-left:15px;margin-top:100px">
 			<div class="container">
 
 				<div class="col-md-1"></div>
 				<div  class="col-md-7">
-
-					
+				<fieldset>
+				<legend>我的課表 / 即將開始的課程：</legend>
+					<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
+				</fieldset>
 				</div>
 				<div class="col-md-4"></div>
 			</div>
 			</div>
-			<div class="row">
+			<div class="row" style="margin-left:15px;margin-top:30px">
 				<div class="container">
 				<div class="col-md-1"></div>
 					<div class="col-md-7">
@@ -250,7 +252,7 @@ function showInformation(courseId) {
 							</tr>
 						</table>
 					</div>
-					<div class="col-md-3">
+					<div class="col-md-3" style="margin-left:15px;">
 						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
 							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
 								<h2 style="color:white">
@@ -265,7 +267,7 @@ function showInformation(courseId) {
 				<div class="col-md-1"></div>
 				</div>
 			</div>
-<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
+
 	<c:import url="/bottom"></c:import>
 </body>
 </html>
