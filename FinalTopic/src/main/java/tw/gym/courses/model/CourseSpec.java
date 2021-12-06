@@ -46,7 +46,7 @@ public class CourseSpec implements Specification<Course> {
 				predicates.add(criteriaBuilder.equal(root.get("date"), date));
 			}
 			if(null != coachId && 0!=coachId) {
-				predicates.add(criteriaBuilder.equal(root.get("coach").get("id"), coachId));
+				predicates.add(criteriaBuilder.equal(root.get("coach").get("coachId"), coachId));
 			}
 			
 			return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();

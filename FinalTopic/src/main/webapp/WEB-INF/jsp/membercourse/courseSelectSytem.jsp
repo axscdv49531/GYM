@@ -6,7 +6,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 <head>
 <meta charset="UTF-8">
 <title>會員選課系統</title>
-
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
@@ -127,11 +128,37 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 			;
 		} else {
 			var table = $('#showcourse');
-			table
-					.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>課程簡介</th><th>加選課程</th></tr>");
+			table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th><th>加選課程</th></tr>");
 
 			$.each(data.pageContent,function(i, n) {
-								var tr = "<tr align='center'>" + "<td>"
+				if(n.studentNum == n.maxStudentNum){
+					var tr = "<tr align='center' id='"+ n.id+ "'><td>"+ n.id+ "</td>"+ "<td>"+ n.courseName + "</td>"+ "<td>"+ n.category
+					+ "</td>"
+					+ "<td>"
+					+ n.date
+					+ "</td>"
+					+ "<td>"
+					+ n.period
+					+ "</td>"
+					+ "<td>"
+					+ n.classroom
+					+ "</td>"
+					+ "<td>"
+					+ n.coach.coachName
+					+ "</td>"
+					+ "<td>"
+					+ n.studentNum
+					+ "</td>"
+					+ "<td>"
+					+ n.maxStudentNum
+					+ "</td>"
+					+ "<td><button id='' type='button' class='btn'  onclick='showInformation("
+					+ n.id
+					+ ")'>課程簡介</button></td>"
+					+"<td>課程已額滿</td>" + "</tr>";}
+				else{
+						
+								var tr = "<tr align='center' id='"+ n.id+ "'><td>"
 										+ n.id
 										+ "</td>"
 										+ "<td>"
@@ -158,16 +185,14 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 										+ "<td>"
 										+ n.maxStudentNum
 										+ "</td>"
-										+ "<td>"
-										+ n.state
-										+ "</td>"
 										+ "<td><button id='' type='button' class='btn'  onclick='showInformation("
 										+ n.id
 										+ ")'>課程簡介</button></td>"
-										+ "<td><button id='' type='button' class='btn'  onclick='selectCourse("
+										+ "<td><button id='' type='button' class='btn' onclick='selectCourse("
 										+ n.id + "," + n.studentNum + ","
 										+ n.maxStudentNum
 										+ ")'>加選課程</button></td>" + "</tr>";
+					}
 								table.append(tr);
 							});
 		}
@@ -181,17 +206,17 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 		$('#showpageButton')
 				.append(
-						"<button style='float: right;' class='btn' onclick='previous()'>Previous</button>");
+						"<button style='align: right;' class='btn' onclick='previous()'>Previous</button>");
 
 		for (var j = 1; j <= data.totalPages; j++) {
 			$('#showpageButton').append(
-					"<button style='float: right;' class='btn' id='myPage' value='"
+					"<button style='align: right;' class='btn' id='myPage' value='"
 							+ j + "' onclick='change(" + j + ")'>" + j
 							+ "</button>")
 		}
 
 		$('#showpageButton').append(
-				"<button style='float: right;' class='btn' id='nextbutton' value='"
+				"<button style='align: right;' class='btn' id='nextbutton' value='"
 						+ data.totalPages + "' onclick='next()'>Next</button>");
 
 	}
@@ -256,6 +281,29 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		});
 	}
 
+	/*
+	//查詢我的課程，並將該課程註記
+	function markMyCourse(indexPage) {
+
+		$.ajax({
+			type : 'get',
+			url : '/course/findbymember.controller/' + indexPage,
+			dataType : 'JSON',
+			contentType : 'application/json;charset=utf-8',
+			success : function(data) {
+				console.log("success");
+				$.each(data.pageContent,function(i, n) {
+					var id =n.id;
+					console.log(id);
+					
+				}
+			
+			}
+		});
+	}
+*/
+	
+	
 	function showInformation(courseId) {
 		//alert(courseId);
 
@@ -274,7 +322,14 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 		//load(indexPage);
 	}
+	
+	 <!-- /.modal 模態框--> 
+	  $(function() { $('#myModal').modal('hide') } ); 
+	  $(function() { $('#myModal').on('hide.bs.modal', function() { alert('嘿，我聽說您喜歡模態框...'); }) });
+	
 </script>
+
+
 </head>
 
 <body class="game-info">
@@ -333,7 +388,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<table class="table">
 							<tr>
 								<td id="showpageInfo"></td>
-								<td id="showpageButton" align="right"></td>
+								<td id="showpageButton" style="float : right"></td>
 							</tr>
 						</table>
 					</div>
@@ -348,6 +403,30 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 							</div>
 							<ul class="other-stroies" id='showInformation'></ul>
 						</div>
+						
+						
+<!-- 模態框（Modal） --> 
+ <h2 > 模態框（Modal）插件事件 </h2 > 
+ <!-- 按鈕觸發模態框 --> 
+ <button  class = "btn btn-primary btn-lg"   data-toggle = "modal"  data-target = "#myModal" > 開始演示模態框 </button > 
+ <!-- 模態框（Modal） --> 
+ <div   class = "modal fade"   id = "myModal"   tabindex = " -1 "   role = "dialog"   aria-labelledby = " myModalLabel "   aria-hidden = " true " > 
+     <div   class = "modal-dialog" > 
+         <div   class = "modal-content" > 
+             <div   class = "modal-header" > 
+                 <button  type = "button"   class = "close"   data-dismiss = "modal"  aria-hidden = "true" > × </button > 
+                 <h4  class = "modal-title"   id = "myModalLabel" > 模態框（Modal）標題 </h4 > 
+             </div > 
+             <div   class = "modal-body" > 按下ESC按鈕退出。 </div > 
+             <div   class = "modal-footer" > 
+                 <button  type = "button"   class = " btn btn-default "   data-dismiss = " modal " > 關閉 </button > 
+                 <button  type = "button"   class = " btn btn-primary " > 提交更改 </button > 
+             </div > 
+         </div > <!-- /.modal-content --> 
+     </div > <!-- /.modal-dialog --> 
+ </div > 
+
+						
 					</div>
 				<div class="col-md-1"></div>
 				</div>

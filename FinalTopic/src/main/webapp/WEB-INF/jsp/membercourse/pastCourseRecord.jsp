@@ -111,16 +111,15 @@ function showCourseList(data) {
 		;
 	} else {
 		   var table = $('#showcourse');
-		   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th><th>退選</th></tr>");
+		   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>學生人數上限</th><th>課程簡介</th></tr>");
 		   
 		   $.each(data.pageContent, function(i,n){
 			   var tr = "<tr align='center'>" + "<td>" + n.id + "</td>" +
 			            "<td>" + n.courseName + "</td>" + "<td>" + n.category + "</td>" +
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
-			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
+			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" +
 			            "<td><button id='' type='button' class='btn' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
-			        	"<td><button id='' type='button' class='btn' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
 			            "</tr>";
 			   table.append(tr);
 						});
@@ -234,7 +233,7 @@ function showInformation(courseId) {
 				<div  class="col-md-7">
 				<fieldset>
 				<legend>上課紀錄 / 已經結束的課程：</legend>
-					<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
+<%-- 					<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a> --%>
 				</fieldset>
 				</div>
 				<div class="col-md-4"></div>
