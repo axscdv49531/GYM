@@ -63,6 +63,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	}
 
 	function selectCourse(courseId, stuNum, maxStuNum) {
+	//if(	${loginUser.number} == null )
+		
 		if (confirm("確實要加選" + courseId + "嗎?")) {
 			if (stuNum >= maxStuNum) { //檢查選課人數
 				alert(courseId + ":課程已額滿");
@@ -122,10 +124,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 			table
 					.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>課程簡介</th><th>加選課程</th></tr>");
 
-			$
-					.each(
-							data.pageContent,
-							function(i, n) {
+			$.each(data.pageContent,function(i, n) {
 								var tr = "<tr align='center'>" + "<td>"
 										+ n.id
 										+ "</td>"
@@ -307,21 +306,17 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<div style="width: 1205px; height: 194.13px">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
-<!-- ${loginUser} == null -->
 
-<br>
-<br>
-<br>
 		<div class="row">
 			<div class="container">
 
-				<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a> <a
+				<div class="col-md-1"></div>
+				<div  class="col-md-7">
+				
+					<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a> <a
 					href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a> <a
 					href="<c:url value='/myCourseSchedule' />">我的課表</a> <a
 					href="<c:url value='/' />">回首頁</a> <br>
-
-				<div class="col-md-1"></div>
-				<div  class="col-md-7">
 					<fieldset>
 						<legend>課程查詢：</legend>
 						<a href="<c:url value='/thisweekcourse' />">本週課程</a>

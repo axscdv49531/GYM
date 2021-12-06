@@ -1,0 +1,56 @@
+diff a/FinalTopic/src/main/java/tw/gym/member/Controller/MemberController.java b/FinalTopic/src/main/java/tw/gym/member/Controller/MemberController.java	(rejected hunks)
+@@ -180,13 +180,53 @@
+ 		memberService.update(memberBean);
+ 		return "redirect:/findAllMember";
+ 	}
++	
++	@GetMapping("/updateMember")
++	public String updateMemberProfile(Model model, HttpSession session) {
++		MemberBean memberBean =(MemberBean)session.getAttribute("loginUser");
++		model.addAttribute("memberBean", memberBean);
++		return "member/MemberUpdateNormal";
++	}
++	@PostMapping("/updateMember")
++	public String updateMemberProfileData(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult)
++			throws ParseException, IOException, SerialException, SQLException {
++		new MemberValidator().validate(memberBean, bindingResult);
+ 
++		MultipartFile picture = memberBean.getmPhoto();
++		byte[] b = picture.getBytes();
++		Blob blob = new SerialBlob(b);
++
++		String fileName = picture.getOriginalFilename();
++
++		String mineType = picture.getContentType();
++		memberBean.setMemberPhoto(blob);
++		memberBean.setFileName(fileName);
++		memberBean.setMemberPhotoMineType(mineType);
++		if (memberBean.getDeposite() == null) {
++			memberBean.setDeposite(0);
++		}
++		if (bindingResult.hasErrors()) {
++			return "member/MemberUpdateNormal";
++		}
++		memberService.update(memberBean);
++		return "redirect:/MemberProfile";
++	}
++	
+ 	@GetMapping("/deleteMember/{number}")
+ 	public String deleteMemberData(@PathVariable("number") Integer number) throws SQLException {
+ 		memberService.deleteById(number);
+ 		return "redirect:/member/findAllMember";
+ 	}
+-
++//	
++//	@PostMapping("/updatePassword")
++//	public String updatePassword(Model model, HttpSession session) {
++//		MemberBean memberBean =(MemberBean)session.getAttribute("loginUser");
++//		if(memberBean.getPassword()==memberService.findByNumber(null))
++//		model.addAttribute("memberBean", memberBean);
++//		return "member/MemberUpdateNormal";
++//	}
++//	
++	
+ 	@InitBinder
+ 	public void initBinder(WebDataBinder binder, WebRequest request) {
+ 		// java.util.Date

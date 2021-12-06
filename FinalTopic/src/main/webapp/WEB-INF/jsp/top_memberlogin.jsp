@@ -39,7 +39,7 @@
 					<div class="full">
 						<div class="logo">
 							<a href="<c:url value='/' />"><img
-								src="../images/springfitnesslogo3.png" alt="index" /></a>
+								src="../images/springfitnesslogo5.jpg" alt="index" /></a>
 						</div>
 					</div>
 				</div>
@@ -134,13 +134,9 @@
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">團體課程 Cousres </li>
-															<li><a class="dropdown-item"
-																href="/courseSelectSystem">課程表</a></li>
-															<li><a class="dropdown-item"
-																href="/courseSelectSystem">預約課程</a></li>
-															<li><a class="dropdown-item" href="#">課程介紹</a></li>
-															<li><a class="dropdown-item" href="#">我的課程</a></li>
-															<li><a class="dropdown-item" href="#">上課紀錄</a></li>
+															<li><a class="dropdown-item" href="/courseSelectSystem">預約課程</a></li>
+															<li><a class="dropdown-item" href="/myCourseSchedule">我的課程</a></li>
+															<li><a class="dropdown-item" href="/pastCourseRecord">上課紀錄</a></li>
 
 														</ul>
 													</li>

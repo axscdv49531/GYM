@@ -69,14 +69,18 @@ public class Member_CourseController {
 	// 前往我的課程頁面
 	@GetMapping("/mycourseschedulemain.controller")
 	public String mycourseschedulemain(Model m) {
-		Integer memberNumber = 1001;
 		return "membercourse/myCourseSchedule";
 	}
 
+	// 前往上課紀錄頁面
+	@GetMapping("/pastCourseRecord.controller")
+	public String pastCourseRecord(Model m) {
+		return "membercourse/pastCourseRecord";
+	}
+	
 	// 前往選課紀錄頁面
 	@GetMapping("/selectcourserecordmain.controller")
 	public String selectcourserecordmain(Model m) {
-		Integer memberNumber = 1001;
 		return "membercourse/selectCourseRecord";
 	}
 

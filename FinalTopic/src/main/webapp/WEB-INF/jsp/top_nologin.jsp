@@ -134,10 +134,7 @@
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">團體課程 Cousres </li>
-															<li><a class="dropdown-item"
-																href="/courseSelectSystem">課程表</a></li>
-															<li><a class="dropdown-item" href="#">課程介紹</a></li>
-
+															<li><a class="dropdown-item" href="/courseSelectSystem">預約課程</a></li>
 
 														</ul>
 													</li>
