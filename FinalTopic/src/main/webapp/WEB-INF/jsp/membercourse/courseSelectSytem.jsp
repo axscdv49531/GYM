@@ -63,6 +63,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	}
 
 	function selectCourse(courseId, stuNum, maxStuNum) {
+	//if(	${loginUser.number} == null )
+		
 		if (confirm("確實要加選" + courseId + "嗎?")) {
 			if (stuNum >= maxStuNum) { //檢查選課人數
 				alert(courseId + ":課程已額滿");
@@ -122,10 +124,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 			table
 					.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>課程簡介</th><th>加選課程</th></tr>");
 
-			$
-					.each(
-							data.pageContent,
-							function(i, n) {
+			$.each(data.pageContent,function(i, n) {
 								var tr = "<tr align='center'>" + "<td>"
 										+ n.id
 										+ "</td>"
@@ -327,27 +326,27 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<form>
 
 							<select  name="category" class="">
-								<option value="" label="請選擇課程種類" selected="selected"></option>
+								<option value=""  selected="selected">請選擇課程種類</option>
 								<option value="舞蹈類課程">舞蹈類課程</option>
 								<option value="瑜珈課程">瑜珈課程</option>
 								<option value="心肺肌力課程">心肺肌力課程</option>
 								<option value="其他">其他</option>
 							</select> <select name="classroom" class="">
-								<option value="" label="請選擇教室" selected="selected"></option>
+								<option value=""  selected="selected">請選擇教室</option>
 								<option value="A">A教室</option>
 								<option value="B">B教室</option>
 								<option value="C">C教室</option>
 							</select> <select name="date" class="">
-								<option value="" label="請選擇課程日期" selected="selected" />
+								<option value=""  selected="selected">請選擇課程日期</option>
 								<c:forEach var="onedate" items="${dateList}">
 									<option value="${onedate}">${onedate}</option>
 								</c:forEach>
 							</select> <select name="coachId" class="">
-								<option value="" label="請選擇授課老師" selected="selected" />
+								<option value="" selected="selected">請選擇授課老師</option>
 								<c:forEach var="oneCoach" items="${coachList}">
 									<option value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 								</c:forEach>
-							</select> <input class="" type="button" value="查詢"
+							</select> <input style = "color:black" class="" type="button" value="查詢"
 								onclick='sendQuery(1)'>
 						</form>
 					</fieldset>
@@ -368,8 +367,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						</table>
 					</div>
 					<div class="col-md-3">
-						<div class="content-widget top-story" style="background-color:black">
-							<div class="top-stroy-header" style="background-color:black">
+						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
 								<h2 style="color:white">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>

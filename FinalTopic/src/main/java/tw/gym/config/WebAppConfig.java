@@ -60,9 +60,12 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addRedirectViewController("/courseQuery", "/course/showcourseQuery.controller");
 		registry.addRedirectViewController("/courseSelectSystem", "/membercourse/courseselectionmain.controller");
 		registry.addRedirectViewController("/myCourseSchedule", "/membercourse/mycourseschedulemain.controller");
-		registry.addRedirectViewController("/selectCourseRecord", "/membercourse/selectcourserecordmain.controller");
+		//registry.addRedirectViewController("/selectCourseRecord", "/membercourse/selectcourserecordmain.controller");
+		registry.addRedirectViewController("/pastCourseRecord", "/membercourse/pastCourseRecord.controller");
 		registry.addRedirectViewController("/myCourseSchedulePdf", "/course/viewpdf/mycourses");
 		registry.addRedirectViewController("/allCoursePdf", "/course/viewpdf/allcourses");
+		
+		
 	}
 
 	@Override

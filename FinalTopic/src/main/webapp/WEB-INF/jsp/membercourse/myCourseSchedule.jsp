@@ -43,18 +43,147 @@
 	
 	
 <script type="text/javascript">
+var indexPage = 1;
+var queryCondition = 'allCourse';
 
-   var indexPage=1;
-   $(document).ready(function(){
-	   load(indexPage);
-   });
-   
-   function change(page){
-	   indexPage = page;
-	   load(indexPage);
-   }
+$(document).ready(function() {
+	showMyCourse(indexPage);
+});
+
+function change(page) {
+	indexPage = page;
+
+	if (queryCondition == 'allCourse') {
+		showMyCourse(indexPage)
+	}
 	
-   
+
+}
+function previous() {
+	if (indexPage > 1) {
+		indexPage--;
+			showMyCourse(indexPage)
+		
+	}
+}
+
+function next() {
+	if (indexPage < $('#nextbutton').val()) {
+		indexPage++;
+			showMyCourse(indexPage)
+		}
+	}
+
+
+
+function arrayToJson(formArray) {
+	var dataArray = {};
+	$.each(formArray, function() {
+		if (dataArray[this.name]) {
+			if (!dataArray[this.name].push) {
+				dataArray[this.name] = [ dataArray[this.name] ];
+			}
+			dataArray[this.name].push(this.value || '');
+		} else {
+			dataArray[this.name] = this.value || '';
+		}
+	});
+	return JSON.stringify(dataArray);
+}
+
+//共同使用的函式：將查詢課程結果印出  
+function showCourseList(data) {
+	console.log('success:' + data);
+	var json = JSON.stringify(data, null, 4);
+	console.log('json:' + json);
+	//console.log(data.totalElements)
+
+	//alert("查詢成功！");
+	////////////
+	$('#showcourse').empty("");
+	$('#showInformation').empty("");
+	$('#showpageButton').empty("");
+	
+
+	if (data.pageContent == null) {
+		alert("無符合查詢結果！");
+		$('#showcourse').append("<tr><td colspan='2'>暫無資料</td></tr>");
+		;
+	} else {
+		   var table = $('#showcourse');
+		   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th><th>退選</th></tr>");
+		   
+		   $.each(data.pageContent, function(i,n){
+			   var tr = "<tr align='center'>" + "<td>" + n.id + "</td>" +
+			            "<td>" + n.courseName + "</td>" + "<td>" + n.category + "</td>" +
+			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
+			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
+			            "<td>" + n.maxStudentNum + "</td>" +
+			            "<td><button id='' type='button' class='' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
+			        	"<td><button id='' type='button' class='' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
+			            "</tr>";
+			   table.append(tr);
+						});
+	}
+	//////////
+
+	var tr2 = "Total Pages: " + data.totalPages + " Total Records: "
+			+ data.totalElements;
+
+	$('#showpageInfo').empty("");
+	$('#showpageInfo').append(tr2);
+
+	$('#showpageButton')
+			.append(
+					"<button style='float: right;' class='btn' onclick='previous()'>Previous</button>");
+
+	for (var j = 1; j <= data.totalPages; j++) {
+		$('#showpageButton').append(
+				"<button style='float: right;' class='btn' id='myPage' value='"
+						+ j + "' onclick='change(" + j + ")'>" + j
+						+ "</button>")
+	}
+
+	$('#showpageButton').append(
+			"<button style='float: right;' class='btn' id='nextbutton' value='"
+					+ data.totalPages + "' onclick='next()'>Next</button>");
+
+}
+
+//查詢我的課程 
+function showMyCourse(indexPage) {
+
+	$.ajax({
+		type : 'get',
+		url : '/course/findbymember.controller/' + indexPage,
+		dataType : 'JSON',
+		contentType : 'application/json;charset=utf-8',
+		success : function(data) {
+			console.log("success");
+			showCourseList(data);
+		}
+	});
+}
+
+function showInformation(courseId) {
+	//alert(courseId);
+
+	$.ajax({
+		type : 'get',
+		url : '/course/queryinformation.controller/' + courseId,
+		dataType : 'text',
+		contentType : 'application/json',
+		success : function(str) {
+
+			$('#showInformation').empty("");
+			$('#showInformation').append(str);
+			//showAllCourse(indexPage);
+		}
+	});
+
+	//load(indexPage);
+}
+ 
    function dropCourse(courseId){	  
 	if(confirm("確實要退選"+courseId+"嗎?")){
 
@@ -73,43 +202,7 @@
 			  }	
 	} 
  	
-   
-   function load(indexPage){
-	   $.ajax({
-		   type:'get',
-		   url:'/course/findbymember.controller', 
-		   dataType:'JSON',
-		   contentType:'application.json',
-		   success: function(data){
-			   
-			  // console.log('success:' + data);
-			  // var json = JSON.stringify(data,null,4);
-			   //console.log('json:' + json);
-			   
-			   $('#showcourse').empty("");
-			   
-			   if(data==null){
-				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
-			   }else{
-				   var table = $('#showcourse');
-				   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師編號:</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th><th>退選</th></tr>");
-				   
-				   $.each(data, function(i,n){
-					   var tr = "<tr align='center'>" + "<td>" + n.id + "</td>" +
-					            "<td>" + n.courseName + "</td>" + "<td>" + n.category + "</td>" +
-					            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
-					            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
-					            "<td>" + n.maxStudentNum + "</td>" +
-					            "<td><button id='' type='button' class='' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
-					        	"<td><button id='' type='button' class='' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
-					            "</tr>";
-					   table.append(tr);
-				   });			   
-			   }
-		   }
-	   });
-   }
-   
+
    function showInformation(courseId){
 		 //alert(courseId);
 		 $.ajax({
@@ -129,28 +222,50 @@
 </script>
 
 </head>
-<body>
+<body class="game-info">
+	<div style="width: 1205px; height: 194.13px">
+		<c:import url="/top_memberlogin"></c:import>
+	</div>
 
+		<div class="row" style="margin-left:15px;margin-top:50px">
+			<div class="container">
 
-<div style="width:1205px;height:194.13px">
-<c:import url="/top"></c:import>
-</div>
+				<div class="col-md-1"></div>
+				<div  class="col-md-7">
 
-	<div id="productListTitle">會員選課系統</div>
-
-		<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a>
-		<a href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a>
-		<a href="<c:url value='/myCourseSchedule' />">我的課表</a>
-		<a href="<c:url value='/' />">回首頁</a>
-
-	<table id="showcourse" border="1"></table>
-	<table id="showpage">	</table>
-	<br>
-	<div id='showInformation'></div>
-	<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
-	
-	<br>
-<a href="<c:url value='/' />">回首頁</a>
-<c:import url="/bottom"></c:import>
+					
+				</div>
+				<div class="col-md-4"></div>
+			</div>
+			</div>
+			<div class="row">
+				<div class="container">
+				<div class="col-md-1"></div>
+					<div class="col-md-7">
+						<table class="table table-bordered" id="showcourse" border="1"></table>
+						<table class="table">
+							<tr>
+								<td id="showpageInfo"></td>
+								<td id="showpageButton" align="right"></td>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-3">
+						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
+								<h2 style="color:white">
+									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
+								</h2>
+								<span class="date"></span>
+								<br>
+							</div>
+							<ul class="other-stroies" id='showInformation'></ul>
+						</div>
+					</div>
+				<div class="col-md-1"></div>
+				</div>
+			</div>
+<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
+	<c:import url="/bottom"></c:import>
 </body>
 </html>
