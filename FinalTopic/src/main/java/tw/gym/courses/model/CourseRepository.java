@@ -30,8 +30,8 @@ public interface CourseRepository extends JpaRepository<Course, Integer>,CourseR
 	@Query(value="select information from Course c where c.id = :courseId")
 	public String findInfoById(Integer courseId);
 
-	@Query(value="from Course c where c.date >= :thisweek and c.date < :nextweek")
-	public List<Course> findOneWeekCourse(Date thisweek, Date nextweek);
+	@Query(value="from Course c where c.date >= :monday and c.date < :sunday")
+	public List<Course> findOneWeekCourse(Date monday, Date sunday);
 	
 
 	
