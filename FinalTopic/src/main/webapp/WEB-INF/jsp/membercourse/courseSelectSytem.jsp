@@ -306,6 +306,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	<div style="width: 1205px; height: 194.13px">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
+${loginUser} == null
 
 	<section id="contant" class="contant main-heading single-blog">
 		<div class="row">
@@ -326,7 +327,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<br> <br>
 						<form>
 
-							<select name="category" class="">
+							<select  name="category" class="">
 								<option value="" label="請選擇課程種類" selected="selected"></option>
 								<option value="舞蹈類課程">舞蹈類課程</option>
 								<option value="瑜珈課程">瑜珈課程</option>

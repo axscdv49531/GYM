@@ -19,6 +19,27 @@ body {
   font-size: 15pt;
   color: #F0FFFF;
 }
+
+legend{
+  color: #F0FFFF;
+}
+
+button{
+ color:black;
+}
+
+option {
+ background-color:white;
+ color:black;
+}
+
+
+select{
+background-color:white;
+color:black;
+}
+
+
 .megamenu .nav,
 .megamenu .collapse,
 .megamenu .dropup,
