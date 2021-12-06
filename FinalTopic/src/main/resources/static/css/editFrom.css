@@ -6,11 +6,18 @@
 	border-color:black;
 	width:400px;
 	height:400px;
-	margin:0 auto;	
 	border-radius:20px;
 	font-size:30px;
-	margin-top: 150px;
+	margin-top: 100px;
 	font-family:DFKai-sb;
+	clear: both;
+	position: absolute;
+	top:30%;
+	left: 40%;
+	background-color:white;
+	color: black;
+
+
 }
 .menuName{
 	font-size:25px;
