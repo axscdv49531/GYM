@@ -111,16 +111,35 @@ public class CourseController {
 	}
 
 	// 查詢課程by會員，已加選課程 (我的課表)
-	@GetMapping("/findbymember.controller") // http://localhost:8081/course/findbymember.controller
+	@GetMapping("/findbymember.controller/{pageNo}") // http://localhost:8081/course/findbymember.controller
 	@ResponseBody
-	public List<Course> processFindByMember(HttpSession session) {
+	public Map<String, Object> processFindByMember(@PathVariable("pageNo") int pageNo,HttpSession session) {
 		MemberBean member =(MemberBean)session.getAttribute("loginUser");
-		//Integer memberNumber = 1001;
+//		Integer memberNumber = 1001;
 		Integer memberNumber= member.getNumber();
-		return cService.findAllByMember(memberNumber);
+		 
+		List<Course> courses = cService.findAllByMember(memberNumber);
+		//System.out.println(courses.toString());
+		
+		int pageSize = 10;// 每頁顯示的筆數
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		
+		//List轉Page
+        int start = (int) pageable.getOffset();
+        int end = (start + pageable.getPageSize()) > courses.size() ? courses.size() : (start + pageable.getPageSize());
+        Page<Course> page = new PageImpl<Course>(courses.subList(start, end), pageable, courses.size());
+        
+        Map<String, Object> pagemap = new HashMap<>();
+
+		pagemap.put("pageContent", page.getContent());
+		pagemap.put("totalPages", page.getTotalPages());
+		pagemap.put("totalElements", page.getTotalElements());
+
+		return pagemap;
+		
 	}
 	
-	// 查詢課程by會員，已加選課程 (我的課表)
+	// 查詢課程by會員，已經結束的課程 (上課紀錄)
 	@GetMapping("/findpastbymember.controller/{pageNo}")
 	@ResponseBody
 	public Map<String, Object> processFindPastByMember(@PathVariable("pageNo") int pageNo,HttpSession session) {

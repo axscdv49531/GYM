@@ -269,37 +269,6 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		//load(indexPage);
 	}
 </script>
-
-<!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	href="../WEB-INF/membercourse/css/bootstrap.min.css">
-<!-- Site CSS -->
-<link rel="stylesheet" href="../css/style.css">
-<!-- Colors CSS -->
-<link rel="stylesheet" href="../css/colors.css">
-<!-- ALL VERSION CSS -->
-<link rel="stylesheet" href="../css/versions.css">
-<!-- Responsive CSS -->
-<link rel="stylesheet" href="../css/responsive.css">
-<!-- Custom CSS -->
-<link rel="stylesheet" href="../css/custom.css">
-<!-- font family -->
-<link
-	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-<!-- end font family -->
-<link rel="stylesheet" href="../css/3dslider.css" />
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-	rel="stylesheet" type="text/css">
-<script src="/js/3dslider.js"></script>
-
-<!-- ALL JS FILES -->
-<script src="../js/all.js"></script>
-<!-- ALL PLUGINS -->
-<script src="../js/custom.js"></script>
-
-
 </head>
 
 <body class="game-info">
@@ -307,16 +276,12 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 
-		<div class="row">
+		<div class="row" style="margin-left:15px;margin-top:50px">
 			<div class="container">
 
 				<div class="col-md-1"></div>
 				<div  class="col-md-7">
-				
-					<a href="<c:url value='/courseSelectSystem' />">查詢所有課程</a> <a
-					href="<c:url value='/selectCourseRecord' />">查詢選課紀錄</a> <a
-					href="<c:url value='/myCourseSchedule' />">我的課表</a> <a
-					href="<c:url value='/' />">回首頁</a> <br>
+
 					<fieldset>
 						<legend>課程查詢：</legend>
 						<a href="<c:url value='/thisweekcourse' />">本週課程</a>
@@ -326,27 +291,27 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						<form>
 
 							<select  name="category" class="">
-								<option value="" label="請選擇課程種類" selected="selected"></option>
+								<option value=""  selected="selected">請選擇課程種類</option>
 								<option value="舞蹈類課程">舞蹈類課程</option>
 								<option value="瑜珈課程">瑜珈課程</option>
 								<option value="心肺肌力課程">心肺肌力課程</option>
 								<option value="其他">其他</option>
 							</select> <select name="classroom" class="">
-								<option value="" label="請選擇教室" selected="selected"></option>
+								<option value=""  selected="selected">請選擇教室</option>
 								<option value="A">A教室</option>
 								<option value="B">B教室</option>
 								<option value="C">C教室</option>
 							</select> <select name="date" class="">
-								<option value="" label="請選擇課程日期" selected="selected" />
+								<option value=""  selected="selected">請選擇課程日期</option>
 								<c:forEach var="onedate" items="${dateList}">
 									<option value="${onedate}">${onedate}</option>
 								</c:forEach>
 							</select> <select name="coachId" class="">
-								<option value="" label="請選擇授課老師" selected="selected" />
+								<option value="" selected="selected">請選擇授課老師</option>
 								<c:forEach var="oneCoach" items="${coachList}">
 									<option value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 								</c:forEach>
-							</select> <input class="" type="button" value="查詢"
+							</select> <input style = "color:black" class="" type="button" value="查詢"
 								onclick='sendQuery(1)'>
 						</form>
 					</fieldset>
@@ -367,8 +332,8 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						</table>
 					</div>
 					<div class="col-md-3">
-						<div class="content-widget top-story" style="background-color:black">
-							<div class="top-stroy-header" style="background-color:black">
+						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
 								<h2 style="color:white">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>

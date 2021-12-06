@@ -39,7 +39,7 @@
 					<div class="full">
 						<div class="logo">
 							<a href="<c:url value='/' />"><img
-								src="../images/springfitnesslogo5.jpg" alt="index" /></a>
+								src="../images/springfitnesslogo6.png" alt="index" /></a>
 						</div>
 					</div>
 				</div>
