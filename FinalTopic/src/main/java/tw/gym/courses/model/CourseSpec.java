@@ -29,8 +29,8 @@ public class CourseSpec implements Specification<Course> {
 	private Date date;
 	private Integer coachId;
 	
-	private Date monday;
-	private Date sunday;
+//	private Date monday;
+//	private Date sunday;
 	
 		@Override
 		public Predicate toPredicate(Root root, CriteriaQuery criteriaQuery, CriteriaBuilder criteriaBuilder) {
@@ -51,12 +51,12 @@ public class CourseSpec implements Specification<Course> {
 				predicates.add(criteriaBuilder.equal(root.get("coach").get("coachId"), coachId));
 			}
 			
-			//查詢一周課程用
-			if(null != monday) {
-				predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("date"), monday));
-				predicates.add(criteriaBuilder.lessThan(root.get("date"), sunday));
-			}
-			
+//			//查詢一周課程用
+//			if(null != monday) {
+//				predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("date"), monday));
+//				predicates.add(criteriaBuilder.lessThan(root.get("date"), sunday));
+//			}
+//			
 			
 			
 			return criteriaQuery.where(predicates.toArray(new Predicate[predicates.size()])).getRestriction();

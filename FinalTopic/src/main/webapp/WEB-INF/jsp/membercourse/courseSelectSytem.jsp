@@ -345,7 +345,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 					<fieldset>
 						<legend>課程查詢：</legend>
-						<a href="<c:url value='/thisweekcourse' />">本週課程</a>
+						<a href="<c:url value='/timetable' />" target="_blank">顯示本週課表</a><br>
 						<button onclick='todayCourse(1)'>當日課程</button>
 						<button onclick='showAllCourse(1)'>查詢所有課程</button>
 						<br> <br>

@@ -79,9 +79,8 @@ public class CourseServiceImpl implements CourseService{
 		return cReps.findInfoById(courseId);
 	}
 	
-	public List<Course> findOneWeekCourse(Date thisweek, Date nextweek){
-		
-		return  cReps.findOneWeekCourse(thisweek, nextweek);
+	public List<Course> findOneWeekCourse(Date thismonday, Date nextmonday,String classroom){
+		return  cReps.findOneWeekCourse(thismonday, nextmonday, classroom);
 	}
 //	
 }

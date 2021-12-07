@@ -1,5 +1,6 @@
 package tw.gym.courses.controller;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -214,29 +215,37 @@ public class CourseController {
 		return page.getContent();// 取得所取得的該頁資料內容
 	}
 */
-//	//查詢當周課程
-//	@GetMapping("/querythisweekcourse.controller/{pageNo}") // http://localhost:8081/course/querythisweekcourse.controller
-//	@ResponseBody
-//	public Map<String, Object> querythisweekcourse(@RequestBody Course course, @PathVariable("pageNo") int pageNo, Model m) {
-//
-//		
-//		
-//
-//		int pageSize = 10;
-//		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.ASC, "date").and(Sort.by(Direction.ASC, "period")));
-//		
-//		
-//		Page<Course> page = cService.findAll(courseSpec, pageable);
-//
-//		Map<String, Object> pagemap = new HashMap<>();
-//
-//		pagemap.put("pageContent", page.getContent());
-//		pagemap.put("totalPages", page.getTotalPages());
-//		pagemap.put("totalElements", page.getTotalElements());
-//
-//		return pagemap;
-//		// return page.getContent();
-//	}
+	
+	//查詢當周課程
+	@GetMapping("/querythisweekcourse.controller/{classroom}") // http://localhost:8081/course/querythisweekcourse.controller
+	@ResponseBody
+	public List<Course> querythisweekcourse(@PathVariable("classroom") String classroom) {
+
+		Date date= new Date();
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		// 獲得當前日期是一個星期的第幾天
+		int dayWeek = cal.get(Calendar.DAY_OF_WEEK);
+		if (1 == dayWeek) {
+			cal.add(Calendar.DAY_OF_MONTH, -1);
+		}
+		// 設定一個星期的第一天，按中國的習慣一個星期的第一天是星期一
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		// 獲得當前日期是一個星期的第幾天
+		int day = cal.get(Calendar.DAY_OF_WEEK);
+		// 根據日曆的規則，給當前日期減去星期幾與一個星期第一天的差值
+		cal.add(Calendar.DATE, cal.getFirstDayOfWeek() - day);
+		Date thisWeekMonday = cal.getTime();
+		//當周周一，加七天，得到下周周一
+		cal.setTime(thisWeekMonday);
+		cal.add(Calendar.DATE, 7);
+		Date nextWeekMonday = cal.getTime();
+		
+		System.out.println(thisWeekMonday);
+		
+		return cService.findOneWeekCourse(thisWeekMonday, nextWeekMonday,classroom);
+	
+	}
 	
 	// 查詢課程簡介
 	@GetMapping("/queryinformation.controller/{courseId}") // http://localhost:8081/course/queryinformation.controller/178
