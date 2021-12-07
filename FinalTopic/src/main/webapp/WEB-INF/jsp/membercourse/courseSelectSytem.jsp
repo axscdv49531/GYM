@@ -120,6 +120,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 		$('#showcourse').empty("");
 		$('#showInformation').empty("");
 		$('#showpageButton').empty("");
+
 		
 
 		if (data.pageContent == null) {

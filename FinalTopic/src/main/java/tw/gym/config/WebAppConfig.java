@@ -59,6 +59,7 @@ public class WebAppConfig implements WebMvcConfigurer {
 		registry.addViewController("/timetable").setViewName("membercourse/timetable");
 		//registry.addViewController("/courseQuery").setViewName("course/courseQuery");
 		
+		//管理者介面
 		registry.addViewController("/adminindex").setViewName("admin/adminindex");
 		registry.addViewController("/adminsidebar").setViewName("admin/adminsidebar");
 		registry.addViewController("/adminnavbar").setViewName("admin/adminnavbar");
