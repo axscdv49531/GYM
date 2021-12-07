@@ -115,7 +115,7 @@
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown ">私人課程<span
 																class="caret"></span></a>
-															<ul class="dropdown-menu mega-dropdown-menu coach">
+															<ul style="margin-left: 240px;" class="dropdown-menu mega-dropdown-menu">
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">一對一課程</li>
