@@ -2,27 +2,24 @@
 
 
 body{
-	background-image:url('images/hero-1.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-image:url('images/starbackground3.jpg');
+	background-repeat: repeat;
 	background-color: rgba(0, 0, 0, .6);
 	
 }
 
 
-
 .maindiv{
 	position:relative;
-	height:500px;
+	height:550px;
 	width:500px;
-	margin-top: 200px;
-	background-color:#3C3C3C;
+	margin-top: 300px;
+	background-color: rgb(33,37,41);
 	
 	clear: both;
-	border-style:solid;
+	border-style:none;
 	border-width:1px;
 	border-color:black;   
-	margin-left:60%;
 	color:white;
 	
 }
@@ -49,6 +46,7 @@ font{
 	background-color:#3C3C3C;
 	font-family:DFKai-sb;
 	color: white;
+	border-color:black; 
 }
 
 

@@ -14,8 +14,8 @@
 	position: absolute;
 	top:30%;
 	left: 40%;
-	background-color:white;
-	color: black;
+	background-color: 	#8E8E8E;
+	color:black;
 
 
 }
@@ -25,6 +25,7 @@
 	border-style:none;
 	margin-left:30px;
 	margin-top:25px;
+	background-color: 	#8E8E8E;
 	
 }
 .price{
@@ -33,6 +34,7 @@
 	border-style:none;
 		margin-left: 30px;
 		margin-top: 25px;
+		background-color: 	#8E8E8E;
 	
 }
 .qty1{
@@ -41,6 +43,7 @@
 	border-style:none;
 		margin-left: 30px;
 		margin-top: 25px;
+			background-color: 	#8E8E8E;
 	
 }
 .title{

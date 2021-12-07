@@ -238,7 +238,7 @@
 			<br>
 			<c:set var="sum" value="0"></c:set>
 
-			<div style="margin-left: 150px; margin-top:50px">
+			<div style="margin-left: 150px; margin-top: 50px">
 				<c:forEach var="cart" items="${OrderMenuList}">
 
 
@@ -247,8 +247,7 @@
 							<a href='DeleteShoppingcart.controller?id=${cart.getId()}'><img
 								src="images/cross.png" class="icon"></a>
 						</div>
-						<img id="image1" src="images/${cart.getMenu().getMenuName()}.png"
-							class="img01"> <br> <font size="5">${cart.getMenu().getMenuName()}</font>
+						<br> <br> <br> <font size="5">${cart.getMenu().getMenuName()}</font>
 						<br> <font size="5">$${cart.getMenu().getPrice()}</font> <br>
 						<font size="5">您所訂購的數量:${cart.getQty()}</font> <br>
 						<c:set var="sum"
@@ -261,9 +260,9 @@
 				</c:forEach>
 
 			</div>
-			
-			
-			
+
+
+
 
 
 			<ul class="transition,menu,">
