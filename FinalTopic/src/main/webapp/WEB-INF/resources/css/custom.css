@@ -504,8 +504,15 @@ div.menu .dropdown-menu {
 	margin-left: 170px;
 }
 
+.coach {
+	margin-left: 360px;
+}
+
 .classRes {
 	margin-left: 500px;
+}
+.nClassRes {
+	margin-left: 400px;
 }
 
 div.menu .dropdown-menu {

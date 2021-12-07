@@ -105,7 +105,7 @@
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown">團體課程<span
 																class="caret"></span></a>
-															<ul class="dropdown-menu mega-dropdown-menu classRes">
+															<ul class="dropdown-menu mega-dropdown-menu nClassRes">
 																<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">團體課程 Cousres </li>

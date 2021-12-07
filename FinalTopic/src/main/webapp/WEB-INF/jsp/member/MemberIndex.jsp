@@ -36,7 +36,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-    <script src="../js/3dslider.js"></script>
+<script src="../js/3dslider.js"></script>
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>
@@ -66,15 +66,15 @@
 									<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
-										<li class="login-modal">
-										<a href="/updatePassword/<c:out value='${loginUser.number}' />" class="login">
-										<svg
-													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-													fill="currentColor" class="bi bi-lock-fill"
-													viewBox="0 0 16 16">
+										<li class="login-modal"><a
+											href="/updatePassword/<c:out value='${loginUser.number}' />"
+											class="login"> <svg xmlns="http://www.w3.org/2000/svg"
+													width="16" height="16" fill="currentColor"
+													class="bi bi-lock-fill" viewBox="0 0 16 16">
                                                     <path
 														d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                                </svg><i class="fa fa-user"></i>密碼變更</a></li>
+                                                </svg><i class="fa fa-user"></i>密碼變更
+										</a></li>
 										<li class="logout-modal"><a
 											href="<c:url value='/logout' />" class="logout"><svg
 													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -143,25 +143,20 @@
 																	</ul>
 																</li>
 															</ul></li>
-														<li class="dropdown-header"><a
-															href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-														<!--                                                         <li><a href="/classRes">預約私人課程</a></li> -->
-
+														<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 																class="caret"></span></a>
-															<ul class="dropdown-menu mega-dropdown-menu member">
+															<ul class="dropdown-menu mega-dropdown-menu coach">
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">一對一課程</li>
 																		<li><a class="dropdown-item"
 																			href="/classReservation">課程預約</a></li>
 																		<li><a class="dropdown-item"
-																			href="/classIntroduction">課程介紹</a>
-																		</li>
+																			href="/classIntroduction">課程介紹</a></li>
 																		<li><a class="dropdown-item"
-																			href="/memberViewClassLists">我的課程
-																		</a></li>
+																			href="/memberViewClassLists">我的課程 </a></li>
 																	</ul>
 																</li>
 															</ul>
@@ -170,13 +165,16 @@
 																class="caret"></span></a>
 															<ul class="dropdown-menu mega-dropdown-menu classRes">
 																<li class="col-sm-12">
-																<ul>
-															<li class="dropdown-header">團體課程 Cousres </li>
-															<li><a class="dropdown-item" href="/courseSelectSystem">預約課程</a></li>
-															<li><a class="dropdown-item" href="/myCourseSchedule">我的課程</a></li>
-															<li><a class="dropdown-item" href="/pastCourseRecord">上課紀錄</a></li>
+																	<ul>
+																		<li class="dropdown-header">團體課程 Cousres</li>
+																		<li><a class="dropdown-item"
+																			href="/courseSelectSystem">預約課程</a></li>
+																		<li><a class="dropdown-item"
+																			href="/myCourseSchedule">我的課程</a></li>
+																		<li><a class="dropdown-item"
+																			href="/pastCourseRecord">上課紀錄</a></li>
 
-														</ul>
+																	</ul>
 																</li>
 															</ul></li>
 
