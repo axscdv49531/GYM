@@ -24,6 +24,9 @@ public interface OrderMenuDao extends JpaRepository<OrderMenu, Integer> {
 	@Query(value="Select * from OrderMenu where ordertime >= ?1 and ordertime<?2",nativeQuery=true)
 	public List<OrderMenu> findByTime(String date,String date1);
 	
+	@Query(value="Select * from OrderMenu where  orderId = ?1 and statuse= ?2",nativeQuery=true)
+	public List<OrderMenu> findAllByStatuseAndOrderId(Integer id,String statuse);
+	
 	
 
 	

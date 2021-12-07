@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import tw.gym.member.Model.MemberBean;
 
 @Entity
@@ -41,13 +43,14 @@ public class OrderMenu {
 	@Column(name="STATUSE")
 	private String statuse;
 	
+	@JsonIgnore
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "FK_MENU_ID")
 	private Menu menu;
 	
 	@Column(name="PRICE")
 	private int price;
-	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="FK_MEMBER_ID")
 	private MemberBean memberBean;

@@ -1,3 +1,6 @@
+
+
+
 package tw.gym.menu.model;
 
 import java.util.Date;
@@ -8,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+
+
 
 
 
@@ -103,6 +108,29 @@ public class OrderMenuServiceImp implements OrderMenuService {
 	public List<OrderMenu> findByTime(String date,String date1) {
 		// TODO Auto-generated method stub
 		return orderMenuDao.findByTime(date,date1);
+	}
+
+
+
+
+
+	@Override
+	public List<OrderMenu> findAllByStatuseAndOrderId(Integer id,String statuse ) {
+		// TODO Auto-generated method stub
+		return orderMenuDao.findAllByStatuseAndOrderId(id,statuse);
+	}
+
+
+
+
+
+	@Override
+	public OrderMenu findById(Integer id) {
+		Optional<OrderMenu>op1 = orderMenuDao.findById(id);
+		if(op1.isPresent()) {
+			return op1.get();
+		}
+		return null;
 	}
 
 
