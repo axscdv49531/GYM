@@ -33,12 +33,34 @@
 
 <script>
 	function print_value() {
-		var startString = document.getElementById("start").value + ":00";
-		var startTime = new Date("1970-01-01 " + startString);
-		var endString = document.getElementById("end").value + ":00";
-		var endTime = new Date("1970-01-01 " + endString);
-		var duration = (endTime - startTime) / (1000 * 60 * 60);
-		document.getElementById("show").value = duration;
+// 		var startString = document.getElementById("start").value + ":00";
+// 		var startTime = new Date("1970-01-01 " + startString);
+// 		var endString = document.getElementById("end").value + ":00";
+// 		var endTime = new Date("1970-01-01 " + endString);
+// 		var duration = (endTime - startTime) / (1000 * 60 * 60);
+// 		document.getElementById("show").value = duration;
+
+
+
+        var startString = (document.getElementById("start").value).substring(2,0);
+        
+        var startInt = parseInt(startString)
+//         var startTime = new Date("1970-01-01 " + startString);
+        var durationString = document.getElementById("show").value;
+        var durationInt = parseInt(durationString);
+        var endInt = startInt + durationInt;
+        var endString = endInt.toString() + ":00";
+        document.getElementById("end").value = endString;
+//         var duration = document.getElementById("show").value;
+//         startTime.setHours(startTime.getHours()+duration);
+        
+//         startTime.format('yyyy-MM-dd hh:mm:ss');
+//         console.log(startTime)
+//          var endTime = startTime.getHours;
+//         console.log(endTime)
+//         var endString = document.getElementById("end").value + ":00";
+//         var endTime = new Date("1970-01-01 " + endString);
+//         document.getElementById("show").value = duration;
 	}
 </script>
 </head>
@@ -66,23 +88,22 @@
 			</tr>
 			<tr>
 				<td align='right'>開課時間：</td>
-				<td><form:select id="start" path="classStartTimeTemp">
+				<td><form:select id="start" onchange="print_value();" path="classStartTimeTemp">
 						<form:options items="${selectData}" />
 
 					</form:select> <br> <form:errors path="classStartTimeTemp" />
 			</tr>
 			<tr>
-				<td align='right'>結束時間：</td>
-				<td><form:select id="end" onchange="print_value();"
-						path="classEndTimeTemp">
-						<form:options items="${selectData}" />
-
-					</form:select> <br> <form:errors path="classEndTimeTemp" />
+				<td align='right'>課程時長：</td>
+				<td><form:input id="show" type="number" value="1" min="1" max="2" step="1" onchange="print_value();" path="classDuration" />小時<br>
+					<form:errors path="classDuration" />
 			</tr>
 			<tr>
-				<td align='right'>課程時長：</td>
-				<td><form:input id="show" path="classDuration" readonly="true" />小時<br>
-					<form:errors path="classDuration" />
+				<td align='right'>結束時間：</td>
+				<td><form:input style="width:80px" id="end" path="classEndTimeTemp" readonly="true" />
+<%-- 						<form:options items="${selectData}" /> --%>
+
+					 <br> <form:errors path="classEndTimeTemp" />
 			</tr>
 			<tr>
 				<td align='right'>課程價格：</td>
