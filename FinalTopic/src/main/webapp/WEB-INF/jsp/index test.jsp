@@ -168,6 +168,8 @@
 	<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
 	<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a>
 	<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a>
+	
+		<a class="nav-link" href="<c:url value= '/adminindex'/>">管理者專區</a>
 
 
 </body>

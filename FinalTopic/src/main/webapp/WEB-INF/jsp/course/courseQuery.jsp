@@ -197,6 +197,14 @@ function showAllCourse(indexPage){
 </head>
 <body>
 
+<div class="wrapper">
+       <c:import url="/adminsidebar"></c:import> 
+        <div class="main-panel">
+     		<c:import url="/adminnavbar"></c:import> 
+            <div class="content">
+                <div class="container-fluid">
+<!--                 裡面寫東西 -->
+
 	<header>
 		<a href="<c:url value='/courseQuery' />">查詢所有課程(作廢)</a>
 		<a href="<c:url value='/courseform' />">新增課程</a>
@@ -253,22 +261,19 @@ function showAllCourse(indexPage){
 	
 	<input type="button" value="查詢" onclick='sendQuery(1)'>
 	
-	
-
 </form>
-
 </fieldset>
 
-
 </div>
-	
-	
-	
 	
 	<table id="showcourse" border="1"></table>
 	<table><tr id="showpage"></tr></table>
 	<table id="showstudent" border="1"></table>
 	<br>
 <a href="<c:url value='/' />">回首頁</a>
+           </div>
+            </div>
+      </div>
+</div>
 </body>
 </html>
