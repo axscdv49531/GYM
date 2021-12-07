@@ -180,9 +180,6 @@ public String coachClassAdd(Model model) {
             return "/coach/coachClassAdd";
         }
 
-        System.out.println(cBean.getClassName());
-        System.out.println(cBean.getClassStartTimeTemp());
-        System.out.println(cBean.getClassEndTimeTemp());
 
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
