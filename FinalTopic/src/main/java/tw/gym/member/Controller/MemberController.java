@@ -91,7 +91,7 @@ public class MemberController {
     public String insertMember(Model m) {
         MemberBean memberBean = new MemberBean();
         m.addAttribute("memberBean", memberBean);
-        return "member/MemberForm";
+        return "administrator/MemberForm";
     }
 
     @PostMapping(path = "/insertMember")
@@ -102,7 +102,7 @@ public class MemberController {
 
         if (bindingResult.hasErrors()) {
             System.out.println(bindingResult.getAllErrors());
-            return "member/MemberForm";
+            return "administrator/MemberForm";
         }
         // if (memberBean != null) {
         // if(memberBean.getId().equals(memberService. == true);

@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.repository.CoachRepository;
+import tw.gym.member.Dao.AdminRepository;
 import tw.gym.member.Dao.MemberRepository;
+import tw.gym.member.Model.Admin;
 import tw.gym.member.Model.MemberBean;
 
 @Component
@@ -27,6 +29,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 	@Autowired
 	CoachRepository coaRepo;
 
+	@Autowired
+	AdminRepository admRepo;
+	
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -38,9 +43,16 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		Optional<MemberBean> mBean = memRepo.findByEmail(userName);
 		if (mBean.isEmpty()) {
 			Optional<CoachBean> cBean = coaRepo.findByEmail(userName);
+			if (cBean.isEmpty()) {
+				System.out.println(100);
+				Optional<Admin> aBean = admRepo.findByEmail(userName);
+				session.setAttribute("loginUser", aBean.get());
+				response.sendRedirect("/login/AdminSuccess");
+			}else {
 			System.out.println(2);
 			session.setAttribute("loginUser", cBean.get());
 			response.sendRedirect("/login/CoachSuccess");
+			}
 		} else {
 			session.setAttribute("loginUser", mBean.get());
 			response.sendRedirect("/login/MemberSuccess");

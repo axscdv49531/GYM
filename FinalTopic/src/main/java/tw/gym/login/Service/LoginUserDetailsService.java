@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.service.CoachService;
 import tw.gym.login.Validator.UserNotFoundException;
+import tw.gym.member.Model.Admin;
 import tw.gym.member.Model.MemberBean;
+import tw.gym.member.Service.AdminService;
 import tw.gym.member.Service.MemberService;
 
 @Service
@@ -23,25 +25,34 @@ public class LoginUserDetailsService implements UserDetailsService {
 
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private CoachService coachService;
+
+	@Autowired
+	private AdminService adminService;
 
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		Optional<MemberBean> member = memberService.findEmail(email);
-		
+
 		if (member.isEmpty()) {
-			Optional<CoachBean> coach = coachService.findByEmail(email); 
+			Optional<CoachBean> coach = coachService.findByEmail(email);
 			if (coach.isEmpty()) {
-				throw new UserNotFoundException("Can't Find User");			
+				Optional<Admin> admin = adminService.findByEmail(email);
+				if (admin.isEmpty()) {
+					throw new UserNotFoundException("Can't Find User");
+				} else {
+					System.out.println(1000);
+					return new User(admin.get().getEmail(), admin.get().getPassword(), Collections.emptyList());
+				}
 			} else {
 //				Collection<? extends GrantedAuthority> authorities= 
 //		                UserAuthorityUtils.createAuthorities(coach.get());
 				System.out.println(3);
-				return  new User(coach.get().getCoachEmail(), coach.get().getCoachPassword(), Collections.emptyList());
-			}			
+				return new User(coach.get().getCoachEmail(), coach.get().getCoachPassword(), Collections.emptyList());
+			}
 		} else {
 //			Collection<? extends GrantedAuthority> authorities= 
 //	                UserAuthorityUtils.createAuthorities(member.get());
@@ -63,5 +74,5 @@ public class LoginUserDetailsService implements UserDetailsService {
 //                //UserAuthorityUtils是helper class
 //		return new User(member.getEmail(), member.getPassword(), authorities);
 //	}
-	
+
 }
