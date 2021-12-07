@@ -224,7 +224,7 @@
 		<!--顯示資訊及訂餐-->
 		<div class="editFrom">
 			<a href="shoppingCart.controller" > <img src="images/cross.png"
-				style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px"></a>
+				style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px;"></a>
 			<div class="title">修改訂單</div>
 			<br> <font class="menuName">產品名稱:</font>
 			<form:input path="menu.menuName" class="menuName" size="10"
@@ -239,7 +239,7 @@
 			<div style="display: none">
 				<form:input path="id" />
 			</div>
-		 <input type="submit" value="更改此訂單" class="detailDiv01Font1" style="cursor: pointer;"/>
+		 <input type="submit" value="更改此訂單" class="detailDiv01Font1" style="cursor: pointer;	background-color: 	#8E8E8E;"/>
 		</div>
 
 	</form:form>

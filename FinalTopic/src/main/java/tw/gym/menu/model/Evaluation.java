@@ -5,11 +5,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import tw.gym.member.Model.MemberBean;
 
 @Entity
 @Table(name="evaluation")
@@ -30,9 +34,7 @@ public class Evaluation {
 	@Column(name="MENUNAME")
 	private String menuname;
 	
-	@JsonIgnore
-	@Column(name="FK_MEMBER_ID")
-	private String fk_member_id;
+
 
 
 	public Evaluation() {
@@ -72,9 +74,7 @@ public class Evaluation {
 	}
 
 
-	public String getFk_member_id() {
-		return fk_member_id;
-	}
+
 
 
 	public void setEvaluationid(Integer evaluationid) {
@@ -97,10 +97,6 @@ public class Evaluation {
 	}
 
 
-	public void setFk_member_id(String fk_member_id) {
-		this.fk_member_id = fk_member_id;
-	}
-	
 	
 	
 	

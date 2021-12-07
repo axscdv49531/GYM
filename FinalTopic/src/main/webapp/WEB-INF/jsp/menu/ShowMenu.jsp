@@ -36,11 +36,11 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-<<<<<<< HEAD
+
 <script src="/js/3dslider.js"></script>
-=======
+
     <script src="../js/3dslider.js"></script>
->>>>>>> origin/ryan1204
+
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>
@@ -195,6 +195,8 @@
 
 														<li><a href="shoppingCart.controller" >購物車 
 														</a></li>
+														<li><a href="ToEvaluationMainPage" >餐點滿意度調查
+														</a></li>
 														<li><a href="news.html">周邊商品</a></li>
 
 													</ul>
@@ -288,9 +290,9 @@
 						<form:select path="menu.menuName" size="1"
 							class="detailDiv01Font1" id="menuSelect">
 							<br>
-							<option value="0">請選擇餐點</option>
+							<option value="0" style="background-color: 	#8E8E8E">請選擇餐點</option>
 							<c:forEach var="menuList" items="${MenuList}">
-								<option value="${menuList.getMenuName()}">${menuList.getMenuName()}</option>
+								<option value="${menuList.getMenuName()}" style="background-color: #8E8E8E">${menuList.getMenuName()}</option>
 							</c:forEach>
 
 						</form:select>

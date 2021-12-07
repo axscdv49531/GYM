@@ -2,6 +2,8 @@ package tw.gym.menu.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import tw.gym.member.Model.MemberBean;
 import tw.gym.menu.model.Evaluation;
 import tw.gym.menu.model.EvaluationService;
 import tw.gym.menu.model.Menu;
