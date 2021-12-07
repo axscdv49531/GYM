@@ -45,8 +45,8 @@
     -->
             <div class="sidebar-wrapper">
                 <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                        Creative Tim
+                    <a href="#" class="simple-text">
+                        ADMIN
                     </a>
                 </div>
                 <ul class="nav">
@@ -69,7 +69,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="<c:url value='/courseQuery' />">
+                        <a class="nav-link" href="<c:url value='' />">
+<!--                         /courseQuery -->
                             <i class="nc-icon nc-paper-2"></i>
                             <p>團體課程專區</p>
                         </a>
@@ -82,7 +83,7 @@
                     </li>
                     <li>
                         <a class="nav-link" href="./maps.html">
-                            <i class="nc-icon nc-pin-3"></i>
+                            <i class="nc-icon nc-money-coins"></i>
                             <p>周邊商品專區</p>
                         </a>
                     </li>
@@ -93,9 +94,9 @@
                         </a>
                     </li>
                     <li class="nav-item active active-pro">
-                        <a class="nav-link active" href="upgrade.html">
+                        <a class="nav-link active" href="/">
                             <i class="nc-icon nc-alien-33"></i>
-                            <p>Upgrade to PRO</p>
+                            <p>Back to Spring Fitness</p>
                         </a>
                     </li>
                 </ul>

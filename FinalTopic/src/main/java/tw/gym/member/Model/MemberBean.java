@@ -71,12 +71,14 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy = "memberBean")
 	Set<DepositeBean> depositeBean = new HashSet<>();
 
+	//Dean
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Member_Course> MC = new LinkedHashSet<Member_Course>();
 
 	// Mark
 	@OneToMany(mappedBy = "mBean")
+	@JsonIgnore
 	private Set<ClassMemberBean> cmBean = new HashSet<ClassMemberBean>();
 
 	public Set<Member_Course> getMC() {

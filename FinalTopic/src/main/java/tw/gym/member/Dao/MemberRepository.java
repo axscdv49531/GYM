@@ -20,7 +20,8 @@ public interface MemberRepository extends JpaRepository<MemberBean, Integer>, Me
     @Query(value = "from MemberBean where number=?1", nativeQuery = false)
     public MemberBean findByNumber(Integer number);
 
-    @Query(value = "SELECT m from MemberBean m LEFT JOIN m.MC mc where mc.course.id=?1 AND mc.state='已加選'")
+    //Dean:管理者查詢課程學生
+    @Query(value = "SELECT m from MemberBean m LEFT JOIN m.MC mc where mc.course.id=:courseId AND mc.state='已加選'")
     public List<MemberBean> findByCourse(Integer courseId);
     
     @Query(value = "select mb from MemberBean mb where mb.email = :email")

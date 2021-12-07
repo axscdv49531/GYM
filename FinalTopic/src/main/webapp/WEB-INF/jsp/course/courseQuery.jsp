@@ -88,6 +88,8 @@ function showCourseList(data){
 	//alert("查詢成功！");
 	////////////
 	$('#showcourse').empty("");
+	$('#showpage').empty("");
+	$('#showstudent').empty("");
 	   
 	   if(data.pageContent==null){
 		   alert("無符合查詢結果！");
@@ -103,7 +105,8 @@ function showCourseList(data){
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
-			        	"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class=''>查詢選課學生</button></a></td>"+
+			        	//"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class=''>查詢選課學生</button></a></td>"+
+			        	"<td><button id='' type='button' class=''onclick='showStudent(" + n.id + ")'>查詢選課學生</button></td>"+
 			        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class=''>修改</button></a></td>"+
 			        	"<td><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
 			            "</tr>";
@@ -193,6 +196,47 @@ function showAllCourse(indexPage){
 	});	
 }
 
+function showStudent(courseId){
+	   $.ajax({
+		   type:'get',
+		   url:'/course/querystudent.controller/' + courseId,
+		   dataType:'JSON',
+		   contentType:'application/json;charset=utf-8',
+		   success: function(data){
+			   
+			  // console.log('success:' + data);
+			  // var json = JSON.stringify(data,null,4);
+			   //console.log('json:' + json);
+			   
+				$('#showstudent').empty("");
+				   
+				   if(data==null){
+					   alert("無符合查詢結果！");
+					   $('#showstudent').append("<tr><td colspan='2'>暫無資料</td></tr>");;
+				   }else{
+					   var stuTable = $('#showstudent');
+					   stuTable.append("<tr id='ptitle'><th>學生編號</th><th>學生名稱</th><th>學生性別</th><th>學生電話</th><th>學生信箱</th><th>緊急聯絡人</th><th>緊急聯絡人電話</th><th>修改</th><th>刪除</th></tr>");
+					   
+					   $.each(data, function(i,n){
+						   
+						  // if()
+						   
+						   var tr = "<tr align='center'>" + "<td>" + n.number + "</td>" +
+						            "<td>" + n.name + "</td>" + "<td>" + n.gender + "</td>" +
+						            "<td>" + n.phone + "</td>" + "<td>" + n.email + "</td>" + 
+						            "<td>" + n.emergencyContact + "</td>" + "<td>" + n.emergencyPhone + "</td>" + 
+						        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class=''>修改</button></a></td>"+
+						        	"<td><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
+						            "</tr>";
+						            stuTable.append(tr);
+					   });
+				   }
+		   }
+	   });
+}
+
+
+
 </script>
 </head>
 <body>
@@ -203,12 +247,11 @@ function showAllCourse(indexPage){
      		<c:import url="/adminnavbar"></c:import> 
             <div class="content">
                 <div class="container-fluid">
-<!--                 裡面寫東西 -->
+<!--                 裡面寫東西：開始 -->
 
 	<header>
 		<a href="<c:url value='/courseQuery' />">查詢所有課程(作廢)</a>
 		<a href="<c:url value='/courseform' />">新增課程</a>
-		<a href="<c:url value='/' />">回首頁</a>
 		<br>
 	</header>
 	
@@ -270,7 +313,10 @@ function showAllCourse(indexPage){
 	<table><tr id="showpage"></tr></table>
 	<table id="showstudent" border="1"></table>
 	<br>
-<a href="<c:url value='/' />">回首頁</a>
+
+
+<!--                 裡面寫東西：結束 -->
+
            </div>
             </div>
       </div>
