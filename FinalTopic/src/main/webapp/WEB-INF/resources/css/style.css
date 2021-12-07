@@ -19,14 +19,17 @@ body {
   font-size: 15pt;
   color: #F0FFFF;
 }
-
-
-
 legend{
 	 color: #F0FFFF;
 }
 
 button{
+	color:black;
+}
+.button{
+	color:black;
+}
+input{
 	color:black;
 }
 select {
@@ -36,7 +39,20 @@ option {
 	background-color:white;
 	color:black;
 }
+.top{
+	margin-bottom:100px;
+}
+span.error {
+	color: red;
+	display: inline-block;
+	font-size: 10pt;
+}
 
+.error {
+	color: red;
+	display: inline-block;
+	font-size: 10pt;
+}
 .megamenu .nav,
 .megamenu .collapse,
 .megamenu .dropup,
