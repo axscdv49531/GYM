@@ -971,16 +971,20 @@ ul {
 
 .news-post-widget {
 	float: left;
-	width: 100%;
+/* 	width:100%; */
+	width: 455px;
+	height:450px;
 	margin: 0 0 30px;
 	position: relative;
 	box-shadow: 0 10px 20px -25px rgba(50, 50, 50, 1);
-	border: solid #e1e1e1 1px;
+	border: solid #e1e1e1 3px;
 	padding: 0 0 15px 0;
 }
 
 .news-post-widget .img-responsive {
-	width: 100%;
+/* 	width: 100%; */
+width: 450px;
+height:250px;
 	margin-bottom: 10px;
 }
 
