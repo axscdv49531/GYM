@@ -290,9 +290,9 @@
 						<form:select path="menu.menuName" size="1"
 							class="detailDiv01Font1" id="menuSelect">
 							<br>
-							<option value="0" style="background-color: 	#4F4F4F">請選擇餐點</option>
+							<option value="0" style="background-color: 	#8E8E8E">請選擇餐點</option>
 							<c:forEach var="menuList" items="${MenuList}">
-								<option value="${menuList.getMenuName()}" style="background-color: 	#4F4F4F">${menuList.getMenuName()}</option>
+								<option value="${menuList.getMenuName()}" style="background-color: #8E8E8E">${menuList.getMenuName()}</option>
 							</c:forEach>
 
 						</form:select>

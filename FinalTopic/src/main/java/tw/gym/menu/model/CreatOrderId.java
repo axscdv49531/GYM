@@ -22,7 +22,7 @@ public class CreatOrderId {
 		while(true) {
 			 id ="";
 			 for(int i=1;i<=6;i++) {
-				 	int number=(int)(Math.random()*10);
+				 	int number=(int)(Math.random()*9+1);
 					id=id+number;	
 					System.out.println(id);	
 			 }
