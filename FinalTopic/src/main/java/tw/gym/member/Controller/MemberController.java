@@ -471,7 +471,7 @@ public class MemberController {
 	// Mark
 	@PostMapping("classReservationCheck")
 	@ResponseBody
-	public ClassBean classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
 			@RequestParam(required = false, name = "classId") String classId,
 			@SessionAttribute("loginUser") MemberBean mBean) {
 		// System.out.println(classConfirm);
@@ -494,7 +494,13 @@ public class MemberController {
 
 		emailSerive.sendEmail(email, subject, body);
 
-		return cBean;
+
+        if (cBean.getClassAvaliable() == 1) {
+
+            return "true";
+        } else {
+            return "false";
+        }
 
 	}
 
@@ -524,6 +530,34 @@ public class MemberController {
 		}
 
 	}
+
+    // Mark
+    @PostMapping("memberSearchClass")
+    @ResponseBody
+    public List<ClassBean> memberSearchClass(@RequestParam(required = false, name = "cName") String className,
+            @RequestParam(required = false, name = "coaName") String coachName,
+            @RequestParam(required = false, name = "sName") String skillName,
+            @RequestParam(required = false, name = "sDate") String startDate,
+            @RequestParam(required = false, name = "eDate") String endDate,
+            @RequestParam(required = false, name = "cStatus") String classStatus,
+            @SessionAttribute("loginUser") MemberBean mBean) {
+        // System.out.println(className);
+        // System.out.println(skillName);
+        // System.out.println(startDate);
+        // System.out.println(endDate);
+        // System.out.println(classStatus);
+        List<ClassBean> mcBean = memberService.findByMemberId(mBean.getNumber());
+        if (className.isEmpty() && coachName.equals("請選擇") && skillName.equals("請選擇") && startDate.isEmpty()
+                && endDate.isEmpty() && classStatus.equals("請選擇")) {
+            return mcBean;
+        } else {
+            List<ClassBean> cBean = claService.memberDynamicQuery(className, coachName, skillName, startDate, endDate,
+                    classStatus, mcBean);
+            System.out.println("123");
+            return cBean;
+        }
+
+    }
 
 	@GetMapping("testcoach")
 	public String testCoachList() {
