@@ -55,6 +55,9 @@ public class MemberBean implements Serializable {
 	private String password1;
 	
 	@Transient
+	private String oldpwd;
+	
+	@Transient
 	private String confirmedPassword;
 
 	@Transient
@@ -311,6 +314,14 @@ public class MemberBean implements Serializable {
 
 	public void setPassword1(String password1) {
 		this.password1 = password1;
+	}
+
+	public String getOldpwd() {
+		return oldpwd;
+	}
+
+	public void setOldpwd(String oldpwd) {
+		this.oldpwd = oldpwd;
 	}
 
 	@Override

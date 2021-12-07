@@ -21,7 +21,7 @@
 </head>
 <body>
 	<div style="width: 1205px; height: 194.13px">
-		<c:import url="/top"></c:import>
+		<c:import url="/top_memberlogin"></c:import>
 	</div>
 	<div align='center'>
 		<form:form method='POST' modelAttribute="inbodyBean">

@@ -36,11 +36,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-<<<<<<< HEAD
     <script src="../js/3dslider.js"></script>
-=======
-<script src="/js/3dslider.js"></script>
->>>>>>> origin/dean1206
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>
@@ -70,8 +66,9 @@
 									<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
-										<li class="login-modal"><a
-											href="<c:url value='/login/page' />" class="login"><svg
+										<li class="login-modal">
+										<a href="/updatePassword/<c:out value='${loginUser.number}' />" class="login">
+										<svg
 													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 													fill="currentColor" class="bi bi-lock-fill"
 													viewBox="0 0 16 16">

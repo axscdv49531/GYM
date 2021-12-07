@@ -27,6 +27,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -38,7 +39,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
+import jdk.jshell.spi.ExecutionControl.UserException;
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.coach.model.SkillBean;
@@ -49,6 +52,7 @@ import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 import tw.gym.member.validator.MemberValidator;
+import tw.gym.member.validator.PasswordValidator;
 
 @Controller
 // @RequestMapping(path = "/GymProject")
@@ -110,7 +114,6 @@ public class MemberController {
 		// }
 		memberBean.setPassword("123456");
 		String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
-
 		MultipartFile picture = memberBean.getmPhoto();
 		byte[] b = picture.getBytes();
 		Blob blob = new SerialBlob(b);
@@ -217,15 +220,37 @@ public class MemberController {
 		memberService.deleteById(number);
 		return "redirect:/member/findAllMember";
 	}
-//	
-//	@PostMapping("/updatePassword")
-//	public String updatePassword(Model model, HttpSession session) {
-//		MemberBean memberBean =(MemberBean)session.getAttribute("loginUser");
-//		if(memberBean.getPassword()==memberService.findByNumber(null))
-//		model.addAttribute("memberBean", memberBean);
-//		return "member/MemberUpdateNormal";
-//	}
-//	
+
+	@GetMapping("/updatePassword/{number}")
+	public String updatePassword(Model model, HttpSession session) {
+		MemberBean memberBean = (MemberBean) session.getAttribute("loginUser");
+		model.addAttribute("memberBean", memberBean);
+		return "member/MemberUpdatePassword";
+	}
+
+	@PostMapping("/updatePassword/{number}")
+	public String updatePasswordData(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult,
+			@PathVariable("number") Integer number) throws ParseException, IOException, SerialException, SQLException {
+		PasswordValidator passwordValidator = new PasswordValidator();
+		passwordValidator.validate(memberBean, bindingResult);
+		MemberBean member = memberService.findByNumber(number);
+		BCryptPasswordEncoder encode = new BCryptPasswordEncoder();
+		if (!encode.matches(memberBean.getOldpwd(), member.getPassword())) {
+			bindingResult.rejectValue("oldpwd", "", "原密碼錯誤");
+			return "member/MemberUpdatePassword";
+		}
+		if (bindingResult.hasErrors()) {
+			
+			System.out.println(bindingResult.getAllErrors());
+			
+			return "member/MemberUpdatePassword";
+		}
+		String newPwd = new BCryptPasswordEncoder().encode(memberBean.getPassword1());
+		member.setPassword(newPwd);
+		memberService.update(member);
+		return "redirect:/login/MemberSuccess";
+	}
+	
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder, WebRequest request) {

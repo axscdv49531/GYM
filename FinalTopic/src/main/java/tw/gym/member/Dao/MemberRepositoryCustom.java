@@ -4,4 +4,6 @@ import tw.gym.member.Model.MemberBean;
 
 public interface MemberRepositoryCustom {
 //	public MemberBean checkById(MemberBean memberBean, String id);
+	
+	public void updatePwd(MemberBean memberBean);
 }
