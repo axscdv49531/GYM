@@ -45,24 +45,16 @@
 				</div>
 				<div class="col-md-6">
 					<div class="right_top_section">
-						<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 						<!-- button section -->
 						<ul class="login">
 							<li class="login-modal"><a
-								href="<c:url value='/login/page' />" class="login"><svg
+								href="<c:url value='/login/Member' />" class="login"><svg
 										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-										fill="currentColor" class="bi bi-lock-fill"
+										fill="currentColor" class="bi bi-person-fill"
 										viewBox="0 0 16 16">
-                                        <path
-											d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                    </svg><i class="fa fa-user"></i>密碼變更</a></li>
-							<li class="logout-modal"><a href="<c:url value='/logout' />"
-								class="logout"><svg xmlns="http://www.w3.org/2000/svg"
-										width="16" height="16" fill="currentColor"
-										class="bi bi-person-fill" viewBox="0 0 16 16">
-                                        <path
+								   <path
 											d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    </svg><i class="fa fa-user"></i>登出</a></li>
+								 </svg><i class="fa fa-user"></i>登入</a></li>							
 							<li>
 								<div class="context-option">
 									<a href="#"><i class="fa fa-envelope"><svg
@@ -98,43 +90,20 @@
 									</div>
 									<div class="collapse navbar-collapse js-navbar-collapse">
 										<ul class="nav navbar-nav">
-											<li class="active"><a
-												href="<c:url value='/login/MemberSuccess' />">主頁</a></li>
+											<li class="active"><a href="<c:url value='/' />">主頁</a></li>
 											<li><a href="about.html">關於</a></li>
-
-											<li class="dropdown mega-dropdown"><a href="#"
-												class="dropdown-toggle" data-toggle="dropdown">會員中心<span
-													class="caret"></span></a>
-												<ul class="dropdown-menu mega-dropdown-menu member">
-													<li class="col-sm-12">
-														<ul>
-															<li class="dropdown-header">會員中心</li>
-															<li><a class="dropdown-item" href="/MemberProfile">個人資料</a>
-															</li>
-															<li><a class="dropdown-item"
-																href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a>
-															</li>
-															<li><a class="dropdown-item"
-																href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄
-															</a></li>
-															<li><a class="dropdown-item"
-																href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
-															</li>
-														</ul>
-													</li>
-												</ul></li>
-
 											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
 											<li><a href="/classRes">預約私人課程</a></li>
 
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown">團體課程<span
 													class="caret"></span></a>
-												<ul class="dropdown-menu mega-dropdown-menu classRes">
+												<ul class="dropdown-menu mega-dropdown-menu nClassRes">
 													<li class="col-sm-12">
 														<ul>
-															<li class="dropdown-header">團體課程 Cousres </li>
-															<li><a class="dropdown-item" href="/courseSelectSystem">預約課程</a></li>
+															<li class="dropdown-header">團體課程 Cousres</li>
+															<li><a class="dropdown-item"
+																href="/courseSelectSystem">預約課程</a></li>
 
 														</ul>
 													</li>

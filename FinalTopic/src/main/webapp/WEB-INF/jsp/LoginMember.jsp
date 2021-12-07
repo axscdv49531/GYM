@@ -9,17 +9,6 @@
 <meta charset="UTF-8">
 <title>Login</title>
 
-<!-- Bootstrap CSS -->
-<link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet">
-
-<link rel="stylesheet" href="../css/bootstrap.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/bootstrap.theme.css">
-<link rel="stylesheet" href="../css/bootstrap.min.css">
-<link rel="stylesheet" href="../css/bootstrap.thememin.css">
-<!-- Custom styles for this template -->
-<link rel="stylesheet" href="../css/signin.css">
-
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -34,30 +23,32 @@
 		font-size: 3.5rem;
 	}
 }
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 </style>
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-<link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
-	rel="stylesheet" type="text/css">
-<script src="js/3dslider.js"></script>
-<meta name="theme-color" content="#7952b3">
 
 
 </head>
 <body class="text-center">
-
+	<div style="width: 1205px; height: 194.13px" class="top">
+		<c:import url="/top_nologin"></c:import>
+	</div>
 	<main class="form-signin">
 		<form action="/login/Member" method="post">
 			<h1 class="h3 mb-3 fw-normal">請輸入帳號密碼</h1>
 
 			<div class="form-floating">
-				 <label
-					for="floatingInput">帳號</label><input type="text" class="form-control" id="floatingInput"
+				<label for="floatingInput">帳號</label><input type="text"
+					class="form-control" id="floatingInput"
 					placeholder="name@example.com" name="username">
 			</div>
 			<div class="form-floating">
-				 <label
-					for="floatingPassword">密碼</label><input type="password" class="form-control" id="floatingPassword"
-					placeholder="Password" name="password">
+				<label for="floatingPassword">密碼</label><input type="password"
+					class="form-control" id="floatingPassword" placeholder="Password"
+					name="password">
 			</div>
 
 			<div class="checkbox mb-3">
