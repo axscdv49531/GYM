@@ -21,12 +21,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
@@ -34,6 +36,7 @@ import tw.gym.coach.model.SkillBean;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
+import tw.gym.coachclass.validators.ClassValidator;
 
 @Controller
 @RequestMapping("/coach")
@@ -111,8 +114,8 @@ public class CoachAddFormController {
 //    	 return "/coach/LoginSuccess";
 //    }
 
-    @GetMapping("coachClassAdd")
-    public String coachClassAdd(Model model) {
+@GetMapping("coachClassAdd")
+public String coachClassAdd(Model model) {
         List<String> skList = skiService.listAllSkill();
         model.addAttribute("checkBoxList", skList);
         List<String> selectData = new ArrayList<String>();
@@ -129,15 +132,58 @@ public class CoachAddFormController {
         selectData.add("19:00");
         selectData.add("20:00");
         model.addAttribute("selectData", selectData);
-        ClassBean cbean = new ClassBean();
-        model.addAttribute("classBean", cbean);
+        // ClassBean cbean = new ClassBean();
+        // model.addAttribute("classBean", cbean);
+        if (!model.containsAttribute("classBean")) {
+            ClassBean cbean = new ClassBean();
+            System.out.println("aaa");
+            model.addAttribute("classBean", cbean);
+        } else {
+            System.out.println(model.getAttribute("classBean"));
+        }
+
 
         return "/coach/coachClassAdd";
     }
 
     @PostMapping("coachClassAdd")
-    public String coachClassAddCheck(ClassBean cBean, @SessionAttribute("loginUser") CoachBean cBeann)
+    public String coachClassAddCheck(ClassBean cBean,
+            @SessionAttribute("loginUser") CoachBean cBeann,
+            BindingResult bindingResult, RedirectAttributes attr, Model model)
             throws ParseException, SerialException, SQLException, IOException {
+
+        // new ClassValidator().validate(cBean, bindingResult);
+        // if (bindingResult.hasErrors()) {
+        // System.out.println(bindingResult.getAllErrors());
+        // attr.addFlashAttribute("org.springframework.validation.BindingResult.register", bindingResult);
+        // attr.addFlashAttribute("classBean", classBean);
+        // return "redirect:/coach/coachClassAdd";
+        // }
+        new ClassValidator().validate(cBean, bindingResult);
+        if (bindingResult.hasErrors()) {
+            List<String> skList = skiService.listAllSkill();
+            model.addAttribute("checkBoxList", skList);
+            List<String> selectData = new ArrayList<String>();
+            selectData.add("09:00");
+            selectData.add("10:00");
+            selectData.add("11:00");
+            selectData.add("12:00");
+            selectData.add("13:00");
+            selectData.add("14:00");
+            selectData.add("15:00");
+            selectData.add("16:00");
+            selectData.add("17:00");
+            selectData.add("18:00");
+            selectData.add("19:00");
+            selectData.add("20:00");
+            model.addAttribute("selectData", selectData);
+            return "/coach/coachClassAdd";
+        }
+
+        System.out.println(cBean.getClassName());
+        System.out.println(cBean.getClassStartTimeTemp());
+        System.out.println(cBean.getClassEndTimeTemp());
+
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
         cBean.setClassCreatedate(timestamp);
@@ -270,5 +316,19 @@ public class CoachAddFormController {
     // List<ClassBean> cBean = classService.listAllClass();
     //
     // return cBean;
+    // }
+
+    // @InitBinder
+    // public void initBinder(WebDataBinder binder, WebRequest request) {
+    // // java.util.Date
+    // DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    // dateFormat.setLenient(false);
+    // CustomDateEditor ce = new CustomDateEditor(dateFormat, true);
+    // binder.registerCustomEditor(Date.class, ce);
+    // // java.sql.Date
+    // DateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd");
+    // dateFormat2.setLenient(false);
+    // CustomDateEditor ce2 = new CustomDateEditor(dateFormat2, true);
+    // binder.registerCustomEditor(java.sql.Date.class, ce2);
     // }
 }
