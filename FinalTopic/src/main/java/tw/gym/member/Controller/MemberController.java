@@ -19,9 +19,6 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,18 +33,16 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
-import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
@@ -76,6 +71,9 @@ public class MemberController {
 
 	@Autowired
 	EmailSenderService emailSerive;
+
+    @Autowired
+    ClassMemberService cmService;
 
 	@Autowired
 	public MemberController(MemberService memberService) {
@@ -577,40 +575,64 @@ public class MemberController {
 		return cBean;
 	}
 
-	// Mark
-	@PostMapping("classReservationCheck")
-	@ResponseBody
-	public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
-			@RequestParam(required = false, name = "classId") String classId,
-			@SessionAttribute("loginUser") MemberBean mBean) {
-		// System.out.println(classConfirm);
-		// System.out.println(classId);
-		Integer classIdd = Integer.parseInt(classId);
-		ClassBean cBean = claService.getClassById(classIdd);
-		MemberBean memBean = memberService.getById(mBean.getNumber());
-		ClassMemberBean cmBean = new ClassMemberBean();
-		cmBean.setcBean(cBean);
-		cmBean.setmBean(memBean);
-		Long datetime = System.currentTimeMillis();
-		Timestamp timestamp = new Timestamp(datetime);
-		cmBean.setRegisterDate(timestamp);
-		memberService.insertReservation(cmBean, 1, classIdd);
-		String email = mBean.getEmail();
-		String subject = "一對一課程預約成功通知信";
-		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
-				+ "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
-				+ cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+    // Mark
+    @PostMapping("classReservationCheck")
+    @ResponseBody
+    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+            @RequestParam(required = false, name = "classId") String classId,
+            @SessionAttribute("loginUser") MemberBean mBean) {
 
-		emailSerive.sendEmail(email, subject, body);
+        Integer classIdd = Integer.parseInt(classId);
+        ClassBean cBean = claService.getClassById(classIdd);
+        MemberBean memBean = memberService.getById(mBean.getNumber());
 
-		if (cBean.getClassAvaliable() == 1) {
+        List<ClassBean> cBeans = cmService.findClassesByMemberId(mBean.getNumber());
+        for (int i = 0; i < cBeans.size(); i++) {
+            if (cBeans.get(i).getClassDate().equals(cBean.getClassDate())) {
+                if (cBeans.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
+                    if (cBeans.get(i).getClassStartTime().equals(cBean.getClassEndTime())
+                            || !(cBeans.get(i).getClassStartTime().before(cBean.getClassEndTime())
+                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
+                        System.out.println("未衝堂");
 
-			return "true";
-		} else {
-			return "false";
-		}
+                    } else {
+                        System.out.println("已衝堂");
+                    }
+                } else {
+                    if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
+                            && !(cBeans.get(i).getClassStartTime().before(cBean.getClassStartTime())
+                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
+                        System.out.println("未衝堂");
+                    } else {
+                        System.out.println("已衝堂");
+                    }
+                }
+            }
+        }
 
-	}
+        ClassMemberBean cmBean = new ClassMemberBean();
+        cmBean.setcBean(cBean);
+        cmBean.setmBean(memBean);
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        cmBean.setRegisterDate(timestamp);
+        memberService.insertReservation(cmBean, 1, classIdd);
+        String email = mBean.getEmail();
+        String subject = "一對一課程預約成功通知信";
+        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
+                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+                + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+
+        emailSerive.sendEmail(email, subject, body);
+
+        if (cBean.getClassAvaliable() == 1) {
+
+            return "true";
+        } else {
+            return "false";
+        }
+
+    }
 
 	// Mark
 	@PostMapping("searchClass")
