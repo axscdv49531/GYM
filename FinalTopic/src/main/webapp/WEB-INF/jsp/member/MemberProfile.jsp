@@ -53,8 +53,6 @@
 	</div>
 	<div class="col-md-7">
 		<ul class="personalinfo">
-			<li><span class="title">身份證字號:</span> <span class="text"><c:out
-						value="${loginUser.id}" /></span></li>
 			<li><span class="title">性別:</span> <span class="text"><c:out
 						value="${loginUser.gender}" /></span></li>
 			<li><span class="title">生日:</span> <span class="text"><c:out

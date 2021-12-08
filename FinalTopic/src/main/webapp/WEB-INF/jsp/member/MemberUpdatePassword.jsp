@@ -204,7 +204,8 @@
 					<tr>
 						<td align='right'>原密碼：<br>&nbsp;
 						<td><form:input type="password" path="oldpwd" id="oldpwd" /><br>&nbsp;
-							<form:errors path="oldpwd" cssClass="error"></form:errors> <span id="oldpwdsp" class="error"></span></td>
+							<form:errors path="oldpwd" cssClass="error"></form:errors> <span
+							id="oldpwdsp" class="error"></span></td>
 					</tr>
 
 					<tr>
@@ -218,7 +219,8 @@
 						<td align='right'>新密碼確認：<br>&nbsp;
 						</td>
 						<td><form:input type="password" path="confirmedPassword" /><br>&nbsp;
-							<form:errors path="confirmedPassword" cssClass="error" /><span id="conpwdsp" class="error"></span></td>
+							<form:errors path="confirmedPassword" cssClass="error" /><span
+							id="conpwdsp" class="error"></span></td>
 					</tr>
 					<tr>
 						<td colspan='2' align='center'><input class="button"
@@ -233,7 +235,8 @@
 	<script type="text/javascript">
 		document.getElementById("oldpwd").addEventListener("blur", checkOldPwd);
 		document.getElementById("password1").addEventListener("blur", checkPwd);
-		document.getElementById("confirmedPassword").addEventListener("blur", checkConPwd);
+		document.getElementById("confirmedPassword").addEventListener("blur",
+				checkConPwd);
 		function checkOldPwd() {
 			let thePwdObj = document.getElementById("oldpwd");
 			//取得Pwd元素值
@@ -269,12 +272,12 @@
 					}
 				}//for
 				if (flag1 && flag2) {
-					sp.innerHTML = ""
+					sp.innerHTML = "";
 				} else {
-					sp.innerHTML = "<img src='/images/error.png'>密碼需包含英文、數字及特殊符號[!@#$%^&*]"
+					sp.innerHTML = "<img src='/images/error.png'>密碼需包含大小寫英文及數字";
 				}
 			} else {
-				sp.innerHTML = "<img src='/images/error.png'>請輸入8-15位數密碼"
+				sp.innerHTML = "<img src='/images/error.png'>請輸入8-15位數密碼";
 			}
 		}
 		function checkConPwd() {
@@ -288,11 +291,15 @@
 			let ch, flag1 = false;
 			if (thePwdObjVal == "") {
 				sp.innerHTML = "<img src='/images/error.png'>不可空白";
-			}else if (thePwdObjVal ==theCPwdObjVal ){
+			} else if (thePwdObjVal == theCPwdObjVal) {
 				sp.innerHTML = ""
-			}else{
+			} else {
 				sp.innerHTML = "<img src='/images/error.png'>和新密碼不相符"
 			}
+		}
+
+		function updatePassword() {
+
 		}
 	</script>
 

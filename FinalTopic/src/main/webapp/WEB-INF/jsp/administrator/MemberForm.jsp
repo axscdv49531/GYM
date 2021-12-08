@@ -79,7 +79,7 @@
 					</a></li>
 					<li class="nav-item active dropdown nav-item"><a
 						class="dropdown-toggle nav-link" data-toggle="dropdown"
-						href="<c:url value= '/insertMember'/>"> <i
+						href="#"> <i
 							class="nc-icon nc-circle-09"></i>
 							<p>會員資料專區</p>
 					</a>
@@ -189,21 +189,14 @@
 							<legend>會員資料</legend>
 							<form>
 								<div class="row">
-									<div class="col-md-5 pr-1">
-										<div class="form-group">
-											<label>身分證字號：</label>
-											<form:input path="id" class="form-control" placeholder="id" />
-											<form:errors path="id" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-3 px-1">
+									<div class="col-md-4 px-1">
 										<div class="form-group">
 											<label>姓名：</label>
 											<form:input path="name" class="form-control" placeholder="姓名" />
 											<form:errors path="name" cssClass="error" />
 										</div>
 									</div>
-									<div class="col-md-4 pl-1">
+									<div class="col-md-8 pl-1">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Email：</label>
 											<form:input path="email" class="form-control"
