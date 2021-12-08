@@ -56,7 +56,6 @@
                         type : 'post',
                         url : '/classReservationCheck/',
                         data : {
-                            classConfirm : x,
                             classId : y
                         },
                         dataType : 'JSON',
@@ -64,8 +63,12 @@
                             if(data.responseText == 'true'){
                                 alert("預約成功");
                             load();
-                            }else{
+                            }else if(data.responseText == 'false'){
                                 alert("預約失敗")
+                                load();
+                            }
+                            else if(data.responseText == 'dup'){
+                                alert("衝堂，預約失敗")
                                 load();
                             }
                          }

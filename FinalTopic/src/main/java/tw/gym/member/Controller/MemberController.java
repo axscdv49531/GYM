@@ -578,8 +578,7 @@ public class MemberController {
     // Mark
     @PostMapping("classReservationCheck")
     @ResponseBody
-    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
-            @RequestParam(required = false, name = "classId") String classId,
+    public String classReservationCheck(@RequestParam(required = false, name = "classId") String classId,
             @SessionAttribute("loginUser") MemberBean mBean) {
 
         Integer classIdd = Integer.parseInt(classId);
@@ -587,24 +586,25 @@ public class MemberController {
         MemberBean memBean = memberService.getById(mBean.getNumber());
 
         List<ClassBean> cBeans = cmService.findClassesByMemberId(mBean.getNumber());
-        for (int i = 0; i < cBeans.size(); i++) {
-            if (cBeans.get(i).getClassDate().equals(cBean.getClassDate())) {
-                if (cBeans.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
-                    if (cBeans.get(i).getClassStartTime().equals(cBean.getClassEndTime())
-                            || !(cBeans.get(i).getClassStartTime().before(cBean.getClassEndTime())
-                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
-                        System.out.println("未衝堂");
+        if (cBeans.size() > 0) {
+            for (int i = 0; i < cBeans.size(); i++) {
+                if (cBeans.get(i).getClassDate().equals(cBean.getClassDate())) {
+                    if (cBeans.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
+                        if (cBeans.get(i).getClassStartTime().equals(cBean.getClassEndTime())
+                                || !(cBeans.get(i).getClassStartTime().before(cBean.getClassEndTime())
+                                        && cBeans.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
 
+                        } else {
+                            return "dup";
+                        }
                     } else {
-                        System.out.println("已衝堂");
-                    }
-                } else {
-                    if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
-                            && !(cBeans.get(i).getClassStartTime().before(cBean.getClassStartTime())
-                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
-                        System.out.println("未衝堂");
-                    } else {
-                        System.out.println("已衝堂");
+                        if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
+                                && !(cBeans.get(i).getClassStartTime().before(cBean.getClassStartTime())
+                                        && cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
+
+                        } else {
+                            return "dup";
+                        }
                     }
                 }
             }
@@ -616,7 +616,10 @@ public class MemberController {
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
         cmBean.setRegisterDate(timestamp);
+        System.out.println(cBean.getClassAvaliable());
         memberService.insertReservation(cmBean, 1, classIdd);
+        System.out.println(cBean.getClassAvaliable());
+        System.out.println("======================================================");
         String email = mBean.getEmail();
         String subject = "一對一課程預約成功通知信";
         String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
@@ -624,11 +627,13 @@ public class MemberController {
                 + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
 
         emailSerive.sendEmail(email, subject, body);
+        System.out.println(cBean.getClassAvaliable());
 
         if (cBean.getClassAvaliable() == 1) {
-
+            System.out.println("成功");
             return "true";
         } else {
+            System.out.println("失敗");
             return "false";
         }
 

@@ -14,6 +14,7 @@ import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.coach.repository.ClassMemberRepository;
 import tw.gym.coach.repository.ClassRepository;
+import tw.gym.coach.service.ClassService;
 import tw.gym.login.Validator.UserNotFoundException;
 import tw.gym.member.Dao.MemberRepository;
 import tw.gym.member.Model.MemberBean;
@@ -122,10 +123,17 @@ public class MemberServiceImpl implements MemberService {
         return memberRepository.getById(memberId);
     }
 
+    @Autowired
+    ClassService aaa;
     // Mark
     @Override
     public void insertReservation(ClassMemberBean cmBean, Integer a, Integer classId) {
+
+        System.out.println(a + "Serv");
+        System.out.println(classId + "Serv");
         claRepo.setAvaliable(a, classId);
+        ClassBean cBean = aaa.getClassById(classId);
+        System.out.println(cBean.getClassAvaliable() + "Serv");
         cmRepo.save(cmBean);
     }
 
