@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import javax.servlet.http.HttpSession;
@@ -72,8 +73,8 @@ public class MemberController {
 	@Autowired
 	EmailSenderService emailSerive;
 
-    @Autowired
-    ClassMemberService cmService;
+	@Autowired
+	ClassMemberService cmService;
 
 	@Autowired
 	public MemberController(MemberService memberService) {
@@ -99,8 +100,8 @@ public class MemberController {
 	}
 
 	@PostMapping(path = "/insertMember")
-	public String insert(Model m, @ModelAttribute("memberBean") MemberBean memberBean,
-			BindingResult bindingResult) throws ParseException, IOException, SerialException, SQLException {
+	public String insert(Model m, @ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult)
+			throws ParseException, IOException, SerialException, SQLException {
 		MemberValidator memberValidator = new MemberValidator();
 		memberValidator.validate(memberBean, bindingResult);
 
@@ -108,14 +109,33 @@ public class MemberController {
 			System.out.println(bindingResult.getAllErrors());
 			return "administrator/MemberForm";
 		}
-		// if (memberBean != null) {
-		// if(memberBean.getId().equals(memberService. == true);
-		// bindingResult.rejectValue("memberId", "", "帳號已存在，請重新輸入");
-		// return "MemberForm";
-		// }
-		memberBean.setPassword("123456");
+//		6位數密碼亂數
+		String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R",
+				"S", "T", "U", "V", "W", "X", "Y", "Z" };
+		StringBuffer code = new StringBuffer();
+		Random random = new Random();
+		int temp;
+		for (int i = 0; i < 6; i++) {
+			if (random.nextInt(2) == 0) {
+				temp = random.nextInt(10);
+				code.append(temp);
+			} else {
+				temp = random.nextInt(26);
+				code.append(alphabet[temp]);
+			}
+		}
+		memberBean.setPassword(code.toString());
+//		寄信
+		String name = memberBean.getName();
+		String pswd = memberBean.getPassword();
+		String toEmail = memberBean.getEmail();
+		String subject = "歡迎加入會員： ";
+		String body = "Dear " + name + " 小姐/先生，您好：\n歡迎您加入SpringFitness會員。 " + "您可以立即啟用SpringFitness網路會員服務\n"
+				+ "請點擊下面連結進入網頁：\n" + "以下是您的密碼：" + pswd + "\n" + "http://localhost:8080/" + "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
+//		密碼加密
 		String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
 
+//		檔案上傳
 		MultipartFile picture = memberBean.getmPhoto();
 		byte[] b = picture.getBytes();
 		Blob blob = new SerialBlob(b);
@@ -128,9 +148,9 @@ public class MemberController {
 		memberBean.setMemberPhotoMineType(mineType);
 		memberBean.setPassword(encodePwd);
 		memberBean.setDeposite(0);
-
+		emailSerive.sendEmail(toEmail, subject, body);
 		memberService.insert(memberBean);
-		return "/findAllMember";
+		return "redirect:/findAllMember";
 	}
 //	@PostMapping(path = "/insertMember")
 //	@ResponseBody
@@ -291,6 +311,36 @@ public class MemberController {
 		if (!encode.matches(memberBean.getOldpwd(), member.getPassword())) {
 			bindingResult.rejectValue("oldpwd", "", "原密碼錯誤");
 			return "member/MemberUpdatePassword";
+		}
+		if (memberBean.getPassword1().length() < 8 || memberBean.getPassword1().length() > 15) {
+			bindingResult.rejectValue("password1", "", "請輸入8-15位英文數字組合");
+			System.out.println("錯誤");
+			return "member/MemberUpdatePassword";
+		} else {
+			boolean flag1 = false, flag2 = false, flag3 = false;
+
+			for (int i = 0; i < memberBean.getPassword1().length(); i++) {
+				String pwd = memberBean.getPassword1();
+				char ch = pwd.charAt(i);
+
+				if (ch >= 48 && ch <= 57) {
+					flag1 = true;
+				} else if (ch >= 65 && ch <= 90) {
+					flag2 = true;
+				} else if (ch >= 97 && ch <= 122) {
+					flag3 = true;
+				}
+				if (flag1 && flag2 && flag3== true) {
+					break;
+				}
+			}
+			if (flag1 && flag2 && flag3== true) {
+				System.out.println("正確");
+			} else {
+				System.out.println("錯誤");
+				bindingResult.rejectValue("password1", "", "密碼需包含大小寫英文及數字");
+				return "member/MemberUpdatePassword";
+			}
 		}
 		if (bindingResult.hasErrors()) {
 
@@ -575,64 +625,64 @@ public class MemberController {
 		return cBean;
 	}
 
-    // Mark
-    @PostMapping("classReservationCheck")
-    @ResponseBody
-    public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
-            @RequestParam(required = false, name = "classId") String classId,
-            @SessionAttribute("loginUser") MemberBean mBean) {
+	// Mark
+	@PostMapping("classReservationCheck")
+	@ResponseBody
+	public String classReservationCheck(@RequestParam(required = false, name = "classConfirm") String classConfirm,
+			@RequestParam(required = false, name = "classId") String classId,
+			@SessionAttribute("loginUser") MemberBean mBean) {
 
-        Integer classIdd = Integer.parseInt(classId);
-        ClassBean cBean = claService.getClassById(classIdd);
-        MemberBean memBean = memberService.getById(mBean.getNumber());
+		Integer classIdd = Integer.parseInt(classId);
+		ClassBean cBean = claService.getClassById(classIdd);
+		MemberBean memBean = memberService.getById(mBean.getNumber());
 
-        List<ClassBean> cBeans = cmService.findClassesByMemberId(mBean.getNumber());
-        for (int i = 0; i < cBeans.size(); i++) {
-            if (cBeans.get(i).getClassDate().equals(cBean.getClassDate())) {
-                if (cBeans.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
-                    if (cBeans.get(i).getClassStartTime().equals(cBean.getClassEndTime())
-                            || !(cBeans.get(i).getClassStartTime().before(cBean.getClassEndTime())
-                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
-                        System.out.println("未衝堂");
+		List<ClassBean> cBeans = cmService.findClassesByMemberId(mBean.getNumber());
+		for (int i = 0; i < cBeans.size(); i++) {
+			if (cBeans.get(i).getClassDate().equals(cBean.getClassDate())) {
+				if (cBeans.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
+					if (cBeans.get(i).getClassStartTime().equals(cBean.getClassEndTime())
+							|| !(cBeans.get(i).getClassStartTime().before(cBean.getClassEndTime())
+									&& cBeans.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
+						System.out.println("未衝堂");
 
-                    } else {
-                        System.out.println("已衝堂");
-                    }
-                } else {
-                    if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
-                            && !(cBeans.get(i).getClassStartTime().before(cBean.getClassStartTime())
-                                    && cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
-                        System.out.println("未衝堂");
-                    } else {
-                        System.out.println("已衝堂");
-                    }
-                }
-            }
-        }
+					} else {
+						System.out.println("已衝堂");
+					}
+				} else {
+					if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
+							&& !(cBeans.get(i).getClassStartTime().before(cBean.getClassStartTime())
+									&& cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
+						System.out.println("未衝堂");
+					} else {
+						System.out.println("已衝堂");
+					}
+				}
+			}
+		}
 
-        ClassMemberBean cmBean = new ClassMemberBean();
-        cmBean.setcBean(cBean);
-        cmBean.setmBean(memBean);
-        Long datetime = System.currentTimeMillis();
-        Timestamp timestamp = new Timestamp(datetime);
-        cmBean.setRegisterDate(timestamp);
-        memberService.insertReservation(cmBean, 1, classIdd);
-        String email = mBean.getEmail();
-        String subject = "一對一課程預約成功通知信";
-        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
-                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
-                + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+		ClassMemberBean cmBean = new ClassMemberBean();
+		cmBean.setcBean(cBean);
+		cmBean.setmBean(memBean);
+		Long datetime = System.currentTimeMillis();
+		Timestamp timestamp = new Timestamp(datetime);
+		cmBean.setRegisterDate(timestamp);
+		memberService.insertReservation(cmBean, 1, classIdd);
+		String email = mBean.getEmail();
+		String subject = "一對一課程預約成功通知信";
+		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
+				+ "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+				+ cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
 
-        emailSerive.sendEmail(email, subject, body);
+		emailSerive.sendEmail(email, subject, body);
 
-        if (cBean.getClassAvaliable() == 1) {
+		if (cBean.getClassAvaliable() == 1) {
 
-            return "true";
-        } else {
-            return "false";
-        }
+			return "true";
+		} else {
+			return "false";
+		}
 
-    }
+	}
 
 	// Mark
 	@PostMapping("searchClass")

@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private LoginUserDetailsService memberUserDetailsService;
 
 	@Autowired
-	private CustomAuthenticationSuccessHandler memberCustomAuthenticationSuccessHandler;
+	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -44,8 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.key("rememberMe-key")
 			.and().csrf().disable()
 			.formLogin().loginPage("/login/Member")
-			.defaultSuccessUrl("/login/MemberSuccess")
-			.successHandler(memberCustomAuthenticationSuccessHandler);
+			.successHandler(customAuthenticationSuccessHandler);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package tw.gym.login.Validator;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.Optional;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
 
@@ -31,7 +33,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 
 	@Autowired
 	AdminRepository admRepo;
-	
+
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
 			Authentication authentication) throws IOException, ServletException {
@@ -44,14 +46,13 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 		if (mBean.isEmpty()) {
 			Optional<CoachBean> cBean = coaRepo.findByEmail(userName);
 			if (cBean.isEmpty()) {
-				System.out.println(100);
 				Optional<Admin> aBean = admRepo.findByEmail(userName);
 				session.setAttribute("loginUser", aBean.get());
 				response.sendRedirect("/login/AdminSuccess");
-			}else {
-			System.out.println(2);
-			session.setAttribute("loginUser", cBean.get());
-			response.sendRedirect("/login/CoachSuccess");
+			} else {
+				System.out.println(2);
+				session.setAttribute("loginUser", cBean.get());
+				response.sendRedirect("/login/CoachSuccess");
 			}
 		} else {
 			session.setAttribute("loginUser", mBean.get());

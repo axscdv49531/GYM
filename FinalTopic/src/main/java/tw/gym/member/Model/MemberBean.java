@@ -30,12 +30,11 @@ import tw.gym.membercourse.model.Member_Course;
 @Component
 public class MemberBean implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer number;
-	private String id;
 	private String password;
 	private String name;
 	private String gender;
@@ -53,10 +52,10 @@ public class MemberBean implements Serializable {
 
 	@Transient
 	private String password1;
-	
+
 	@Transient
 	private String oldpwd;
-	
+
 	@Transient
 	private String confirmedPassword;
 
@@ -74,7 +73,7 @@ public class MemberBean implements Serializable {
 	@OneToMany(mappedBy = "memberBean")
 	Set<DepositeBean> depositeBean = new HashSet<>();
 
-	//Dean
+	// Dean
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member", cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<Member_Course> MC = new LinkedHashSet<Member_Course>();
@@ -96,12 +95,11 @@ public class MemberBean implements Serializable {
 
 	}
 
-	public MemberBean(Integer number, String id, String password, String name, String gender, Date birthday,
-			String phone, String email, String county, String district, String address, Integer deposite,
-			Date expirationdate, String emergencyContact, String emergencyPhone, String fileName) {
+	public MemberBean(Integer number, String password, String name, String gender, Date birthday, String phone,
+			String email, String county, String district, String address, Integer deposite, Date expirationdate,
+			String emergencyContact, String emergencyPhone, String fileName) {
 		super();
 		this.number = number;
-		this.id = id;
 		this.password = password;
 		this.name = name;
 		this.gender = gender;
@@ -148,14 +146,6 @@ public class MemberBean implements Serializable {
 
 	public void setNumber(Integer number) {
 		this.number = number;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
 	}
 
 	public String getPassword() {
@@ -329,9 +319,7 @@ public class MemberBean implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("MemberBean [id=");
-		builder.append(id);
-		builder.append(", password=");
+		builder.append("MemberBean [password=");
 		builder.append(password);
 		builder.append(", name=");
 		builder.append(name);
