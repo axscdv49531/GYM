@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.coach.model.ClassBean;
 
@@ -16,9 +18,9 @@ public interface ClassRepository extends JpaRepository<ClassBean, Integer>, JpaS
     List<ClassBean> findClassByCoachId(Integer coachId, Sort sort);
 
     // @Transactional
-    // @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     // @Modifying(clearAutomatically = true)
-    @Modifying
+    @Modifying(clearAutomatically = true)
     @Query("Update ClassBean cb set cb.classAvaliable = :a where cb.classId = :classId")
     void setAvaliable(Integer a, Integer classId);
 

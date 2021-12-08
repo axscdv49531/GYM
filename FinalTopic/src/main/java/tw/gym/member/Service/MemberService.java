@@ -41,7 +41,7 @@ public interface MemberService {
     MemberBean getById(Integer memberId);
 
     // Mark
-    void insertReservation(ClassMemberBean cmBean, Integer a, Integer classId);
+    void insertReservation(ClassMemberBean cmBean);
 
     // Mark
     List<ClassBean> findByMemberId(Integer memberId);

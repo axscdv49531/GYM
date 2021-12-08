@@ -539,7 +539,7 @@ public class MemberController {
 		Long datetime = System.currentTimeMillis();
 		Timestamp timestamp = new Timestamp(datetime);
 		cmBean.setRegisterDate(timestamp);
-		memberService.insertReservation(cmBean, 1, classId);
+        // memberService.insertReservation(cmBean, 1, classId);
 
 		String email = mBean.getEmail();
 		String subject = "一對一課程預約成功通知信";
@@ -718,7 +718,7 @@ public class MemberController {
 		Long datetime = System.currentTimeMillis();
 		Timestamp timestamp = new Timestamp(datetime);
 		cmBean.setRegisterDate(timestamp);
-		memberService.insertReservation(cmBean, 1, classIdd);
+        // memberService.insertReservation(cmBean, 1, classIdd);
 		String email = mBean.getEmail();
 		String subject = "一對一課程預約成功通知信";
 		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"

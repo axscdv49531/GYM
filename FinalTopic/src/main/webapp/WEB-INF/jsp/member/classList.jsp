@@ -54,29 +54,35 @@
             if(x){
             $.ajax({
                         type : 'post',
-                        url : '/classReservationCheck/',
+                        url : '/member/classReservationCheck/',
                         data : {
                             classId : y
                         },
                         dataType : 'JSON',
                         complete: function(data) {
-                            if(data.responseText == 'true'){
-                                alert("預約成功");
-                            load();
-                            }else if(data.responseText == 'false'){
-                                alert("預約失敗")
-                                load();
-                            }
-                            else if(data.responseText == 'dup'){
-                                alert("衝堂，預約失敗")
-                                load();
-                            }
-                         }
+                        	   var json = JSON.stringify(data, null, 4);
+                            console.log('json:' + json);
+	if(data.responseText == ''){
+		alert("衝堂預約失敗");
+		load();
+	}else{
+		alert("預約成功");
+		load();
+	}
+//                         success: function(data) {
+//                         	console.log('success:' + data);
+//                         	var json = JSON.stringify(data, null, 4);
+//                         	console.log('json:' + json);
+                        
+//                         	$.each(data,function(i, n) {
+                        		
+//                         	})}
+                         
                         //                  contentType : 'application/json',
 //                         success : function(data){ 
 //                          load();
 //                         }
-                        }
+                        }}
             )
             }
             

@@ -128,11 +128,11 @@ public class MemberServiceImpl implements MemberService {
     ClassService aaa;
     // Mark
     @Override
-    public void insertReservation(ClassMemberBean cmBean, Integer a, Integer classId) {
+    public void insertReservation(ClassMemberBean cmBean) {
 
         // System.out.println(a + "Serv");
         // System.out.println(classId + "Serv");
-        claRepo.setAvaliable(a, classId);
+        // claRepo.setAvaliable(a, classId);
         // entityManger.clear();
         // ClassBean cBean = aaa.getClassById(classId);
         // System.out.println(cBean.getClassAvaliable() + "Serv");
