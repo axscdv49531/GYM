@@ -23,9 +23,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
@@ -153,13 +153,6 @@ public String coachClassAdd(Model model) {
             BindingResult bindingResult, RedirectAttributes attr, Model model)
             throws ParseException, SerialException, SQLException, IOException {
 
-        // new ClassValidator().validate(cBean, bindingResult);
-        // if (bindingResult.hasErrors()) {
-        // System.out.println(bindingResult.getAllErrors());
-        // attr.addFlashAttribute("org.springframework.validation.BindingResult.register", bindingResult);
-        // attr.addFlashAttribute("classBean", classBean);
-        // return "redirect:/coach/coachClassAdd";
-        // }
         new ClassValidator().validate(cBean, bindingResult);
         if (bindingResult.hasErrors()) {
             List<String> skList = skiService.listAllSkill();
@@ -222,8 +215,9 @@ public String coachClassAdd(Model model) {
         return "/coach/coachClassList";
     }
 
-    @GetMapping("/updateClass/{id}")
-    public String updateClass(Model model, @PathVariable("id") Integer id) {
+    @GetMapping("/updateClass")
+    // public String updateClass(Model model, @PathVariable("id") Integer id) {
+    public String updateClass(Model model, @RequestParam("Id") Integer id) {
         // List<String> checkBoxData = new ArrayList<String>();
         // checkBoxData.add("胸");
         // checkBoxData.add("肩");
@@ -274,8 +268,9 @@ public String coachClassAdd(Model model) {
         return "/coach/coachClassDetail";
     }
 
-    @PostMapping(value = "/updateClass/{id}", params = "edit")
-    public String updateClassCheck(ClassBean cBean) throws ParseException {
+    @PostMapping(value = "/updateClass", params = "edit")
+    public String updateClassCheck(ClassBean cBean, @RequestParam("Id") Integer id)
+            throws ParseException, IOException, SerialException, SQLException {
         DateFormat formatter = new SimpleDateFormat("HH:mm");
         Time startTime = new Time(formatter.parse(cBean.getClassStartTimeTemp()).getTime());
         cBean.setClassStartTime(startTime);
@@ -289,6 +284,17 @@ public String coachClassAdd(Model model) {
             sBean.add(sBeann);
         }
         cBean.setsBean(sBean);
+
+        MultipartFile picture = cBean.getClaPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cBean.setClassPhoto(blob);
+        cBean.setClassFileName(fileName);
+        cBean.setClassPhotoMineType(mineType);
         classService.updateClass(cBean);
         return "redirect:/coach/coachClassList";
 
