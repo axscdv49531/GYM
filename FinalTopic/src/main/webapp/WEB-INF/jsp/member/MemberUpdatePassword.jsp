@@ -41,11 +41,10 @@
 
 <!-- ALL PLUGINS -->
 <script src="../js/custom.js"></script>
-
 </head>
 
 <body>
-	<div style="width: 1205px; height: 194.13px"  class="top">
+	<div style="width: 1205px; height: 194.13px" class="top">
 		<header>
 			<div class="container">
 				<div class="header-top">
@@ -205,21 +204,21 @@
 					<tr>
 						<td align='right'>原密碼：<br>&nbsp;
 						<td><form:input type="password" path="oldpwd" id="oldpwd" /><br>&nbsp;
-							<form:errors path="oldpwd" cssClass="error"></form:errors></td>
+							<form:errors path="oldpwd" cssClass="error"></form:errors> <span id="oldpwdsp" class="error"></span></td>
 					</tr>
 
 					<tr>
 						<td align='right'>新密碼：<br>&nbsp;
 						<td><form:input type="password" path="password1"
 								id="password1" /><br>&nbsp; <form:errors path="password1"
-								cssClass="error"></form:errors></td>
+								cssClass="error"></form:errors> <span id="pwdsp" class="error"></span><br /></td>
 					</tr>
 
 					<tr>
 						<td align='right'>新密碼確認：<br>&nbsp;
 						</td>
 						<td><form:input type="password" path="confirmedPassword" /><br>&nbsp;
-							<form:errors path="confirmedPassword" cssClass="error" /></td>
+							<form:errors path="confirmedPassword" cssClass="error" /><span id="conpwdsp" class="error"></span></td>
 					</tr>
 					<tr>
 						<td colspan='2' align='center'><input class="button"
@@ -231,6 +230,72 @@
 		</form:form>
 		<a href="<c:url value='/login/MemberSuccess' />">回前頁</a>
 	</div>
+	<script type="text/javascript">
+		document.getElementById("oldpwd").addEventListener("blur", checkOldPwd);
+		document.getElementById("password1").addEventListener("blur", checkPwd);
+		document.getElementById("confirmedPassword").addEventListener("blur", checkConPwd);
+		function checkOldPwd() {
+			let thePwdObj = document.getElementById("oldpwd");
+			//取得Pwd元素值
+			let thePwdObjVal = thePwdObj.value;
+			//判斷元素值是否為空白，密碼長度是否大於等於6
+			let sp = document.getElementById("oldpwdsp");
+			let thePwdObjValLen = thePwdObjVal.length;
+			let ch, flag1 = false;
+			if (thePwdObjVal == "") {
+				sp.innerHTML = "<img src='/images/error.png'>不可空白";
+			}
+		}
+		function checkPwd() {
+			let thePwdObj = document.getElementById("password1");
+			//取得Pwd元素值
+			let thePwdObjVal = thePwdObj.value;
+			//判斷元素值是否為空白，密碼長度是否大於等於6
+			let sp = document.getElementById("pwdsp");
+			let thePwdObjValLen = thePwdObjVal.length;
+			let ch, flag1 = false, flag2 = false;
+			if (thePwdObjVal == "") {
+				sp.innerHTML = "<img src='/images/error.png'>不可空白";
+			} else if (thePwdObjValLen >= 8) {
+				for (let i = 0; i < thePwdObjValLen; i++) {
+					ch = thePwdObjVal.charAt(i).toUpperCase()
+					if (ch >= "A" && ch <= "Z") {
+						flag1 = true;
+					} else if (ch >= "0" && ch <= "9") {
+						flag2 = true;
+					}
+					if (flag1 && flag2) {
+						break;
+					}
+				}//for
+				if (flag1 && flag2) {
+					sp.innerHTML = ""
+				} else {
+					sp.innerHTML = "<img src='/images/error.png'>密碼需包含英文、數字及特殊符號[!@#$%^&*]"
+				}
+			} else {
+				sp.innerHTML = "<img src='/images/error.png'>請輸入8-15位數密碼"
+			}
+		}
+		function checkConPwd() {
+			let thePwdObj = document.getElementById("password1");
+			let theCPwdObj = document.getElementById("confirmedPassword");
+			//取得Pwd元素值
+			let thePwdObjVal = thePwdObj.value;
+			let theCPwdObjVal = theCPwdObj.value;
+			//判斷元素值是否為空白
+			let sp = document.getElementById("conpwdsp");
+			let ch, flag1 = false;
+			if (thePwdObjVal == "") {
+				sp.innerHTML = "<img src='/images/error.png'>不可空白";
+			}else if (thePwdObjVal ==theCPwdObjVal ){
+				sp.innerHTML = ""
+			}else{
+				sp.innerHTML = "<img src='/images/error.png'>和新密碼不相符"
+			}
+		}
+	</script>
+
 
 
 </body>

@@ -36,7 +36,6 @@
 					<th width='160'>體脂肪重</th>
 					<th width='160'>BMI</th>
 					<th width='160'>體脂肪率</th>
-					<th width='60'>刪除</th>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty inbodyBeanList}">
@@ -49,9 +48,6 @@
 								<td>${inbody.bodyFatMass}</td>
 								<td>${inbody.bmi}</td>
 								<td>${inbody.pbf}</td>
-								<td><a href='deleteInbody/${inbody.no}'><input
-									type='button' value='刪除' onclick="return confirmDelete('${inbody.measurementDate}');"></a></td>
-
 							</tr>
 						</c:forEach>
 					</c:when>
