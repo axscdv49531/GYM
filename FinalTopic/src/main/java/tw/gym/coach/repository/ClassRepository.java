@@ -31,4 +31,5 @@ public interface ClassRepository extends JpaRepository<ClassBean, Integer>, JpaS
 
     List<ClassBean> findAllByOrderByClassDateAsc();
 
+
 }
