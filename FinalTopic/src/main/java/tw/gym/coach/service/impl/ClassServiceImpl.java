@@ -19,7 +19,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.repository.ClassRepository;
+import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
+import tw.gym.member.Model.MemberBean;
 
 @Transactional
 @Service
@@ -239,5 +241,37 @@ public class ClassServiceImpl implements ClassService {
         return claRepo.findClassCoach();
     }
 
+    @Autowired
+    ClassMemberService cmService;
+
+    @Override
+    public String findDup(ClassBean cBean, MemberBean a) {
+        List<ClassBean> asd = cmService.findClassesByMemberId(a.getNumber());
+        if (asd.size() > 0) {
+            for (int i = 0; i < asd.size(); i++) {
+                if (asd.get(i).getClassDate().equals(cBean.getClassDate())) {
+                    if (asd.get(i).getClassStartTime().after(cBean.getClassStartTime())) {
+                        if (asd.get(i).getClassStartTime().equals(cBean.getClassEndTime())
+                                || !(asd.get(i).getClassStartTime().before(cBean.getClassEndTime())
+                                        && asd.get(i).getClassEndTime().after(cBean.getClassEndTime()))) {
+                            return "true";
+                        } else {
+                            return "dup";
+                        }
+                    } else {
+                        if (!asd.get(i).getClassStartTime().equals(cBean.getClassStartTime())
+                                && !(asd.get(i).getClassStartTime().before(cBean.getClassStartTime())
+                                        && asd.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
+                            return "true";
+                        } else {
+                            return "dup";
+                        }
+                    }
+                }
+            }
+        }
+
+        return "true";
+    }
 
 }

@@ -36,6 +36,7 @@ public class MemberServiceImpl implements MemberService {
     @Autowired
     ClassRepository claRepo;
 
+
     @Autowired
     public MemberServiceImpl(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
@@ -129,11 +130,12 @@ public class MemberServiceImpl implements MemberService {
     @Override
     public void insertReservation(ClassMemberBean cmBean, Integer a, Integer classId) {
 
-        System.out.println(a + "Serv");
-        System.out.println(classId + "Serv");
+        // System.out.println(a + "Serv");
+        // System.out.println(classId + "Serv");
         claRepo.setAvaliable(a, classId);
-        ClassBean cBean = aaa.getClassById(classId);
-        System.out.println(cBean.getClassAvaliable() + "Serv");
+        // entityManger.clear();
+        // ClassBean cBean = aaa.getClassById(classId);
+        // System.out.println(cBean.getClassAvaliable() + "Serv");
         cmRepo.save(cmBean);
     }
 
