@@ -57,6 +57,7 @@
 				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
+			<input class="w-100 btn btn-lg btn-primary" type="button" value="忘記密碼" onclick="window.location.href='member/forgetPwd'">
 		</form>
 	</main>
 

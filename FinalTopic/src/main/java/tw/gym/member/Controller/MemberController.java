@@ -50,6 +50,7 @@ import tw.gym.coach.service.SkillService;
 import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
+import tw.gym.member.validator.ForgetPwdValidator;
 import tw.gym.member.validator.MemberValidator;
 import tw.gym.member.validator.PasswordValidator;
 
@@ -288,6 +289,57 @@ public class MemberController {
 		return "redirect:/MemberProfile";
 	}
 
+	@GetMapping("/forgetPwd")
+	public String forgetPwd(Model model, MemberBean memberBean) {
+		model.addAttribute("memberBean", memberBean);
+		return "member/MemberUpdateProfile";
+	}
+
+	@PostMapping("/forgetPwd")
+	public String forgetPwdData(@ModelAttribute("memberBean") MemberBean member, BindingResult bindingResult) {
+		String email = member.getEmail();
+		String phone = member.getPhone();
+		MemberBean memberBean = memberService.findByEmail(email);
+		if (memberBean == null) {
+			ForgetPwdValidator forgetPwdValidator = new ForgetPwdValidator();
+			forgetPwdValidator.validate(memberBean, bindingResult);
+			bindingResult.rejectValue("email", "", "查無此帳號");
+			return "member/forgetPwd";
+		} else if (memberBean.getPhone() != phone) {
+			bindingResult.rejectValue("phone", "", "手機號碼輸入錯誤");
+			return "member/forgetPwd";
+		} else {
+			String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
+					"R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+			StringBuffer code = new StringBuffer();
+			Random random = new Random();
+			int temp;
+			for (int i = 0; i < 6; i++) {
+				if (random.nextInt(2) == 0) {
+					temp = random.nextInt(10);
+					code.append(temp);
+				} else {
+					temp = random.nextInt(26);
+					code.append(alphabet[temp]);
+				}
+			}
+			memberBean.setPassword(code.toString());
+//			寄信
+			String name = memberBean.getName();
+			String pswd = memberBean.getPassword();
+			String toEmail = memberBean.getEmail();
+			String subject = "歡迎加入會員： ";
+			String body = "Dear " + name + " 小姐/先生，您好：\n您已通過身分驗證。 " + "您可以重新啟用SpringFitness網路會員服務\n" + "請點擊下面連結進入網頁：\n"
+					+ "以下是您的新密碼：" + pswd + "\n" + "http://localhost:8080/" + "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
+//			密碼加密
+			String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
+			memberBean.setPassword(encodePwd);
+			emailSerive.sendEmail(toEmail, subject, body);
+			memberService.update(memberBean);
+			return "member/MemberUpdateProfile";
+		}
+	}
+
 	@GetMapping("/deleteMember/{number}")
 	public String deleteMemberData(@PathVariable("number") Integer number) throws SQLException {
 		memberService.deleteById(number);
@@ -330,11 +382,11 @@ public class MemberController {
 				} else if (ch >= 97 && ch <= 122) {
 					flag3 = true;
 				}
-				if (flag1 && flag2 && flag3== true) {
+				if (flag1 && flag2 && flag3 == true) {
 					break;
 				}
 			}
-			if (flag1 && flag2 && flag3== true) {
+			if (flag1 && flag2 && flag3 == true) {
 				System.out.println("正確");
 			} else {
 				System.out.println("錯誤");
