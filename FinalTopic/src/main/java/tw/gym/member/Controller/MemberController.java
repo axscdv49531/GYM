@@ -544,7 +544,8 @@ public class MemberController {
                      System.out.println("未衝堂");
                      
                  } else {
-                     System.out.println("已衝堂");
+                     // System.out.println("已衝堂");
+                     return "dup";
                  }
              } else {
                  if (!cBeans.get(i).getClassStartTime().equals(cBean.getClassStartTime())
@@ -552,7 +553,8 @@ public class MemberController {
                                  && cBeans.get(i).getClassEndTime().after(cBean.getClassStartTime()))) {
                      System.out.println("未衝堂");
                  } else {
-                     System.out.println("已衝堂");
+                     // System.out.println("已衝堂");
+                     return "dup";
                  }
              }
          }
