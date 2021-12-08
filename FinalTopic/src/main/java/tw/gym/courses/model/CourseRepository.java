@@ -6,9 +6,11 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Modifying;
 //import org.springframework.data.jpa.repository.Query;
 //import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface CourseRepository extends JpaRepository<Course, Integer>,CourseRepositoryCustom, JpaSpecificationExecutor<Course> {
 
@@ -33,6 +35,11 @@ public interface CourseRepository extends JpaRepository<Course, Integer>,CourseR
 	@Query(value="from Course c where c.date >= :thismonday and c.date < :nextmonday and c.classroom= :classroom")
 	public List<Course> findOneWeekCourse(Date thismonday, Date nextmonday,String classroom);
 	
+	//批量刪除
+	 @Modifying
+	 @Transactional
+	 @Query("delete from Course c where c.id in (?1)")
+	 public void deleteBatch(List<Integer> ids);
 
 	
 
