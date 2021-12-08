@@ -36,15 +36,7 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<script src="/js/3dslider.js"></script>
-=======
-    <script src="../js/3dslider.js"></script>
->>>>>>> origin/ryan1204
-=======
 <script src="../js/3dslider.js"></script>
->>>>>>> origin/ryan1208
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>

@@ -96,6 +96,8 @@ public class WebAppConfig implements WebMvcConfigurer {
                 .addResourceLocations("/WEB-INF/resources/styles_classIntro/");
         registry.addResourceHandler("/plugins_classIntro/**")
                 .addResourceLocations("/WEB-INF/resources/plugins_classIntro/");
+        registry.addResourceHandler("/admintemplate/**")
+        .addResourceLocations("/WEB-INF/resources/admintemplate/");
 	}
 
 	// @Override

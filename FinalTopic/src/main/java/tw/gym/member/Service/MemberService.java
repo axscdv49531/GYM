@@ -3,11 +3,18 @@ package tw.gym.member.Service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
 import tw.gym.member.Model.MemberBean;
 
 public interface MemberService {
+	
+	public MemberBean findBymNum(Integer number);
+	
+	public Page<MemberBean> findAllByPage(Pageable pageable);
 
     public MemberBean insert(MemberBean memberBean);
 
