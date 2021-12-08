@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Set;
 
@@ -20,10 +21,12 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +37,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -50,7 +54,6 @@ import tw.gym.coach.service.SkillService;
 import tw.gym.courses.utils.EmailSenderService;
 import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
-import tw.gym.member.validator.ForgetPwdValidator;
 import tw.gym.member.validator.MemberValidator;
 import tw.gym.member.validator.PasswordValidator;
 
@@ -292,51 +295,62 @@ public class MemberController {
 	@GetMapping("/forgetPwd")
 	public String forgetPwd(Model model, MemberBean memberBean) {
 		model.addAttribute("memberBean", memberBean);
-		return "member/MemberUpdateProfile";
+		return "member/forgetPwd";
 	}
 
 	@PostMapping("/forgetPwd")
-	public String forgetPwdData(@ModelAttribute("memberBean") MemberBean member, BindingResult bindingResult) {
+	public String forgetPwdData(@ModelAttribute("memberBean") MemberBean member, BindingResult bindingResult)
+			throws UsernameNotFoundException {
 		String email = member.getEmail();
 		String phone = member.getPhone();
-		MemberBean memberBean = memberService.findByEmail(email);
-		if (memberBean == null) {
-			ForgetPwdValidator forgetPwdValidator = new ForgetPwdValidator();
-			forgetPwdValidator.validate(memberBean, bindingResult);
-			bindingResult.rejectValue("email", "", "查無此帳號");
-			return "member/forgetPwd";
-		} else if (memberBean.getPhone() != phone) {
-			bindingResult.rejectValue("phone", "", "手機號碼輸入錯誤");
-			return "member/forgetPwd";
-		} else {
-			String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q",
-					"R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
-			StringBuffer code = new StringBuffer();
-			Random random = new Random();
-			int temp;
-			for (int i = 0; i < 6; i++) {
-				if (random.nextInt(2) == 0) {
-					temp = random.nextInt(10);
-					code.append(temp);
-				} else {
-					temp = random.nextInt(26);
-					code.append(alphabet[temp]);
-				}
+		try {
+			Optional<MemberBean> opmember = memberService.findEmail(email);
+
+			if (opmember.isEmpty()) {
+				bindingResult.rejectValue("email", "", "查無此帳號");
+				return "member/forgetPwd";
 			}
-			memberBean.setPassword(code.toString());
+
+			MemberBean memberBean = memberService.findByEmail(email);
+			if ( !phone.equals(memberBean.getPhone())) {
+				System.out.print(phone);
+				System.out.print(memberBean.getPhone());
+				
+				bindingResult.rejectValue("phone", "", "手機號碼輸入錯誤");
+				return "member/forgetPwd";
+			} else {
+				String[] alphabet = { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P",
+						"Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z" };
+				StringBuffer code = new StringBuffer();
+				Random random = new Random();
+				int temp;
+				for (int i = 0; i < 6; i++) {
+					if (random.nextInt(2) == 0) {
+						temp = random.nextInt(10);
+						code.append(temp);
+					} else {
+						temp = random.nextInt(26);
+						code.append(alphabet[temp]);
+					}
+				}
+				memberBean.setPassword(code.toString());
 //			寄信
-			String name = memberBean.getName();
-			String pswd = memberBean.getPassword();
-			String toEmail = memberBean.getEmail();
-			String subject = "歡迎加入會員： ";
-			String body = "Dear " + name + " 小姐/先生，您好：\n您已通過身分驗證。 " + "您可以重新啟用SpringFitness網路會員服務\n" + "請點擊下面連結進入網頁：\n"
-					+ "以下是您的新密碼：" + pswd + "\n" + "http://localhost:8080/" + "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
+				String name = memberBean.getName();
+				String pswd = memberBean.getPassword();
+				String toEmail = memberBean.getEmail();
+				String subject = "歡迎加入會員： ";
+				String body = "Dear " + name + " 小姐/先生，您好：\n您已通過身分驗證。 " + "您可以重新啟用SpringFitness網路會員服務\n"
+						+ "請點擊下面連結進入網頁：\n" + "以下是您的新密碼：" + pswd + "\n" + "http://localhost:8080/" + "\n"
+						+ "(本信件由系統自動發出，請勿直接回覆，謝謝配合)";
 //			密碼加密
-			String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
-			memberBean.setPassword(encodePwd);
-			emailSerive.sendEmail(toEmail, subject, body);
-			memberService.update(memberBean);
-			return "member/MemberUpdateProfile";
+				String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
+				memberBean.setPassword(encodePwd);
+				emailSerive.sendEmail(toEmail, subject, body);
+				memberService.update(memberBean);
+				return "redirect:/login/Member";
+			}
+		} catch (Exception e) {
+			return "member/forgetPwd";
 		}
 	}
 
