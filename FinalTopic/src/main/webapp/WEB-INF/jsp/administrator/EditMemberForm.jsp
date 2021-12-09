@@ -101,7 +101,7 @@
 							class="nc-icon nc-notes"></i>
 							<p>教練專區</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='' />"> <i
+					<li><a class="nav-link" href="<c:url value='/courseQuery' />"> <i
 							class="nc-icon nc-paper-2"></i>
 							<p>團體課程專區</p>
 					</a></li>

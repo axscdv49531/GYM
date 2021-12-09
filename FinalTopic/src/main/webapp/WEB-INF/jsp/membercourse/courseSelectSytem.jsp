@@ -154,7 +154,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 					+ n.maxStudentNum
 					+ "</td>"
 					+ "<td><button id='' type='button' class='btn'  onclick='showInformation("
-					+ n.id
+					+ n.id + "," + n.coach.coachId
 					+ ")'>課程簡介</button></td>"
 					+"<td>課程已額滿</td>" + "</tr>";}
 				else{
@@ -187,7 +187,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 										+ n.maxStudentNum
 										+ "</td>"
 										+ "<td><button id='' type='button' class='btn'  onclick='showInformation("
-										+ n.id
+										+ n.id + "," + n.coach.coachId
 										+ ")'>課程簡介</button></td>"
 										+ "<td><button id='' type='button' class='btn' onclick='selectCourse("
 										+ n.id + "," + n.studentNum + ","
@@ -304,8 +304,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	}
 */
 	
-	
-	function showInformation(courseId) {
+	function showInformation(courseId,coachId) {
 		//alert(courseId);
 
 		$.ajax({
@@ -320,13 +319,37 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				//showAllCourse(indexPage);
 			}
 		});
+		
+		$.ajax({
+	           type:'get',
+	           url:'/course/showonecoach/'+coachId,
+	           dataType:'JSON',
+	           contentType:'application/json',
+	           success: function(onecoach){
+	               
+	               console.log('success:' + onecoach);
+	               var json = JSON.stringify(onecoach,null,4);
+	               console.log('json:' + json);
+	               
+	               $('#showCoach').empty("");
+	               $('#showCoach').append("<table><tr>"+onecoach.coachName+"</tr><tr><td id='showCoachPic' style='width:250px;'></td><td id='showCoachInfo'></td></tr></table>");
+	               $('#showCoachPic').append("<img class='img-responsive' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + onecoach.coachAccount + " style='width:220px; text-align:right'>");
+	               $('#showCoachInfo').append("<tr><td>性別: "+onecoach.coachGender+"</td></tr>"
+	               							  +"<tr><td>教學資歷: "+onecoach.coachExp+" 年</td></tr>"
+	               							  //+"<tr><td>教練專長: "+onecoach.coachExp+" 年</td></tr>"
+	               )   
+	               
+						}
+	                   });             
+	
 
 		//load(indexPage);
 	}
 	
-	 <!-- /.modal 模態框--> 
-	  $(function() { $('#myModal').modal('hide') } ); 
-	  $(function() { $('#myModal').on('hide.bs.modal', function() { alert('嘿，我聽說您喜歡模態框...'); }) });
+	
+	
+	
+
 	
 </script>
 
@@ -342,38 +365,39 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 			<div class="container-fluid">
 
 				<div class="col-md-1"></div>
-				<div  class="col-md-7">
+				<div  class="col-md-7 form-inline">
 
 					<fieldset>
 						<legend>課程查詢：</legend>
-						<a href="<c:url value='/timetable' />" target="_blank">顯示本週課表</a><br>
-						<button onclick='todayCourse(1)'>當日課程</button>
-						<button onclick='showAllCourse(1)'>查詢所有課程</button>
+						<a href="<c:url value='/timetable' />" target="_blank"><button class='btn-danger'>開啟本週課表</button></a>
+						<button onclick='todayCourse(1)' class='btn-danger'>當日課程</button>
+						<button onclick='showAllCourse(1)' class='btn-danger'>查詢所有課程</button>
 						<br> <br>
 						<form>
-
-							<select  name="category" class="">
+	
+							<select  name="category" class="form-control" >
 								<option value=""  selected="selected">請選擇課程種類</option>
 								<option value="舞蹈類課程">舞蹈類課程</option>
 								<option value="瑜珈課程">瑜珈課程</option>
 								<option value="心肺肌力課程">心肺肌力課程</option>
 								<option value="其他">其他</option>
-							</select> <select name="classroom" class="">
+							</select> <select name="classroom" class="form-control" >
 								<option value=""  selected="selected">請選擇教室</option>
 								<option value="A">A教室</option>
 								<option value="B">B教室</option>
 								<option value="C">C教室</option>
-							</select> <select name="date" class="">
+							</select> <select name="date" class="form-control" >
 								<option value=""  selected="selected">請選擇課程日期</option>
 								<c:forEach var="onedate" items="${dateList}">
 									<option value="${onedate}">${onedate}</option>
 								</c:forEach>
-							</select> <select name="coachId" class="">
+							</select> <select name="coachId" class="form-control" >
 								<option value="" selected="selected">請選擇授課老師</option>
 								<c:forEach var="oneCoach" items="${coachList}">
 									<option value="${oneCoach.coachId}">${oneCoach.coachName}</option>
 								</c:forEach>
-							</select> <input style = "color:black" class="" type="button" value="查詢"
+							</select> 
+							<input style = "color:black" class="form-control" type="button" value="查詢"
 								onclick='sendQuery(1)'>
 						</form>
 					</fieldset>
@@ -394,8 +418,9 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						</table>
 					</div>
 					<div class="col-md-3">
+					 <div class="row">
 						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
 								<h2 style="color:white">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
@@ -404,38 +429,55 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 							</div>
 							<ul class="other-stroies" id='showInformation'></ul>
 						</div>
-						
-						
-<!-- 模態框（Modal） --> 
- <h2 > 模態框（Modal）插件事件 </h2 > 
- <!-- 按鈕觸發模態框 --> 
- <button  class = "btn btn-primary btn-lg"   data-toggle = "modal"  data-target = "#myModal" > 開始演示模態框 </button > 
- <!-- 模態框（Modal） --> 
- <div   class = "modal fade"   id = "myModal"   tabindex = " -1 "   role = "dialog"   aria-labelledby = " myModalLabel "   aria-hidden = " true " > 
-     <div   class = "modal-dialog" > 
-         <div   class = "modal-content" > 
-             <div   class = "modal-header" > 
-                 <button  type = "button"   class = "close"   data-dismiss = "modal"  aria-hidden = "true" > × </button > 
-                 <h4  class = "modal-title"   id = "myModalLabel" > 模態框（Modal）標題 </h4 > 
-             </div > 
-             <div   class = "modal-body" > 按下ESC按鈕退出。 </div > 
-             <div   class = "modal-footer" > 
-                 <button  type = "button"   class = " btn btn-default "   data-dismiss = " modal " > 關閉 </button > 
-                 <button  type = "button"   class = " btn btn-primary " > 提交更改 </button > 
-             </div > 
-         </div > <!-- /.modal-content --> 
-     </div > <!-- /.modal-dialog --> 
- </div > 
-
-						
+					 </div>
+						<div class="row">
+							<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
+								<h2 style="color:white">
+									教練介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
+								</h2>
+								<span class="date"></span>
+								<br>
+							</div>
+							<ul class="other-stroies" id='showCoach'></ul>
+						</div>
+						</div>
 					</div>
+				
 				<div class="col-md-1"></div>
 				</div>
 			</div>
 
-
+						
+<!-- <!-- 模態框（Modal） -->  
+<!--  <h2 > 模態框（Modal）插件事件 </h2 >  -->
+<!--  <!-- 按鈕觸發模態框 -->  -->
+<!--  <button  class = "btn btn-primary btn-lg"   data-toggle = "modal"  data-target = "#myModal" > 開始演示模態框 </button >  -->
+<!--  <!-- 模態框（Modal） --> 
+<!--  <div   class = "modal fade"   id = "myModal"   tabindex = " -1 "   role = "dialog"   aria-labelledby = " myModalLabel "   aria-hidden = " true " >  -->
+<!--      <div   class = "modal-dialog" >  -->
+<!--          <div   class = "modal-content" >  -->
+<!--              <div   class = "modal-header" >  -->
+<!--                  <button  type = "button"   class = "close"   data-dismiss = "modal"  aria-hidden = "true" > × </button >  -->
+<!--                  <h4  class = "modal-title"   id = "myModalLabel" > 模態框（Modal）標題 </h4 >  -->
+<!--              </div >  -->
+<!--              <div   class = "modal-body" > 按下ESC按鈕退出。 </div >  -->
+<!--              <div   class = "modal-footer" >  -->
+<!--                  <button  type = "button"   class = " btn btn-default "   data-dismiss = " modal " > 關閉 </button >  -->
+<!--                  <button  type = "button"   class = " btn btn-primary " > 提交更改 </button >  -->
+<!--              </div >  -->
+<!--          </div > /.modal-content  -->
+<!--      </div > /.modal-dialog  -->
+<!--  </div >  -->
+<!-- <!-- 模態框（Modal） -->
 
 
 	<c:import url="/bottom"></c:import>
+	
+	
+	
+	
+	
+	
 </body>
 </html>

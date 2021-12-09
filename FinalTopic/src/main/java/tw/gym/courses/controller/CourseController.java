@@ -102,6 +102,8 @@ public class CourseController {
 		m.addAttribute("courseId", tempcourseId);
 		return "course/studentQuery";
 	}
+	
+	
 
 //////////////////////////////////////////////////////	
 
@@ -110,6 +112,13 @@ public class CourseController {
 	@ResponseBody
 	public List<Course> processFindAllCourses() {
 		return cService.findAllCourse();
+	}
+	
+	// 查詢單筆課程
+	@GetMapping(path = "/findcoursebyid.controller/{cousreId}") 
+	@ResponseBody
+	public Course processFindCourseById(@PathVariable("cousreId") Integer cousreId) {
+		return cService.findById(cousreId);
 	}
 
 	// 查詢課程by會員，已加選課程 (我的課表)
@@ -217,7 +226,7 @@ public class CourseController {
 	}
 */
 	
-	//查詢當周課程
+	//查詢當周課程(分教室)
 	@GetMapping("/querythisweekcourse.controller/{classroom}") // http://localhost:8081/course/querythisweekcourse.controller
 	@ResponseBody
 	public List<Course> querythisweekcourse(@PathVariable("classroom") String classroom) {
@@ -255,6 +264,16 @@ public class CourseController {
 		String str = cService.findInfoById(courseId);
 		return str;
 	}
+	//課程簡介下方秀出教練
+    @GetMapping("/showonecoach/{coachId}") // course/
+    @ResponseBody
+    public CoachBean listAllCoach(@PathVariable("coachId") Integer coachId) {
+        CoachBean coach = coaService.getById(coachId);
+        return coach;
+    }
+	
+	
+	
 
 	// 查詢課程學生
 	@GetMapping("/querystudent.controller/{courseId}") // http://localhost:8081/course/querystudent.controller

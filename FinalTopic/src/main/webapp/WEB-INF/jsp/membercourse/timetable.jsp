@@ -20,8 +20,8 @@
 
     .Courses-head>div {
       text-align: center;
-      font-size: 14px;
-      line-height: 28px;
+      font-size: 18px;
+      line-height: 36px;
     }
 
     .left-hand-TextDom,
@@ -76,7 +76,8 @@
     }
 
     .highlight-week {
-      color: #02a9f5 !important;
+      color: red !important;
+      font-weight : bold;
     }
 
     .Courses-content li {
@@ -177,21 +178,33 @@
     [{ index: '12', name: '20:00-20:50' }, 1],
     [{ index: '13', name: '21:00-21:50' }, 1]
   ];
-  const week = ['周一', '周二', '周三', '周四', '周五', '週六', '週日'];
+  const week = [
+	  mondaystr.substring(5)+' 周一', 
+	  tuesdaystr.substring(5)+' 周二', 
+	  wednesdaystr.substring(5)+' 周三', 
+	  thursdaystr.substring(5)+' 周四', 
+	  fridaystr.substring(5)+' 周五', 
+	  saturdaystr.substring(5)+' 週六', 
+	  sundaystr.substring(5)+' 週日'];
   const highlightWeek = new Date().getDay();
   const styles = {
     Gheight: 50,
     leftHandWidth: 50,
-    palette: ['#ff6633', '#eeeeee']
+    //palette: ['#ff6633', '#eeeeee']
+  palette:false
   };    
 
-//宣告二維陣列7X13
+//宣告二維陣列7X13：裝課名、老師
 const testtimtables =new Array(7);
 for(let i=0;i<7;i++){
 testtimtables[i]=new Array(13);
 }
 
-
+//宣告二維陣列7X13：裝課程種類：判斷顏色
+const categoryTB =new Array(7);
+for(let i=0;i<7;i++){
+	categoryTB[i]=new Array(13);
+}
 
 /////////////顯示時間課表//////////////////////////////////
 var classroom='A'
@@ -220,7 +233,7 @@ function showTimeTable(classroom){
 			contentType : 'application/json;charset=utf-8',
 			success : function(data) {
 				//showCourseList(data);
-				console.log(data);
+				//console.log(data);
 				
 
 			    $.each(data, function (i, n) {
@@ -228,38 +241,66 @@ function showTimeTable(classroom){
 			        if (n.date == dayStr[i]) { 
 			          for(let j=0;j<13;j++){
 			            if(n.period==timetableType[j][0].name){
-			              testtimtables[i][timetableType[j][0].index-1] =n.courseName+' ('+n.coach.coachName +' 老師)';
+			              testtimtables[i][timetableType[j][0].index-1] =n.courseName+' ('+n.coach.coachName +') '
+			              //+n.category;
+			              categoryTB[i][timetableType[j][0].index-1] =n.category;
+
 			            }else{
 			            }
-			            console.log(testtimtables[i][j]); 
+			            //console.log(testtimtables[i][j]); 
 			          }
 			        }else{
 			          for(let j=0;j<13;j++){
 			          }
 			        }
 			      }
-			    })
+			    });//$.each結尾
+			    
 			    for(let i=0;i<7;i++){
 			      for(let j=0;j<13;j++){
 			        if(null==testtimtables[i][j]){
 			          testtimtables[i][j]="";
+		              categoryTB[i][j]="";
 			        }
 			      }
 			    }
 			    // 实例化(初始化课表)
 			    const timetable = new Timetables({
+			    category:categoryTB,
 			      el: '#coursesTable',
 			      timetables: testtimtables,
 			      week: week,
 			      timetableType: timetableType,
 			      highlightWeek: highlightWeek,
-			      gridOnClick: function (e) {
-			        alert(e.name + '  ' + e.week + ', 第' + e.index + '节课, 课长' + e.length + '节')
-			        console.log(e)
-			      },
+// 			      gridOnClick: function (e) {
+// 			        alert(e.name + '  ' + e.week + ', 第' + e.index + '节课, 课长' + e.length + '节')
+// 			        console.log(e)
+// 			      },
 			      styles: styles
 			    });
-			}
+			    
+			    //依課程種類給分類背景色
+			    $(".course-hasContent").each(function (i, n) {
+			    	//console.log("hello:" + n);
+			    	
+			    	var classindex =$(this).parent("ul").attr('class').substring(6)-1;
+			    	var dayindex = $(this).index();
+			    	var category =categoryTB[dayindex][classindex];
+			    	if(category=='舞蹈類課程'){
+				    	$(this).css({"background-color":"#FFA1A1"}); //粉紅
+			    	}else if(category=='瑜珈課程'){
+			    		$(this).css({"background-color":"#00FF00"}); //綠
+			    	}else if (category=='心肺肌力課程'){
+			    		$(this).css({"background-color":"#FFC14F"});//橘
+			    	}else if (category=='其他'){
+			    		$(this).css({"background-color":"#00F5F5"});//藍
+			    	}else{
+			    		$(this).css({"background-color":"white"});
+			    	}
+			    
+			    });
+			    
+			}//success結尾
 		});//ajax結尾
 	 } 
 
@@ -270,18 +311,29 @@ function showTimeTable(classroom){
 <body>
 
 
-  <div id="coursesTable"></div>
-  <button onclick="changeclassroom('A')"
-        style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none">
-    A教室課表
+<div id="coursesTable" style="width:60%"></div>
+  
+<fieldset style="width:20%">
+<legend>教室分類</legend>
+<button onclick="changeclassroom('A')" style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none">
+A教室課表
 </button>
 <button onclick="changeclassroom('B')" style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none ">B教室課表</button>
 <button onclick="changeclassroom('C')" style="background-color: #00a2ae; color: #fff; padding: 5px 10px; border-radius: 4px;border: none ">C教室課表</button>
+</fieldset>
 
-  <script>
+<fieldset style="width:20%">
+<legend>課程顏色分類</legend>
+<table>
+<tr>
+<td style="background-color:#FFA1A1">舞蹈類課程</td>
+<td style="background-color:#00FF00">瑜珈課程</td>
+<td style="background-color:#FFC14F">心肺肌力課程</td>
+<td style="background-color:#00F5F5">其他</td>
+</tr>
+</table>
+</fieldset>
 
-  
-  </script>
 </body>
 
 </html>

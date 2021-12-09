@@ -119,7 +119,7 @@ function showCourseList(data) {
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" +
-			            "<td><button id='' type='button' class='btn' onclick='showInformation(" + n.id + ")'>課程簡介</button></td>"+
+			            "<td><button id='' type='button' class='btn' onclick='showInformation(" + n.id + "," + n.coach.coachId+ ")'>課程簡介</button></td>"+
 			        	"<td><button id='' type='button' class='btn' onclick='dropCourse(" + n.id +")'>退選課程</button></td>"+
 			            "</tr>";
 			   table.append(tr);
@@ -165,7 +165,7 @@ function showMyCourse(indexPage) {
 	});
 }
 
-function showInformation(courseId) {
+function showInformation(courseId,coachId) {
 	//alert(courseId);
 
 	$.ajax({
@@ -180,7 +180,27 @@ function showInformation(courseId) {
 			//showAllCourse(indexPage);
 		}
 	});
-
+	$.ajax({
+        type:'get',
+        url:'/course/showonecoach/'+coachId,
+        dataType:'JSON',
+        contentType:'application/json',
+        success: function(onecoach){
+            
+            console.log('success:' + onecoach);
+            var json = JSON.stringify(onecoach,null,4);
+            console.log('json:' + json);
+            
+            $('#showCoach').empty("");
+            $('#showCoach').append("<table><tr>"+onecoach.coachName+"</tr><tr><td id='showCoachPic' style='width:250px;'></td><td id='showCoachInfo'></td></tr></table>");
+            $('#showCoachPic').append("<img class='img-responsive' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + onecoach.coachAccount + " style='width:220px; text-align:right'>");
+            $('#showCoachInfo').append("<tr><td>性別: "+onecoach.coachGender+"</td></tr>"
+            							  +"<tr><td>教學資歷: "+onecoach.coachExp+" 年</td></tr>"
+            							  //+"<tr><td>教練專長: "+onecoach.coachExp+" 年</td></tr>"
+            )   
+            
+					}
+                });
 	//load(indexPage);
 }
  
@@ -203,21 +223,21 @@ function showInformation(courseId) {
 	} 
  	
 
-   function showInformation(courseId){
-		 //alert(courseId);
-		 $.ajax({
-			   type:'get',
-			   url:'/course/queryinformation.controller/' + courseId, 
-			   dataType:'text',
-			   contentType:'application/json',
-			   success: function(str){
+//    function showInformation(courseId){
+// 		 //alert(courseId);
+// 		 $.ajax({
+// 			   type:'get',
+// 			   url:'/course/queryinformation.controller/' + courseId, 
+// 			   dataType:'text',
+// 			   contentType:'application/json',
+// 			   success: function(str){
 
-		 			$('#showInformation').empty("");
-		 			$('#showInformation').append("課程簡介："+ str);
-		 			//showAllCourse(indexPage);
-			   }
-		});
-   }
+// 		 			$('#showInformation').empty("");
+// 		 			$('#showInformation').append("課程簡介："+ str);
+// 		 			//showAllCourse(indexPage);
+// 			   }
+// 		});
+//    }
  
 </script>
 
@@ -234,7 +254,7 @@ function showInformation(courseId) {
 				<div  class="col-md-7">
 				<fieldset>
 				<legend>我的課表 / 即將開始的課程：</legend>
-					<a href="<c:url value='/myCourseSchedulePdf' />"><button>下載我的課表</button></a>
+					<a href="<c:url value='/myCourseSchedulePdf' />"><button class='btn-danger'>下載我的課表</button></a>
 				</fieldset>
 				</div>
 				<div class="col-md-4"></div>
@@ -252,9 +272,10 @@ function showInformation(courseId) {
 							</tr>
 						</table>
 					</div>
-					<div class="col-md-3" style="margin-left:15px;">
+					<div class="col-md-3">
+					 <div class="row">
 						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
 								<h2 style="color:white">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
@@ -263,7 +284,21 @@ function showInformation(courseId) {
 							</div>
 							<ul class="other-stroies" id='showInformation'></ul>
 						</div>
+					 </div>
+						<div class="row">
+							<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
+							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
+								<h2 style="color:white">
+									教練介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
+								</h2>
+								<span class="date"></span>
+								<br>
+							</div>
+							<ul class="other-stroies" id='showCoach'></ul>
+						</div>
+						</div>
 					</div>
+				
 				<div class="col-md-1"></div>
 				</div>
 			</div>

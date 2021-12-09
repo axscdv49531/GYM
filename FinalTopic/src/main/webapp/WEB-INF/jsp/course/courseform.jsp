@@ -88,6 +88,15 @@ function arrayToJson(formArray){
 
 <body>
 
+
+<div class="wrapper">
+<c:import url="/adminsidebar"></c:import> 
+<div class="main-panel">
+<c:import url="/adminnavbar"></c:import> 
+<div class="content">
+<div class="container-fluid">
+<!-- 開始!!!!!!!!!!!!!!!!!!!!!!!!!裡面寫你自己的東西!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
 <header>
 	<a href="<c:url value='/courseQuery' />">查詢課程</a>
 	<a href="<c:url value='/courseform' />">新增課程</a>
@@ -95,24 +104,26 @@ function arrayToJson(formArray){
 	<br>
 </header>
 
-
-
-
-	<div align="center">
+<div class="card">
+   <div class="card-header">
+        <h4 class="card-title">新增課程資料</h4>
+   </div>
+   <div class="card-body">
+   
 		<form id="form">
 			<fieldset class="fieldset-auto-width">
-				<legend>課程資料</legend>
+<!-- 				<legend>課程資料</legend> -->
 				<table>
 					<tr>
-						<td align='right'>課程名稱：<br>&nbsp;
+						<td align='right'>課程名稱：
 						</td>
-						<td><input name="courseName" id="courseName"/><br>&nbsp;</td>
+						<td><input name="courseName" id="courseName" class="form-control"/></td>
 					</tr>
 
 					<tr>
 						<td align='right'>課程總類：<br>&nbsp;
 						</td>
-						<td><select name="category" id="category">
+						<td><select name="category" id="category" class="form-control">
 								<option value="NOENE" label="請選擇課程種類"></option>
 								<option value="舞蹈類課程">舞蹈類課程</option>
 								<option value="瑜珈課程">瑜珈課程</option>
@@ -122,15 +133,14 @@ function arrayToJson(formArray){
 					</tr>
 
 					<tr>
-						<td align='right'>日期：<font size='-3' color='blue'>(yyyy-MM-dd)</font><br>&nbsp;
-						</td>
-						<td><input type ="date" name="date" id="date"/><br>&nbsp; </td>
+						<td align='right'>日期：</td>
+						<td><input type ="date" name="date" id="date" class="form-control"/> </td>
 					</tr>
 
 					<tr>
-						<td align='right'>課程時間：: <br>&nbsp;
+						<td align='right'>課程時間：
 						</td>
-						<td><select name="period" id="period">
+						<td><select name="period" id="period" class="form-control">
 								<option value="NONE" label="請選擇上課時段"></option>
 								<option  value="09:00-10:00">09:00-09:50</option>
 								<option  value="10:00-10:50">10:00-10:50</option>
@@ -149,9 +159,8 @@ function arrayToJson(formArray){
 					</tr>
 
 					<tr>
-						<td align='right'>教室編號:<br>&nbsp;
-						</td>
-						<td><select name="classroom" id="classroom">
+						<td align='right'>教室編號:</td>
+						<td><select name="classroom" id="classroom" class="form-control">
 								<option value="NOENE" label="請選擇教室"></option>
 								<option  value="A">A教室</option>
 								<option value="B">B教室</option>
@@ -160,9 +169,8 @@ function arrayToJson(formArray){
 					</tr>
 
 					<tr>
-						<td align='right'>授課老師編號:：<br>&nbsp;
-						</td>
-						<td><select name="coachId" id="coachId">
+						<td align='right'>授課老師編號:</td>
+						<td><select name="coachId" id="coachId" class="form-control">
 								<option value="NONE" label="請選擇授課老師" />
 								<c:forEach var="oneCoach" items="${coachList}">
 									<option  value="${oneCoach.coachId}">${oneCoach.coachName}</option>
@@ -172,167 +180,48 @@ function arrayToJson(formArray){
 					</tr>
 
 					<tr>
-						<td align='right'>目前學生人數：<br>&nbsp;
-						</td>
-						<td><input name="studentNum" id="studentNum"/><br>&nbsp; </td>
+						<td align='right'>目前學生人數：</td>
+						<td><input name="studentNum" id="studentNum" class="form-control"/></td>
 					</tr>
 
 					<tr>
-						<td align='right'>學生人數上限：<br>&nbsp;
-						</td>
-						<td><input name="maxStudentNum" id="maxStudentNum"/><br>&nbsp; 
+						<td align='right'>學生人數上限：</td>
+						<td><input name="maxStudentNum" id="maxStudentNum" class="form-control"/> 
 						</td>
 					</tr>
 
 					<tr>
-						<td align='right'>課程狀態：<br>&nbsp;
+						<td align='right'>課程狀態：
 						</td>
-						<td><input name="state" id="state" value="即將開課"/><br>&nbsp; </td>
+						<td><input name="state" id="state" value="即將開課" class="form-control"/> </td>
 					</tr>
 					
 					<tr>
 						<td align='right'>課程介紹：<br>&nbsp;
 						</td>
-						<td><textarea rows='10' cols='30' name="information" id="information"></textarea><br>&nbsp; </td>
+						<td><textarea style="height:100%;" rows='10' name="information" id="information" class="form-control"></textarea></td>
 
 					</tr>
-
-					<td colspan='2' align='center'><input type="button" value='新增課程' onclick="insertCourse()"></td>
-					
+					<tr>
+					<td colspan='2' align='center'>
+						<input type="button"  class="btn btn-danger" value='新增課程' onclick="insertCourse()" >
+						<input type="button" class="btn btn-danger" value="一鍵輸入" onclick='quickInput()'>
+					</td>
+					</tr>
 				</table>
-				<input type="button" value="一鍵輸入" onclick='quickInput()'>
+				
+				
 			</fieldset>
 		</form>
-		</div>
-		<br> <a href="<c:url value='/' />">回首頁</a>
 
+   </div>
+</div>
 
-		<!--		
-		
-<form   method="POST">
-				
-<label for="" class="form-label"></label> 
-<input type="hidden" name="courseId" id="courseId" value="${courseOnForm.id}" class="form-control" placeholder="" aria-describedby="helpId" ">
-<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.courseId}</div>
+<!-- 結束!!!!!!!!!!!!!!!!!!!!!!!!!裡面寫你自己的東西!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+</div>
+</div>
+</div>
+</div>
 
-<label for="" class="form-label">課程名稱</label> <input type="text" name="courseName" id="courseName" value="${courseOnForm.courseName}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.courseName}</div>
-				
-				<div class="col-md-4">
-					<label for="" class="form-label">課程總類</label> <input type="text"
-						name="category" id="category" value="${courseOnForm.category}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.category}</div>
-				
-				
-				<div class="col-md-4">
-					<label for="" class="form-label">授課老師編號</label> 
-					
-					<select
-						class="form-select" name="coachId" id="coachId" size="3">
-						<c:forEach var="oneCoache" items="${coaches}" >
-						<option value="${oneCoache.id}">${oneCoache.coachName}</option>
-						</c:forEach>
-					</select>		
-				</div>
-				
-				
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.teacherName}</div>
-
-				<div class="col-md-4">
-					<label for="" class="form-label">教室編號：</label> 
-					<select
-						class="form-select" name="classroom" id="classroom" size="3">
-						<option value="A">A 教室</option>
-						<option value="B">B 教室</option>
-						<option value="C">C 教室</option>
-					</select>
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.classroomID}</div>
-
-				<div class="col-md-4">
-					<label for="" class="form-label">星期：</label> <select
-						class="form-select" name="weekday" id="weekday" size="3">
-						<option value=7>星期日</option>
-						<option value=1>星期一</option>
-						<option value=2>星期二</option>
-						<option value=3>星期三</option>
-						<option value=4>星期四</option>
-						<option value=5>星期五</option>
-						<option value=6>星期六</option>
-					</select>
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.day}</div>
-
-				<div class="col-md-4">
-					<label for="" class="form-label">時段：</label> <select
-						class="form-select" name="period" id="period" size="3">
-						<option value="09:00-10:00">09:00-10:00</option>
-						<option value="10:00-11:00">10:00-11:00</option>
-						<option value="14:00-15:00">14:00-15:00</option>
-						<option value="15:00-16:00">15:00-16:00</option>
-						<option value="19:00-20:00">19:00-20:00</option>
-						<option value="20:00-21:00">20:00-21:00</option>
-					</select>
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.period}</div>
-
-				<div class="col-md-4">
-					<label for="" class="form-label">日期</label> <input type="text"
-						name="date" id="date" value="${courseOnForm.date}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.date}</div>
-
-				<div class="col-md-4">
-					<label for="" class="form-label">目前學生人數</label> <input type="text"
-						name="studentNum" id="studentNum" value="${courseOnForm.studentNum}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.studentNum}</div>
-
-
-				<div class="col-md-4">
-					<label for="" class="form-label">學生人數上限</label> <input type="text"
-						name="maxStudentNum" id="maxStudentNum" value="${courseOnForm.maxStudentNum}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.maxStudentNum}</div>
-				
-				<div class="col-md-4">
-					<label for="" class="form-label">課程狀態</label> <input type="text"
-						name="state" id="state" value="${courseOnForm.state}"
-						class="form-control" placeholder="" aria-describedby="helpId">
-				</div>
-				<div style="color: #FF0000; font-size: 60%; display: inline">${ErrorMsg.state}</div>
-				
-
-				<div>
-					<input type="button" value="新增課程"
-						onclick="submitYouFrom('<c:url value='/insertCourse.controller' />')" />
-					<input type="button" value="更新課程"
-						onclick="submitYouFrom('<c:url value='/updateCourse.controller/${courseOnForm.id}' />')" />
-					<input type="button" value="清除表單" onclick="ResetForm()">
-				</div>
-				<div style="color: #FF0000; display: inline">${ErrorMsg.exception}</div>
-			</form>
--->
-
-		<div id="productListTitle">Course Query</div>
-		<div id="insertsuccess"></div>
-		<table id="showcourse" border="1"></table>
-		<table id="showpage">
-			<tr>
-				<td>Total Pages:${totalPages} Total Records:${totalElements}</td>
-				<td colspan="3" align="right">Previous <c:forEach var="i"
-						begin="1" end="${totalPages}" step="1">
-						<button id="myPage" value="${i}" onclick="change(${i})">${i}</button>
-					</c:forEach>Next
-				</td>
-			</tr>
-		</table>
 </body>
 </html>
