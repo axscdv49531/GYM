@@ -16,9 +16,10 @@ import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
 @Table(name="cost")
-@Component()
+@Component
 public class Cost {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

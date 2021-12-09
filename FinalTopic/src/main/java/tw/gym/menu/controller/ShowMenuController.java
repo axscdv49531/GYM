@@ -48,11 +48,13 @@ public class ShowMenuController {
 	
 
 	@GetMapping(path = "/Menumain.controller") // 到form 的網址
-	public String processMainPageAction(Model m, HttpServletRequest request) {
+	public String processMainPageAction(Model m, HttpServletRequest request,HttpSession httpSession) {
 		OrderMenu orderMenu = new OrderMenu();
 		m.addAttribute("orderMenu", orderMenu);
 		List<Menu> list = menuService.findAll();
 		m.addAttribute("MenuList", list);
+		
+		
 		return "menu/ShowMenu";
 	}
 
@@ -102,6 +104,18 @@ public class ShowMenuController {
 		oService.insert(orderMenu);
 		System.out.println("outMenu");
 		return "redirect:shoppingCart.controller";
+	}
+	
+	
+	@GetMapping("/nologinMenumain.controller")
+	public String processnologinMainPageAction(Model m, HttpServletRequest request,HttpSession httpSession) {
+		OrderMenu orderMenu = new OrderMenu();
+		m.addAttribute("orderMenu", orderMenu);
+		List<Menu> list = menuService.findAll();
+		m.addAttribute("MenuList", list);
+		
+		
+		return "menu/NologinShowMenu";
 	}
 
 }
