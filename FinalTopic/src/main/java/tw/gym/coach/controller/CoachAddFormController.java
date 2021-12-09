@@ -34,6 +34,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
@@ -52,6 +53,9 @@ public class CoachAddFormController {
 
     @Autowired
     SkillService skiService;
+
+    @Autowired
+    ClassMemberService cmService;
 
     @GetMapping("coachAdd")
     public String showCoachAddForm(Model model) {
@@ -318,6 +322,8 @@ public String coachClassAdd(Model model) {
     @ResponseBody
     public List<ClassBean> listAllClass(@SessionAttribute("loginUser") CoachBean cBean) {
         List<ClassBean> claBean = classService.findClassesByCoachId(cBean.getCoachId());
+        // Optional<MemberBean> mBean = cmService.findMemberByClassId(66);
+        // System.out.println(mBean.get().getName());
 
         return claBean;
     }
