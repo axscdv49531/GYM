@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
+import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
@@ -104,5 +107,16 @@ public class MembersController {
         // return "false";
         // }
         return cBean;
+    }
+
+    @GetMapping("memberViewClassDetail")
+    public String memberViewClassDetail(Model model, @RequestParam("Id") Integer id) {
+
+        CoachBean cBean = claService.findCoachByClassId(id);
+
+        String coachAccount = cBean.getCoachAccount();
+        model.addAttribute("coachAccount", coachAccount);
+        model.addAttribute("Id", id);
+        return "/member/memberViewClassDetail";
     }
 }

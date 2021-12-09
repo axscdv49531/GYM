@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.CoachBean;
 
 public interface ClassRepository extends JpaRepository<ClassBean, Integer>, JpaSpecificationExecutor<ClassBean> {
     // String hql = "From ClassBean cb where cb.cBean.coachId = :coachId";
@@ -33,5 +34,7 @@ public interface ClassRepository extends JpaRepository<ClassBean, Integer>, JpaS
 
     List<ClassBean> findAllByOrderByClassDateAsc();
 
+    @Query("select clb.cBean from ClassBean clb where clb.classId = :classId")
+    CoachBean findCoachByClassId(Integer classId);
 
 }
