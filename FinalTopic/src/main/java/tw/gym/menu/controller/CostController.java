@@ -68,18 +68,19 @@ public class CostController {
 		List<Cost> list = Cservice.findByCostDay(date);
 		List<Cost> list1 = new ArrayList<Cost>();
 		Map<String, Integer> map = new HashMap<String, Integer>();
-		map.put("蜜香排骨", 0);
-		map.put("舒肥雞胸", 0);
-		map.put("舒肥牛排", 0);
-		map.put("椒麻雞胸", 0);
-		map.put("香草豬排", 0);
-		map.put("炙烤雞腿", 0);
+		List<Menu>menu=mservice.findAll();
+		
+		for(int i=0;i<menu.size();i++) {
+			map.put(menu.get(i).getMenuName(), 0);
+		}
+		
 		map.put("房租", 0);
 		map.put("人事成本", 0);
 		map.put("其他", 0);
+		
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(
-					list.get(i).getCostitem() + "," + list.get(i).getCostprice() + "," + list.get(i).getCostday());
+					"cost+++"+list.get(i).getCostitem() + "," + list.get(i).getCostprice() + "," + list.get(i).getCostday());
 			String name = list.get(i).getCostitem();
 			Integer cost = Integer.valueOf(list.get(i).getCostprice());
 

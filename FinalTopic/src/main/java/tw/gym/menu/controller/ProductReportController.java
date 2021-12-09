@@ -2,6 +2,7 @@ package tw.gym.menu.controller;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,13 +41,13 @@ public class ProductReportController {
 
 	@GetMapping("/querybyTime")
 	@ResponseBody
-	public List<Integer> queryOrderMenu(Model m, @RequestParam("date") String date,
+	public Map<String,Integer> queryOrderMenu(Model m, @RequestParam("date") String date,
 			@RequestParam("date1") String date1) {
 		System.out.println("進入" + date);
 		List<OrderMenu> list = oService.findByTime(date, date1);
 		System.out.println("完成找尋工作");
 		System.out.println(list.size());
-		List<Integer> list2 = cMenu.showReport(list);
+		Map<String,Integer> list2 = cMenu.showReport(list);
 		return list2;
 
 	}
