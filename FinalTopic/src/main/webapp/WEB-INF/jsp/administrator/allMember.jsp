@@ -20,8 +20,8 @@
    
    function load(indexPage){
 	   $.ajax({
-		   type:'post',
-		   url:'/GymProject/memberByPage/' + indexPage,
+		   type:'get',
+		   url:'/memberByPage/' + indexPage,
 		   dataType:'JSON',
 		   contentType:'application/json',
 		   success: function(data){
@@ -33,7 +33,7 @@
 			   if(data==null){
 				   $('table').prepend("<tr><td colspan='2'>暫無資料</td></tr>");;
 			   }else{
-				   var table = $('#showproduct');
+				   var table = $('#showmember');
 				   table.append("<tr id='mtitle'><th>會員編號</th><th>會員姓名</th><th>會員性別</th><th>會員生日</th><th>會員Email</th></tr>");
 				   
 				   $.each(data, function(i,n){

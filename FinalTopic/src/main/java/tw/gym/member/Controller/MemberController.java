@@ -21,7 +21,9 @@ import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.boot.configurationprocessor.json.JSONObject;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -37,10 +39,10 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -59,7 +61,7 @@ import tw.gym.member.validator.PasswordValidator;
 
 @Controller
 //@RequestMapping(path = "/GymProject")
-//@SessionAttributes(names = { "totalPages", "totalElements" })
+@SessionAttributes(names = { "totalPages", "totalElements" })
 public class MemberController {
 
 	private MemberService memberService;
@@ -209,16 +211,20 @@ public class MemberController {
 //		return memberService.findBymNum(number);
 //	}
 //
-//	@PostMapping("/memberByPage/{pageNo}")
-//	@ResponseBody
-//	public List<MemberBean> MemberByPage(@PathVariable("pageNo") int pageNo, Model m) {
-//		int pageSize = 2;
-//		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
-//		Page<MemberBean> page = memberService.findAllByPage(pageable);
-//		m.addAttribute("totalPages", page.getTotalPages());
-//		m.addAttribute("totalElements", page.getTotalElements());
-//		return page.getContent();
-//	}
+	@GetMapping("/memberByPage/{pageNo}")
+	@ResponseBody
+	public List<MemberBean> MemberByPage(@PathVariable("pageNo") int pageNo, Model m) {
+		int pageSize = 2;
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize);
+		Page<MemberBean> page = memberService.findAllByPage(pageable);
+		m.addAttribute("totalPages", page.getTotalPages());
+		m.addAttribute("totalElements", page.getTotalElements());
+		return page.getContent();
+	}
+	@GetMapping("/allmember")
+	public String AllMember() {
+		return "administrator/allMember";
+	}
 
 	@GetMapping("/selectMember/{number}")
 	public String findById(Model model, @PathVariable Integer number) {
