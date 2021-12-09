@@ -113,10 +113,11 @@ public class MembersController {
     public String memberViewClassDetail(Model model, @RequestParam("Id") Integer id) {
 
         CoachBean cBean = claService.findCoachByClassId(id);
+        ClassBean claBean = claService.getClassById(id);
 
         String coachAccount = cBean.getCoachAccount();
         model.addAttribute("coachAccount", coachAccount);
-        model.addAttribute("Id", id);
+        model.addAttribute("claBean", claBean);
         return "/member/memberViewClassDetail";
     }
 }

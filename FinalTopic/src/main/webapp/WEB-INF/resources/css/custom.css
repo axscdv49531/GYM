@@ -142,8 +142,23 @@ h1 {
 	margin:5px;
 }
 
+.btns.btn-primary.btn-lg {
+    float: left;
+    background: #1c72ce;
+    font-size: 15px;
+    text-transform: uppercase;
+    min-width: 140px;
+    height: 50px;
+    border-radius: 5px;
+    margin:5px;
+}
+
 .btn.btn-primary.btn-lg:hover, .btn.btn-primary.btn-lg:focus {
 	background: #d8302f;
+}
+
+.btns.btn-primary.btn-lg:hover, .btns.btn-primary.btn-lg:focus {
+    background: #d8302f;
 }
 
 #carousel-example-generic .carousel-caption {
@@ -977,7 +992,7 @@ ul {
     float: left;
 /*  width:100%; */
     width: 455px;
-    height:450px;
+    height:465px;
     margin: 0 0 30px;
     position: relative;
     box-shadow: 0 10px 20px -25px rgba(50, 50, 50, 1);
@@ -989,6 +1004,12 @@ ul {
 /*  width: 100%; */
 width: 450px;
 height:250px;
+    margin-bottom: 10px;
+}
+
+.img-responsives {
+	width: 960px;
+height:540px;
     margin-bottom: 10px;
 }
 
@@ -1792,10 +1813,28 @@ body section#contant .post-info span h5 {
 	transition: ease all 1s;
 }
 
+.btns {
+/*     float: right; */
+    background: #d8302f;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 15px;
+    border-radius: 50px;
+    margin-top: 5px;
+    font-weight: 500;
+    transition: ease all 1s;
+}
+
 .btn:hover, .btn:focus {
 	background: #111;
 	color: #fff !important;
 	transition: ease a11 1s;
+}
+
+.btns:hover, .btns:focus {
+    background: #111;
+    color: #fff !important;
+    transition: ease a11 1s;
 }
 
 .blog-sidebar {
