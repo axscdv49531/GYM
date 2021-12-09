@@ -54,5 +54,10 @@ public class CoachServiceImpl implements CoachService {
 		Optional<CoachBean> cBean= coaRepo.findByEmail(email);
 		return cBean;
 	}
+	
+	//Dean
+    public CoachBean getById(Integer coachId) {
+    	return coaRepo.getById(coachId);
+    }
 
 }

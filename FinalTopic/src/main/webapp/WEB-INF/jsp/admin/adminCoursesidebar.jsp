@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active" >
+                    <li class="" >
                         <a class="nav-link" href="<c:url value='/adminindex' />">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>管理者首頁</p>
@@ -69,7 +69,7 @@
                             <p>教練專區</p>
                         </a>
                     </li>
-                    <li>
+                    <li class="nav-item active">
                         <a class="nav-link" href="<c:url value='/courseQuery' />">
 <!--                         /courseQuery -->
                             <i class="nc-icon nc-paper-2"></i>
@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/ToShipmentPage.controller">
+                        <a class="nav-link" href="./icons.html">
                             <i class="nc-icon nc-atom"></i>
                             <p>訂餐系統專區</p>
                         </a>
