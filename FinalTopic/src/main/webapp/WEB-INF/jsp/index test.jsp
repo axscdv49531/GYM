@@ -113,9 +113,8 @@
 															<li><a class="dropdown-item" href="/myCourseSchedule">我的課程</a></li>
 															<li><a class="dropdown-item" href="/pastCourseRecord">上課紀錄</a></li>
 
-														</ul>
-																</li>
-															</ul></li>
+
+															</ul></li> -->
 
 
 														<li><a href="news.html">健康餐盒</a></li>
