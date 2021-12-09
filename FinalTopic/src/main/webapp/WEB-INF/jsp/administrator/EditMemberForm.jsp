@@ -67,6 +67,8 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+<script src="https://code.essoduke.org/js/twzipcode/twzipcode.js"></script>
+<script src="https://kit.fontawesome.com/e60209ac9e.js"></script>
 <body>
 	<div class="wrapper">
 		<div class="sidebar" data-image="../admintemplate/img/sidebar-0.jpg"
@@ -203,21 +205,14 @@
 							<legend>會員資料</legend>
 							<form>
 								<div class="row">
-									<div class="col-md-5 pr-1">
-										<div class="form-group">
-											<label>身分證字號：</label>
-											<form:input path="id" class="form-control" placeholder="id" />
-											<form:errors path="id" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-3 px-1">
+									<div class="col-md-4 px-1">
 										<div class="form-group">
 											<label>姓名：</label>
 											<form:input path="name" class="form-control" placeholder="姓名" />
 											<form:errors path="name" cssClass="error" />
 										</div>
 									</div>
-									<div class="col-md-4 pl-1">
+									<div class="col-md-8 pl-1">
 										<div class="form-group">
 											<label for="exampleInputEmail1">Email：</label>
 											<form:input path="email" class="form-control"
@@ -257,14 +252,15 @@
 									<div class="col-md-12">
 										<div class="form-group">
 											<label>地址；</label>
-											<div id="twzipcode" class="form-row">
+											<div id="twzipcode"
+												class="form-row example-1 d-flex  mb-2 act-set">
 												<div class="form-group col">
 													<div data-role="county" data-style="form-control"
-														data-name="county" data-value="台北市"></div>
+														data-name="county" data-value="${memberBean.county}"></div>
 												</div>
 												<div class="form-group col">
 													<div data-role="district" data-style="form-control"
-														data-name="district" data-value=""></div>
+														data-name="district" data-value="${memberBean.district}"></div>
 												</div>
 												<div class="form-group col">
 													<div data-role="zipcode" data-style="form-control"
@@ -324,7 +320,7 @@
 						</fieldset>
 					</form:form>
 					<a href="<c:url value='/findAllMember' />">回前頁</a>
-				</div>${memberBean.county}${memberBean.district}
+				</div>
 			</div>
 		</div>
 	</div>

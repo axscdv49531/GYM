@@ -250,11 +250,11 @@
 										<div id="twzipcode" class="form-row">
 											<div class="form-group col-sm-4">
 												<div data-role="county" data-style="form-control"
-													data-name="county" data-value="台北市"></div>
+													data-name="county" data-value="${memberBean.county}"></div>
 											</div>
 											<div class="form-group col-sm-4">
 												<div data-role="district" data-style="form-control"
-													data-name="district" data-value=""></div>
+													data-name="district" data-value="${memberBean.district}"></div>
 											</div>
 											<div class="form-group col-sm-4">
 												<div data-role="zipcode" data-style="form-control"
@@ -313,7 +313,7 @@
 						</form>
 					</fieldset>
 				</form:form>
-				<a href="<c:url value='/findAllMember' />">回前頁</a>
+				<a href="/MemberProfile">回前頁</a>
 			</div>
 		</div>
 	</div>
