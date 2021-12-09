@@ -209,4 +209,11 @@ public class MembersController {
 
     }
 
+    @GetMapping("showCoachList")
+    public String showCoachList() {
+
+        return "/coach/coachList";
+
+    }
+
 }

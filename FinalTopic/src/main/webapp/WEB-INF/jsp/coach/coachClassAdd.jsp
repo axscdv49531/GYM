@@ -45,14 +45,14 @@
 </script>
 </head>
 <body>
-	<!-- <section id="top"> -->
+	<section id="top">
 	<div style="width: 1205px; height: 194.13px" class="top">
 		<c:import url="/top_coachlogin"></c:import>
 	</div>
-	<!--     </section> -->
+	    </section>
 	<!-- <fieldset> -->
 	<!--  <legend>新增課程:</legend> -->
-	<section id="contant" class="contant">
+<!-- 	<section id="contant" class="contant"> -->
 		<div class="container">
 			<form:form method='Post' modelAttribute="classBean"
 				enctype='multipart/form-data'>
@@ -96,7 +96,7 @@
 					</tr>
 					<tr>
 						<td align='right'>課程描述：</td>
-						<td><form:textarea path="classDescription" /><br> <form:errors
+						<td><form:textarea style="color:black" path="classDescription" /><br> <form:errors
 								path="classDescription" />
 					</tr>
 					<tr>
@@ -118,7 +118,7 @@
 				</table>
 			</form:form>
 		</div>
-	</section>
+<!-- 	</section> -->
 	<!-- 	</fieldset> -->
 </body>
 </html>
