@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+<title>Sprint Fitness Admin System</title>
 
 </head>
 

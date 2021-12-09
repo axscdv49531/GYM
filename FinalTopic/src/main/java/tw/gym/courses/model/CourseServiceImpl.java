@@ -82,5 +82,12 @@ public class CourseServiceImpl implements CourseService{
 	public List<Course> findOneWeekCourse(Date thismonday, Date nextmonday,String classroom){
 		return  cReps.findOneWeekCourse(thismonday, nextmonday, classroom);
 	}
+	
+	
+	 public void deleteBatch(List<Integer> stuList) {
+	  // 第二種批量刪除方法， 是通過自定義JPQL語句進行刪除，使用的是 where stuId in （）的操作
+	  cReps.deleteBatch(stuList);
+	 }
+	
 //	
 }

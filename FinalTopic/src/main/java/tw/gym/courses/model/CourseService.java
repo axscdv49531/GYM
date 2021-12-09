@@ -40,5 +40,7 @@ public interface CourseService {
 	public String findInfoById(Integer courseId);
 	
 	public List<Course> findOneWeekCourse(Date thismonday, Date nextmonday,String classroom);
+	
+	 public void deleteBatch(List<Integer> ids);
 
 }

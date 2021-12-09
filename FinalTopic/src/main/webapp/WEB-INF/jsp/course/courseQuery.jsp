@@ -4,14 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <meta charset="UTF-8">
 <title>課程管理系統</title>
-<link rel="stylesheet" href="/css/coursesystem.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
    var indexPage=1;
    var queryCondition = 'allCourse';
+   var id_list;
   
    $(document).ready(function(){
 	   showAllCourse(indexPage);
@@ -55,6 +55,7 @@
 					alert("已經刪除"+courseId+"！"); 
 			   }
 			   });
+ 		window.location.reload();
 	}else{
 		alert("已經取消刪除"+courseId+"的操作");
 		  }	
@@ -96,7 +97,7 @@ function showCourseList(data){
 		   $('#showcourse').append("<tr><td colspan='2'>暫無資料</td></tr>");;
 	   }else{
 		   var table = $('#showcourse');
-		   table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>查詢學生</th><th>修改</th><th>刪除</th></tr>");
+		   table.append("<tr><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程狀態</th><th>查詢學生</th><th>修改</th><th>刪除</th><th>全選<input type='checkbox' id='all' value='' onclick='selectAll()'></th></tr>");
 		   
 		   $.each(data.pageContent, function(i,n){
 			   
@@ -105,32 +106,118 @@ function showCourseList(data){
 			            "<td>" + n.date + "</td>" + "<td>" + n.period + "</td>" + 
 			            "<td>" + n.classroom + "</td>" + "<td>" + n.coach.coachName + "</td>" +"<td>" + n.studentNum + "</td>" +
 			            "<td>" + n.maxStudentNum + "</td>" + "<td>" + n.state + "</td>"  +
-			        	//"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class=''>查詢選課學生</button></a></td>"+
-			        	"<td><button id='' type='button' class=''onclick='showStudent(" + n.id + ")'>查詢選課學生</button></td>"+
-			        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class=''>修改</button></a></td>"+
-			        	"<td><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
+			        	//"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>查詢選課學生</button></a></td>"+
+			        	"<td><button id='' type='button' class='btn btn-danger' onclick='showStudent(" + n.id + ")'>查詢選課學生</button></td>"+
+			        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>修改</button></a></td>"+
+			        	"<td><button id='' type='button' class='btn btn-danger' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
+			        	"<td><input type='checkbox' value='(" + n.id + ")' name='id'></td>"+
 			            "</tr>";
 			   table.append(tr);
 		   });
+
 	   }
 	   //////////
 
-	   var tr2 ="<td>Total Pages: "+ data.totalPages +
+	   $('#showcourse').append("<tr id='showpage'></tr>")
+	   
+	   var tr2 ="<td colspan='9'>Total Pages: "+ data.totalPages +
 		    " Total Records: "+data.totalElements+"</td>";
 	   
 	   $('#showpage').empty("");
 	   $('#showpage').append(tr2);
-	   
-	   $('#showpage').append("<button onclick='previous()'>Previous</button>");
+	   $('#showpage').append("<td id='showbutton' colspan='4'></td>")
+	   $('#showbutton').append("<button class='btn btn-danger btn btn-danger-danger' onclick='previous()'>Previous</button>");
 	   
 	   for(var j=1 ; j <= data.totalPages; j++){
-		   $('#showpage').append("<button id='myPage' value='"+j+"' onclick='change("+j+")'>"+j+"</button>")
+		   $('#showbutton').append("<button id='myPage' value='"+j+"' class='btn btn-danger' onclick='change("+j+")'>"+j+"</button>")
 	   }
 	   
-	   $('#showpage').append("<button id='nextbutton' value='" + data.totalPages + "' onclick='next()'>Next</button>");
+	   $('#showbutton').append("<button id='nextbutton' class='btn btn-danger' value='" + data.totalPages + "' onclick='next()'>Next</button>");
 	
+	   
+	   $('#showpage').append("<td colspan='1'><button id='deleteinBatch' class='btn btn-danger' onclick='deleteinBatch()'>批量删除</button></td>");
+
+   }
+//批量刪除//////////
+
+//全選
+function selectAll(){
+	 var id_list=document.getElementsByName("id");//获取勾选的标签
+	 var all_list=document.getElementById("all");;//获取批量操作 标签
+	 console.log(id_list)
+	 for(let i = 0 ; i<id_list.length;i++){
+			//所有的选择框和全选一致
+			id_list[i].checked=all_list.checked;
+		}
+	 
+// 	//点击复选框
+// 	 for(var i=0;i<id_list.length;i++){
+// 	     id_list[i].οnclick=function(){
+// 	         //判断是否全部选中,遍历集合
+// 	         for(var j=0;j<id_list.length;j++){
+// 	           if(id_list[j].checked==false){
+// 	             all_list.checked=false;
+// 	             break;
+// 	           }else{
+// 	             all_list.checked=true;
+// 	           }
+// 	         }
+// 	     };
+// 	 }
+	 
 }
 
+/*批量删除*/
+function deleteinBatch(){
+	console.log("heeeeelloo")
+	var ids="";
+   	 var id_list=document.getElementsByName("id");//获取勾选的标签
+   	 console.log(id_list)
+    var n=0;
+        //拼接出一个名为ids_list的数组ids_list=1&ids_list=2&ids_list=3&ids_list=4……
+        
+     for(let i=0 ; i<id_list.length ; i++){
+            if(id_list[i].checked==true){//选中为true
+                var id = id_list[i].value.substring(1,id_list[i].value.length-1);
+            //console.log(typeof(id))
+                if(n==0){
+                    //ids_list+="ids_list="+id;
+                    ids+=id;
+                }else{
+                    //ids_list+="&ids_list="+id;
+                    ids+=","+id;
+                }
+                n++;
+            }
+        }
+       console.log(ids)
+
+     if(confirm("確實要刪除嗎?")){
+    	 var idsJSON = { 'ids' : ids };
+    	 console.log(idsJSON)
+    		$.ajax({
+   			   type:'delete',
+   			   url:'/course/deleteinbatch.controller', 
+   			  data:idsJSON,
+   			   dataType:'JSON',
+   			   contentType:'application/x-www-form-urlencoded;charset=utf-8',
+   			   success: function(data){
+   				 //console.log(data);
+   					alert("已經刪除！"); 
+   					window.location.reload();
+   			   }
+   			   });
+    	 window.location.reload();
+   	}else{
+   		alert("已經取消刪除的操作");
+   		  }	    
+   
+
+}   
+
+
+   
+   
    
 //多條件查詢   
 function sendQuery(indexPage){
@@ -225,8 +312,8 @@ function showStudent(courseId){
 						            "<td>" + n.name + "</td>" + "<td>" + n.gender + "</td>" +
 						            "<td>" + n.phone + "</td>" + "<td>" + n.email + "</td>" + 
 						            "<td>" + n.emergencyContact + "</td>" + "<td>" + n.emergencyPhone + "</td>" + 
-						        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class=''>修改</button></a></td>"+
-						        	"<td><button id='' type='button' class='' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
+						        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>修改</button></a></td>"+
+						        	"<td><button id='' type='button' class='btn btn-danger' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
 						            "</tr>";
 						            stuTable.append(tr);
 					   });
@@ -240,6 +327,9 @@ function showStudent(courseId){
 </script>
 </head>
 <body>
+
+
+
 
 <div class="wrapper">
        <c:import url="/adminsidebar"></c:import> 
@@ -258,7 +348,7 @@ function showStudent(courseId){
 	<div id="productListTitle">Course Query</div>
 	
 	<div>
-	<a href="<c:url value='/allCoursePdf' />"><button>下載所有課程資訊</button></a>
+	<a href="<c:url value='/allCoursePdf' />"><button class='btn btn-danger'>下載所有課程資訊</button></a>
 	</div>
 	<br>
 		
@@ -266,8 +356,8 @@ function showStudent(courseId){
 <fieldset>	
 	<legend>課程查詢表單</legend>
 		<a href="<c:url value='/thisweekcourse' />">本週課程</a>		
-		<button onclick='todayCourse(1)'>當日課程</button>
-		<button onclick='showAllCourse(1)'>查詢所有課程</button>
+		<button class='btn btn-danger' onclick='todayCourse(1)'>當日課程</button>
+		<button class='btn btn-danger' onclick='showAllCourse(1)'>查詢所有課程</button>
 		
 	<br>
 	<br>
@@ -302,17 +392,42 @@ function showStudent(courseId){
 		</c:forEach>
 	</select>
 	
-	<input type="button" value="查詢" onclick='sendQuery(1)'>
+	<input type="button" class='btn btn-danger' value="查詢" onclick='sendQuery(1)'>
 	
 </form>
 </fieldset>
 
 </div>
 	
-	<table id="showcourse" border="1"></table>
-	<table><tr id="showpage"></tr></table>
-	<table id="showstudent" border="1"></table>
-	<br>
+	
+<div class="row">
+      <div class="col-md-12">
+         <div class="card strpied-tabled-with-hover">
+              <div class="card-header ">
+                 <h4 class="card-title">課程總列表</h4>
+                 <p class="card-category">依照日期順序排列</p>
+              </div>
+              <div class="card-body table-full-width table-responsive">
+              	<table id="showcourse" class="table table-hover table-striped"></table>
+              </div>
+          </div>
+    	</div>
+    
+	
+	<div class="col-md-12">
+       <div class="card card-plain table-plain-bg">
+            <div class="card-header ">
+               <h4 class="card-title">課程學生列表</h4>
+                <p class="card-category">顯示該課程學生清單</p>
+            </div>
+        	<div class="card-body table-full-width table-responsive">
+            	<table id="showstudent" class="table table-hover"></table>
+			</div>
+       </div>
+    </div>
+	
+</div>
+
 
 
 <!--                 裡面寫東西：結束 -->
@@ -321,5 +436,11 @@ function showStudent(courseId){
             </div>
       </div>
 </div>
+
+<script>
+
+</script>
+
+
 </body>
 </html>
