@@ -1017,6 +1017,13 @@ ul {
 	margin-bottom: 10px;
 }
 
+.img-responsivess {
+	 width: 100%;
+/*     width: 960px; */
+/*     height: 540px; */
+    margin-bottom: 10px;
+}
+
 .news-post-detail {
 	padding: 5px 20px 10px;
 }
