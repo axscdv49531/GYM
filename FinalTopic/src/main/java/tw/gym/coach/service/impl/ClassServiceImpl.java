@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.coach.model.ClassBean;
+import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.repository.ClassRepository;
 import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
@@ -272,6 +273,11 @@ public class ClassServiceImpl implements ClassService {
         }
 
         return "true";
+    }
+
+    @Override
+    public CoachBean findCoachByClassId(Integer classId) {
+        return claRepo.findCoachByClassId(classId);
     }
 
 }
