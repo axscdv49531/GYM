@@ -54,7 +54,7 @@
             if(x){
             $.ajax({
                         type : 'post',
-                        url : '/cancelClass/',
+                        url : '/member/cancelClass/',
                         data : {
                             classId : y
                         },
@@ -105,7 +105,7 @@
 
             $.ajax({
                         type : 'post',
-                        url : '/memberSearchClass/',
+                        url : '/member/memberSearchClass/',
                         data : {
                             cName : className,
                             coaName : coachName,
@@ -141,8 +141,8 @@
                                                     for (i in n.sBean) {
                                                         a.push(n.sBean[i].skillName)
                                                     }
-                                                    var div2 = "<div class='col-lg-6 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
-                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><p style='color:white'>上課日期：" + n.classDate + "</p><p style='color:white'>上課時間：" + n.classStartTime + "</p><p style='color:white'>課程時長：" + n.classDuration + " 小時<button style='position: absolute;margin-left:125px;' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='position: absolute;margin-left:200px' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></p></div><div style='justify-content: center;''></div></div></div>"
+                                                    var div2 = "<div class='col-lg-3 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
+                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:white;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:white;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:white;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + n.classAvaliable+"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
 //                                                         + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><span class='date'>上課日期：" + n.classDate + "</span> <span class='date'>課程時長：" + n.classDuration + " 小時</span><p style='color:white'>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div><div style='justify-content: center;''><button style='position: relative;margin-left:150px' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div></div>"
                                                     div.append(div2);
                             })
@@ -157,7 +157,7 @@
         function load() {
             $.ajax({
                         type : 'post',
-                        url : '/memberListAllClass/',
+                        url : '/member/memberListAllClass/',
                         dataType : 'JSON',
                         //                  contentType : 'application/json',
                         success : function(data) {
@@ -186,8 +186,8 @@
                                                         a.push(n.sBean[i].skillName)
                                                     }
                                                         
-                                                    var div2 = "<div class='col-lg-6 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
-                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><p style='color:white'>上課日期：" + n.classDate + "</p><p style='color:white'>上課時間：" + n.classStartTime + "</p><p style='color:white'>課程時長：" + n.classDuration + " 小時<button style='position: absolute;margin-left:125px;' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='position: absolute;margin-left:200px' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></p></div><div style='justify-content: center;''></div></div></div>"
+                                                    var div2 = "<div class='col-lg-3 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
+                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:white;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:white;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:white;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + n.classAvaliable+"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
 //                                                         + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><span class='date'>上課日期：" + n.classDate + "</span> <span class='date'>課程時長：" + n.classDuration + " 小時</span><p style='color:white'>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div><div style='justify-content: center;''><button style='position: relative;margin-left:150px' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div></div>"
                                                     div.append(div2);
                             })
@@ -204,8 +204,8 @@
         <c:import url="/top_memberlogin"></c:import>
     </div>
     </section>
-    <section id="contant" class="contant">
-        <div class="container">
+<!--     <section id="contant" class="contant"> -->
+        <div>
                         課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
                         <!--    價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
                         教練名稱： <select name="select" id="searchByCoachName">
@@ -224,11 +224,10 @@
                             <option value="0">未額滿</option>
                             <option value="1">已額滿</option>
                         </select>
-                        <hr>
                         開課日期： <input type="date" id="searchByDateStart"> 至 <input
                             type="date" id="searchByDateEnd">
-                        <button class="btn" onclick="search()">搜尋</button>
-                        <button class="btn" onclick="searchDelete()">清除搜尋</button>
+                <button style="float: none" class="btn" onclick="search()">搜尋</button>
+                        <button style="float: none" class="btn" onclick="searchDelete()">清除搜尋</button>
                         <hr>
                         
             <div class="row">
@@ -243,7 +242,7 @@
                 </div>
             </div>
         </div>
-    </section>
+<!--     </section> -->
 
 
 </body>
