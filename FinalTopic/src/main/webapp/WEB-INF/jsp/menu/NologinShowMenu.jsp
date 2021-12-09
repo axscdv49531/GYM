@@ -78,14 +78,7 @@
 									<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
-										<li class="login-modal"><a
-											href="<c:url value='/login/page' />" class="login"><svg
-													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-													fill="currentColor" class="bi bi-lock-fill"
-													viewBox="0 0 16 16">
-                                                    <path
-														d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                                </svg><i class="fa fa-user"></i>密碼變更</a></li>
+										
 										<li class="logout-modal"><a
 											href="<c:url value='/logout' />" class="logout"><svg
 													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
@@ -93,7 +86,7 @@
 													viewBox="0 0 16 16">
                                                     <path
 														d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                                </svg><i class="fa fa-user"></i>登出</a></li>
+                                                </svg><i class="fa fa-user"></i>登入</a></li>
 										<li>
 											<div class="context-option">
 												<a href="#"><i class="fa fa-envelope"><svg
@@ -130,7 +123,7 @@
 												<div class="collapse navbar-collapse js-navbar-collapse">
 													<ul class="nav navbar-nav">
 														<li class="active"><a
-															href="<c:url value='/login/MemberSuccess' />">主頁</a></li>
+															href="<c:url value='/' />">主頁</a></li>
 														<li><a href="about.html">關於</a></li>
 
 														<li class="dropdown mega-dropdown member"><a href="#"
@@ -192,10 +185,9 @@
 																</li>
 															</ul></li>
 
-														<li><a href="shoppingCart.controller" >購物車 
+														<li><a href="/login/Member" >購物車 
 														</a></li>
-														<li><a href="ToEvaluationMainPage" >餐點滿意度調查
-														</a></li>
+									
 														<li><a href="news.html">周邊商品</a></li>
 
 													</ul>
@@ -264,7 +256,7 @@
 									<div
 										style="float: right; text-decoration: underline; cursor: pointer"
 										id="clickOrder${index.index}"
-										onclick="order('${menuList.getMenuName()}', '${menuList.getPrice()}')">點此訂購</div>
+										><a href="/login/Member">點此訂購</a></div>
 
 								</div>
 

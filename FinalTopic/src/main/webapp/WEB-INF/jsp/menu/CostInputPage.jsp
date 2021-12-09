@@ -7,11 +7,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel=stylesheet href="editFrom.css">
-<link rel=stylesheet href="style.css">
-<link rel=stylesheet href="showhidemenu.css">
-<link rel=stylesheet href="showMenu.css">
+<title>新增成本</title>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
@@ -31,27 +28,62 @@
 </script>
 </head>
 <body>
-	<form:form action="saveCost.controller" method='POST'
-		modelAttribute="cost">
+
+
+<div class="wrapper">
+<c:import url="/adminsidebarMenu"></c:import> 
+<div class="main-panel">
+<c:import url="/adminnavbarMenu"></c:import> 
+<div class="content">
+<div class="container-fluid">
+
+	
+		<form:form action="saveCost.controller" method='POST'
+		modelAttribute="cost" class="row g-3 needs-validation" >
 
 
 		<div class="editFrom">
-			<div class="title">新增成本</div>
-			<br> <font class="menuName">成本名稱:</font>
-			<form:input path="costitem" class="menuName" size="10" id="costName"
-				style="border-style:solid;" value="" />
+			<form:select class="form-control"  path="costitem" id="costName" style="width:300px;margin-top:20px;margin-left:15px"  >
+				<c:forEach var="menu" items="${menu}">
+					<option value="${menu.getMenuName()}">${menu.getMenuName()}</option>
+				</c:forEach>
+				<option value="其他">其他</option>
+				<option value="房租">房租</option>
+				<option value="人事成本">人事成本</option>
+			</form:select>
+			<div class="col-md-4">
+				<form:input path="costprice" type="text" placeholder="價格"  id="price"  class="form-control" style="width:200px;margin-top:20px;"/>
+			</div>
+		 	<div class="col-md-4">
 
-			<br> <font class="price">價格:</font>
-			<form:input path="costprice" class="price" size="10" id="price"
-				style="border-style:solid" value="" />
-			<br> <font class="qty1">新增日期:</font>
-			<form:input path="costday" class="qty1" size="10" id="costday"
-				style="border-style:solid" placeholder="xxxx/xx/xx" />
-			<br> <br> <input type="submit" value="送出資料"
-				class="detailDiv01Font1" id="button" />
+							<div class="input-group has-validation">
+								<form:input path="costday"  type="text" class="form-control"
+									aria-describedby="inputGroupPrepend"
+									placeholder="新增日期:yyy/mm/dd"  id="costday" style="width:300px;margin-top:20px;"/>
+							</div>
+			</div>
+			
+			
+			<div class="col-12">
+							<button class="btn btn-primary" type="submit" id="button" style=" margin-top:20px;">送出資料
+							</button>
+			</div>
+
 		</div>
 
-	</form:form>
+	   </form:form>
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+	
 
 
 	<script>

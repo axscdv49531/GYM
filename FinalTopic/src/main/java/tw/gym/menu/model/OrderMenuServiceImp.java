@@ -115,9 +115,9 @@ public class OrderMenuServiceImp implements OrderMenuService {
 
 
 	@Override
-	public List<OrderMenu> findAllByStatuseAndOrderId(Integer id,String statuse ) {
+	public List<OrderMenu> findAllByStatuse(String statuse ) {
 		// TODO Auto-generated method stub
-		return orderMenuDao.findAllByStatuseAndOrderId(id,statuse);
+		return orderMenuDao.findAllByStatuse(statuse);
 	}
 
 

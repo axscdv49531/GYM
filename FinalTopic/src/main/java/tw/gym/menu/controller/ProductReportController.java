@@ -16,7 +16,6 @@ import tw.gym.menu.model.MenuService;
 import tw.gym.menu.model.OrderMenu;
 import tw.gym.menu.model.OrderMenuService;
 
-
 @Controller
 public class ProductReportController {
 
@@ -52,3 +51,4 @@ public class ProductReportController {
 
 	}
 }
+

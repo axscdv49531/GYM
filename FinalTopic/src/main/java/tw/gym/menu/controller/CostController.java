@@ -23,9 +23,7 @@ import tw.gym.menu.model.CostService;
 import tw.gym.menu.model.Menu;
 import tw.gym.menu.model.MenuService;
 
-
 @Controller
-
 public class CostController {
 	private CostService Cservice;
 	private MenuService mservice;
@@ -39,12 +37,16 @@ public class CostController {
 
 	@GetMapping("/InputCostManinPage.controller")
 	public String InputCostManinPage(Model m) {
+		List<Menu>menu=mservice.findAll();
 		Cost c = new Cost();
 		m.addAttribute("cost", c);
+		m.addAttribute("menu", menu);
+		
 		return "menu/CostInputPage";
 	}
 
 	@PostMapping("/saveCost.controller")
+
 	public String save(@ModelAttribute("cost") Cost cost, Model m) {
 		String name = cost.getCostitem();
 		System.out.println("1");
@@ -54,9 +56,8 @@ public class CostController {
 		System.out.println("3");
 		Cservice.insert(cost);
 		System.out.println("4");
-
-		m.addAttribute("ok", "資料新增成功");
-		return "menu/CostInputPage";
+		
+		return "redirect:InputCostManinPage.controller";
 
 	}
 

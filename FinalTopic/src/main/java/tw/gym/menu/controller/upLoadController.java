@@ -34,14 +34,13 @@ public class upLoadController {
 	}
 
 	@PostMapping("/upload.controller")
-	@ResponseBody // 預設json格式字串
 	public String processUploadFileAction(@RequestParam("myFiles") MultipartFile mf, HttpServletRequest request,
 			@RequestParam("menuName") String menuName, @RequestParam("menuPrice") Integer menuPrice,
-			@RequestParam("menuQty") Integer menuQty) throws IllegalStateException, IOException {
+			@RequestParam("menuQty") Integer menuQty,@RequestParam("detail")String detail) throws IllegalStateException, IOException {
 		String fileName = mf.getOriginalFilename();// 檔案名子
 		// MultipartRequest 支援上傳多個檔案
 		// String saveDirPath = "D:\\MenuPic\\"; //暫存資料夾
-		String saveDirPath = request.getSession().getServletContext().getRealPath(".") + "\\images\\";
+		String saveDirPath = request.getSession().getServletContext().getRealPath(".") + "\\WEB-INF\\resources\\images\\";
 
 		// String saveDirPath
 		// ="D:\\work\\java\\workspace\\TestMenuMvc\\src\\main\\webapp\\WEB-INF\\resources\\images\\";
@@ -53,24 +52,24 @@ public class upLoadController {
 		File savePathFile = new File(savePath);
 		mf.transferTo(savePathFile);// 檔案上傳
 
-//		if(fileName!=null && fileName.length()!=0) {
-//			saveFile(fileName,savePath,menuName,menuPrice,menuQty);
-//		
-//			
-//			
-//		}
-		return "savePath:" + saveDirPath;
+		if(fileName!=null && fileName.length()!=0) {
+			saveFile(fileName,savePath,menuName,menuPrice,menuQty,detail);
+		
+			
+			
+		}
+		return "redirect:uploadfilemainpage.controller";
 
 		// return "savePath:" + savePath;
 	}
 
-//	private void saveFile(String fileName, String savePath,String menuName,Integer menuPrice,Integer menuQty ) {
-//		menu.setMenuName(menuName);
-//		menu.setMenuQty(menuQty);
-//		menu.setPrice(menuPrice);
-//
-//		
-//		
+	private void saveFile(String fileName, String savePath,String menuName,Integer menuPrice,Integer menuQty,String detail ) {
+		menu.setMenuName(menuName);
+		menu.setMenuQty(menuQty);
+		menu.setPrice(menuPrice);
+		menu.setMenudetail(detail);
+		menuService.insert(menu);	
+		
 //		try {
 //			InputStream is = new FileInputStream(savePath);
 //			byte[] b = new byte[is.available()];//is.available()可以知道有多大
@@ -83,7 +82,7 @@ public class upLoadController {
 //		} catch(Exception e) {
 //			e.printStackTrace();
 //		}
-//		
-//	}
+		
+	}
 
 }

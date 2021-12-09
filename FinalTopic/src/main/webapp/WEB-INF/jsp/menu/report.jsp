@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -6,46 +5,38 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<title>產品報表</title>
 <link rel=stylesheet href="Report.css">
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
+<link rel="stylesheet" href="jquery-ui/jquery-ui.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/charts.css/dist/charts.min.css">
 <link rel=stylesheet href="charts.min.css">
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script src="jquery-ui/jquery-ui.js"></script>
+ <link href="yummy_css/style.css" rel="stylesheet">
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
 <script>
-	$(function() {
-		var dateFormat = "mm/dd/yy", from = $("#from").datepicker({
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 3
-		}).on("change", function() {
-			to.datepicker("option", "minDate", getDate(this));
-			$('from').blur();
-		}), to = $("#to").datepicker({
-			defaultDate : "+1w",
-			changeMonth : true,
-			numberOfMonths : 3
-		}).on("change", function() {
-			from.datepicker("option", "maxDate", getDate(this));
-			$('to').blur();
-		});
 
-		function getDate(element) {
-			var date;
-			try {
-				date = $.datepicker.parseDate(dateFormat, element.value);
-			} catch (error) {
-				date = null;
-			}
-
-			return date;
-		}
-	});
+$(function() {
+    $('.date-picker').datepicker( {
+    changeMonth: true,
+    changeYear: true,
+    showButtonPanel: true,
+    dateFormat: 'mm/dd/yy',
+    onClose: function(dateText, inst) { 
+    	var year = inst.selectedYear;
+    	var month = inst.selectedMonth;
+        $(this).datepicker('setDate', new Date(year, month, 1));
+        var end = new Date(year, month+1, 1);
+        var mm = end.getMonth() + 1; // getMonth() is zero-based
+        var dd = end.getDate();
+        var endDate = [(mm>9 ? '' : '0') + mm, (dd>9 ? '' : '0') + dd, end.getFullYear()].join('/')
+        $("#endDate").val(endDate);
+    }
+    });
+});
+	
+	
+	
 </script>
 
 
@@ -54,121 +45,70 @@
 </head>
 <body>
 
-	<div style="text-align: center; margin-top: 100px;">
-		<label for="from" style="font-family: DFKai-sb; font-size: 25px;">From</label>
+<div class="wrapper">
+<c:import url="/adminsidebarMenu"></c:import> 
+<div class="main-panel">
+<c:import url="/adminnavbarMenu"></c:import> 
+<div class="content">
+<div class="container-fluid">
 
-		<input type="text" id="from" name="from"
-			style="font-family: DFKai-sb; font-size: 25px; cursor: pointer" autocomplete="off"> 
-		<label
-			for="to" style="font-family: DFKai-sb; font-size: 25px">to</label> 
-		<input
-			type="text" id="to" name="to"
-			style="font-family: DFKai-sb; font-size: 25px; cursor: pointer" autocomplete="off">
+			<div style="margin:0 auto">
+					<label for="from" style="font-family: DFKai-sb; font-size: 25px; ">From</label>
 
-		<br>
-		<div id="button"
-			style="font-family: DFKai-sb; font-size: 25px; margin-top: 15px; cursor: pointer; margin-bottom: 15px">查詢</div>
-		<br>
-		<br>
-	</div>
-
-
-
-
-	<div
-		style="border-style: solid; border-bottom-width: 1px; border-color: balck; width:1000px; margin: 0 auto;">
-		<div style="float: left;">
-			<table class="reportTable">
-				<caption>餐飲成本</caption>
-
-				<thead>
-					<tr>
-						<th scope="col">產品名稱</th>
-						<th scope="col">價格</th>
-						<th scope="col">賣出數量</th>
-						<th scope="col">產品收入</th>
-						<th scope="col">產品成本</th>
-						<th scope="col">利潤</th>
-					
-					</tr>
-				</thead>
-
-				<tbody>
-					<c:forEach var="menuList" items="${MenuList}" varStatus="x">
-						<tr>
-							<th scope="row">${menuList.getMenuName()}</th>
-							<td>${menuList.getPrice()}</td>
-							<td id="Quanty${x.index}"></td>
-							<td id="income${x.index}"></td>
-							<td id="Cost${x.index}"></td>
-							<td id="Profit${x.index}"></td>
-
-
-						</tr>
-
-
-					</c:forEach>
-
-
-
-					<tr>
-						<th scope="row" style="visibility: hidden">total</th>
-						<td style="visibility: hidden"></td>
-						<td style="visibility: hidden"></td>
-						<td id="totalincome"></td>
-						<td style="visibility: hidden"></td>
-						<td id="totalProfitMenu"></td>
-
-					</tr>
-
-				</tbody>
-
-			</table>
-		</div>
-		<div style="float: right;">
-			<table class="reportTable" style="float: right;"
-				id="otherCost">
+					<input type="text" id="setDate" name="setDate" class="date-picker"
+						style="font-family: DFKai-sb; font-size: 20px; cursor: pointer"
+						autocomplete="off"> 
+					<label for="to" style="font-family: DFKai-sb; font-size: 20px">to</label> 
+					<input type="text" id="endDate" name="endDate"
+						style="font-family: DFKai-sb; font-size: 20px; cursor: pointer"
+						autocomplete="off" readonly> 
+					<input type="button"  id="button"
+						style="font-family: DFKai-sb; font-size: 20px;cursor: pointer;padding:5px 10px;margin-left:10px;background-color:white;border:none" value="查詢">
 				
-				<caption>成本</caption>
-				<tr>
-					<th scope="row">項目</th>
-					<td >每月</td>
-				</tr>
-				<tr>
-					<th scope="row">其他成本</th>
-					<td id="OtherCost"></td>
+
+			</div>	
+			
+		
 
 
-				</tr>
-				<tr>
-					<th scope="row">人事成本</th>
-					<td id="PeopleCost"></td>
 
 
-				</tr>
 
 
-				<tr>
-					<th scope="row">房租成本</th>
-					<td id="HouseCost"></td>
-
-				</tr>
-				<tr>
-					<th scope="row">總利潤</th>
-					<td id="TotalProfit"></td>
-
-				</tr>
-
-
-			</table>
-
+		<div class="row" style="margin:0 auto;width: 900px;margin-top:300px" >
+		<div class="col-md-4 stretch-card grid-margin"  style="padding-right:5px">
+			<div class="card bg-gradient-warning text-white"style="background-color: #99CCFF;">
+				<div class="card-body">
+					<h4 class="font-weight-normal mb-3">monthly Sales</h4>
+					<h2 class="font-weight-normal mb-5" id="totalincome"></h2>
+				</div>
+			</div>
 		</div>
-
-
+		<div class="col-md-4 stretch-card grid-margin" style="" >
+			<div class="card bg-gradient-info text-white" style="background-color: #666699;">
+				<div class="card-body">
+					<h4 class="font-weight-normal mb-3">monthly Orders</h4>
+					<h2 class="font-weight-normal mb-5" id="monthlyOrders"></h2>
+					
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 stretch-card grid-margin"  style="width:300px">
+			<div class="card bg-gradient-info text-white" style="background-color: #99CCCC;">
+				<div class="card-body">
+					<h4 class="font-weight-normal mb-3">monthly cost</h4>
+					<h2 class="font-weight-normal mb-5" id="totalProfitMenuandother"></h2>
+				
+				</div>
+			</div>
+		</div>
 	</div>
 
 
-	<table class="charts-css bar show-labels show-heading show-data-axes data-spacing-10" style="height: 350px; width: 700px;clear: both;">
+
+
+
+	<table class="charts-css bar show-labels show-heading show-data-axes data-spacing-10" style="height: 350px; width: 900px;clear: both;margin-top: 50px">
         <caption style="height:40px;margin-top:40px">Profit Compared</caption>
         <thead>
           <tr>
@@ -192,16 +132,116 @@
           
         </tbody>
       </table>
+      
+      
+      
+      
+          <div class="col-lg-6 grid-margin stretch-card" style="top:100px; margin:0 auto;">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title" style="margin-top: 5px" >餐飲成本</h4>
+                
+                  <table class="table table-hover" frame=below>
+                    <thead>
+                      <tr style="background-color: #CCCCFF">
+                        <td>產品名稱</td>
+                        <td>價格</td>
+                        <td>賣出數量</td>
+                        <td>產品收入</td>
+                         <td>產品成本</td>
+                          <td>利潤</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+							<c:forEach var="menuList" items="${MenuList}" varStatus="x">
+								<tr>
+									<td scope="row">${menuList.getMenuName()}</td>
+									<td>${menuList.getPrice()}</td>
+									<td id="Quanty${x.index}"></td>
+									<td id="income${x.index}"></td>
+									<td id="Cost${x.index}"></td>
+									<td id="Profit${x.index}"></td>
+								</tr>
+							</c:forEach>
+
+						</tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
 
 
 
 
-	<script type="text/javascript">
+
+		<div class="col-lg-6 grid-margin stretch-card"
+			style="top: 200px; margin: 0 auto;">
+			<div class="card">
+				<div class="card-body">
+					<h4 class="card-title">損益表</h4>
+
+					<table class="table table-hover">
+						<tr style="background-color: #CCCCFF">
+							<td scope="row">項目</td>
+							<td>每月</td>
+						</tr>
+						<tr>
+							<td scope="row">總收入</td>
+							<td id="income"></td>
+						</tr>
+						<tr>
+							<td scope="row">食材成本</td>
+							<td id="foodCost"></td>
+						</tr>							
+						<tr>
+							<td scope="row">人事成本</td>
+							<td id="PeopleCost"></td>
+						</tr>
+						<tr>
+							<td scope="row">房租成本</td>
+							<td id="HouseCost"></td>
+						</tr>
+						<tr>
+							<td scope="row">其他成本</td>
+							<td id="OtherCost"></td>
+						</tr>
+						<tr>
+							<td scope="row">總利潤</td>
+							<td id="TotalProfit"></td>
+
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		
+		
+
+</div>
+</div>
+</div>
+</div>
+
+
+
 	
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+		
 	
 		$("#button").click(function() {
-			var date = $("#from").val();
-			var date1 = $("#to").val();
+			var date = $("#setDate").val();
+			var date1 = $("#endDate").val();
 			if(date.length > 0 && date1.length > 0) {
 				load(date, date1);
 				searchCost(date1);
@@ -237,12 +277,17 @@
 							console.log('json:' + json);
 							
 							
-							$("#totalincome").html(data[13]);
+							$("#totalincome").html("$"+data[13]);
+							
 							
 							
 							var total=0;
+							var qtotal=0;
 							for(var i =0;i<${MenuList.size()};i++){
 								$("#Quanty"+i).html(data[i]);
+							
+								qtotal=qtotal+Number(data[i]);
+								
 								$("#income"+i).html(data[i+${MenuList.size()}]);	
 								
 								//var incom=Number($("#income"+i).html());
@@ -251,11 +296,16 @@
 								//total=total+Number($("#Profit"+i).html());	
 							}
 							
+							$("#monthlyOrders").html(qtotal);
+							console.log(qtotal+"qtotal");
+							
 							
 							if(cost.size > 0) {
 								var Price=0;
 								var total=0;
 								var big=0;
+								var foodCost=0;
+								var income=0;
 								
 								for(var i =0;i<${MenuList.size()};i++){
 									$("#Cost"+i).html(cost.get(food[i][0]));
@@ -264,6 +314,8 @@
 									var n=Number($("#Quanty"+i).html());
 									
 									var p=(Number(food[i][1]) - Number(cost.get(food[i][0])))*n;
+									income+=Number(food[i][1])*n;
+									foodCost+=Number(cost.get(food[i][0]))*n;
 									arrayP.push(p);
 									$("#Profit"+i).html(p);
 									total=total+Number($("#Profit"+i).html());
@@ -279,6 +331,7 @@
 								var peopleCost=Number($("#PeopleCost").html());
 								var otherCost=Number($("#OtherCost").html());
 								
+								$("#totalProfitMenuandother").html(foodCost+costHosue+peopleCost+otherCost);
 								
 								console.log(costHosue+"costHosue");
 								console.log(peopleCost+"peopleCost");
@@ -289,12 +342,17 @@
 								
 								$("#TotalProfit").html(total);
 								
-								
+								$("#income").html(income);
+								$("#foodCost").html(foodCost);
 
 								console.log(arrayP);
 								for(var i =0;i<${MenuList.size()};i++){
 									
-									$("#chart"+i).css('--size', arrayP[i]/foodProfit+0.1);
+									var percent = arrayP[i]/foodProfit+0.1;
+									if(percent > 1) {
+										percent=1.0;
+									}
+									$("#chart"+i).css('--size', percent);
 									$("#chart"+i).html(arrayP[i]+"("+parseInt(arrayP[i]*100/foodProfit)+"%)");
 								}
 								
@@ -354,11 +412,14 @@
 					var q=$("#Quanty0").html();
 					if(q.length > 0) {
 						var total=0;
+						var foodCost=0;
+						var income=0;
 						for(var i =0;i<${MenuList.size()};i++){
 							$("#Cost"+i).html(cost.get(food[i][0]));
 							
 							var n=Number($("#Quanty"+i).html());
-							
+							income+=Number(food[i][1])*n;
+							foodCost+=Number(cost.get(food[i][0]))*n;
 							var p=(Number(food[i][1]) - Number(cost.get(food[i][0])))*n;
 							arrayP.push(p);
 							$("#Profit"+i).html(p);
@@ -366,12 +427,16 @@
 							total=total+Number($("#Profit"+i).html());
 						}
 						foodProfit = total;
-						$("#totalProfitMenu").html(total);
+						$("#totalProfitMenuandother").html(foodCost+costHosue+peopleCost+otherCost);
+					
+						
 						
 						total=Number(total)-costHosue-peopleCost-otherCost;
 						console.log(total+"total");
 						
 						$("#TotalProfit").html(total);
+						$("#income").html(income);
+						$("#foodCost").html(foodCost);
 
 						console.log(arrayP);
 						for(var i =0;i<${MenuList.size()};i++){
@@ -390,6 +455,6 @@
 		
 		}
 		
-	</script>
+</script>
 </body>
 </html>

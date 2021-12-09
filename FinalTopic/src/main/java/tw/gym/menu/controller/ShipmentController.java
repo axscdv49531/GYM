@@ -37,10 +37,10 @@ public class ShipmentController {
 	
 	@GetMapping("/queryOrderId.controller")
 	@ResponseBody
-	public List<OrderMenu> queryOrderId(@RequestParam("id") Integer id) {
+	public List<OrderMenu> queryOrderId() {
 		
 		
-		return Oservice.findAllByStatuseAndOrderId(id,"已付款");
+		return Oservice.findAllByStatuse("已付款");
 		
 	}
 	

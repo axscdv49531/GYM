@@ -50,43 +50,41 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="<c:url value='/adminindex' />">
-                            <i class="nc-icon nc-chart-pie-35"></i>
-                            <p>管理者首頁</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<c:url value= '/insertMember'/>">
-                            <i class="nc-icon nc-circle-09"></i>
-                            <p>會員資料專區</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./table.html">
-                            <i class="nc-icon nc-notes"></i>
-                            <p>教練專區</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="<c:url value='' />">
-<!--                         /courseQuery -->
-                            <i class="nc-icon nc-paper-2"></i>
-                            <p>團體課程專區</p>
-                        </a>
-                    </li>
+                  
                     <li>
                         <a class="nav-link" href="/ToShipmentPage.controller">
-                            <i class="nc-icon nc-atom"></i>
-                            <p>訂餐系統專區</p>
+                            <i class="nc-icon nc-notes"></i>
+                            <p>餐點出貨</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
-                            <i class="nc-icon nc-money-coins"></i>
-                            <p>周邊商品專區</p>
+                        <a class="nav-link" href="/uploadfilemainpage.controller">
+                            <i class="nc-icon nc-notes"></i>
+                            <p>新增餐點</p>
                         </a>
                     </li>
+                    <li>
+                        <a class="nav-link" href="<c:url value='/InputCostManinPage.controller' />">
+<!--                         /courseQuery -->
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>新增成本</p>
+                        </a>
+                    </li>
+                       <li>
+                        <a class="nav-link" href="<c:url value='/MainReport' />">
+<!--                         /courseQuery -->
+                            <i class="nc-icon nc-paper-2"></i>
+                            <p>產品報表</p>
+                        </a>
+                    </li>
+                    <li >
+                        <a class="nav-link" href="<c:url value='/adminindex' />">
+                            <i class="nc-icon nc-chart-pie-35"></i>
+                            <p>返回管理者首頁</p>
+                        </a>
+                    </li>
+                  
+                 
                     <li>
                         <a class="nav-link" href="./notifications.html">
                             <i class="nc-icon nc-bell-55"></i>
