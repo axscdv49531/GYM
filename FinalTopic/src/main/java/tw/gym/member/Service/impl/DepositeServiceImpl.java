@@ -1,6 +1,7 @@
 package tw.gym.member.Service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,16 @@ public class DepositeServiceImpl implements DepositeService {
 	public List<DepositeBean> findAllByMember(Integer number) {
 	
 		return depositeRepository.findAllByMember(number);
+	}
+
+	@Override
+	public DepositeBean findByMemberNumeber(Integer number) {
+		return depositeRepository.findByMemberNumeber(number);
+	}
+
+	@Override
+	public Optional<DepositeBean> findById(Integer id) {
+		return depositeRepository.findById(id);
 	}
 
 }

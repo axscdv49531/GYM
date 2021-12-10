@@ -75,7 +75,7 @@ public class DepAllInOne {
 	public static String genAioCheckOutOneTime(Integer id, String date, String value, String name) {
 		initial();
 		AioCheckOutOneTime obj = new AioCheckOutOneTime();
-		obj.setMerchantTradeNo("d" + id);
+		obj.setMerchantTradeNo("springfit" + id);
 		obj.setMerchantTradeDate(date);
 		obj.setTotalAmount(value);
 		obj.setTradeDesc("test Menu Description");

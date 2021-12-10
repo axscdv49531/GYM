@@ -28,6 +28,9 @@ public class DepositeBean {
 	private Integer value;
 	
 	private Integer total;
+	
+	private String status;
+
 
 	@ManyToOne
 	@JoinColumn(name = "fk_member_number")
@@ -79,6 +82,14 @@ public class DepositeBean {
 
 	public void setTotal(Integer total) {
 		this.total = total;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	public DepositeBean() {

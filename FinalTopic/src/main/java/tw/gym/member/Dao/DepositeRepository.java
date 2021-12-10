@@ -11,4 +11,7 @@ public interface DepositeRepository extends JpaRepository<DepositeBean, Integer>
 
 	@Query(value="From DepositeBean db Where db.memberBean.number = :number")	
 	public List<DepositeBean> findAllByMember(Integer number);
+	
+	@Query(value="From DepositeBean db Where db.memberBean.number = :number")	
+	public DepositeBean findByMemberNumeber(Integer number);
 }
