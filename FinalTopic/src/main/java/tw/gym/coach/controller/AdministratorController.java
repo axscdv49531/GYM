@@ -180,4 +180,9 @@ public class AdministratorController {
         return cBean;
     }
 
+    @GetMapping("/coachAdminPage")
+    public String coachAdmin() {
+        return "/coach/coachAdmin";
+    }
+
 }

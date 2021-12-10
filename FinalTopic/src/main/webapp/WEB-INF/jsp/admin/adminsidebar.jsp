@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link " href="<c:url value='/administrator/coachAdminPage'/>">
                             <i class="nc-icon nc-notes"></i>
                             <p>教練專區</p>
                         </a>

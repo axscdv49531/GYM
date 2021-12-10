@@ -221,8 +221,9 @@
     </div>
 	</section>
 <!-- 	<section id="contant" style="background-color:red" class="contant"> -->
+<div class="container-fluid">
 <!-- 		<div class="container"> -->
-<div style="">
+<!-- <div class="row"> -->
 						課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
 						<!--    價格：<input type="text" placeholder="輸入內容" id="searchByClassPrice"> -->
 						教練名稱： <select name="select" id="searchByCoachName">
@@ -246,6 +247,7 @@
 							type="date" id="searchByDateEnd">
 						<button style="float: none" class="btn" onclick="search()">搜尋</button>
 						<button style="float: none" class="btn" onclick="searchDelete()">清除搜尋</button>
+<!-- 						</div> -->
 						</div>
 						<hr>
 						

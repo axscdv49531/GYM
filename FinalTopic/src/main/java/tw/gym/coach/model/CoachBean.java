@@ -2,7 +2,6 @@ package tw.gym.coach.model;
 
 import java.io.Serializable;
 import java.sql.Blob;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -23,7 +22,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import tw.gym.courses.model.Course;
 
@@ -46,7 +44,9 @@ public class CoachBean implements Serializable {
     private String coachEmail;
     private Integer coachExp;
     private String coachAddress;
+    private String coachPhone;
     private String fileName;
+    private Integer coachStatus;
     
     @Transient
     private MultipartFile cPhoto;
@@ -205,7 +205,23 @@ public class CoachBean implements Serializable {
 		this.courses = courses;
 	}
 
-	@Override
+    public String getCoachPhone() {
+        return coachPhone;
+    }
+
+    public void setCoachPhone(String coachPhone) {
+        this.coachPhone = coachPhone;
+    }
+
+    public Integer getCoachStatus() {
+        return coachStatus;
+    }
+
+    public void setCoachStatus(Integer coachStatus) {
+        this.coachStatus = coachStatus;
+    }
+
+    @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
         builder.append("CoachBean [coachId=");
