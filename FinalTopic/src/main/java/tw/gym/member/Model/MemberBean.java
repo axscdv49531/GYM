@@ -49,6 +49,7 @@ public class MemberBean implements Serializable {
 	private String emergencyContact;
 	private String emergencyPhone;
 	private String fileName;
+	private Integer status;
 
 	@Transient
 	private String password1;
@@ -314,6 +315,18 @@ public class MemberBean implements Serializable {
 
 	public void setOldpwd(String oldpwd) {
 		this.oldpwd = oldpwd;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 	@Override

@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,7 +37,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		Optional<MemberBean> member = memberService.findEmail(email);
-
+		Integer status = member.get().getStatus();
 		if (member.isEmpty()) {
 			Optional<CoachBean> coach = coachService.findByEmail(email);
 			if (coach.isEmpty()) {
@@ -56,6 +57,9 @@ public class LoginUserDetailsService implements UserDetailsService {
 		} else {
 //			Collection<? extends GrantedAuthority> authorities= 
 //	                UserAuthorityUtils.createAuthorities(member.get());
+			if (status == -1) {
+				throw new DisabledException(member.get().getNumber()+"It is first login. Password change is required!");
+			}
 			System.out.println(4);
 			return new User(member.get().getEmail(), member.get().getPassword(), Collections.emptyList());
 		}
