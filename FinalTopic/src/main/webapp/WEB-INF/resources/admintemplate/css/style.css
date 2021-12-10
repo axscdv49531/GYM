@@ -1,10 +1,31 @@
 @charset "UTF-8";
 
+.main-title {
+	margin-top: 51px;
+    width: 0px;
+    margin-left: 20px;
+}
+
 th {
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
 }
-table{
+
+table {
 	text-align: center;
-	vertical-align:middle;
+	vertical-align: middle;
+}
+
+.search-bar {
+	margin: 32px;
+	margin-left: 160px;
+}
+
+.search-btn {
+	margin-left: 8px;
+}
+
+.form-control {
+	width: 130px !important;
+	margin-left: 8px;
 }

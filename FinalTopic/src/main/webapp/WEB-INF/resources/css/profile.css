@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-.personalinfo li .title {color: #F0FFFF;float: left;font-weight: 500;margin-right: 30px;width: 30%;}
-.personalinfo li .text {color: #F0FFFF;display: block;overflow: hidden;}
+.personalinfo li .title {color: black;float: left;font-weight: 500;margin-right: 30px;width: 30%;}
+.personalinfo li .text {color: black;display: block;overflow: hidden;}
 .personalinfo li {margin-bottom: 10px;}
 .personalinfo {list-style: none;margin-bottom: 0;padding: 0;}

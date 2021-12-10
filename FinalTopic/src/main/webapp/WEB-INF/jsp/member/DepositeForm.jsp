@@ -13,7 +13,7 @@
 <body>
 	<div align="center">
 		<form:form method='POST' modelAttribute="depositeBean">
-		
+
 			<fieldset class="fieldset-auto-width">
 				<legend>儲值</legend>
 				<table>

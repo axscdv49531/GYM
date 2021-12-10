@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -36,7 +37,6 @@ public class LoginUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 		Optional<MemberBean> member = memberService.findEmail(email);
-
 		if (member.isEmpty()) {
 			Optional<CoachBean> coach = coachService.findByEmail(email);
 			if (coach.isEmpty()) {
@@ -44,18 +44,30 @@ public class LoginUserDetailsService implements UserDetailsService {
 				if (admin.isEmpty()) {
 					throw new UserNotFoundException("Can't Find User");
 				} else {
+					Integer aStatus = admin.get().getStatus();
+					if (aStatus == -1) {
+						throw new DisabledException(admin.get().getId()+"It is first login. Password change is required!");
+					}
 					System.out.println(1000);
 					return new User(admin.get().getEmail(), admin.get().getPassword(), Collections.emptyList());
 				}
 			} else {
 //				Collection<? extends GrantedAuthority> authorities= 
 //		                UserAuthorityUtils.createAuthorities(coach.get());
+				Integer cStatus = coach.get().getStatus();
+				if (cStatus == -1) {
+					throw new DisabledException(coach.get().getCoachId()+"It is first login. Password change is required!");
+				}
 				System.out.println(3);
 				return new User(coach.get().getCoachEmail(), coach.get().getCoachPassword(), Collections.emptyList());
 			}
 		} else {
 //			Collection<? extends GrantedAuthority> authorities= 
 //	                UserAuthorityUtils.createAuthorities(member.get());
+			Integer mStatus = member.get().getStatus();
+			if (mStatus == -1) {
+				throw new DisabledException(member.get().getNumber()+"It is first login. Password change is required!");
+			}
 			System.out.println(4);
 			return new User(member.get().getEmail(), member.get().getPassword(), Collections.emptyList());
 		}

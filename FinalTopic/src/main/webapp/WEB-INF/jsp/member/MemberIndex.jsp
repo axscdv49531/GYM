@@ -59,6 +59,9 @@
 										<a href="<c:url value='/login/MemberSuccess' />"><img
 											src="../images/springfitnesslogo6.png" alt="index" /></a>
 									</div>
+									<div class="main-title">
+										<h1>SPRINGFITNESS</h1>
+									</div>
 								</div>
 							</div>
 							<div class="col-md-6">

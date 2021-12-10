@@ -156,7 +156,7 @@ h1 {
 }
 
 .btn.btn-primary.btn-lg:hover, .btn.btn-primary.btn-lg:focus {
-	background: #d8302f;
+	background: #FF8040;
 }
 
 .btns.btn-primary.btn-lg:hover, .btns.btn-primary.btn-lg:focus {
@@ -243,14 +243,14 @@ header {
 	padding: 9px 25px;
 	color: #fff;
 	font-size: 13px;
-	background: #d8302f;
+	background: #FF5809;
 	border-radius: 50px;
 	float: left;
 }
 
 .updateMember li a:hover, .updateMember li a:focus {
-	background: #fff;
-	color: #333;
+	background: #FF9224;
+	color: white;
 }
 
 .updateMember li a i {
@@ -260,14 +260,16 @@ header {
 
 .login {
 	float: right;
-	margin: 0;
+	margin: 0px;
 	padding: 0;
 	list-style: none;
 }
 
 .login li {
 	float: left;
-	margin: 0 0 0 10px;
+	margin: 10px;
+	margin-top:15px;
+	margin-right:20px;
 	font-weight: 500;
 }
 
@@ -275,13 +277,13 @@ header {
 	padding: 9px 25px;
 	color: #fff;
 	font-size: 13px;
-	background: #d8302f;
+	background: #FF5809;
 	border-radius: 50px;
 	float: left;
 }
 
 .login li a:hover, .login li a:focus {
-	background: #fff;
+	background: #FF9224;
 	color: #333;
 }
 
@@ -306,7 +308,7 @@ header {
 	float: left;
 	width: 100%;
 	min-height: auto;
-	background: #fff;
+	background: #008190;
 }
 
 .main-menu-section {
@@ -327,7 +329,7 @@ header {
 .mega-dropdown-menu {
 	padding: 20px 0px;
 	width: 100%;
-	box-shadow: none;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 	-webkit-box-shadow: none;
 }
 
@@ -349,10 +351,11 @@ header {
 .mega-dropdown-menu>li ul>li>a:hover, .mega-dropdown-menu>li ul>li>a:focus
 	{
 	text-decoration: none;
+	
 }
 
 .mega-dropdown-menu .dropdown-header {
-	font-size: 17px;
+	font-size: 24px;
 	color: #222;
 	padding: 0;
 	line-height: 30px;
@@ -414,10 +417,15 @@ header {
 .navbar.navbar-inverse ul.nav.navbar-nav li a {
 	float: left;
 	padding: 28px 18px 26px;
-	color: #222;
-	font-weight: 500;
-	font-size: 16px;
+	color: white;
+	font-weight: bold;
+	font-size: 28px;
+	
 }
+.dropdown-item{
+	color:black !important;
+}
+
 
 .main-menu-section .navbar.navbar-inverse .navbar-collapse ul.nav.navbar-nav li ul li a
 	{
@@ -440,6 +448,9 @@ header {
 	.main-menu-section .navbar.navbar-inverse .navbar-collapse ul.nav.navbar-nav li:focus
 	{
 	background: #fff;
+}
+.dropdown-item.hover{
+	background:#008790 !important;
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
@@ -504,7 +515,7 @@ div.main-menu-section div.menu nav.navbar ul.nav li ul.dropdown-menu.mega-dropdo
 	{
 	text-transform: none;
 	font-weight: 400;
-	font-size: 14px;
+	font-size: 20px;
 	margin: 5px 0;
 }
 
@@ -514,7 +525,7 @@ div.main-menu-section div.menu nav.navbar ul.nav li ul.dropdown-menu.mega-dropdo
 }
 
 div.menu .dropdown-menu {
-	height: 200px;
+	height: 230px;
 	width: 30%;
 	top: 70px;
 }
@@ -536,8 +547,7 @@ div.menu .dropdown-menu {
 }
 
 div.menu .dropdown-menu {
-	border: none;
-	border-top: solid #ddd 1px;
+	border: 1px solid #008190;
 }
 
 .navbar.navbar-inverse .navbar-collapse ul.nav.navbar-nav li a {
@@ -1814,7 +1824,7 @@ body section#contant .post-info span h5 {
 
 .btn {
 	float: left;
-	background: #d8302f;
+	background: #FF5809;
 	color: #fff;
 	padding: 10px 20px;
 	font-size: 15px;

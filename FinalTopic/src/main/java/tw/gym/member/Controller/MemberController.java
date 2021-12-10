@@ -351,6 +351,7 @@ public class MemberController {
 //			密碼加密
 				String encodePwd = new BCryptPasswordEncoder().encode(memberBean.getPassword());
 				memberBean.setPassword(encodePwd);
+				memberBean.setStatus(-1);
 				emailSerive.sendEmail(toEmail, subject, body);
 				memberService.update(memberBean);
 				return "redirect:/login/Member";
@@ -367,14 +368,14 @@ public class MemberController {
 	}
 
 	@GetMapping("/updatePassword/{number}")
-	public String updatePassword(Model model, HttpSession session) {
-		MemberBean memberBean = (MemberBean) session.getAttribute("loginUser");
+	public String updatePassword(Model model,@PathVariable("number") Integer number ) {
+		MemberBean memberBean = memberService.findByNumber(number);
 		model.addAttribute("memberBean", memberBean);
 		return "member/MemberUpdatePassword";
 	}
 
 	@PostMapping("/updatePassword/{number}")
-	public String updatePasswordData(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult,
+	public String updatePasswordData(MemberBean memberBean, BindingResult bindingResult,
 			@PathVariable("number") Integer number) throws ParseException, IOException, SerialException, SQLException {
 		PasswordValidator passwordValidator = new PasswordValidator();
 		passwordValidator.validate(memberBean, bindingResult);
@@ -422,6 +423,7 @@ public class MemberController {
 		}
 		String newPwd = new BCryptPasswordEncoder().encode(memberBean.getPassword1());
 		member.setPassword(newPwd);
+		member.setStatus(0);
 		memberService.update(member);
 		return "redirect:/login/MemberSuccess";
 	}

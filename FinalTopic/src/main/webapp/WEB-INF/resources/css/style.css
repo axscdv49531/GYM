@@ -1,7 +1,11 @@
 @charset "UTF-8";
-
+.main-title {
+	margin-top: 51px;
+    width: 0px;
+    margin-left: 20px;
+}
 .container {
-	background-color: rgb(33, 37, 41);
+	background-color: white;
 	width: 100%;
 	padding-right: 0;
 	padding-left: 0;
@@ -13,21 +17,28 @@
 	padding-right: 300px;
 	margin: 250px;
 }
-
+th{
+	background-color:#FF5809;
+	padding:8px;
+	color:white;
+}
+td{
+	padding:8px;
+}
 header img {
 	width: 130px;
 }
 
 body {
-	background-color: rgb(33, 37, 41);
+	background-color: white;
 	font-family: verdana;
 	font-size: 15pt;
-	color: #F0FFFF;
+	color:black;
 }
 
-legend {
-	color: #F0FFFF;
-}
+/* legend { */
+/* 	color: #F0FFFF; */
+/* } */
 
 button {
 	color: black;

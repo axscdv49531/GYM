@@ -48,7 +48,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
 				session.setAttribute("loginUser", aBean.get());
 				response.sendRedirect("/login/AdminSuccess");
 			} else {
-				System.out.println(2);
 				session.setAttribute("loginUser", cBean.get());
 				response.sendRedirect("/login/CoachSuccess");
 			}
