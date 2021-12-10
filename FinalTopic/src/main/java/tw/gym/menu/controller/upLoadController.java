@@ -64,6 +64,7 @@ public class upLoadController {
 	}
 
 	private void saveFile(String fileName, String savePath,String menuName,Integer menuPrice,Integer menuQty,String detail ) {
+		Menu menu = new Menu();
 		menu.setMenuName(menuName);
 		menu.setMenuQty(menuQty);
 		menu.setPrice(menuPrice);
