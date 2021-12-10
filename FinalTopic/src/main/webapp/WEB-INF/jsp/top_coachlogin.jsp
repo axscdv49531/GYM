@@ -41,6 +41,9 @@
 							<a href="<c:url value='/' />"><img
 								src="../images/springfitnesslogo6.png" alt="index" /></a>
 						</div>
+						<div class="main-title">
+							<h1>SPRINGFITNESS</h1>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -111,15 +114,15 @@
 															<li class="dropdown-header">會員中心</li>
 															<li><a class="dropdown-item" href="/MemberProfile">個人資料</a>
 															</li>
-<!-- 															<li><a class="dropdown-item" -->
-<%-- 																href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a> --%>
-<!-- 															</li> -->
-<!-- 															<li><a class="dropdown-item" -->
-<%-- 																href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄 --%>
-<!-- 															</a></li> -->
-<!-- 															<li><a class="dropdown-item" -->
-<%-- 																href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a> --%>
-<!-- 															</li> -->
+															<!-- 															<li><a class="dropdown-item" -->
+															<%-- 																href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a> --%>
+															<!-- 															</li> -->
+															<!-- 															<li><a class="dropdown-item" -->
+															<%-- 																href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄 --%>
+															<!-- 															</a></li> -->
+															<!-- 															<li><a class="dropdown-item" -->
+															<%-- 																href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a> --%>
+															<!-- 															</li> -->
 														</ul>
 													</li>
 												</ul></li>
@@ -133,12 +136,12 @@
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">一對一課程</li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/coach/coachClassAdd">新增課程</a></li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/classIntroduction">課程介紹</a></li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/coach/coachClassList">我的課程 </a></li>
+															<li><a class="dropdown-item"
+																href="/coach/coachClassAdd">新增課程</a></li>
+															<li><a class="dropdown-item"
+																href="/classIntroduction">課程介紹</a></li>
+															<li><a class="dropdown-item"
+																href="/coach/coachClassList">我的課程 </a></li>
 														</ul>
 													</li>
 												</ul>

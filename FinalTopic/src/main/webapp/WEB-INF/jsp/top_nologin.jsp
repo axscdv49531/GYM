@@ -41,6 +41,9 @@
 							<a href="<c:url value='/' />"><img
 								src="../images/springfitnesslogo6.png" alt="index" /></a>
 						</div>
+						<div class="main-title">
+							<h1>SPRINGFITNESS</h1>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -54,7 +57,7 @@
 										viewBox="0 0 16 16">
 								   <path
 											d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-								 </svg><i class="fa fa-user"></i>登入</a></li>							
+								 </svg><i class="fa fa-user"></i>登入</a></li>
 							<li>
 								<div class="context-option">
 									<a href="#"><i class="fa fa-envelope"><svg

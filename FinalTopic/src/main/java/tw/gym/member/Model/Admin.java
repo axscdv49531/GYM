@@ -21,6 +21,7 @@ public class Admin {
 	
 	private String password;
 
+	private Integer status;
 	
 	public Integer getId() {
 		return id;
@@ -44,6 +45,14 @@ public class Admin {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Integer getStatus() {
+		return status;
+	}
+
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 	
 	

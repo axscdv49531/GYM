@@ -20,7 +20,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="width: 1205px; height: 194.13px">
+	<div style="width: 1205px; height: 194.13px" class="top">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 	<div align='center'>

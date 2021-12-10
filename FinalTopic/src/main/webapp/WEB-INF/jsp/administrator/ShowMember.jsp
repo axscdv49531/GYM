@@ -71,7 +71,8 @@
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
 <body>
 	<div class="wrapper">
-		<div class="sidebar" data-image="../admintemplate/img/sidebar-0.jpg" data-color="red">
+		<div class="sidebar" data-image="../admintemplate/img/sidebar-0.jpg"
+			data-color="red">
 			<!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -79,25 +80,25 @@
     -->
 			<div class="sidebar-wrapper">
 				<div class="logo">
-					<a href="#" class="simple-text">
-						ADMIN </a>
+					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li><a class="nav-link" href="<c:url value='/adminindex' />"> <i
-							class="nc-icon nc-chart-pie-35"></i>
+					<li><a class="nav-link" href="<c:url value='/adminindex' />">
+							<i class="nc-icon nc-chart-pie-35"></i>
 							<p>管理者首頁</p>
 					</a></li>
-					<li class="nav-item active dropdown nav-item"><a class="dropdown-toggle nav-link"  data-toggle="dropdown"
-						href="<c:url value= '/insertMember'/>"> <i class="nc-icon nc-circle-09"></i>
+					<li class="nav-item active dropdown nav-item"><a
+						class="dropdown-toggle nav-link" data-toggle="dropdown"
+						href="<c:url value= '/insertMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
 							<p>會員資料專區</p>
 					</a>
-					<ul class="dropdown-menu">
-									<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
-									<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-									<a class="dropdown-item" href="#">會員儲值</a>
-									<a class="dropdown-item" href="#">會員會費查詢</a>
-								</ul>
-					</li>
+						<ul class="dropdown-menu">
+							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
+							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
+							<a class="dropdown-item" href="#">會員儲值</a>
+							<a class="dropdown-item" href="#">會員會費查詢</a>
+						</ul></li>
 					<li><a class="nav-link" href="<c:url value='' />"> <i
 							class="nc-icon nc-notes"></i>
 							<p>教練專區</p>
@@ -189,62 +190,70 @@
 				</div>
 			</nav>
 			<!-- End Navbar -->
-	<div align='center'>
-		<form:form method='POST' modelAttribute="memberBean">
-			<h3>會員資料</h3>
-			<hr>
-			<table border='1'>
-				<tr>
-					<th width='70'>會員編號</th>
-					<th width='100'>姓名</th>
-					<th width='60'>性別</th>
-					<th width='160'>生日</th>
-					<th width='60'>詳細資料</th>
-					<th width='60'>編輯</th>
-					<th width='60'>刪除</th>
-					<th width='60'>Inbody</th>
-					<th width='60'>Inbody紀錄</th>
-					<th width='60'>會員繳費</th>
-					<th width='60'>會員繳費紀錄</th>
-					<th width='60'>會員儲值</th>
-					<th width='60'>會員儲值紀錄</th>
-				</tr>
-				<c:choose>
-					<c:when test="${not empty memberBeanList}">
-						<c:forEach var='member' items="${memberBeanList}">
-							<tr>
-								<td>${member.number}</td>
-								<td>${member.name}</td>
-								<td>${member.gender}</td>
-								<td>${member.birthday}</td>
-								<td><a href='selectMember/${member.number}'><input
-										type='button' value='詳細資料'></a></td>
-								<td><a href='modifyMember/${member.number}'><input
-										type='button' value='編輯'></a></td>
-								<td><a href='deleteMember/${member.number}'><input
-									type='button' value='刪除' onclick="return confirmDelete('${member.number}');"></a></td>
-								<td><a href='insertInbody/${member.number}'><input
-										type='button' value='Inbody'></a></td>
-								<td><a href='selectInbody/${member.number}'><input
-										type='button' value='查詢'></a></td>
-								<td><a href='insertPayment/${member.number}'><input
-										type='button' value='Payment'></a></td>
-								<td><a href='selectPayment/${member.number}'><input
-										type='button' value='查詢'></a></td>
-								<td><a href='updateDeposite/${member.number}'><input
-										type='button' value='儲值'></a></td>
-								<td><a href='findAllDeposite/${member.number}'><input
-										type='button' value='查詢'></a></td>
-							</tr>
-						</c:forEach>
-					</c:when>
-					<c:otherwise>
+			<form class="form-inline search-bar">
+				<div class="form-group">
+					<label for="exampleInputEmail2">會員編號查詢</label> <input type="text"
+						class="form-control" id="exampleInputEmail2" placeholder="會員編號">
+				</div>
+				<button type="submit" class="btn btn-default search-btn">查詢</button>
+			</form>
+			<div align='center'>
+				<form:form method='POST' modelAttribute="memberBean">
+					<h3>會員資料</h3>
+					<hr>
+					<table border='1'>
+						<tr>
+							<th width='70'>會員編號</th>
+							<th width='100'>姓名</th>
+							<th width='60'>性別</th>
+							<th width='160'>生日</th>
+							<th width='60'>詳細資料</th>
+							<th width='60'>編輯</th>
+							<th width='60'>刪除</th>
+							<th width='60'>Inbody</th>
+							<th width='60'>Inbody紀錄</th>
+							<th width='60'>會員繳費</th>
+							<th width='60'>會員繳費紀錄</th>
+							<th width='60'>會員儲值</th>
+							<th width='60'>會員儲值紀錄</th>
+						</tr>
+						<c:choose>
+							<c:when test="${not empty memberBeanList}">
+								<c:forEach var='member' items="${memberBeanList}">
+									<tr>
+										<td>${member.number}</td>
+										<td>${member.name}</td>
+										<td>${member.gender}</td>
+										<td>${member.birthday}</td>
+										<td><a href='selectMember/${member.number}'><input
+												type='button' value='詳細資料'></a></td>
+										<td><a href='modifyMember/${member.number}'><input
+												type='button' value='編輯'></a></td>
+										<td><a href='deleteMember/${member.number}'><input
+												type='button' value='刪除'
+												onclick="return confirmDelete('${member.number}');"></a></td>
+										<td><a href='insertInbody/${member.number}'><input
+												type='button' value='Inbody'></a></td>
+										<td><a href='selectInbody/${member.number}'><input
+												type='button' value='查詢'></a></td>
+										<td><a href='insertPayment/${member.number}'><input
+												type='button' value='Payment'></a></td>
+										<td><a href='selectPayment/${member.number}'><input
+												type='button' value='查詢'></a></td>
+										<td><a href='updateDeposite/${member.number}'><input
+												type='button' value='儲值'></a></td>
+										<td><a href='findAllDeposite/${member.number}'><input
+												type='button' value='查詢'></a></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
 				查無Member資料
 			</c:otherwise>
-				</c:choose>
-			</table>
-		</form:form>
-		<br> <a href="<c:url value='/' />">回首頁</a>
-	</div>
+						</c:choose>
+					</table>
+				</form:form>
+				<br> <a href="<c:url value='/' />">回首頁</a>
+			</div>
 </body>
 </html>
