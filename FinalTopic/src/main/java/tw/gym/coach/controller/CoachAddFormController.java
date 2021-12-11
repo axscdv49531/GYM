@@ -327,6 +327,7 @@ public String coachClassAdd(Model model) {
         return claBean;
     }
 
+
     // @InitBinder
     // public void initBinder(WebDataBinder binder, WebRequest request) {
     // // java.util.Date

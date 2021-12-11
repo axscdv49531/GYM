@@ -131,6 +131,23 @@
                                 var div = $('#showclasslist');
 
                                 $.each(data,function(i, n) {
+                                	var expired = null;
+                                	var today = new Date();
+                                    var year = n.classDate.substring(4,0);
+                                    var month = n.classDate.substring(5,7);
+                                    var monthInt = parseInt(month)
+                                    monthInt = monthInt - 1;
+                                    var day = n.classDate.substring(8,10);
+                                    var hour = n.classStartTime.substring(2,0);
+                                    var min = n.classStartTime.substring(3,5);
+                                    var sec = n.classStartTime.substring(6,8);
+                                    var classExpireDay = new Date(year,monthInt,day,hour,min,sec)
+                                    if(classExpireDay>today){
+                                    	expired = 0;
+                                    }else{
+                                    	expired = 1;
+                                    }
+                                	
                                                     var status = null;
                                                     if (n.classAvaliable == 0) {
                                                         status = "未額滿"
@@ -142,16 +159,17 @@
                                                         a.push(n.sBean[i].skillName)
                                                     }
                                                     var div2 = "<div class='col-lg-3 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
-                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:black;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:black;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:black;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:black;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + n.classAvaliable+"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
+                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:black;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:black;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:black;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:black;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + expired+"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
 //                                                         + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><span class='date'>上課日期：" + n.classDate + "</span> <span class='date'>課程時長：" + n.classDuration + " 小時</span><p style='color:white'>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div><div style='justify-content: center;''><button style='position: relative;margin-left:150px' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div></div>"
                                                     div.append(div2);
+                                                    $("button[name='1']").prop('disabled', true).text("已完成");
                             })
                         }
                     }});
         
         }
             
-        
+//         $("button[name='1']").prop('disabled', true).text("已額滿");
         
 
         function load() {
@@ -175,6 +193,24 @@
                                 var div = $('#showclasslist');
 
                                 $.each(data,function(i, n) {
+                                	
+                                	var expired = null;
+                                    var today = new Date();
+                                    var year = n.classDate.substring(4,0);
+                                    var month = n.classDate.substring(5,7);
+                                    var monthInt = parseInt(month)
+                                    monthInt = monthInt - 1;
+                                    var day = n.classDate.substring(8,10);
+                                    var hour = n.classStartTime.substring(2,0);
+                                    var min = n.classStartTime.substring(3,5);
+                                    var sec = n.classStartTime.substring(6,8);
+                                    var classExpireDay = new Date(year,monthInt,day,hour,min,sec)
+                                    if(classExpireDay>today){
+                                        expired = 0;
+                                    }else{
+                                        expired = 1;
+                                    }
+                                	
                                                     var status = null;
                                                     if (n.classAvaliable == 0) {
                                                         status = "未額滿"
@@ -187,9 +223,10 @@
                                                     }
                                                         
                                                     var div2 = "<div class='col-lg-3 col-sm-6 col-xs-12'><div class='news-post-widget'><img class='img-responsive' src="
-                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:black;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:black;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:black;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:black;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + n.classAvaliable+"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
+                                                        + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:black;text-align:left'>教練名稱：" + n.cBean.coachName + "</p><p style='color:black;text-align:left'>上課日期：" + n.classDate + "</p><p style='color:black;text-align:left'>上課時間：" + n.classStartTime + "</p><p style='color:black;text-align:left'>課程時長：" + n.classDuration + " 小時</p><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><button class='btn' name='" + expired +"' style='float:none' onclick='cancelConfirm(" + n.classId + ")'>取消預約</button></input></div><div style='justify-content: center;''></p></div></div></div>"
 //                                                         + "<c:url value='/getClassPicture?classId=' />"+ n.classId +" alt=''><div class='news-post-detail'><h2><a href='blog-detail.html'>" + n.className + "</a></h2><p style='color:white'>教練名稱：" + n.cBean.coachName + "</p><span class='date'>上課日期：" + n.classDate + "</span> <span class='date'>課程時長：" + n.classDuration + " 小時</span><p style='color:white'>Just hours after that his grandma had died, Angel Di Maria imagined how she might react if he didn't play</p></div><div style='justify-content: center;''><button style='position: relative;margin-left:150px' class='btn'>查看</button><button class='btn' name='" + n.classAvaliable+"' style='' onclick='resvConfirm(" + n.classId + ")'>立即預約</button></div></div></div>"
                                                     div.append(div2);
+                                                    $("button[name='1']").prop('disabled', true).text("已完成");
                             })
                         }
                     }});

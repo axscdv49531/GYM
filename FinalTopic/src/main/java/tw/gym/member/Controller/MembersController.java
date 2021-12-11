@@ -216,4 +216,18 @@ public class MembersController {
 
     }
 
+    @GetMapping("memberClassListHistory")
+    public String memberClassListHistory() {
+
+        return "/member/memberClassListHistory";
+    }
+
+    @PostMapping("listRecentClass")
+    @ResponseBody
+    public List<ClassBean> listRecentClass(@SessionAttribute("loginUser") MemberBean mBean) {
+        List<ClassBean> cBean = memberService.findByMemberId(mBean.getNumber());
+
+        return cBean;
+    }
+
 }

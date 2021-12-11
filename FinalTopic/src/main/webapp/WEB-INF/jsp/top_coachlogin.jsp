@@ -142,6 +142,8 @@
 																href="/classIntroduction">課程介紹</a></li>
 															<li><a class="dropdown-item"
 																href="/coach/coachClassList">我的課程 </a></li>
+																<li><a class="dropdown-item"
+                                                                href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
 														</ul>
 													</li>
 												</ul>
