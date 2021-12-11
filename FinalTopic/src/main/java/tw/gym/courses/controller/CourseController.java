@@ -190,7 +190,7 @@ public class CourseController {
 		CourseSpec courseSpec = new CourseSpec(category, classroom, date, coachId);
 
 		int pageSize = 10;
-		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.ASC, "date").and(Sort.by(Direction.ASC, "period")));
+		Pageable pageable = PageRequest.of(pageNo - 1, pageSize, Sort.by(Direction.DESC, "date").and(Sort.by(Direction.ASC, "period")));
 		
 		
 		Page<Course> page = cService.findAll(courseSpec, pageable);

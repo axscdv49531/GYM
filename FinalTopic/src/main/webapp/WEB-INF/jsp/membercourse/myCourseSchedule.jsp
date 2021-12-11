@@ -254,7 +254,7 @@ function showInformation(courseId,coachId) {
 				<div  class="col-md-7">
 				<fieldset>
 				<legend>我的課表 / 即將開始的課程：</legend>
-					<a href="<c:url value='/myCourseSchedulePdf' />"><button class='btn-danger'>下載我的課表</button></a>
+					<a href="<c:url value='/myCourseSchedulePdf' />"><button class='btn-warning'>下載我的課表</button></a>
 				</fieldset>
 				</div>
 				<div class="col-md-4"></div>
@@ -274,9 +274,9 @@ function showInformation(courseId,coachId) {
 					</div>
 					<div class="col-md-3">
 					 <div class="row">
-						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
-								<h2 style="color:white">
+						<div class="content-widget top-story" >
+							<div class="top-stroy-header" >
+								<h2 style="color:black">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
 								<span class="date"></span>
@@ -286,9 +286,9 @@ function showInformation(courseId,coachId) {
 						</div>
 					 </div>
 						<div class="row">
-							<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
-								<h2 style="color:white">
+							<div class="content-widget top-story" >
+							<div class="top-stroy-header" >
+								<h2 style="color:black">
 									教練介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
 								<span class="date"></span>

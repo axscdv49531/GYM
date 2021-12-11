@@ -369,9 +369,9 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 					<fieldset>
 						<legend>課程查詢：</legend>
-						<a href="<c:url value='/timetable' />" target="_blank"><button class='btn-danger'>開啟本週課表</button></a>
-						<button onclick='todayCourse(1)' class='btn-danger'>當日課程</button>
-						<button onclick='showAllCourse(1)' class='btn-danger'>查詢所有課程</button>
+						<a href="<c:url value='/timetable' />" target="_blank"><button class='btn-warning'>開啟本週課表</button></a>
+						<button onclick='todayCourse(1)' class='btn-warning'>當日課程</button>
+						<button onclick='showAllCourse(1)' class='btn-warning'>查詢所有課程</button>
 						<br> <br>
 						<form>
 	
@@ -419,9 +419,9 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 					</div>
 					<div class="col-md-3">
 					 <div class="row">
-						<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
-								<h2 style="color:white">
+						<div class="content-widget top-story" >
+							<div class="top-stroy-header" >
+								<h2 style="color:Black">
 									課程介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
 								<span class="date"></span>
@@ -431,9 +431,9 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 						</div>
 					 </div>
 						<div class="row">
-							<div class="content-widget top-story" style="background-color:rgba(255,255,255,0.2)">
-							<div class="top-stroy-header" style="background-color:rgba(255,255,255,0.2);height:50px">
-								<h2 style="color:white">
+							<div class="content-widget top-story" >
+							<div class="top-stroy-header" >
+								<h2 style="color:Black">
 									教練介紹<a href="#" class="fa fa-fa fa-angle-right" ></a>
 								</h2>
 								<span class="date"></span>
@@ -447,29 +447,6 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 				<div class="col-md-1"></div>
 				</div>
 			</div>
-
-						
-<!-- <!-- 模態框（Modal） -->  
-<!--  <h2 > 模態框（Modal）插件事件 </h2 >  -->
-<!--  <!-- 按鈕觸發模態框 -->  -->
-<!--  <button  class = "btn btn-primary btn-lg"   data-toggle = "modal"  data-target = "#myModal" > 開始演示模態框 </button >  -->
-<!--  <!-- 模態框（Modal） --> 
-<!--  <div   class = "modal fade"   id = "myModal"   tabindex = " -1 "   role = "dialog"   aria-labelledby = " myModalLabel "   aria-hidden = " true " >  -->
-<!--      <div   class = "modal-dialog" >  -->
-<!--          <div   class = "modal-content" >  -->
-<!--              <div   class = "modal-header" >  -->
-<!--                  <button  type = "button"   class = "close"   data-dismiss = "modal"  aria-hidden = "true" > × </button >  -->
-<!--                  <h4  class = "modal-title"   id = "myModalLabel" > 模態框（Modal）標題 </h4 >  -->
-<!--              </div >  -->
-<!--              <div   class = "modal-body" > 按下ESC按鈕退出。 </div >  -->
-<!--              <div   class = "modal-footer" >  -->
-<!--                  <button  type = "button"   class = " btn btn-default "   data-dismiss = " modal " > 關閉 </button >  -->
-<!--                  <button  type = "button"   class = " btn btn-primary " > 提交更改 </button >  -->
-<!--              </div >  -->
-<!--          </div > /.modal-content  -->
-<!--      </div > /.modal-dialog  -->
-<!--  </div >  -->
-<!-- <!-- 模態框（Modal） -->
 
 
 	<c:import url="/bottom"></c:import>
