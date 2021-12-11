@@ -11,6 +11,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<div style="width: 1205px; height: 194.13px" class ="top">
+		<c:import url="/top_memberlogin"></c:import>
+	</div>
 	<div align="center">
 		<form:form method='POST' modelAttribute="depositeBean">
 
@@ -23,7 +26,7 @@
 						<td><form:input path="value" /><br>&nbsp;</td>
 					</tr>
 					<tr>
-						<td colspan='2' align='center'><input type='submit'
+						<td colspan='2' align='center'><input class="update-modal" type='submit'
 							value='提交'></td>
 					</tr>
 				</table>

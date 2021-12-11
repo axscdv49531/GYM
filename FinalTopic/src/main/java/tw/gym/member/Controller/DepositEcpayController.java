@@ -80,7 +80,7 @@ public class DepositEcpayController {
 			deposite.get().setTotal(newValue);
 			MemberBean memberBean=mbService.findByNumber(deposite.get().getMemberBean().getNumber());
 			memberBean.setDeposite(newValue);
-			deposite.get().setStatus("已付款");
+			deposite.get().setStatus("1");
 			mbService.update(memberBean);
 			m.addAttribute("DepositeBean", deposite);
 			dpService.update(deposite.get());

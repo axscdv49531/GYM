@@ -38,7 +38,7 @@
 				<div class="col-md-6">
 					<div class="full">
 						<div class="logo">
-							<a href="<c:url value='/' />"><img
+							<a href="<c:url value='/login/MemberSuccess' />"><img
 								src="../images/springfitnesslogo6.png" alt="index" /></a>
 						</div>
 						<div class="main-title">
@@ -105,15 +105,14 @@
 												href="<c:url value='/login/MemberSuccess' />">主頁</a></li>
 											<li><a href="about.html">關於</a></li>
 
-											<li class="dropdown mega-dropdown"><a href="#"
-												class="dropdown-toggle" data-toggle="dropdown">會員中心<span
+											<li class="dropdown mega-dropdown member"><a href="#"
+												class="dropdown-toggle" data-toggle="dropdown ">會員中心<span
 													class="caret"></span></a>
 												<ul class="dropdown-menu mega-dropdown-menu member">
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">會員中心</li>
-															<li><a class="dropdown-item" href="/MemberProfile">個人資料</a>
-															</li>
+															<li><a class="dropdown-item" href="/MemberProfile">個人資料</a></li>
 															<li><a class="dropdown-item"
 																href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a>
 															</li>
@@ -123,28 +122,31 @@
 															<li><a class="dropdown-item"
 																href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
 															</li>
+															<li><a class="dropdown-item"
+																href="/updateDeposite/<c:out value='${loginUser.number}' />">我要儲值</a>
+															</li>
 														</ul>
 													</li>
 												</ul></li>
 
 											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-<!-- 											<li><a href="/classRes">預約私人課程</a></li> -->
-<li class="dropdown mega-dropdown"><a href="#"
-                                                            class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
-                                                                class="caret"></span></a>
-                                                            <ul class="dropdown-menu mega-dropdown-menu coach">
-                                                                <li class="col-sm-12">
-                                                                    <ul>
-                                                                        <li class="dropdown-header">一對一課程</li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/classReservation">課程預約</a></li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/classIntroduction">課程介紹</a></li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/memberViewClassLists">我的課程 </a></li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
+											<!-- 											<li><a href="/classRes">預約私人課程</a></li> -->
+											<li class="dropdown mega-dropdown"><a href="#"
+												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
+													class="caret"></span></a>
+												<ul class="dropdown-menu mega-dropdown-menu coach">
+													<li class="col-sm-12">
+														<ul>
+															<li class="dropdown-header">一對一課程</li>
+															<li><a class="dropdown-item"
+																href="/classReservation">課程預約</a></li>
+															<li><a class="dropdown-item"
+																href="/classIntroduction">課程介紹</a></li>
+															<li><a class="dropdown-item"
+																href="/memberViewClassLists">我的課程 </a></li>
+														</ul>
+													</li>
+												</ul>
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown">團體課程<span
 													class="caret"></span></a>

@@ -17,19 +17,21 @@
 			<h3>儲值紀錄</h3>
 			<hr>
 			<table border='1'>
-				<tr>	
+				<tr>
 					<th width='200'>儲值日期</th>
-					<th width='160'>儲值金額</th>				
-					<th width='160'>餘額</th>				
+					<th width='160'>儲值金額</th>
+					<th width='160'>餘額</th>
 				</tr>
 				<c:choose>
 					<c:when test="${not empty depositeBeanList}">
 						<c:forEach var='deposite' items="${depositeBeanList}">
-							<tr>
-								<td>${deposite.timestamp}</td>
-								<td>${deposite.value}</td>
-								<td>${deposite.total}</td>
-							</tr>
+							<c:if test="${deposite.status==1}">
+								<tr>
+									<td>${deposite.timestamp}</td>
+									<td>${deposite.value}</td>
+									<td>${deposite.total}</td>
+								</tr>
+							</c:if>
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
@@ -38,7 +40,7 @@
 				</c:choose>
 			</table>
 		</form:form>
-		<br>  <a href="<c:url value='/login/MemberSuccess' />">回前頁</a>
+		<br> <a href="<c:url value='/login/MemberSuccess' />">回前頁</a>
 	</div>
 </body>
 </html>

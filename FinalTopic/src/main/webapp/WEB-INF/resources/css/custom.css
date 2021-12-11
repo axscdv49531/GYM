@@ -449,14 +449,17 @@ header {
 	{
 	background: #fff;
 }
-.dropdown-item.hover{
-	background:#008790 !important;
+/* .dropdown-toggle:hover:hover,.dropdown-toggle:hover{ */
+/* 	color:black !important; */
+/* } */
+.dropdown-item:hover{
+	color:#008790 !important;
 }
 
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus,
 	.navbar-inverse .navbar-nav>.open>a:hover {
 	color: #fff;
-	background-color: transparent;
+	background-color: #008790 !important;
 }
 
 .main-menu-section .navbar.navbar-inverse .navbar-collapse ul.nav.navbar-nav li
@@ -525,25 +528,25 @@ div.main-menu-section div.menu nav.navbar ul.nav li ul.dropdown-menu.mega-dropdo
 }
 
 div.menu .dropdown-menu {
-	height: 230px;
+	height: 255px;
 	width: 30%;
 	top: 70px;
 }
 
 .member {
-	margin-left: 170px;
+	margin-left: 200px;
 }
 
 .coach {
-	margin-left: 360px;
-}
-
-.classRes {
 	margin-left: 500px;
 }
 
+.classRes {
+	margin-left: 700px;
+}
+
 .nClassRes {
-	margin-left: 400px;
+	margin-left: 700px;
 }
 
 div.menu .dropdown-menu {

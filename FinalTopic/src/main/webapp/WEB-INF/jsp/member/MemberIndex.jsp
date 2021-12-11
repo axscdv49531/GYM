@@ -143,6 +143,9 @@
 																		<li><a class="dropdown-item"
 																			href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
 																		</li>
+																		<li><a class="dropdown-item"
+																			href="/updateDeposite/<c:out value='${loginUser.number}' />">我要儲值</a>
+																		</li>
 																	</ul>
 																</li>
 															</ul></li>
