@@ -9,7 +9,10 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
@@ -23,7 +26,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,8 +34,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
+import tw.gym.coach.model.SkillBean;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
+import tw.gym.coach.service.SkillService;
 
 @Controller
 @RequestMapping("/administrator")
@@ -44,6 +48,10 @@ public class AdministratorController {
 
     @Autowired
     ClassService classService;
+
+    @Autowired
+    SkillService skiService;
+
 
     @GetMapping("coachPage")
     public String coachPage() {
@@ -105,17 +113,20 @@ public class AdministratorController {
         return "/administrator/allCoachClasses";
     }
 
-    @GetMapping("/updateClass/{id}")
-    public String updateClass(Model model, @PathVariable("id") Integer id) {
-        List<String> checkBoxData = new ArrayList<String>();
-        checkBoxData.add("胸");
-        checkBoxData.add("肩");
-        checkBoxData.add("背");
-        checkBoxData.add("腿");
-        checkBoxData.add("跑步");
-        checkBoxData.add("飛輪");
-        checkBoxData.add("瑜珈");
-        model.addAttribute("checkBoxData", checkBoxData);
+    // @GetMapping("/updateClass/{id}")
+    @GetMapping("updateClass")
+    public String updateClass(Model model, @RequestParam("id") Integer id) {
+        // List<String> checkBoxData = new ArrayList<String>();
+        // checkBoxData.add("胸");
+        // checkBoxData.add("肩");
+        // checkBoxData.add("背");
+        // checkBoxData.add("腿");
+        // checkBoxData.add("跑步");
+        // checkBoxData.add("飛輪");
+        // checkBoxData.add("瑜珈");
+        // model.addAttribute("checkBoxData", checkBoxData);
+        List<String> skList = skiService.listAllSkill();
+        model.addAttribute("checkBoxList", skList);
         List<String> selectData = new ArrayList<String>();
         selectData.add("09:00");
         selectData.add("10:00");
@@ -138,25 +149,54 @@ public class AdministratorController {
         cBean.setClassStartTimeTemp(start);
         cBean.setClassEndTimeTemp(end);
         model.addAttribute("classBean", cBean);
-        return "/coach/coachClassDetail";
+        Set<SkillBean> a = cBean.getsBean();
+        Iterator<SkillBean> aa = a.iterator();
+        String[] st = new String[cBean.getsBean().size()];
+        int i = 0;
+        while (aa.hasNext()) {
+            // System.out.println(aa.next().getSkillName());
+            st[i] = aa.next().getSkillName();
+            i++;
+        }
+        cBean.setClassLabel(st);
+        return "/administrator/coachClassDetail";
     }
 
-    @PostMapping(value = "/updateClass/{id}", params = "edit")
-    public String updateClassCheck(ClassBean cBean) throws ParseException {
+    @PostMapping(value = "updateClass", params = "edit")
+    public String updateClassCheck(ClassBean cBean) throws ParseException, IOException, SerialException, SQLException {
         DateFormat formatter = new SimpleDateFormat("HH:mm");
         Time startTime = new Time(formatter.parse(cBean.getClassStartTimeTemp()).getTime());
         cBean.setClassStartTime(startTime);
         Time endTime = new Time(formatter.parse(cBean.getClassEndTimeTemp()).getTime());
         cBean.setClassEndTime(endTime);
+        // String[] skill = cBean.getClassLabel().split(",");
+        Set<SkillBean> sBean = new HashSet<SkillBean>();
+        for (int i = 0; i < cBean.getClassLabel().length; i++) {
+            SkillBean sBeann = skiService.findBySkillName(cBean.getClassLabel()[i]);
+            // sBeann.setSkillName(skill[i]);
+            sBean.add(sBeann);
+        }
+        cBean.setsBean(sBean);
+
+        MultipartFile picture = cBean.getClaPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cBean.setClassPhoto(blob);
+        cBean.setClassFileName(fileName);
+        cBean.setClassPhotoMineType(mineType);
         classService.updateClass(cBean);
-        return "redirect:/administrator/allCoachClasses";
+        return "redirect:/administrator/coachAdminPage";
 
     }
 
-    @PostMapping(value = "/updateClass/{id}", params = "delete")
+    @PostMapping(value = "updateClass", params = "delete")
     public String deleteClassData(ClassBean cBean) {
         classService.deleteById(cBean.getClassId());
-        return "redirect:/administrator/allCoachClasses";
+        return "redirect:/administrator/coachAdminPage";
     }
 
     @GetMapping("/getCoachPicture")
@@ -244,6 +284,99 @@ public class AdministratorController {
         service.save(cbean);
         return "redirect:/administrator/coachAdminPage";
 
+    }
+
+    @GetMapping("coachClassAdd")
+    public String coachClassAdd(Model model) {
+        List<String> skList = skiService.listAllSkill();
+        model.addAttribute("checkBoxList", skList);
+        List<String> selectData = new ArrayList<String>();
+        selectData.add("09:00");
+        selectData.add("10:00");
+        selectData.add("11:00");
+        selectData.add("12:00");
+        selectData.add("13:00");
+        selectData.add("14:00");
+        selectData.add("15:00");
+        selectData.add("16:00");
+        selectData.add("17:00");
+        selectData.add("18:00");
+        selectData.add("19:00");
+        selectData.add("20:00");
+        model.addAttribute("selectData", selectData);
+        // ClassBean cbean = new ClassBean();
+        // model.addAttribute("classBean", cbean);
+        // if (!model.containsAttribute("classBean")) {
+        // ClassBean cbean = new ClassBean();
+        // System.out.println("aaa");
+        // model.addAttribute("classBean", cbean);
+        // } else {
+        // System.out.println(model.getAttribute("classBean"));
+        // }
+        List<String> name = classService.findClassCoach();
+        model.addAttribute("coachList", name);
+        ClassBean cbean = new ClassBean();
+        model.addAttribute("classBean", cbean);
+
+        return "/administrator/coachClassAdd";
+    }
+
+    @PostMapping("coachClassAdd")
+    public String coachClassAdd(ClassBean cBean, Model model)
+            throws ParseException, SerialException, SQLException, IOException {
+        // new ClassValidator().validate(cBean, bindingResult);
+        // if (bindingResult.hasErrors()) {
+        // List<String> skList = skiService.listAllSkill();
+        // model.addAttribute("checkBoxList", skList);
+        // List<String> selectData = new ArrayList<String>();
+        // selectData.add("09:00");
+        // selectData.add("10:00");
+        // selectData.add("11:00");
+        // selectData.add("12:00");
+        // selectData.add("13:00");
+        // selectData.add("14:00");
+        // selectData.add("15:00");
+        // selectData.add("16:00");
+        // selectData.add("17:00");
+        // selectData.add("18:00");
+        // selectData.add("19:00");
+        // selectData.add("20:00");
+        // model.addAttribute("selectData", selectData);
+        // return "/coach/coachClassAdd";
+        // }
+        String coachName = cBean.getCoach();
+        CoachBean cBeann = service.getCoachByName(coachName);
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+        cBean.setClassCreatedate(timestamp);
+        DateFormat formatter = new SimpleDateFormat("HH:mm");
+        Time startTime = new Time(formatter.parse(cBean.getClassStartTimeTemp()).getTime());
+        cBean.setClassStartTime(startTime);
+        Time endTime = new Time(formatter.parse(cBean.getClassEndTimeTemp()).getTime());
+        cBean.setClassEndTime(endTime);
+        cBean.setcBean(cBeann);
+        // String[] skill = cBean.getClassLabel().split(",");
+        Set<SkillBean> sBean = new HashSet<SkillBean>();
+        for (int i = 0; i < cBean.getClassLabel().length; i++) {
+            SkillBean sBeann = skiService.findBySkillName(cBean.getClassLabel()[i]);
+            // sBeann.setSkillName(skill[i]);
+            sBean.add(sBeann);
+        }
+
+        MultipartFile picture = cBean.getClaPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cBean.setClassPhoto(blob);
+        cBean.setClassFileName(fileName);
+        cBean.setClassPhotoMineType(mineType);
+
+        cBean.setsBean(sBean);
+        classService.save(cBean);
+        return "redirect:/administrator/coachAdminPage";
     }
 
 }

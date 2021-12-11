@@ -60,4 +60,10 @@ public class CoachServiceImpl implements CoachService {
     	return coaRepo.getById(coachId);
     }
 
+    @Override
+    public CoachBean getCoachByName(String coachName) {
+        // TODO Auto-generated method stub
+        return coaRepo.getCoachByName(coachName);
+    }
+
 }

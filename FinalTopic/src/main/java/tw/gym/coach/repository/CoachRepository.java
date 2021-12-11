@@ -17,4 +17,7 @@ public interface CoachRepository extends JpaRepository<CoachBean, Integer> {
 
     @Query(value = "FROM CoachBean cb WHERE cb.coachAccount = :coachAccount and cb.coachPassword = :coachPassword")
     CoachBean findByAccountAndPassword(String coachAccount, String coachPassword);
+
+    @Query(value = "select cb from CoachBean cb where cb.coachName = :coachName")
+    CoachBean getCoachByName(String coachName);
 }

@@ -49,6 +49,8 @@ public class ClassBean implements Serializable {
     String classDescription;
     @Transient
     String[] classLabel;
+    @Transient
+    String coach;
     @Column(updatable = false)
     java.sql.Timestamp classCreatedate;
     String classFileName;
@@ -237,6 +239,14 @@ public class ClassBean implements Serializable {
 
     public void setClassPhotoMineType(String classPhotoMineType) {
         this.classPhotoMineType = classPhotoMineType;
+    }
+
+    public String getCoach() {
+        return coach;
+    }
+
+    public void setCoach(String coach) {
+        this.coach = coach;
     }
 
 }

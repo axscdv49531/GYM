@@ -84,7 +84,7 @@
                             src="<c:url value='/getClassPicture?classId='/>${claBean.classId}"
                             class="img-responsives" alt="#" />
                     </div>
-                    <div style="background-color: rgb(33, 37, 41);" align='center'
+                    <div style="background-color: white;" align='center'
                         class="feature-cont">
 
                         <div style="width: 960px">
@@ -111,7 +111,7 @@
                                 <h3>
                                     <c:out value="${claBean.className}"></c:out>
                                 </h3>
-                                <p style="color: #E0E0E0" align="left">
+                                <p style="color: #272727" align="left">
                                     <c:out value="${claBean.classDescription}"></c:out>
                                 </p>
                                 <div class="full">
