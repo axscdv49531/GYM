@@ -31,7 +31,24 @@
 	rel="stylesheet" type="text/css">
 <script src="../js/3dslider.js"></script>
 
+
+
 <script>
+$(document).ready(function() {
+    My_Date();
+
+});
+
+function My_Date() { 
+    var date = new Date();
+    var datee = date.getFullYear() +  date.getMonth() + ( date.getDate() + 1);
+    var year = date.getFullYear().toString();
+    var month = (date.getMonth() +1 ).toString();
+    var day = (date.getDate() +1 ).toString();
+    var dateee = year + "-" + month + "-" + day;
+    console.log(dateee)
+    document.getElementById("datee").min = dateee;
+} 
 	function print_value() {
 
 		var startString = (document.getElementById("start").value).substring(2,0);
@@ -67,7 +84,7 @@
 					</tr>
 					<tr>
 						<td align='right'>開課日期：</td>
-						<td><form:input style="background-color:rgb(33, 37, 41);width:100%;border:2px white solid;color:white" type="date" path="classDate" /> <br> <form:errors
+						<td><form:input id="datee" style="background-color:rgb(33, 37, 41);width:100%;border:2px white solid;color:white" type="date" path="classDate" /> <br> <form:errors
 								path="classDate" />
 					</tr>
 					<tr>

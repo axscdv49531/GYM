@@ -1,7 +1,6 @@
 package tw.gym.coach.repository;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -16,6 +15,6 @@ public interface ClassMemberRepository extends JpaRepository<ClassMemberBean, In
     List<ClassBean> findClassesByMemberId(Integer memberId);
 
     @Query("select cmBean.mBean from ClassMemberBean cmBean where cmBean.cBean.classId = :classId")
-    Optional<MemberBean> findMemberByClassId(Integer classId);
+    List<MemberBean> findMemberByClassId(Integer classId);
 
 }

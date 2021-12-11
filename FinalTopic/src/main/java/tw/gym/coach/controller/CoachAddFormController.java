@@ -35,6 +35,7 @@ import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
+import tw.gym.member.Model.MemberBean;
 
 @Controller
 @RequestMapping("/coach")
@@ -325,6 +326,26 @@ public String coachClassAdd(Model model) {
         // System.out.println(mBean.get().getName());
 
         return claBean;
+    }
+
+    @PostMapping("getClassMember")
+    @ResponseBody
+    public List<MemberBean> listAllClass(@RequestParam(required = false, name = "classId") String classId)
+            throws IndexOutOfBoundsException {
+        // List<ClassBean> claBean = classService.findClassesByCoachId(cBean.getCoachId());
+        System.out.println(classId);
+        Integer classIdd = Integer.parseInt(classId);
+        List<MemberBean> mBean = cmService.findMemberByClassId(classIdd);
+        // System.out.println(mBean.get(0).getName() + "123");
+        // System.out.println(mBean.get().getName());
+        if (mBean.isEmpty()) {
+            System.out.println("111");
+            return null;
+        } else {
+            System.out.println("222");
+
+            return mBean;
+        }
     }
 
 

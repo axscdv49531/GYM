@@ -44,7 +44,14 @@
 
 <script type="text/javascript">
 
+$(document).ready(function() {
+    load();
+});
+
 function showClassList(){
+	document.getElementById("titlee").innerHTML = '課程清單'
+	document.getElementById("titleee").innerHTML = '顯示所有課程清單'
+	
     $.ajax({
         type : 'post',
         url : '/administrator/listAllClass/',
@@ -64,10 +71,26 @@ function showClassList(){
                 ;
             } else {
                 var div = $('#showCoach');
-                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='display:block!important;'>動作</th></thead>");
+                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='text-align:center'>狀態</th><th style='display:block!important;'>動作</th></thead>");
 
                 $.each(data, function(i, n) {
                 	var skName = n.sBean[0].skillName;
+                	
+                	var status = null;
+                    var classDate = new Date(n.classDate + " " + n.classEndTime).getTime();
+                    var today = new Date().getTime();
+                    var d = today - classDate
+                    if (d > 0) {
+                        if (n.classAvaliable == 1) {
+                            status = "已開課";
+                        } else {
+                            status = "無人報名，未開課";
+                        }
+
+                    } else {
+                        status = "尚未開課";
+                    }
+
                 	
                 	
                     var div2 = "<tr align='center'>"
@@ -86,19 +109,26 @@ function showClassList(){
                             + "<td style='text-align:left'>"
                             + n.classDuration + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.classPrice + "</td>" +"<td style='text-align:left'>"
+                            + n.classPrice + "</td>" + "<td style='text-align:left'>"+ status + "</td>" + "<td style='text-align:left'>"
                             + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateClass?id=" + n.classId + "' />" + "</td>" + "</tr>";
                     div.append(div2);
                 });
+                div.append("<input type='button' class='btn' value='新增課程' onclick=" + "window.location.href='/administrator/coachClassAdd'" + "></input>");
             }
 
         }
     });
 }
 
+function showCoachList(){
+	load();
+}
 
 
-	$(function load() {
+	function load() {
+		
+		document.getElementById("titlee").innerHTML = '教練清單'
+		    document.getElementById("titleee").innerHTML = '顯示所有教練清單'
 		$.ajax({
 					type : 'post',
 					url : '/administrator/listAllCoach/',
@@ -139,11 +169,12 @@ function showClassList(){
                                         + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateCoach?ac=" + n.coachAccount + "' />" + "</td>" + "</tr>";
 								div.append(div2);
 							});
+								div.append("<input type='button' class='btn' value='新增教練' onclick=" + "window.location.href='/administrator/coachAdd'" + "></input>");
 						}
 
 					}
 				});
-	})
+	}
 	
 // 	//新增教練
 // 	function addCoach(){
@@ -179,20 +210,22 @@ function showClassList(){
             <div class="content">
                 <div class="container-fluid">
 
-
+<div style="text-align:right">
+<input type="button" id="listChange" class='btn' value="課程清單" onclick="showClassList()"></input>
+                            <input type="button" id="listChange" class='btn' value="教練清單" onclick="showCoachList()"></input>
+</div>
 
 				<div class="col-md-12">
 					<div class="card card-plain table-plain-bg">
 						<div class="card-header ">
-							<h4 class="card-title">教練清單</h4>
-							<p class="card-category">顯示所有教練清單</p>
+							<h4 id="titlee" class="card-title">教練清單</h4>
+							<p id="titleee" class="card-category">顯示所有教練清單</p>
 						</div>
 						<div class="card-body table-full-width table-responsive">
 							<table id="showCoach" class="table table-hover"></table>
-							<input type="button" class='btn' value="新增教練" onclick="window.location.href='/administrator/coachAdd'"></input>
-							<input type="button" class='btn' value="新增私人課程" onclick="window.location.href='/administrator/coachClassAdd'"></input>
+<!-- 							<input type="button" class='btn' value="新增教練" onclick="window.location.href='/administrator/coachAdd'"></input> -->
+<!-- 							<input type="button" class='btn' value="新增私人課程" onclick="window.location.href='/administrator/coachClassAdd'"></input> -->
 							<div id="changeList"></div>
-							<input type="button" id="listChange" class='btn' value="課程清單" onclick="showClassList()"></input>
 							</div>
 <!-- 							<input type="button" class='btn' value="課程清單" onclick="window.location.href='/administrator/allCoachClasses'"></input> -->
 						</div>
@@ -204,7 +237,7 @@ function showClassList(){
 		</div>
 
 	</div>
-	</div>
+<!-- 	</div> -->
 
 
 <!-- 	<!-- Button trigger modal --> 

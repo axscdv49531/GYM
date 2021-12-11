@@ -1,7 +1,6 @@
 package tw.gym.coach.service.impl;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,7 @@ public class ClassMemberServiceImpl implements ClassMemberService {
     }
 
     @Override
-    public Optional<MemberBean> findMemberByClassId(Integer classId) {
+    public List<MemberBean> findMemberByClassId(Integer classId) {
         return cmRepo.findMemberByClassId(classId);
     }
 

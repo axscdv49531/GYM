@@ -260,7 +260,7 @@ public class AdministratorController {
         String encodePwd = new BCryptPasswordEncoder().encode(cbean.getCoachPassword());
         cbean.setCoachPassword(encodePwd);
         model.addAttribute("coachBean", cbean);
-        return "/coach/coachAdd";
+        return "/administrator/coachAdd";
 
     }
     //

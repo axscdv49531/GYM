@@ -11,6 +11,23 @@
 <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function() {
+    My_Date();
+
+});
+
+function My_Date() { 
+    var date = new Date();
+    var datee = date.getFullYear() +  date.getMonth() + ( date.getDate() + 1);
+    var year = date.getFullYear().toString();
+    var month = (date.getMonth() +1 ).toString();
+    var day = (date.getDate() +1 ).toString();
+    var dateee = year + "-" + month + "-" + day;
+    console.log(dateee)
+    document.getElementById("datee").min = dateee;
+} 
+
 function print_value() {
 
     var startString = (document.getElementById("start").value).substring(2,0);
@@ -42,7 +59,7 @@ function print_value() {
 			</tr>
 			<tr>
 				<td align='right'>開課日期：</td>
-				<td><form:input type="date" path="classDate" /> <br> <form:errors
+				<td><form:input id="datee" type="date" path="classDate" /> <br> <form:errors
 						path="classDate" />
 			</tr>
                     <tr>
