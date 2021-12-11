@@ -29,4 +29,6 @@ public interface CoachService {
     //Dean
     public CoachBean getById(Integer coachId);
 
+    CoachBean getCoachByName(String coachName);
+
 }

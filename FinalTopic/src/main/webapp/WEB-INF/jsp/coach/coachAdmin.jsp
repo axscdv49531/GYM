@@ -64,25 +64,30 @@ function showClassList(){
                 ;
             } else {
                 var div = $('#showCoach');
-                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='display:block!important;'>動作</th></thead>");
+                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='display:block!important;'>動作</th></thead>");
 
                 $.each(data, function(i, n) {
+                	var skName = n.sBean[0].skillName;
+                	
+                	
                     var div2 = "<tr align='center'>"
                             + "<td style='text-align:left'>"
                             + n.className + "</td>"
                             + "<td style='text-align:left'>"
+                            + skName + "</td>"
+                            + "<td style='text-align:left'>"
                             + n.cBean.coachName + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.coachBirth + "</td>"
+                            + n.classDate + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.coachEmail + "</td>"
+                            + n.classStartTime + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.coachPhone + "</td>"
+                            + n.classEndTime + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.coachAddress + "</td>"
+                            + n.classDuration + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.coachExp + "</td>" +"<td style='text-align:left'>"
-                            + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateCoach?ac=" + n.coachAccount + "' />" + "</td>" + "</tr>";
+                            + n.classPrice + "</td>" +"<td style='text-align:left'>"
+                            + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateClass?id=" + n.classId + "' />" + "</td>" + "</tr>";
                     div.append(div2);
                 });
             }
@@ -185,7 +190,10 @@ function showClassList(){
 						<div class="card-body table-full-width table-responsive">
 							<table id="showCoach" class="table table-hover"></table>
 							<input type="button" class='btn' value="新增教練" onclick="window.location.href='/administrator/coachAdd'"></input>
-							<input type="button" class='btn' value="課程清單" onclick="showClassList()"></input>
+							<input type="button" class='btn' value="新增私人課程" onclick="window.location.href='/administrator/coachClassAdd'"></input>
+							<div id="changeList"></div>
+							<input type="button" id="listChange" class='btn' value="課程清單" onclick="showClassList()"></input>
+							</div>
 <!-- 							<input type="button" class='btn' value="課程清單" onclick="window.location.href='/administrator/allCoachClasses'"></input> -->
 						</div>
 					</div>

@@ -156,7 +156,6 @@ public String coachClassAdd(Model model) {
     public String coachClassAddCheck(ClassBean cBean,
             @SessionAttribute("loginUser") CoachBean cBeann, Model model)
             throws ParseException, SerialException, SQLException, IOException {
-        System.out.println("check-----------------------------");
         // new ClassValidator().validate(cBean, bindingResult);
         // if (bindingResult.hasErrors()) {
         // List<String> skList = skiService.listAllSkill();
