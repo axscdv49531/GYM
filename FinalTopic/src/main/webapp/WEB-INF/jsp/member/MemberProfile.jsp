@@ -48,8 +48,10 @@
 					value="會員編號：${loginUser.number}" />
 			</small>
 		</div>
-		<img width='203' height='254'
-			src="<c:url value='/getMemberPicture?email=' />${loginUser.email}" />
+		<div class="profile-img">
+			<img width='203' height='254'
+				src="<c:url value='/getMemberPicture?email=' />${loginUser.email}" />
+		</div>
 	</div>
 	<div class="col-md-7">
 		<ul class="personalinfo">
@@ -64,6 +66,8 @@
 			<li><span class="title">地址:</span> <span class="text"><c:out
 						value="${loginUser.county}${loginUser.district}${loginUser.address}" /></span>
 			</li>
+			<li><span class="title">點數餘額:</span> <span class="text"><c:out
+						value="${loginUser.deposite}" /></span></li>
 			<li><span class="title">入會時間:</span> <span class="text"><c:out
 						value="${loginUser.expirationdate}" /></span></li>
 			<li><span class="title">緊急連絡人:</span> <span class="text"><c:out

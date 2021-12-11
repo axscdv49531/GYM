@@ -55,7 +55,7 @@ public class DepositeController {
 		Timestamp timestamp = new Timestamp(date.getTime());
 		System.out.println("送出儲值訂單");
 		depositeBean.setTimestamp(timestamp);
-		depositeBean.setStatus("未付款");
+		depositeBean.setStatus("0");
 		depositeService.update(depositeBean);
 //		Integer oldValue = memberService.findByNumber(number).getDeposite();
 //		Integer newValue = depositeBean.getValue() + oldValue;
