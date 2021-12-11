@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Time;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,6 +19,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -57,8 +59,10 @@ public class AdministratorController {
 
     }
 
-    @GetMapping("/updateCoach/{account}")
-    public String updateCoach(Model model, @PathVariable("account") String account) {
+    // @GetMapping("/updateCoach/{account}")
+    @GetMapping("updateCoach")
+    public String updateCoach(Model model, @RequestParam("ac") String account) {
+        System.out.println(account);
         List<String> radioData = new ArrayList<String>();
         radioData.add("男");
         radioData.add("女");
@@ -72,7 +76,7 @@ public class AdministratorController {
 
     }
 
-    @PostMapping(value = "/updateCoach/{name}", params = "edit")
+    @PostMapping(value = "updateCoach", params = "edit")
     public String updateCoachData(CoachBean cBean) throws IOException, SerialException, SQLException {
         MultipartFile picture = cBean.getcPhoto();
         byte[] b = picture.getBytes();
@@ -85,13 +89,13 @@ public class AdministratorController {
         cBean.setFileName(fileName);
         cBean.setCoachPhotoMineType(mineType);
         service.updateCoach(cBean);
-        return "redirect:/";
+        return "redirect:/administrator/coachAdminPage";
     }
 
-    @PostMapping(value = "/updateCoach/{name}", params = "delete")
+    @PostMapping(value = "updateCoach", params = "delete")
     public String deleteCoachData(CoachBean cBean) {
         service.deleteById(cBean.getCoachId());
-        return "redirect:/";
+        return "redirect:/administrator/coachAdminPage";
     }
 
     @GetMapping("allCoachClasses")
@@ -180,9 +184,66 @@ public class AdministratorController {
         return cBean;
     }
 
-    @GetMapping("/coachAdminPage")
+    @PostMapping("listAllClass")
+    @ResponseBody
+    public List<ClassBean> listAllClass() {
+        List<ClassBean> allClass = classService.listAllClass();
+        return allClass;
+    }
+
+    @GetMapping("coachAdminPage")
     public String coachAdmin() {
         return "/coach/coachAdmin";
+    }
+
+    // @PostMapping("/coachAdd")
+    // @ResponseBody
+    // public CoachBean processInsertCourse(@RequestBody CoachBean cBean) { // @RequestParam(name="coachId")
+    // // @RequestBody
+    // // CoachBean cBean
+    //
+    // // System.out.println("aaaaaaaaaaaaaaaaaaa");
+    // // System.out.println(cBean);
+    // // return cService.insertCourse(course);
+    //
+    // return null;
+    // }
+
+    @GetMapping("coachAdd")
+    public String showCoachAddForm(Model model) {
+        List<String> radioData = new ArrayList<String>();
+        radioData.add("男");
+        radioData.add("女");
+        model.addAttribute("radioData", radioData);
+        CoachBean cbean = new CoachBean();
+        cbean.setCoachPassword("P@ssw0rd");
+        String encodePwd = new BCryptPasswordEncoder().encode(cbean.getCoachPassword());
+        cbean.setCoachPassword(encodePwd);
+        model.addAttribute("coachBean", cbean);
+        return "/coach/coachAdd";
+
+    }
+    //
+    @PostMapping("coachAdd")
+    public String insertCoachData(CoachBean cbean) throws ParseException, IOException, SerialException, SQLException {
+
+        Long datetime = System.currentTimeMillis();
+        Timestamp timestamp = new Timestamp(datetime);
+
+        MultipartFile picture = cbean.getcPhoto();
+        byte[] b = picture.getBytes();
+        Blob blob = new SerialBlob(b);
+        cbean.setCoachStatus(0);
+        String fileName = picture.getOriginalFilename();
+
+        String mineType = picture.getContentType();
+        cbean.setCoachRegisterdate(timestamp);
+        cbean.setCoachPhoto(blob);
+        cbean.setFileName(fileName);
+        cbean.setCoachPhotoMineType(mineType);
+        service.save(cbean);
+        return "redirect:/administrator/coachAdminPage";
+
     }
 
 }

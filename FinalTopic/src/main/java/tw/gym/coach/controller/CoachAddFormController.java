@@ -18,10 +18,8 @@ import javax.sql.rowset.serial.SerialBlob;
 import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
@@ -38,7 +35,6 @@ import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
-import tw.gym.coachclass.validators.ClassValidator;
 
 @Controller
 @RequestMapping("/coach")
@@ -57,42 +53,45 @@ public class CoachAddFormController {
     @Autowired
     ClassMemberService cmService;
 
-    @GetMapping("coachAdd")
-    public String showCoachAddForm(Model model) {
-        List<String> radioData = new ArrayList<String>();
-        radioData.add("男");
-        radioData.add("女");
-        model.addAttribute("radioData", radioData);
-        CoachBean cbean = new CoachBean();
-        cbean.setCoachPassword("P@ssw0rd");
-        String encodePwd = new BCryptPasswordEncoder().encode(cbean.getCoachPassword());
-        cbean.setCoachPassword(encodePwd);
-        model.addAttribute("coachBean", cbean);
-        return "/coach/coachAdd";
-
-    }
-
-    @PostMapping("coachAdd")
-    public String insertCoachData(CoachBean cbean) throws ParseException, IOException, SerialException, SQLException {
-
-        Long datetime = System.currentTimeMillis();
-        Timestamp timestamp = new Timestamp(datetime);
-
-        MultipartFile picture = cbean.getcPhoto();
-        byte[] b = picture.getBytes();
-        Blob blob = new SerialBlob(b);
-
-        String fileName = picture.getOriginalFilename();
-
-        String mineType = picture.getContentType();
-        cbean.setCoachRegisterdate(timestamp);
-        cbean.setCoachPhoto(blob);
-        cbean.setFileName(fileName);
-        cbean.setCoachPhotoMineType(mineType);
-        service.save(cbean);
-        return "redirect:/";
-
-    }
+    // // 可山
+    // @GetMapping("coachAdd")
+    // public String showCoachAddForm(Model model) {
+    // List<String> radioData = new ArrayList<String>();
+    // radioData.add("男");
+    // radioData.add("女");
+    // model.addAttribute("radioData", radioData);
+    // CoachBean cbean = new CoachBean();
+    // cbean.setCoachPassword("P@ssw0rd");
+    // String encodePwd = new BCryptPasswordEncoder().encode(cbean.getCoachPassword());
+    // cbean.setCoachPassword(encodePwd);
+    // model.addAttribute("coachBean", cbean);
+    // return "/coach/coachAdd";
+    //
+    // }
+    //
+    // // 可刪
+    // @PostMapping("coachAdd")
+    // public String insertCoachData(CoachBean cbean) throws ParseException, IOException, SerialException, SQLException
+    // {
+    //
+    // Long datetime = System.currentTimeMillis();
+    // Timestamp timestamp = new Timestamp(datetime);
+    //
+    // MultipartFile picture = cbean.getcPhoto();
+    // byte[] b = picture.getBytes();
+    // Blob blob = new SerialBlob(b);
+    // cbean.setCoachStatus(0);
+    // String fileName = picture.getOriginalFilename();
+    //
+    // String mineType = picture.getContentType();
+    // cbean.setCoachRegisterdate(timestamp);
+    // cbean.setCoachPhoto(blob);
+    // cbean.setFileName(fileName);
+    // cbean.setCoachPhotoMineType(mineType);
+    // service.save(cbean);
+    // return "redirect:/";
+    //
+    // }
 
 //    @GetMapping("coachLogin")
 //    public String coachLogin(Model model) {
@@ -139,13 +138,15 @@ public String coachClassAdd(Model model) {
         model.addAttribute("selectData", selectData);
         // ClassBean cbean = new ClassBean();
         // model.addAttribute("classBean", cbean);
-        if (!model.containsAttribute("classBean")) {
-            ClassBean cbean = new ClassBean();
-            System.out.println("aaa");
-            model.addAttribute("classBean", cbean);
-        } else {
-            System.out.println(model.getAttribute("classBean"));
-        }
+        // if (!model.containsAttribute("classBean")) {
+        // ClassBean cbean = new ClassBean();
+        // System.out.println("aaa");
+        // model.addAttribute("classBean", cbean);
+        // } else {
+        // System.out.println(model.getAttribute("classBean"));
+        // }
+        ClassBean cbean = new ClassBean();
+        model.addAttribute("classBean", cbean);
 
 
         return "/coach/coachClassAdd";
@@ -153,30 +154,29 @@ public String coachClassAdd(Model model) {
 
     @PostMapping("coachClassAdd")
     public String coachClassAddCheck(ClassBean cBean,
-            @SessionAttribute("loginUser") CoachBean cBeann,
-            BindingResult bindingResult, RedirectAttributes attr, Model model)
+            @SessionAttribute("loginUser") CoachBean cBeann, Model model)
             throws ParseException, SerialException, SQLException, IOException {
-
-        new ClassValidator().validate(cBean, bindingResult);
-        if (bindingResult.hasErrors()) {
-            List<String> skList = skiService.listAllSkill();
-            model.addAttribute("checkBoxList", skList);
-            List<String> selectData = new ArrayList<String>();
-            selectData.add("09:00");
-            selectData.add("10:00");
-            selectData.add("11:00");
-            selectData.add("12:00");
-            selectData.add("13:00");
-            selectData.add("14:00");
-            selectData.add("15:00");
-            selectData.add("16:00");
-            selectData.add("17:00");
-            selectData.add("18:00");
-            selectData.add("19:00");
-            selectData.add("20:00");
-            model.addAttribute("selectData", selectData);
-            return "/coach/coachClassAdd";
-        }
+        System.out.println("check-----------------------------");
+        // new ClassValidator().validate(cBean, bindingResult);
+        // if (bindingResult.hasErrors()) {
+        // List<String> skList = skiService.listAllSkill();
+        // model.addAttribute("checkBoxList", skList);
+        // List<String> selectData = new ArrayList<String>();
+        // selectData.add("09:00");
+        // selectData.add("10:00");
+        // selectData.add("11:00");
+        // selectData.add("12:00");
+        // selectData.add("13:00");
+        // selectData.add("14:00");
+        // selectData.add("15:00");
+        // selectData.add("16:00");
+        // selectData.add("17:00");
+        // selectData.add("18:00");
+        // selectData.add("19:00");
+        // selectData.add("20:00");
+        // model.addAttribute("selectData", selectData);
+        // return "/coach/coachClassAdd";
+        // }
 
 
         Long datetime = System.currentTimeMillis();
@@ -209,7 +209,7 @@ public String coachClassAdd(Model model) {
 
         cBean.setsBean(sBean);
         classService.save(cBean);
-        return "/coach/LoginSuccess";
+        return "redirect:/coach/coachClassList";
     }
 
     @GetMapping("coachClassList")

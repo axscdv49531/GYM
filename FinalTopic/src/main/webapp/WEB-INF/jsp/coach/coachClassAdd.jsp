@@ -55,9 +55,9 @@
 <!-- 	<section id="contant" class="contant"> -->
 <!-- 		<div class="container"> -->
 <!-- 		<div class="contact-us"> -->
-			<form:form method='Post' class="comments-form" id="contactform" modelAttribute="classBean"
+			<form:form method='Post' modelAttribute="classBean"
 				enctype='multipart/form-data'>
-				 <fieldset>
+<!-- 				 <fieldset> -->
 				<legend>新增課程</legend>
 				<table style="border-collapse:separate; border-spacing:0px 10px;">
 					<tr>
@@ -101,13 +101,6 @@
 						<td><form:textarea style="background-color:rgb(33, 37, 41);width:100%;border:2px white solid;color:white" path="classDescription" /><br> <form:errors
 								path="classDescription" />
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td align='right'>課程標籤：</td> -->
-<%-- 						<td><form:select path="classLabel" > --%>
-<%-- 						<form:options items="${chackBoxLost}" /> --%>
-
-<%--                             </form:select> <br> <form:errors path="classLabel" /> --%>
-<!-- 					</tr> -->
 					<tr>
 						<td align='right'>課程標籤：</td>
 						<td><form:checkboxes items="${checkBoxList}"
@@ -120,12 +113,11 @@
 					</tr>
 					<form:input type="hidden" value="0" path="classAvaliable" />
 					<tr>
-						<td colspan='2' align='center'><input type='submit'
-							value='提交'></td>
+						<td colspan='2' align='center'><input type='submit' value='提交'></td>
 					</tr>
 
 				</table>
-				</fieldset>
+<!-- 				</fieldset> -->
 			</form:form>
 <!-- 			</div> -->
 <!-- 		</div> -->
