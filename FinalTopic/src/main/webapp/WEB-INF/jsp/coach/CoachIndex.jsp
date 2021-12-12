@@ -44,17 +44,15 @@
 				<div class="container">
 					<div class="header-top">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="full">
-									<div class="logo">
-										<a href="<c:url value='/' />"><img
-											src="../images/logo.gif" alt="index" /></a>
+							<div class="col-md-4">
+								<a class="logo" href="<c:url value='/' />">
+									<div class="logo-content">
+										<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
 									</div>
-								</div>
+								</a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-8 header-button-container">
 								<div class="right_top_section">
-									<%--                 	<c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
 										<li class="login-modal"><a
@@ -115,7 +113,8 @@
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown ">私人課程<span
 																class="caret"></span></a>
-															<ul style="margin-left: 240px;" class="dropdown-menu mega-dropdown-menu">
+															<ul style="margin-left: 240px;"
+																class="dropdown-menu mega-dropdown-menu">
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">一對一課程</li>
@@ -157,12 +156,11 @@
 									<div class="slider-contant"
 										data-animation="animated fadeInRight">
 										<h3>
-											全民健身，男女老少，動起來吧，给自己一個更好的未來。<br>
-											<span class="color-yellow">立即體驗</span><br>
+											全民健身，男女老少<br> 動起來吧!<br> 给自己一個更好的未來。
 										</h3>
-										<p>
-											填寫資料馬上送免費健身體驗14天<br> 立即預約體驗(02)2777-0168
-										</p>
+										<h3 class="text-yellow">立即體驗</h3>
+										<p>填寫資料馬上送免費健身體驗14天</p>
+										<p>立即預約體驗(02)2777-0168</p>
 										<button class="btn btn-primary btn-lg">深入了解</button>
 									</div>
 								</div>

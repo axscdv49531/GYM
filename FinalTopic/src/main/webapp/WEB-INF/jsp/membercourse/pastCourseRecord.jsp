@@ -243,7 +243,7 @@ function showInformation(courseId) {
 
 </head>
 <body class="game-info">
-	<div style="width: 1205px; height: 194.13px">
+	<div class="top">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
 

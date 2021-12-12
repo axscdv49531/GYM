@@ -232,7 +232,5 @@
 	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
 	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
 
-
 </body>
-
 </html>

@@ -145,7 +145,7 @@ tbody:hover{
 </head>
 <body>
 
-	<div style="width: 1205px; height: 194.13px" class="top">
+	<div class="top">
 		<c:import url="/top_coachlogin"></c:import>
 	</div>
 	<div style="text-align:center;"><h1 style="display: inline-block;">開課紀錄</h1></div><hr style="border: 1px solid black;">
