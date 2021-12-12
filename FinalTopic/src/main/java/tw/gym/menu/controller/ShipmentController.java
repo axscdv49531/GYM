@@ -39,14 +39,12 @@ public class ShipmentController {
 	@ResponseBody
 	public List<OrderMenu> queryOrderId() {
 		
-		
 		return Oservice.findAllByStatuse("已付款");
-		
 	}
 	
 	
 	@GetMapping("/changeStatus.controller")
-	@ResponseBody
+	//@ResponseBody
 	public String changeStatus(@RequestParam("id")Integer id,Model m) {
 		List<OrderMenu> orderMenu=Oservice.findAllByOrderId(id);
 		 Date day = new Date();
@@ -56,8 +54,8 @@ public class ShipmentController {
 			Oservice.update(orderMenu.get(i));
 		}
 		
-	
-		return 	"已出貨";
+		return "redirect:ToShipmentPage.controller";
+		//return 	"已出貨";
 	}
 	
 	

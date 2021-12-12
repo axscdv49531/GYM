@@ -65,6 +65,29 @@ public class PayController {
 		return "menu/paymentresultTest";
 	}
 	
+	@GetMapping("pay.ControllerTest")
+	public String payControllerTest(@RequestParam("orderId") Integer orderId, Model m) {
+		List<OrderMenu> list = oService.findAllByOrderId(orderId);
+		//System.out.print("pay.ControllerTest-->"+list);
+		m.addAttribute("MenuList", list);
+		Map<String, Integer> quanty = new HashMap<String, Integer>();
+		for (int i = 0; i < list.size(); i++) {
+			quanty.put(list.get(i).getMenu().getMenuName(), list.get(i).getQty());
+			list.get(i).setStatuse("已付款");
+			oService.update(list.get(i));
+		}
+		for (String key : quanty.keySet()) {// mene 數量 -order 數量
+			Menu menu = mService.findMenu(key);
+			Integer total = menu.getMenuQty() - quanty.get(key);
+			menu.setMenuQty(total);
+			mService.update(menu);
+		}
+		
+
+		
+		return "menu/result";
+	}
+	
 	
 	@GetMapping("pay.ControllerReturn")//保留
 	public String ControllerReturn(Model m,@RequestParam("RtnMsg")String mess) {
