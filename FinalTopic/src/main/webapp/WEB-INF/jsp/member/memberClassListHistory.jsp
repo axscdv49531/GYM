@@ -33,9 +33,9 @@
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
     //    var indexPage=1;
-    //    $(document).ready(function(){
-    //        load(indexPage);
-    //    });
+       $(document).ready(function(){
+           load();
+       });
 
     //    function change(page){
     //        indexPage = page;
@@ -71,7 +71,7 @@
             }
     
     
-    $(function load() {
+    function load() {
         $
                 .ajax({
                     type : 'post',
@@ -155,7 +155,7 @@ console.log(n.classId)
                         }
                     }
                 });
-    })
+    }
 </script>
 <style>
 tbody:hover{

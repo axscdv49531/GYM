@@ -41,9 +41,26 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
+
+function showCoachClassList(coachId){
+	console.log(coachId)
+	$.ajax({
+        type : 'post',
+        url : '/member/classReservation/',
+        data:{
+        	coachIdd : coachId
+        },
+        dataType : 'JSON',
+        contentType : 'application/json',
+        success : function(data) {
+        	
+        }
+        })
+	
+}
+
 	$(function load() {
-		$
-				.ajax({
+		$.ajax({
 					type : 'post',
 					url : '/administrator/listAllCoach/',
 					dataType : 'JSON',
@@ -68,16 +85,18 @@
 									.each(
 											data,
 											function(i, n) {
-												var div2 = "<div class='col-md-3 column'><div style='border-radius:0' class='card'><img class='img-responsive' src="
+												var div2 = "<div class='col-md-3 column' style='padding-right:15px;padding-left:15px'><div style='border-radius:0' class='card'><img class='img-responsive' src="
 														+ "<c:url value='/administrator/getCoachPicture?coachAccount=' />"
 														+ n.coachAccount
-														+ " alt='John' style='width:100%'><div class='center'><h4>"
+														+ " alt='John' style='width:100%'><div class='center'><h4 style='margin: 20px 0 0 0;'>"
 														+ n.coachName
-														+ "</h4><p class='title'>"
-														+ "</p>"
-														+ "<p><div class='center'><button class='button'>"
-														+ "Contact"
-														+ "</button></div></p></div></div></div>";
+														+ "</h4><p class='title'>性別："
+														+ n.coachGender+"</p>"
+														+ "<p class='title'>執教經驗："
+                                                        + n.coachExp+"年</p>"
+                                                        +"<p class='title'>信箱："
+                                                        + n.coachEmail+"</p>"
+                                                        +"<p><div class='center'><input type='button' style='float:none' class='btn' value='看他的課' onclick=" + "location.href='/member/classReservation?Id=" + n.coachName + "' /></div></p></div></div></div>";
 												div.append(div2);
 											});
 						}
@@ -91,7 +110,7 @@
         <c:import url="/top_memberlogin"></c:import>
     </div>
     </section>
-          <section style="background-color:rgb(33, 37, 41);" id="contant" class="contant main-heading team">
+          <section style="background-color:white;" id="contant" class="contant main-heading team">
 	<div class="row">
 		<div class="container">
 			<div id="showcoachlist" border="1"></div>

@@ -230,4 +230,34 @@ public class MembersController {
         return cBean;
     }
 
+    // Mark
+    @GetMapping("classReservation")
+    public String memberViewClassList(Model model, @RequestParam(required = false, name = "Id") String coachIdd) {
+
+        System.out.println(coachIdd);
+        List<ClassBean> allClass = claService.listAllClass();
+        List<SkillBean> sBean = skiService.findAll();
+        List<String> name = claService.findClassCoach();
+        model.addAttribute("coachList", name);
+        model.addAttribute("skillList", sBean);
+        model.addAttribute(allClass);
+        model.addAttribute("coachId", coachIdd);
+        return "/member/classList";
+    }
+
+    // @GetMapping("classListByCoach")
+    // public String classListByCoach(Model model, ) {
+    // List<ClassBean> allClass = claService.listAllClass();
+    // List<SkillBean> sBean = skiService.findAll();
+    // List<String> name = claService.findClassCoach();
+    // model.addAttribute("coachList", name);
+    // model.addAttribute("skillList", sBean);
+    // model.addAttribute(allClass);
+    //
+    //
+    //
+    //
+    // return "/member/classList";
+    // }
+
 }

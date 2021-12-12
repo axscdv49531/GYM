@@ -44,7 +44,12 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script type="text/javascript">
         $(document).ready(function() {
+        	var cname = '${coachId}'
+        	if(cname.length == 0){
             load();
+        	}else{
+        		search(cname);
+        	}
         });
         
         function resvConfirm(y){
@@ -100,7 +105,8 @@
         }
 
         
-        function search() {
+        function search(cname) {
+        	if(cname == null){
             var className = document.getElementById("searchByClassName").value;
             var startDate = document.getElementById("searchByDateStart").value;
             var endDate = document.getElementById("searchByDateEnd").value;
@@ -112,10 +118,25 @@
             //      var status = coachNameTemp.value;
             var statusTemp = document.getElementById("searchByClassStatus");
             var status = statusTemp.value;
-            
             if(startDate.length == 0 || endDate.length == 0){
                 $('input[type=date]').val('');
             }
+        	}else{
+        		var className = document.getElementById("searchByClassName").value;
+                var startDate = document.getElementById("searchByDateStart").value;
+                var endDate = document.getElementById("searchByDateEnd").value;
+                var skillTemp = document.getElementById("searchBySkillName");
+                var skillName = skillTemp.value;
+        		var coachNameTemp = document.getElementById("searchByCoachName");
+        		coachNameTemp.value = cname
+        		console.log(cname)
+        		var coachName = coachNameTemp.value;
+        		var statusTemp = document.getElementById("searchByClassStatus");
+                var status = statusTemp.value;
+        	}
+//             if(startDate.length == 0 || endDate.length == 0){
+//                 $('input[type=date]').val('');
+//             }
 
             $.ajax({
                         type : 'post',

@@ -78,6 +78,7 @@ public class AdministratorController {
         CoachBean cBean = service.getCoachByAccount(account);
         // DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         // cBean.setCoachBirthTemp(df.format(cBean.getCoachBirth()));
+        System.out.println(cBean.getCoachGender());
 
         model.addAttribute("coachBean", cBean);
         return "/coach/coachDetail";

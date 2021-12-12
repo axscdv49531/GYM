@@ -48,6 +48,36 @@ $(document).ready(function() {
     load();
 });
 
+function getMember(classId){
+    
+    var cId = classId;
+    var memberName = null;
+    $.ajax({
+        type : 'post',
+        url : '/coach/getClassMember/',
+        dataType : 'JSON',
+        async: false,
+        data:{
+            classId : cId
+        },
+        success : function(data) {
+            
+            console.log('success:' + data);
+            var json = JSON.stringify(data, null, 4);
+            console.log('json:' + json);
+            
+            $.each(data, function(i, n) {
+            memberName = n.name;
+            console.log(n.name + "123")
+    console.log(memberName)
+            })
+
+        }
+    
+    })
+    return memberName;
+}
+
 function showClassList(){
 	document.getElementById("titlee").innerHTML = '課程清單'
 	document.getElementById("titleee").innerHTML = '顯示所有課程清單'
@@ -71,10 +101,16 @@ function showClassList(){
                 ;
             } else {
                 var div = $('#showCoach');
-                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='text-align:center'>狀態</th><th style='display:block!important;'>動作</th></thead>");
+                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='text-align:center'>報名狀況</th><th style='text-align:center'>狀態</th><th style='display:block!important;'>動作</th></thead>");
 
                 $.each(data, function(i, n) {
                 	var skName = n.sBean[0].skillName;
+                	
+                    var member = getMember(n.classId);
+                    
+                    if(member == null){
+                        member = "無人報名";
+                    }
                 	
                 	var status = null;
                     var classDate = new Date(n.classDate + " " + n.classEndTime).getTime();
@@ -109,7 +145,7 @@ function showClassList(){
                             + "<td style='text-align:left'>"
                             + n.classDuration + "</td>"
                             + "<td style='text-align:left'>"
-                            + n.classPrice + "</td>" + "<td style='text-align:left'>"+ status + "</td>" + "<td style='text-align:left'>"
+                            + n.classPrice + "</td>" + "<td style='text-align:left'>"+ member + "</td>" +"<td style='text-align:left'>"+ status + "</td>" + "<td style='text-align:left'>"
                             + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateClass?id=" + n.classId + "' />" + "</td>" + "</tr>";
                     div.append(div2);
                 });

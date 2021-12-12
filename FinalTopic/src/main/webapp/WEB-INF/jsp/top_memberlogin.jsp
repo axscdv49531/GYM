@@ -129,7 +129,7 @@
 													</li>
 												</ul></li>
 
-											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
+											<li><a href="<c:url value= '/member/showCoachList'/>">教練師資</a></li>
 											<!-- 											<li><a href="/classRes">預約私人課程</a></li> -->
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
@@ -139,11 +139,13 @@
 														<ul>
 															<li class="dropdown-header">一對一課程</li>
 															<li><a class="dropdown-item"
-																href="/classReservation">課程預約</a></li>
+																href="/member/classReservation">課程預約</a></li>
 															<li><a class="dropdown-item"
 																href="/classIntroduction">課程介紹</a></li>
 															<li><a class="dropdown-item"
 																href="/memberViewClassLists">我的課程 </a></li>
+																<li><a class="dropdown-item"
+                                                                href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
 														</ul>
 													</li>
 												</ul>

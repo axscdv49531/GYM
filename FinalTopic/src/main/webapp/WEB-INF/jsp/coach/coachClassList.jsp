@@ -50,21 +50,26 @@
             type : 'post',
             url : '/coach/getClassMember/',
             dataType : 'JSON',
+            async: false,
             data:{
             	classId : cId
             },
-//             contentType : 'application/json',
             success : function(data) {
             	
             	console.log('success:' + data);
                 var json = JSON.stringify(data, null, 4);
                 console.log('json:' + json);
+                
+                $.each(data, function(i, n) {
+                memberName = n.name;
+                console.log(n.name + "123")
+		console.log(memberName)
+                })
 
             }
 		
 		})
-		
-// 		return 
+		return memberName;
 	}
 	
 	$(function load() {
@@ -92,7 +97,11 @@
 
 							$.each(data, function(i, n) {
 								
-								getMember(n.classId);
+								var member = getMember(n.classId);
+								
+								if(member == null){
+									member = "無人報名";
+								}
 								
 								var status = null;
 								var classDate = new Date(n.classDate + " "
@@ -118,7 +127,7 @@
 										+ n.classDuration + "</td>" + "<td>"
 										+ n.classPrice + "</td>" + "<td>"
 										+ n.cBean.coachName + "</td>" + "<td>"
-// 										--+ n.cBean.coachName + "</td>" + "<td>"
+										+ member + "</td>" + "<td>"
 										+ status + "</td>"+"<td><input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/coach/updateClass?Id=" + n.classId + "' /></td></tr></tbody>";
 								//                        "<td><img width='50' height='50' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + n.coachAccount + " /></td>" +
 								table.append(tr);

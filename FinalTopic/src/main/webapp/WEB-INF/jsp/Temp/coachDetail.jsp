@@ -32,10 +32,9 @@
 <link href="../admintemplate/css/demo.css" rel="stylesheet" />
 <script
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-        <script type="text/javascript">
-	 $(document).ready(function() {
-})
-        </script>
+    
+
+
 <!-- <script src="../admintemplate/js/core/jquery.3.2.1.min.js" type="text/javascript"></script> -->
 <!-- <script src="../admintemplate/js/core/popper.min.js" type="text/javascript"></script> -->
 <!-- <script src="../admintemplate/js/core/bootstrap.min.js" type="text/javascript"></script> -->
@@ -87,7 +86,7 @@
 			</tr>
 			<tr>
 				<td align='right'>性別：</td>
-				<td><form:radiobuttons id="gender" items="${radioData}" path="coachGender" /><br>
+				<td><form:radiobuttons items="${radioData}" path="coachGender" /><br>
 					<form:errors path="coachGender" />
 			</tr>
 			<tr>
