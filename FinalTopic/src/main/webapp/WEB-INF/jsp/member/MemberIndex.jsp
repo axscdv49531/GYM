@@ -53,20 +53,15 @@
 				<div class="container">
 					<div class="header-top">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="full">
-									<div class="logo">
-										<a href="<c:url value='/login/MemberSuccess' />"><img
-											src="../images/springfitnesslogo6.png" alt="index" /></a>
+							<div class="col-md-4">
+								<a class="logo" href="<c:url value='/' />">
+									<div class="logo-content">
+										<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
 									</div>
-									<div class="main-title">
-										<h1>SPRINGFITNESS</h1>
-									</div>
-								</div>
+								</a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-8 header-button-container">
 								<div class="right_top_section">
-									<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
 										<li class="login-modal"><a
@@ -79,7 +74,7 @@
                                                 </svg><i class="fa fa-user"></i>密碼變更
 										</a></li>
 										<li class="logout-modal"><a
-											href="<c:url value='/logout' />" class="logout"><svg
+											href="<c:url value='/logout' />" class="login"><svg
 													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 													fill="currentColor" class="bi bi-person-fill"
 													viewBox="0 0 16 16">
@@ -163,8 +158,9 @@
 																			href="/classIntroduction">課程介紹</a></li>
 																		<li><a class="dropdown-item"
 																			href="/member/memberViewClassLists">我的課程 </a></li>
-																			<li><a class="dropdown-item"
-                                                                href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
+																		<li><a class="dropdown-item"
+																			href="/member/memberClassListHistory">我的課程(歷史紀錄)
+																		</a></li>
 																	</ul>
 																</li>
 															</ul>
@@ -214,12 +210,15 @@
 									<div class="slider-contant"
 										data-animation="animated fadeInRight">
 										<h3>
-											全民健身，男女老少，動起來吧，给自己一個更好的未來。<br> <span
-												class="color-yellow">立即體驗</span><br>
+											全民健身，男女老少<br>
+											動起來吧!<br>
+											给自己一個更好的未來。
 										</h3>
+										<h3 class="text-yellow">立即體驗</h3>
 										<p>
-											填寫資料馬上送免費健身體驗14天<br> 立即預約體驗(02)2777-0168
+											填寫資料馬上送免費健身體驗14天
 										</p>
+										<p>立即預約體驗(02)2777-0168</p>
 										<button class="btn btn-primary btn-lg">深入了解</button>
 									</div>
 								</div>

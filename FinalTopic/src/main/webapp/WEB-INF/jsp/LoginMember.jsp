@@ -23,17 +23,19 @@
 		font-size: 3.5rem;
 	}
 }
+
 .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: auto;
+	width: 100%;
+	max-width: 330px;
+	padding: 15px;
+	margin: auto;
+}
 </style>
 
 
 </head>
 <body class="text-center">
-	<div style="width: 1205px; height: 194.13px" class="top">
+	<div class="top">
 		<c:import url="/top_nologin"></c:import>
 	</div>
 	<main class="form-signin">
@@ -57,7 +59,8 @@
 				</label>
 			</div>
 			<button class="w-100 btn btn-lg btn-primary" type="submit">登入</button>
-			<input class="w-100 btn btn-lg btn-primary" type="button" value="忘記密碼" onclick="location.href='/forgetPwd'">
+			<input class="w-100 btn btn-lg btn-primary" type="button"
+				value="忘記密碼" onclick="location.href='/forgetPwd'">
 		</form>
 	</main>
 

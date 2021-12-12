@@ -56,7 +56,7 @@
 </head>
 <script type="text/javascript">
 	function confirmUpdate(number) {
-		var result = confirm("確定送出此筆記錄(會員編號:" + number.trim() + ")?");
+		var result = confirm("確定更新會員編號:" + number.trim() + "?");
 		if (result) {
 			return true;
 		}
@@ -96,8 +96,6 @@
 						<ul class="dropdown-menu">
 							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
 							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-							<a class="dropdown-item" href="#">會員儲值</a>
-							<a class="dropdown-item" href="#">會員會費查詢</a>
 						</ul></li>
 					<li><a class="nav-link" href="<c:url value='' />"> <i
 							class="nc-icon nc-notes"></i>
@@ -312,7 +310,7 @@
 									<div class="col-md-6"></div>
 									<button type="submit" class="btn btn-info btn-fill pull-right"
 										value='送出' name='updateBtn'
-										onclick="return confirmUpdate('${memberBean.number}');">
+										onclick="return confirmUpdate('${memberBean.number}');">送出
 									</button>
 								</div>
 								<div class="clearfix"></div>

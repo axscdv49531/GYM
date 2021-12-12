@@ -36,10 +36,10 @@
 
 </head>
 <body>
-	<div style="width: 1205px; height: 194.13px" class ="top">
+	<div class="top">
 		<c:import url="/top_memberlogin"></c:import>
 	</div>
-	<div class="col-md-5">
+	<div class="col-md-5 ">
 		<div class="profileinfoleft">
 			<h3 class="username">
 				<c:out value="${loginUser.name}" />
@@ -78,8 +78,8 @@
 		</ul>
 	</div>
 	<ul class="updateMember">
-		<li class="update-modal"><a href="<c:url value='/updateMember' />"
-			class="login">修改</a></li>
+		<li class="update-modal"><a
+			href="<c:url value='/updateMember' />" class="login">修改</a></li>
 	</ul>
 </body>
 </html>
