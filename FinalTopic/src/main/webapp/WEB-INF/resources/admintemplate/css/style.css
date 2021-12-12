@@ -10,7 +10,12 @@ th {
 	text-align: center;
 	vertical-align: middle;
 }
-
+td{
+	padding: 8px;
+}
+.mem-button{
+	padding:5px;
+}
 table {
 	text-align: center;
 	vertical-align: middle;

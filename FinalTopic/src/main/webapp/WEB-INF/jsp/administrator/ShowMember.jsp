@@ -253,12 +253,12 @@
 							<th width='60'>詳細資料</th>
 							<th width='60'>編輯</th>
 							<th width='60'>刪除</th>
-							<th width='60'>Inbody</th>
-							<th width='60'>Inbody紀錄</th>
-							<th width='60'>會員繳費</th>
-							<th width='60'>會員繳費紀錄</th>
-							<th width='60'>會員儲值</th>
-							<th width='60'>會員儲值紀錄</th>
+<!-- 							<th width='60'>Inbody</th> -->
+<!-- 							<th width='60'>Inbody紀錄</th> -->
+<!-- 							<th width='60'>會員繳費</th> -->
+<!-- 							<th width='60'>會員繳費紀錄</th> -->
+<!-- 							<th width='60'>會員儲值</th> -->
+<!-- 							<th width='60'>會員儲值紀錄</th> -->
 						</tr>
 						  </thead>
 						<c:choose>
@@ -270,24 +270,24 @@
 										<td>${member.gender}</td>
 										<td>${member.birthday}</td>
 										<td><a href='selectMember/${member.number}'><input
-												type='button' value='詳細資料'></a></td>
+												type='button' value='詳細資料' class="mem-button"></a></td>
 										<td><a href='modifyMember/${member.number}'><input
-												type='button' value='編輯'></a></td>
+												type='button' value='編輯' class="mem-button"></a></td>
 										<td><a href='deleteMember/${member.number}'><input
-												type='button' value='刪除'
+												type='button' value='刪除' class="mem-button"
 												onclick="return confirmDelete('${member.number}');"></a></td>
-										<td><a href='insertInbody/${member.number}'><input
-												type='button' value='Inbody'></a></td>
-										<td><a href='selectInbody/${member.number}'><input
-												type='button' value='查詢'></a></td>
-										<td><a href='insertPayment/${member.number}'><input
-												type='button' value='Payment'></a></td>
-										<td><a href='selectPayment/${member.number}'><input
-												type='button' value='查詢'></a></td>
-										<td><a href='updateDeposite/${member.number}'><input
-												type='button' value='儲值'></a></td>
-										<td><a href='findAllDeposite/${member.number}'><input
-												type='button' value='查詢'></a></td>
+<%-- 										<td><a href='insertInbody/${member.number}'><input --%>
+<!-- 												type='button' value='Inbody' class="mem-button"></a></td> -->
+<%-- 										<td><a href='selectInbody/${member.number}'><input --%>
+<!-- 												type='button' value='查詢' class="mem-button"></a></td> -->
+<%-- 										<td><a href='insertPayment/${member.number}'><input --%>
+<!-- 												type='button' value='Payment' class="mem-button"></a></td> -->
+<%-- 										<td><a href='selectPayment/${member.number}'><input --%>
+<!-- 												type='button' value='查詢' class="mem-button"></a></td> -->
+<%-- 										<td><a href='updateDeposite/${member.number}'><input --%>
+<!-- 												type='button' value='儲值' class="mem-button"></a></td> -->
+<%-- 										<td><a href='findAllDeposite/${member.number}'><input --%>
+<!-- 												type='button' value='查詢' class="mem-button"></a></td> -->
 									</tr>
 								</c:forEach>
 							</c:when>
