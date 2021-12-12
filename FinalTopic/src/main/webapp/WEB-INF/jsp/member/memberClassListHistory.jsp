@@ -165,7 +165,7 @@ tbody:hover{
 </head>
 <body>
 
-    <div style="width: 1205px; height: 194.13px" class="top">
+    <div class="top">
         <c:import url="/top_coachlogin"></c:import>
     </div>
     <div>

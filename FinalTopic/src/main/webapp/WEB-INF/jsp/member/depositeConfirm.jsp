@@ -10,7 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-${depositeBean.id}
+	<div class="top">
+		<c:import url="/top_memberlogin"></c:import>
+	</div>
 	<form:form method='POST' modelAttribute="depositeBean">
 		<h3>確認儲值</h3>
 		<hr>
@@ -23,10 +25,11 @@ ${depositeBean.id}
 				<td>${depositeBean.timestamp}</td>
 				<td>${depositeBean.value}</td>
 			</tr>
-			
+
 			<tr>
-			
-				<td><a href="<c:url value='/depositeControl/${depositeBean.id}'/>"
+
+				<td><a
+					href="<c:url value='/depositeControl/${depositeBean.id}'/>"
 					class="transition" id="clickOrder">確認訂購</a></td>
 			</tr>
 		</table>

@@ -69,7 +69,7 @@
 </head>
 <body>
     <section id="top">
-        <div style="width: 1205px; height: 194.13px" class="top">
+        <div class="top">
             <c:import url="/top_memberlogin"></c:import>
         </div>
     </section>

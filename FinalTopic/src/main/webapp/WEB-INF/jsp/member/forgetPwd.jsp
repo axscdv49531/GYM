@@ -44,7 +44,7 @@
 </head>
 
 <body>
-	<div style="width: 1205px; height: 194.13px" class="top">
+	<div class="top">
 		<header>
 			<div class="container">
 				<div class="header-top">

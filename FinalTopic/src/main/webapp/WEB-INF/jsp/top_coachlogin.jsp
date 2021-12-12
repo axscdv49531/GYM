@@ -35,18 +35,14 @@
 	<div class="container">
 		<div class="header-top">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="full">
-						<div class="logo">
-							<a href="<c:url value='/' />"><img
-								src="../images/springfitnesslogo6.png" alt="index" /></a>
+				<div class="col-md-4">
+					<a class="logo" href="<c:url value='/' />">
+						<div class="logo-content">
+							<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
 						</div>
-						<div class="main-title">
-							<h1>SPRINGFITNESS</h1>
-						</div>
-					</div>
+					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8 header-button-container">
 					<div class="right_top_section">
 						<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 						<!-- button section -->
@@ -60,7 +56,7 @@
 											d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                                     </svg><i class="fa fa-user"></i>密碼變更</a></li>
 							<li class="logout-modal"><a href="<c:url value='/logout' />"
-								class="logout"><svg xmlns="http://www.w3.org/2000/svg"
+								class="login"><svg xmlns="http://www.w3.org/2000/svg"
 										width="16" height="16" fill="currentColor"
 										class="bi bi-person-fill" viewBox="0 0 16 16">
                                         <path
@@ -104,31 +100,7 @@
 											<li class="active"><a
 												href="<c:url value='/login/MemberSuccess' />">主頁</a></li>
 											<li><a href="about.html">關於</a></li>
-
-											<li class="dropdown mega-dropdown"><a href="#"
-												class="dropdown-toggle" data-toggle="dropdown">會員中心<span
-													class="caret"></span></a>
-												<ul class="dropdown-menu mega-dropdown-menu member">
-													<li class="col-sm-12">
-														<ul>
-															<li class="dropdown-header">會員中心</li>
-															<li><a class="dropdown-item" href="/MemberProfile">個人資料</a>
-															</li>
-															<!-- 															<li><a class="dropdown-item" -->
-															<%-- 																href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a> --%>
-															<!-- 															</li> -->
-															<!-- 															<li><a class="dropdown-item" -->
-															<%-- 																href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄 --%>
-															<!-- 															</a></li> -->
-															<!-- 															<li><a class="dropdown-item" -->
-															<%-- 																href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a> --%>
-															<!-- 															</li> -->
-														</ul>
-													</li>
-												</ul></li>
-
 											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-											<!-- 											<li><a href="/classRes">預約私人課程</a></li> -->
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 													class="caret"></span></a>
@@ -142,8 +114,8 @@
 																href="/classIntroduction">課程介紹</a></li>
 															<li><a class="dropdown-item"
 																href="/coach/coachClassList">我的課程 </a></li>
-																<li><a class="dropdown-item"
-                                                                href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
+															<li><a class="dropdown-item"
+																href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
 														</ul>
 													</li>
 												</ul>
