@@ -53,8 +53,8 @@
 
 
 
-<div class="container">
-		<section id="top">
+<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 100% ">
+		<section >
 			<header>
 				<div class="container">
 					<div class="header-top">
@@ -202,24 +202,17 @@
 					</div>
 				</div>
 			</header>
-		</section>
-	</div>		
-
-	
-
-
-	
-
-	<div style="margin-top:300px; width:800px;margin-left: 15%">
+			<div >
+				<div id="carousel-example-generic" class="carousel slide">
+				<div style="width:800px;margin-left: 15%;height: 1000px">
 		
 	
 	
-		<div style="float: right;">
+		<div style="float: right">
 				<select id="selectMenu" class="detailDiv01Font1">
-
-					<option value="0" style="	background-color:#3C3C3C;color: white">請選擇餐點</option>
+					<option value="0" style="background-color:#DEDEBE;color: black">請選擇餐點</option>
 					<c:forEach var="menuList" items="${menuList}">
-						<option value="${menuList.getMenuName()}" style="	background-color:#3C3C3C; color: white">${menuList.getMenuName()}</option>
+						<option value="${menuList.getMenuName()}" style="	background-color:#DEDEBE; color: black">${menuList.getMenuName()}</option>
 					</c:forEach>
 				</select>
 			
@@ -234,22 +227,33 @@
 			</div>
 			<font id="showScore" style="display:none"></font>
 
-			<div style="float: left; color: white">
+			<div style="float: left; color: black">
 				<br> <font>&emsp;請寫下您對我們餐點看法:</font> 
 			</div>
 			<br>
 
 
 			<div style="margin-left: 20px;margin-top: 70px">
-		<textarea id="suggestion" rows="10" cols="40" placeholder="意見欄" style="background-color: #3C3C3C ; color: white"></textarea>
+		<textarea id="suggestion" rows="10" cols="40" placeholder="意見欄" style="background-color: #DEDEBE ; ; color: white"></textarea>
 		</div>	
 		
 		
-		<div class="sentbutton" style="margin-left: 20px;margin-top: 20px ;background-color: #3C3C3C ;">送出評分</div>
+		<div class="sentbutton" style="margin-left: 20px;margin-top: 20px ;background-color: #DEDEBE ;border-color: black ;border-style:solid;border-width: 1px  ;">送出評分</div>
 		
 		</div>
 	</div>
 	
+	
+				</div>
+				</div>
+		</section>
+	</div>		
+
+	
+
+
+	
+
 	
 
 

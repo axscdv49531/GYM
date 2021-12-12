@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
-
+textarea {
+    overflow: auto;
+    background-color:#D6D6AD;
+    color:black;
+}
 
 .mainDiv{	
 	border-width:1pt;
@@ -74,12 +78,12 @@ div{
 	position:absolute;
 	top: 200px;
 	right: 100px;
-	background-color: 		#4F4F4F;
+	background-color:#D6D6AD;;
 	height:300px;
 	width:300px;
 	border-width:1pt;
 	border-style:solid;
-	border-color:black;
+	border-color :#D6D6AD;
 	display:none;
 
 	
@@ -93,8 +97,8 @@ div{
 	font-family:DFKai-sb;
 	border-style:soild;
 	color: black;
-	background-color:#4F4F4F;
-	border-color:black; 
+	background-color:#D6D6AD;
+	border-color:black;
 }
 .detailDiv01Font2{
 	font-size:20px;
@@ -103,7 +107,7 @@ div{
 	font-family:DFKai-sb;
 	border-style:none;
 	color: black;
-	background-color: #4F4F4F;
+	background-color: #D6D6AD;
 	
 	
 }
@@ -112,7 +116,7 @@ div{
  	border-style:none;
   	font-size:15px;
   	color: black;
-  	background-color: #4F4F4F;
+  	background-color: #D6D6AD;
   }
  .detailDiv01Font3:focus{
  	border-style:none;
@@ -141,13 +145,13 @@ div{
 	width:350px;
 	border-width:1pt;
 	border-style:solid;
-	border-color:black;
+	border-color:#D6D6AD;
 	margin-left:20px;
 	text-align:center;
 	margin-top:50px;
 	float:left;
 	margin-bottom:50px;
-	background-color:#4F4F4F;
+	background-color:#D6D6AD;
 	color: black;
 	
 
