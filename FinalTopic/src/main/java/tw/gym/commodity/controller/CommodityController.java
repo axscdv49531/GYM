@@ -24,7 +24,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -58,22 +57,31 @@ public class CommodityController {
 	@Autowired
 	ServletContext context;
 	
-	//以下為前台操作
-	@GetMapping("/commodity/list")
+	@GetMapping("/commodity")
 	public String shop(Model m) {
 		return "commodityshop/commoditymain";
 	}
 	
-	@GetMapping("/commodity/commodity")
+	@GetMapping("/shop/commodity")
 	@ResponseBody
-	public List<CommodityBean> shopCommodity(Model m) {
+	public List<CommodityBean> shopCommodity() {
 		return commodityService.findAll();
 	}
 	
-	//以下為管理員: 商品管理
 	@GetMapping("/admin/commodity")
 	public String toCommodityPage() {
 		return "commodity/commodityList";
+	}
+	
+	@GetMapping("/admin/commodityForm")
+	public String updateCommodity(@RequestParam("id") Integer id, Model m) {
+		CommodityBean item = commodityService.findById(id);
+		if (item == null) {
+			item = new CommodityBean();
+		}
+		m.addAttribute("commodityBean", item);
+		m.addAttribute("itemTypeBean", typeService.findAllByGroups());
+		return "commodity/updateCommodity";
 	}
 	
 	@GetMapping("/admin/commodity/queryAllTypesAndVendors")
@@ -81,14 +89,13 @@ public class CommodityController {
 	public List<List> getAllTypesAndVendors() {
 		List<ItemTypeBean> types = typeService.findAllByOrderingCategory();
 		List<String> vendors = commodityService.findAllVendors();
-		
 		List<List> result = new ArrayList<List>();
 		result.add(types);
 		result.add(vendors);
 		return result;
 	}
 	
-	@PostMapping("/admin/commoditytest/{pageNo}")
+	@PostMapping("/admin/commodity/{pageNo}")
 	@ResponseBody
 	public Map<String, Collection> getTest(@PathVariable("pageNo") int pageNo, @RequestBody CommodityBean querybean) {		
 		int pageSize = 10;
@@ -115,33 +122,23 @@ public class CommodityController {
 		return new ResponseEntity<>("Deletion successed.", HttpStatus.OK);
 	}
 	
-	@GetMapping("/admin/commodityForm")
-	public String updateCommodity(@RequestParam("id") Integer id, Model m) {
-		CommodityBean item = commodityService.findById(id);
-		if (item == null) {
-			item = new CommodityBean();
-		}
-		m.addAttribute("commodityBean", item);
-		m.addAttribute("itemTypeBean", typeService.findAllByGroups());
-		return "commodity/updateCommodity";
-	}
+
 	
 	@PostMapping("/admin/updateCommodity")
 	public String updateComm(@ModelAttribute("commodityBean") CommodityBean item, BindingResult result, Model m, 
-			RedirectAttributes redirectAttributes) throws IOException {		
+			RedirectAttributes redirectAttributes) throws IOException {
+		
 		boolean flag = (item.getItemId() != null && commodityService.findById(item.getItemId()) != null)? false : true;
 		CommodityValidator validator = new CommodityValidator(flag);
 		validator.validate(item, result);
 		
 		if(result.hasErrors()) {
-			List<ObjectError> errs = result.getAllErrors();
-			for (ObjectError er : errs) {
-				System.out.println("errMsg " + er.toString());
-			}
 			m.addAttribute("itemTypeBean", typeService.findAll());
 			m.addAttribute("itemTypeBean", typeService.findAllByGroups());
 			return "commodity/updateCommodity";
 		}
+		
+		System.out.println("-----------[CommodityController] update a Comm: "+ item.getItemId());
 		
 		//To update CommodityBean
 		commodityService.insert(item, flag);
@@ -156,12 +153,12 @@ public class CommodityController {
 			return "error";
 		}
 		redirectAttributes.addFlashAttribute("successMsg", "新增或修改成功!");
-		return "redirect:/commodity/commodity";
+		return "redirect:/admin/commodity";
 	}
 		
 	private String getDate() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyMMddHHmmss");
 		return sdf.format(new Date());
-	}	
+	}
 	
 }

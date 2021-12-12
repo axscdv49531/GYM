@@ -5,7 +5,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
-
 	<link rel="apple-touch-icon" sizes="76x76" href="../admintemplate/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../admintemplate/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -83,7 +82,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
+                        <a class="nav-link" href="<c:url value='/admin/commodity' />">
                             <i class="nc-icon nc-money-coins"></i>
                             <p>周邊商品專區</p>
                         </a>

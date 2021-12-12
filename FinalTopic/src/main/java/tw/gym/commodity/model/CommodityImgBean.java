@@ -44,7 +44,6 @@ public class CommodityImgBean implements Serializable {
 	public void setItemImgId(int itemImgId) {
 		this.itemImgId = itemImgId;
 	}
-
 	public CommodityBean getItem() {
 		return item;
 	}

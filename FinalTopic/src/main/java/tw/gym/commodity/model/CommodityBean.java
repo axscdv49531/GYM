@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -44,7 +45,7 @@ public class CommodityBean implements Serializable {
 	
 	@JsonProperty("onSale")
 	private Boolean onSale;
-	private String vendorName;
+	private String vendorName; 
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item", cascade = CascadeType.ALL)
 	private Set<CommodityImgBean> commodityImgs = new LinkedHashSet<CommodityImgBean>();
@@ -52,6 +53,13 @@ public class CommodityBean implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name= "itemTypeId")
 	private ItemTypeBean itemType;
+	
+	@ManyToMany(mappedBy = "commodity")
+	private Set<RuleBase> rules = new LinkedHashSet<RuleBase>();
+		
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "commodity", cascade = CascadeType.ALL)
+	private Set<OrderDetailBean> orderDetailBean = new LinkedHashSet<OrderDetailBean>();
 	
 	@JsonIgnore
 	@Transient
@@ -144,5 +152,25 @@ public class CommodityBean implements Serializable {
 	public void setItemType(ItemTypeBean itemType) {
 		this.itemType = itemType;
 	}
+	
+	@JsonIgnore
+	public Set<RuleBase> getRules() {
+		return rules;
+	}
+
+	public void setRules(Set<RuleBase> rules) {
+		this.rules = rules;
+	}
+
+	public Set<OrderDetailBean> getOrderDetailBean() {
+		return orderDetailBean;
+	}
+
+	public void setOrderDetailBean(Set<OrderDetailBean> orderDetailBean) {
+		this.orderDetailBean = orderDetailBean;
+	}
+	
+	
+	
 	
 }
