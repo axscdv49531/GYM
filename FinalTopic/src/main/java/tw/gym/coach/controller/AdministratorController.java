@@ -35,9 +35,11 @@ import org.springframework.web.multipart.MultipartFile;
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.model.SkillBean;
+import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
 import tw.gym.coach.service.CoachService;
 import tw.gym.coach.service.SkillService;
+import tw.gym.courses.utils.EmailSenderService;
 
 @Controller
 @RequestMapping("/administrator")
@@ -51,6 +53,12 @@ public class AdministratorController {
 
     @Autowired
     SkillService skiService;
+
+    @Autowired
+    EmailSenderService emailSerive;
+
+    @Autowired
+    ClassMemberService cmService;
 
 
     @GetMapping("coachPage")
@@ -233,7 +241,15 @@ public class AdministratorController {
     }
 
     @GetMapping("coachAdminPage")
-    public String coachAdmin() {
+    public String coachAdmin(Model model) {
+
+        List<ClassBean> allClass = classService.listAllClass();
+        List<SkillBean> sBean = skiService.findAll();
+        List<String> name = classService.findClassCoach();
+        model.addAttribute("coachList", name);
+        model.addAttribute("skillList", sBean);
+        model.addAttribute(allClass);
+
         return "/coach/coachAdmin";
     }
 
