@@ -34,6 +34,14 @@
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script type="text/javascript">
 	 $(document).ready(function() {
+		 var genders = '${coachBean.coachGender}';
+		 var g =genders.replace(/\s*/g,"");
+		 var a = '男';
+		 if(g == a){
+		 document.getElementById("boy").checked=true;
+		 }else{
+			 document.getElementById("girl").checked=true;
+		 }
 })
         </script>
 <!-- <script src="../admintemplate/js/core/jquery.3.2.1.min.js" type="text/javascript"></script> -->
@@ -85,11 +93,18 @@
 				<td><form:input type="password" path="coachPassword" /><br> <form:errors
 						path="coachPassword" />
 			</tr>
-			<tr>
-				<td align='right'>性別：</td>
-				<td><form:radiobuttons id="gender" items="${radioData}" path="coachGender" /><br>
-					<form:errors path="coachGender" />
-			</tr>
+<!-- 			<tr> -->
+<!-- 				<td align='right'>性別：</td> -->
+<%-- 				<td><form:radiobuttons id="gender" items="${radioData}" path="coachGender" /><br> --%>
+<%-- 					<form:errors path="coachGender" /> --%>
+<!-- 			</tr> -->
+<tr>
+         <td><form:label path="coachGender">Gender</form:label></td>
+         <td>
+            <form:radiobutton path="coachGender" id="boy" value="男" label="男" />
+            <form:radiobutton path="coachGender" id="girl" value="女" label="女" />
+         </td>
+      </tr>       
 			<tr>
 				<td align='right'>信箱：</td>
 				<td><form:input path="coachEmail" /><br> <form:errors
