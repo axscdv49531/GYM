@@ -166,7 +166,7 @@ tbody:hover{
 <body>
 
     <div class="top">
-        <c:import url="/top_coachlogin"></c:import>
+        <c:import url="/top_memberlogin"></c:import>
     </div>
     <div>
     <div style="text-align:center;"><h1 style="display: inline-block;">尚未開課</h1></div><hr style="border: 1px solid black;">

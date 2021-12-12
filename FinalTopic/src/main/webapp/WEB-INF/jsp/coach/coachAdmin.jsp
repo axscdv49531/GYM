@@ -251,6 +251,32 @@ function showCoachList(){
                             <input type="button" id="listChange" class='btn' value="教練清單" onclick="showCoachList()"></input>
 </div>
 
+<div  style="visibility:hidden">
+課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
+                        教練名稱： <select name="select" id="searchByCoachName">
+                            <option selected="selected">請選擇</option>
+                            <c:forEach items="${coachList}" var="coach">
+                                <option value="${coach}"><c:out value="${coach}" /></option>
+                            </c:forEach>
+                        </select> 訓練部位： <select name="select" id="searchBySkillName">
+                            <option selected="selected">請選擇</option>
+                            <c:forEach items="${skillList}" var="skill">
+                                <option value="${skill.skillName}"><c:out
+                                        value="${skill.skillName}" /></option>
+                            </c:forEach>
+                        </select> 開課狀況： <select name="select" id="searchByClassStatus">
+                            <option selected="selected">請選擇</option>
+                            <option value="0">未額滿</option>
+                            <option value="1">已額滿</option>
+                        </select>
+                        開課日期： <input type="date" id="searchByDateStart"> 至 <input
+                            type="date" id="searchByDateEnd">
+                        <button style="float: none" class="btn" onclick="search()">搜尋</button>
+                        <button style="float: none" class="btn" onclick="searchDelete()">清除搜尋</button>
+                        </div>
+                        <hr>
+                        </div>
+
 				<div class="col-md-12">
 					<div class="card card-plain table-plain-bg">
 						<div class="card-header ">

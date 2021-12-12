@@ -286,12 +286,10 @@
 							<option value="0">未額滿</option>
 							<option value="1">已額滿</option>
 						</select>
-<!-- 						<hr> -->
 						開課日期： <input type="date" id="searchByDateStart"> 至 <input
 							type="date" id="searchByDateEnd">
 						<button style="float: none" class="btn" onclick="search()">搜尋</button>
 						<button style="float: none" class="btn" onclick="searchDelete()">清除搜尋</button>
-<!-- 						</div> -->
 						</div>
 						<hr>
 						
