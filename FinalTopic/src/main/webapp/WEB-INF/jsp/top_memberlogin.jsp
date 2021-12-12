@@ -35,46 +35,42 @@
 	<div class="container">
 		<div class="header-top">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="full">
-						<div class="logo">
-							<a href="<c:url value='/login/MemberSuccess' />"><img
-								src="../images/springfitnesslogo6.png" alt="index" /></a>
+				<div class="col-md-4">
+					<a class="logo" href="<c:url value='/' />">
+						<div class="logo-content">
+							<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
 						</div>
-						<div class="main-title">
-							<h1>SPRINGFITNESS</h1>
-						</div>
-					</div>
+					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8 header-button-container">
 					<div class="right_top_section">
-						<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 						<!-- button section -->
 						<ul class="login">
 							<li class="login-modal"><a
-								href="<c:url value='/login/page' />" class="login"><svg
-										xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-										fill="currentColor" class="bi bi-lock-fill"
-										viewBox="0 0 16 16">
-                                        <path
+								href="/updatePassword/<c:out value='${loginUser.number}' />"
+								class="login"> <svg xmlns="http://www.w3.org/2000/svg"
+										width="16" height="16" fill="currentColor"
+										class="bi bi-lock-fill" viewBox="0 0 16 16">
+                                                    <path
 											d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                    </svg><i class="fa fa-user"></i>密碼變更</a></li>
+                                                </svg><i class="fa fa-user"></i>密碼變更
+							</a></li>
 							<li class="logout-modal"><a href="<c:url value='/logout' />"
-								class="logout"><svg xmlns="http://www.w3.org/2000/svg"
+								class="login"><svg xmlns="http://www.w3.org/2000/svg"
 										width="16" height="16" fill="currentColor"
 										class="bi bi-person-fill" viewBox="0 0 16 16">
-                                        <path
+                                                    <path
 											d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                                    </svg><i class="fa fa-user"></i>登出</a></li>
+                                                </svg><i class="fa fa-user"></i>登出</a></li>
 							<li>
 								<div class="context-option">
 									<a href="#"><i class="fa fa-envelope"><svg
 												xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 												fill="currentColor" class="bi bi-envelope"
 												viewBox="0 0 16 16">
-                                                <path
+                                                            <path
 													d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                                            </svg></i>聯絡我們</a>
+                                                        </svg></i>聯絡我們</a>
 								</div>
 							</li>
 						</ul>
@@ -128,9 +124,7 @@
 														</ul>
 													</li>
 												</ul></li>
-
-											<li><a href="<c:url value= '/member/showCoachList'/>">教練師資</a></li>
-											<!-- 											<li><a href="/classRes">預約私人課程</a></li> -->
+											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 													class="caret"></span></a>
@@ -139,13 +133,13 @@
 														<ul>
 															<li class="dropdown-header">一對一課程</li>
 															<li><a class="dropdown-item"
-																href="/member/classReservation">課程預約</a></li>
+																href="/classReservation">課程預約</a></li>
 															<li><a class="dropdown-item"
 																href="/classIntroduction">課程介紹</a></li>
 															<li><a class="dropdown-item"
-																href="/memberViewClassLists">我的課程 </a></li>
-																<li><a class="dropdown-item"
-                                                                href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
+																href="/member/memberViewClassLists">我的課程 </a></li>
+															<li><a class="dropdown-item"
+																href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
 														</ul>
 													</li>
 												</ul>
@@ -181,5 +175,4 @@
 		</div>
 	</div>
 </header>
-
 

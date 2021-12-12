@@ -35,18 +35,14 @@
 	<div class="container">
 		<div class="header-top">
 			<div class="row">
-				<div class="col-md-6">
-					<div class="full">
-						<div class="logo">
-							<a href="<c:url value='/' />"><img
-								src="../images/springfitnesslogo6.png" alt="index" /></a>
+				<div class="col-md-4">
+					<a class="logo" href="<c:url value='/' />">
+						<div class="logo-content">
+							<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
 						</div>
-						<div class="main-title">
-							<h1>SPRINGFITNESS</h1>
-						</div>
-					</div>
+					</a>
 				</div>
-				<div class="col-md-6">
+				<div class="col-md-8 header-button-container">
 					<div class="right_top_section">
 						<!-- button section -->
 						<ul class="login">
@@ -58,15 +54,15 @@
 								   <path
 											d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
 								 </svg><i class="fa fa-user"></i>登入</a></li>
+
 							<li>
 								<div class="context-option">
-									<a href="#"><i class="fa fa-envelope"><svg
-												xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-envelope"
-												viewBox="0 0 16 16">
-                                                <path
-													d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                                            </svg></i>聯絡我們</a>
+									<a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+											width="16" height="16" fill="currentColor"
+											class="bi bi-envelope" viewBox="0 0 16 16">
+  									  <path
+												d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+									</svg><i class="fa fa-envelope"></i>聯絡我們</a>
 								</div>
 							</li>
 						</ul>
@@ -96,25 +92,14 @@
 											<li class="active"><a href="<c:url value='/' />">主頁</a></li>
 											<li><a href="about.html">關於</a></li>
 											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-											<li><a href="/classRes">預約私人課程</a></li>
+											<li><a href="news.html">預約私人課程</a></li>
+											<li><a href="/courseSelectSystem">團體課程</a></li>
 
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown">團體課程<span
 													class="caret"></span></a>
-												<ul class="dropdown-menu mega-dropdown-menu nClassRes">
-													<li class="col-sm-12">
-														<ul>
-															<li class="dropdown-header">團體課程 Cousres</li>
-															<li><a class="dropdown-item"
-																href="/courseSelectSystem">預約課程</a></li>
-
-														</ul>
-													</li>
-												</ul></li>
-
 											<li><a href="/nologinMenumain.controller">健康餐盒</a></li>
 											<li><a href="news.html">周邊商品</a></li>
-
 										</ul>
 									</div>
 								</nav>
@@ -126,5 +111,4 @@
 		</div>
 	</div>
 </header>
-
 

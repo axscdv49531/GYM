@@ -15,6 +15,51 @@
 		}
 		return false;
 	}
+	
+	(function(document) {
+		  'use strict';
+
+		  // 建立 LightTableFilter
+		  var LightTableFilter = (function(Arr) {
+
+		    var _input;
+
+		    // 資料輸入事件處理函數
+		    function _onInputEvent(e) {
+		      _input = e.target;
+		      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
+		      Arr.forEach.call(tables, function(table) {
+		        Arr.forEach.call(table.tBodies, function(tbody) {
+		          Arr.forEach.call(tbody.rows, _filter);
+		        });
+		      });
+		    }
+
+		    // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
+		    function _filter(row) {
+		      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
+		      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
+		    }
+
+		    return {
+		      // 初始化函數
+		      init: function() {
+		        var inputs = document.getElementsByClassName('light-table-filter');
+		        Arr.forEach.call(inputs, function(input) {
+		          input.oninput = _onInputEvent;
+		        });
+		      }
+		    };
+		  })(Array.prototype);
+
+		  // 網頁載入完成後，啟動 LightTableFilter
+		  document.addEventListener('readystatechange', function() {
+		    if (document.readyState === 'complete') {
+		      LightTableFilter.init();
+		    }
+		  });
+
+		})(document);
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -96,8 +141,6 @@
 						<ul class="dropdown-menu">
 							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
 							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-							<a class="dropdown-item" href="#">會員儲值</a>
-							<a class="dropdown-item" href="#">會員會費查詢</a>
 						</ul></li>
 					<li><a class="nav-link" href="<c:url value='' />"> <i
 							class="nc-icon nc-notes"></i>
@@ -192,16 +235,16 @@
 			<!-- End Navbar -->
 			<form class="form-inline search-bar">
 				<div class="form-group">
-					<label for="exampleInputEmail2">會員編號查詢</label> <input type="text"
-						class="form-control" id="exampleInputEmail2" placeholder="會員編號">
+					<label for="exampleInputEmail2">會員查詢</label> 
+						<input type="search" class="form-control light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
 				</div>
-				<button type="submit" class="btn btn-default search-btn">查詢</button>
 			</form>
 			<div align='center'>
 				<form:form method='POST' modelAttribute="memberBean">
 					<h3>會員資料</h3>
 					<hr>
-					<table border='1'>
+					<table border='1' class="order-table">
+					  <thead>
 						<tr>
 							<th width='70'>會員編號</th>
 							<th width='100'>姓名</th>
@@ -217,6 +260,7 @@
 							<th width='60'>會員儲值</th>
 							<th width='60'>會員儲值紀錄</th>
 						</tr>
+						  </thead>
 						<c:choose>
 							<c:when test="${not empty memberBeanList}">
 								<c:forEach var='member' items="${memberBeanList}">
