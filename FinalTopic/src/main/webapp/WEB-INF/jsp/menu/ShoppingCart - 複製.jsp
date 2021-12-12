@@ -2,10 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>購物車</title>
+<link rel=stylesheet href="style.css">
+<link rel=stylesheet href="showhidemenu.css">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -39,14 +42,14 @@
 
 <!-- ALL PLUGINS -->
 <script src="../js/custom.js"></script>
+
+
+
+
 </head>
 <body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-	crossorigin="anonymous"></script>
-	
-	
-	<div class="container">
+
+<div class="container">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -179,7 +182,7 @@
 																</li>
 															</ul></li>
 
-														<li><a href="/Menumain.controller" >健康餐盒
+														<li><a href="Menumain.controller" >健康餐盒
 														</a></li>
 														<li><a href="news.html">周邊商品</a></li>
 
@@ -198,25 +201,115 @@
 	</div>		
 
 	
-	
-	
+
+
+	<c:set var="sum" value="0"></c:set>
+
 	
 
 
-	${payError}
-
-<div style="clear: both; width: 500px; margin: 0 auto;margin-top:300px">
-	<c:forEach var="list" items="${MenuList}">
-		
-			<div class="row"
-				style="text-align: center; border-style: solid; border-width: 1px; border-color: black; width: 300px; margin-bottom:20px; padding:10px;">
-				訂單編號:${ list.getOrderId()} <br>訂購餐點:${ list.getMenu().getMenuName()}
-				<br>訂購數量:${list.getQty()} <br>餐點價格:${list.getPrice() } <br>訂購時間:${list.getOrderTime() }
+	<c:choose>
+		<c:when test="${orderId=='0'}">
+			<br>
+			<br>
+			<div style="margin-left: 150px">
+				<div style="font-size: 25px; height: 100px ;clear: both; text-align: center; margin-top: 300px ;color:white">查無訂單</div>
 			</div>
+		</c:when>
+		<c:otherwise>
+
 			
-	</c:forEach>
-	</div>
+			<div style=" width: 100%; margin-top: 250px ;color: white">
+				<div id='totalprice' style="clear: both; margin-left: 150px; border-radius:0 px;height: 100px;">
+					<div style=" margin-left: 10px;">
+						<font size="6" style="line-height:100px ">您的訂購編號為:${orderId}</font> &emsp; &emsp;
+						<font size="5" id='sum' id="totalprice">共 ${sum} 元 </font> &emsp; &emsp;
+					<a href="Menumain.controller" class="transition">繼續購物</a> &emsp;
+					&emsp; <a
+						href="pay.Controller?orderId=${OrderMenuList.get(0).getOrderId()}"
+						class="transition" id="clickOrder">確認訂購</a> <br> <br>
+					</div>
+				 
+				</div>
+			</div>
 
 
+
+			<br>
+			<c:set var="sum" value="0"></c:set>
+
+			<div style="margin-left: 150px; margin-top: 50px">
+				<c:forEach var="cart" items="${OrderMenuList}">
+
+
+					<div class="shoppingCart" id="shoppingCart">
+						<div style="float: right; margin-top: 10px; margin-right: 5px">
+							<a href='DeleteShoppingcart.controller?id=${cart.getId()}'><img
+								src="images/cross.png" class="icon"></a>
+						</div>
+						<br> <br> <br> <font size="5">${cart.getMenu().getMenuName()}</font>
+						<br> <font size="5">$${cart.getMenu().getPrice()}</font> <br>
+						<font size="5">您所訂購的數量:${cart.getQty()}</font> <br>
+						<c:set var="sum"
+							value="${sum+cart.getMenu().getPrice()*cart.getQty()}"></c:set>
+						<br> <a
+							href='ModifyShoppingcart.controller?id=${cart.getId()}'>修改此筆訂單</a>
+						<br> <br>
+					</div>
+
+				</c:forEach>
+
+			</div>
+
+
+
+
+
+			<ul class="transition,menu,">
+				<li></li>
+				<li></li>
+				<!-- <li><a class="transition">Home</a></li>
+                <li><a class="transition">Shop</a></li>
+                <li><a class="transition">Gallery</a></li>
+                <li><a class="transition">About</a></li> -->
+			</ul>
+
+
+
+
+
+			<br>
+
+
+
+
+
+		</c:otherwise>
+	</c:choose>
+
+
+	<script>
+	if(${sum}>0) {
+		document.getElementById('sum').innerHTML= '共 ${sum} 元';
+	}		  
+function qtychange(){
+	 var qty = document.getElementsByName('menuqty');
+	 var price = document.getElementsByName('price');
+	    var tot=0;
+	    for(var i=0;i<qty.length;i++){
+	        if(parseInt(qty[i].value) && parseInt(price[i].value))
+	            tot += parseInt(qty[i].value*parseInt(price[i].value));
+	    }
+	    document.getElementById('totalprice').innerHTML= "共"+tot+"元";
+	
+}
+
+
+
+
+
+
+
+</script>
 </body>
 </html>

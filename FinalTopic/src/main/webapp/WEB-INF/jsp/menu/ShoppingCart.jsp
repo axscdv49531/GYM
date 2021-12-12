@@ -224,10 +224,13 @@
 					<div style=" margin-left: 10px;">
 						<font size="6" style="line-height:100px ">您的訂購編號為:${orderId}</font> &emsp; &emsp;
 						<font size="5" id='sum' id="totalprice">共 ${sum} 元 </font> &emsp; &emsp;
-					<a href="Menumain.controller" class="transition">繼續購物</a> &emsp;
-					&emsp; <a
-						href="pay.Controller?orderId=${OrderMenuList.get(0).getOrderId()}"
-						class="transition" id="clickOrder">確認訂購</a> <br> <br>
+					<a href="Menumain.controller" class="transition">繼續購物</a> 
+					&emsp;&emsp; 
+					
+					<a href="pay.ControllerTest?orderId=${OrderMenuList.get(0).getOrderId()}"
+								class="transition" id="clickOrder">確認訂購</a> 
+					
+					<br> <br>
 					</div>
 				 
 				</div>

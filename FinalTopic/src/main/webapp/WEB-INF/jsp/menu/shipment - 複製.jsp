@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<meta http-equiv="refresh" content="5">
 <title>餐點出貨</title>
 
 <style>
@@ -31,8 +31,8 @@
 			<c:import url="/adminnavbarMenu"></c:import>
 			<div class="content">
 				<div class="container-fluid">
-					<div class="input-group mb-3" style="width: 700px">
-						<div style="width: 800px; display: none;" id="shipment">
+					<div class="input-group mb-3" style="width: 500px">
+						<div style="width: 700px; display: none;" id="shipment">
 							<table class="table">
 								<thead>
 									<tr>
@@ -40,7 +40,7 @@
 										<th scope="col">id</th>
 										<th scope="col">數量</th>
 										<th scope="col">價錢</th>
-										<th scope="col">出貨QRCODE</th>
+										<th scope="col">QRCODE</th>
 									</tr>
 								</thead>
 								<tbody id="shipmentTable">
@@ -100,9 +100,7 @@
 			$(document).ready(function() {
 				$("#shipment").css("display", "block");
 				searchid();
-				var timeoutID = window.setInterval(searchid, 3000);
 			});
-			var orderIdArr=[];
 
 			function searchid() {
 
@@ -113,54 +111,22 @@
 							dataType : 'JSON',
 							contentType : 'application/json',
 							success : function(data) {
-								function createQR(orderId){
-									var url = "https://chart.googleapis.com/chart?cht=qr&chl=http://192.168.50.26:8080/changeStatus.controller?id=" 
-												+ orderId + "&chs=160x160&chld=L|0";
-									image = "<img src=" + url + " class='qr-code img-thumbnail img-responsive' />";
-									button = "<a href='http://192.168.50.26:8080/changeStatus.controller?id=" 
-												+ orderId + "' style='margin:20px;padding:10px 20px;font-size:24px;background-color:white;'>出貨</a>"	
-									return image+button;
-								}
-								function compare(a, b) {
-									if(a.length != b.length) {
-										return false;
-									}
-									for(var i=0; i < a.length; i++) {
-										if(!b.includes(a[i])) {
-											return false;
-										}
-									}
-									return true;
-								}
 								console.log('success:' + data);
 								var json = JSON.stringify(data);
 								console.log('json:' + json);
-								//$('#shipmentTable').empty("");
+								$('#shipmentTable').empty("");
 								var table = $("#shipmentTable");
 								var number = 1;
 								var totalQuanty = 0;
 								var totalprice = 0;
 								var orderId = 0;
 								var tr = "";
-								var tQuanty = "";
-								var new_orderIdArr = [];
-										
-										$.each(
-											data,
-											function(i, n) {
-												if(!new_orderIdArr.includes(n.orderId)){
-													new_orderIdArr.push(n.orderId);
-												}
-											});
-										if(orderIdArr.length > 0 && compare(orderIdArr, new_orderIdArr) ) {
-											return;
-										}
-										orderIdArr=new_orderIdArr.slice();
-										$("#shipmentTable").empty();
+
+								
 										$.each(
 												data,
 												function(i, n) {
-													console.log(i+"-->"+n.orderId);
+													console.log("-->"+n.orderId);
 													if (orderId != 0
 															&& orderId != n.orderId) {
 														number = number + 1;
@@ -168,10 +134,7 @@
 														totalQuanty = 0;
 														totalprice = 0;
 														tr = "";
-														tQuanty = "";
 													}
-													
-													
 													orderId = n.orderId;
 													var price = Number(n.qty)
 															* Number(n.price);
@@ -179,7 +142,6 @@
 															+ n.qty;
 													totalprice = totalprice
 															+ price;
-													tQuanty += n.id+":"+n.qty+"<br>";
 
 													if (data.length == 0) {
 														tr = ('<tr><th scope="row">'
@@ -188,23 +150,18 @@
 																+ "無紀錄" + "</td><td></td><td></td><td></td></tr>");
 
 													} else {
-														//console.log("1-->"+n.orderId);
+														console.log("1-->"+n.orderId);
 														tr = ('<tr><th scope="row">'
 																+ number
 																+ '</th><td id="QRCODENumber">'
 																+ orderId
 																+ "</td>"
 																+ "<td>"
-																+ tQuanty
-																//+totalQuanty
+																+ totalQuanty
 																+ "</td>"
 																+ "<td>"
 																+ totalprice
-																+ "</td>" 
-																+ "<td id='creatCode" +number+ "'>"
-																//+ "<td id='creatCode'>"
-																+ createQR(orderId)
-																+ "</td></tr>");
+																+ "</td>" + "<td id='creatCode'>按此產生QRCODE碼</td></tr>");
 
 													}
 
@@ -255,8 +212,6 @@
 									console.log(finalURL);
 								});
 			});
-			
-			
 		</script>
 </body>
 </html>
