@@ -34,11 +34,11 @@
 
 
 </head>
-<body class="text-center">
+<body>
 	<div class="top">
 		<c:import url="/top_nologin"></c:import>
 	</div>
-	<main class="form-signin">
+	<main class="form-signin text-center">
 		<form action="/login/Member" method="post">
 			<h1 class="h3 mb-3 fw-normal">請輸入帳號密碼</h1>
 

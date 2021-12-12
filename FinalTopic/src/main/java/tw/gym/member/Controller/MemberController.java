@@ -221,6 +221,7 @@ public class MemberController {
 		m.addAttribute("totalElements", page.getTotalElements());
 		return page.getContent();
 	}
+
 	@GetMapping("/allmember")
 	public String AllMember() {
 		return "administrator/allMember";
@@ -245,20 +246,27 @@ public class MemberController {
 	public String updateMemberdata(@ModelAttribute("memberBean") MemberBean memberBean, BindingResult bindingResult)
 			throws ParseException, IOException, SerialException, SQLException {
 		new MemberValidator().validate(memberBean, bindingResult);
+		if (!memberBean.getmPhoto().isEmpty()) {
+			MultipartFile picture = memberBean.getmPhoto();
+			byte[] b = picture.getBytes();
+			Blob blob = new SerialBlob(b);
 
-		MultipartFile picture = memberBean.getmPhoto();
-		byte[] b = picture.getBytes();
-		Blob blob = new SerialBlob(b);
+			String fileName = picture.getOriginalFilename();
 
-		String fileName = picture.getOriginalFilename();
-
-		String mineType = picture.getContentType();
-		memberBean.setMemberPhoto(blob);
-		memberBean.setFileName(fileName);
-		memberBean.setMemberPhotoMineType(mineType);
-		if (memberBean.getDeposite() == null) {
-			memberBean.setDeposite(0);
+			String mineType = picture.getContentType();
+			memberBean.setMemberPhoto(blob);
+			memberBean.setFileName(fileName);
+			memberBean.setMemberPhotoMineType(mineType);
+		} else {
+			MemberBean member = memberService.findByNumber(memberBean.getNumber());
+			Blob blob = member.getMemberPhoto();
+			String fileName = member.getFileName();
+			String mineType = member.getMemberPhotoMineType();
+			memberBean.setMemberPhoto(blob);
+			memberBean.setFileName(fileName);
+			memberBean.setMemberPhotoMineType(mineType);
 		}
+		memberBean.setStatus(0);
 		if (bindingResult.hasErrors()) {
 			return "administrator/EditMemberForm";
 		}
@@ -277,20 +285,27 @@ public class MemberController {
 	public String updateMemberProfileData(@ModelAttribute("memberBean") MemberBean memberBean,
 			BindingResult bindingResult) throws ParseException, IOException, SerialException, SQLException {
 		new MemberValidator().validate(memberBean, bindingResult);
+		if (!memberBean.getmPhoto().isEmpty()) {
+			MultipartFile picture = memberBean.getmPhoto();
+			byte[] b = picture.getBytes();
+			Blob blob = new SerialBlob(b);
 
-		MultipartFile picture = memberBean.getmPhoto();
-		byte[] b = picture.getBytes();
-		Blob blob = new SerialBlob(b);
+			String fileName = picture.getOriginalFilename();
 
-		String fileName = picture.getOriginalFilename();
-
-		String mineType = picture.getContentType();
-		memberBean.setMemberPhoto(blob);
-		memberBean.setFileName(fileName);
-		memberBean.setMemberPhotoMineType(mineType);
-		if (memberBean.getDeposite() == null) {
-			memberBean.setDeposite(0);
+			String mineType = picture.getContentType();
+			memberBean.setMemberPhoto(blob);
+			memberBean.setFileName(fileName);
+			memberBean.setMemberPhotoMineType(mineType);
+		} else {
+			MemberBean member = memberService.findByNumber(memberBean.getNumber());
+			Blob blob = member.getMemberPhoto();
+			String fileName = member.getFileName();
+			String mineType = member.getMemberPhotoMineType();
+			memberBean.setMemberPhoto(blob);
+			memberBean.setFileName(fileName);
+			memberBean.setMemberPhotoMineType(mineType);
 		}
+
 		if (bindingResult.hasErrors()) {
 			return "member/MemberUpdateProfile";
 		}
@@ -318,10 +333,10 @@ public class MemberController {
 			}
 
 			MemberBean memberBean = memberService.findByEmail(email);
-			if ( !phone.equals(memberBean.getPhone())) {
+			if (!phone.equals(memberBean.getPhone())) {
 				System.out.print(phone);
 				System.out.print(memberBean.getPhone());
-				
+
 				bindingResult.rejectValue("phone", "", "手機號碼輸入錯誤");
 				return "member/forgetPwd";
 			} else {
@@ -368,7 +383,7 @@ public class MemberController {
 	}
 
 	@GetMapping("/updatePassword/{number}")
-	public String updatePassword(Model model,@PathVariable("number") Integer number ) {
+	public String updatePassword(Model model, @PathVariable("number") Integer number) {
 		MemberBean memberBean = memberService.findByNumber(number);
 		model.addAttribute("memberBean", memberBean);
 		return "member/MemberUpdatePassword";
@@ -561,7 +576,7 @@ public class MemberController {
 		Long datetime = System.currentTimeMillis();
 		Timestamp timestamp = new Timestamp(datetime);
 		cmBean.setRegisterDate(timestamp);
-        // memberService.insertReservation(cmBean, 1, classId);
+		// memberService.insertReservation(cmBean, 1, classId);
 
 		String email = mBean.getEmail();
 		String subject = "一對一課程預約成功通知信";
@@ -740,7 +755,7 @@ public class MemberController {
 		Long datetime = System.currentTimeMillis();
 		Timestamp timestamp = new Timestamp(datetime);
 		cmBean.setRegisterDate(timestamp);
-        // memberService.insertReservation(cmBean, 1, classIdd);
+		// memberService.insertReservation(cmBean, 1, classIdd);
 		String email = mBean.getEmail();
 		String subject = "一對一課程預約成功通知信";
 		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"

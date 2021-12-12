@@ -101,8 +101,8 @@
 							class="nc-icon nc-notes"></i>
 							<p>教練專區</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='/courseQuery' />"> <i
-							class="nc-icon nc-paper-2"></i>
+					<li><a class="nav-link" href="<c:url value='/courseQuery' />">
+							<i class="nc-icon nc-paper-2"></i>
 							<p>團體課程專區</p>
 					</a></li>
 					<li><a class="nav-link" href="./icons.html"> <i
@@ -197,7 +197,8 @@
 						<c:if test='${memberBean.number != null}'>
 							<form:hidden path="number" />
 							<form:hidden path="password" />
-							<form:hidden path="confirmedPassword" />
+							<form:hidden path="deposite" />
+							<form:hidden path="status" />
 						</c:if>
 						<fieldset class="fieldset-auto-width">
 							<legend>會員資料</legend>
