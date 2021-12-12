@@ -28,8 +28,6 @@ public class OrderDetailBean implements Serializable {
 	
 	@Column(name="fk_order_id", insertable=false, updatable = false)
 	private Integer orderId;
-	private Integer itemId;
-	private String itemName;
 	private Integer orderQty;
 	private Double unitPrice;
 	private Double subTotal;
@@ -39,13 +37,17 @@ public class OrderDetailBean implements Serializable {
 	@JoinColumn(name="fk_order_id")
 	private OrdersBean order;
 	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "itemId")
+	private CommodityBean commodity;
+	
+	
 	public OrderDetailBean() {
 	}
-
-	public OrderDetailBean(Integer itemId, String itemName, Integer orderQty, Double unitPrice) {
+	
+	public OrderDetailBean(CommodityBean item, Integer orderQty, Double unitPrice) {
 		super();
-		this.itemId = itemId;
-		this.itemName = itemName;
+		this.commodity = item;
 		this.orderQty = orderQty;
 		this.unitPrice = unitPrice;
 	}
@@ -64,14 +66,6 @@ public class OrderDetailBean implements Serializable {
 
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
-	}
-
-	public Integer getItemId() {
-		return itemId;
-	}
-
-	public void setItemId(Integer itemId) {
-		this.itemId = itemId;
 	}
 
 	public Integer getOrderQty() {
@@ -106,12 +100,14 @@ public class OrderDetailBean implements Serializable {
 		this.order = order;
 	}
 
-	public String getItemName() {
-		return itemName;
+	public CommodityBean getCommodity() {
+		return commodity;
 	}
 
-	public void setItemName(String itemName) {
-		this.itemName = itemName;
+	public void setCommodity(CommodityBean commodity) {
+		this.commodity = commodity;
 	}
+	
+	
 	
 }

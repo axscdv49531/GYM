@@ -10,6 +10,8 @@ import tw.gym.commodity.model.OrdersBean;
 
 @Repository
 public interface OrdersRepository extends JpaRepository<OrdersBean, Integer> {
-	@Query(value ="from OrdersBean where memberId = :mid")
-	public List<OrdersBean> findByMemberId(String mid);
+	
+	@Query(value ="from OrdersBean where memberId = :mid order by orderDate desc, totalAmt desc")
+	List<OrdersBean> findByMemberId(Integer mid);
+		
 }

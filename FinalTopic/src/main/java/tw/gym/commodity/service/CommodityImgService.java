@@ -62,7 +62,6 @@ public class CommodityImgService {
 	
 	public boolean deleteImg(Integer cid, String imgSrc) {
 		List<CommodityImgBean> list = ciRepo.findAllByItemId(cid);
-		System.out.println(cid +", " + imgSrc);
 		if (list.size() >1) {
 			for (CommodityImgBean ele:list) {
 				System.out.println(ele.getImgSrc() +", " +ele.getItemId());

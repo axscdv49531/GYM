@@ -16,11 +16,13 @@ import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="Orders")
 @Component
+@JsonIgnoreProperties(value = { "hibernateLazyInitializer", "handler" })
 public class OrdersBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
@@ -28,19 +30,20 @@ public class OrdersBean implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer orderId;
 	
-	@Column(name="fk_member_id")
-	private String memberId;
-	
+	private Integer memberId;
 	private Date orderDate;
 	private Date pickUpDate;
 	private Double totalAmt;
-	private boolean paymentStatus;
-	private boolean pickUpStatus;
-	
+	private Integer status;
+
 	
 	@JsonManagedReference
 	@OneToMany(fetch= FetchType.LAZY, mappedBy="order", cascade=CascadeType.ALL)
 	private Set<OrderDetailBean> orderDetails;
+	
+	@JsonManagedReference
+	@OneToMany(fetch= FetchType.LAZY, mappedBy="order", cascade=CascadeType.ALL)
+	private Set<Discount> discount;
 	
 	
 	public Integer getOrderId() {
@@ -49,10 +52,10 @@ public class OrdersBean implements Serializable {
 	public void setOrderId(Integer orderId) {
 		this.orderId = orderId;
 	}
-	public String getMemberId() {
+	public Integer getMemberId() {
 		return memberId;
 	}
-	public void setMemberId(String memberId) {
+	public void setMemberId(Integer memberId) {
 		this.memberId = memberId;
 	}
 	public Date getOrderDate() {
@@ -82,18 +85,20 @@ public class OrdersBean implements Serializable {
 		this.orderDetails = orderDetails;
 	}
 	
-	public boolean isPaymentStatus() {
-		return paymentStatus;
+	public Integer getStatus() {
+		return status;
 	}
-	public void setPaymentStatus(boolean paymentStatus) {
-		this.paymentStatus = paymentStatus;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
-	public boolean isPickUpStatus() {
-		return pickUpStatus;
+	public Set<Discount> getDiscount() {
+		return discount;
 	}
-	public void setPickUpStatus(boolean pickUpStatus) {
-		this.pickUpStatus = pickUpStatus;
+	public void setDiscount(Set<Discount> discount) {
+		this.discount = discount;
 	}
+	
+	
 	
 	
 

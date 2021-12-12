@@ -11,15 +11,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import tw.gym.commodity.service.CommodityImgService;
 
-@Controller
+@RestController
 public class CommodityImgController {
 	
 	@Autowired
@@ -29,7 +28,6 @@ public class CommodityImgController {
 	CommodityImgService ciService;
 	
 	@GetMapping("/imgs/{cid}/{imgSrc}")
-	@ResponseBody
 	public ResponseEntity<byte[]> getCommodityImg(@PathVariable("cid") String cid, @PathVariable("imgSrc") String imgSrc) {
 		String path = "/uploadFile/"+cid +"/"+imgSrc;
 		ResponseEntity<byte[]> re = null;
@@ -50,7 +48,6 @@ public class CommodityImgController {
 			
 			b = baos.toByteArray();
 			MediaType mediaType = MediaType.valueOf(context.getMimeType(path));
-			System.out.println(mediaType.toString());
 			HttpHeaders headers = new HttpHeaders();
 			headers.setContentType(mediaType);
 			re = new ResponseEntity<byte[]>(b, headers, HttpStatus.OK);
@@ -61,8 +58,8 @@ public class CommodityImgController {
 	}
 	
 	@DeleteMapping("/admin/delCommImg/{cid}/{imgSrc}")
-	@ResponseBody
 	public ResponseEntity<String> delCommodityImg(@PathVariable("cid") Integer cid, @PathVariable("imgSrc") String imgSrc) {
+		System.out.println(cid+" "+imgSrc);
 		if (ciService.deleteImg(cid, imgSrc)) {
 			String path = context.getRealPath("/")+ "\\uploadFile\\"+cid+"\\"+imgSrc;
 			File file = new File(path);
