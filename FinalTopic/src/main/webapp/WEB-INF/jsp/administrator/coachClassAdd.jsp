@@ -105,7 +105,7 @@ function My_Date() {
 					</tr>
 					<tr>
 						<td align='right'>課程時長：</td>
-						<td><form:input id="show" type="number" value="1" min="1"
+						<td><form:input id="show" type="number" min="1"
 								max="2" step="1" onchange="print_value();" path="classDuration" />小時<br>
 							<form:errors path="classDuration" />
 					</tr>

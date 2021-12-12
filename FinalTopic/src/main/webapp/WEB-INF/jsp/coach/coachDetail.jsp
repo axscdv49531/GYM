@@ -88,18 +88,18 @@
 				<td><form:input path="coachAccount" /><br> <form:errors
 						path="coachAccount" />
 			</tr>
-			<tr>
-				<td align='right'>密碼：</td>
-				<td><form:input type="password" path="coachPassword" /><br> <form:errors
+<!-- 			<tr> -->
+<!-- 				<td align='right'>密碼：</td> -->
+				<form:hidden path="coachPassword" /><br> <form:errors
 						path="coachPassword" />
-			</tr>
+<!-- 			</tr> -->
 <!-- 			<tr> -->
 <!-- 				<td align='right'>性別：</td> -->
 <%-- 				<td><form:radiobuttons id="gender" items="${radioData}" path="coachGender" /><br> --%>
 <%-- 					<form:errors path="coachGender" /> --%>
 <!-- 			</tr> -->
 <tr>
-         <td><form:label path="coachGender">Gender</form:label></td>
+         <td><form:label path="coachGender">性別：</form:label></td>
          <td>
             <form:radiobutton path="coachGender" id="boy" value="男" label="男" />
             <form:radiobutton path="coachGender" id="girl" value="女" label="女" />

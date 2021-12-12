@@ -94,33 +94,33 @@ public class CoachAddFormController {
     //
     // }
 
-//    @GetMapping("coachLogin")
-//    public String coachLogin(Model model) {
-//        LoginBean lBean = new LoginBean();
-//        model.addAttribute("loginBean", lBean);
-//        return "coach/coachLogin";
-//    }
-//
-//    @PostMapping("coachLogin")
-//    public String coachLoginCheck(LoginBean lBean, Model model, HttpSession session) {
-//        CoachBean cBean = null;
-//        cBean = service.findByAccountAndPassword(lBean.getUserAccount(), lBean.getUserPassword());
-//        if (cBean != null) {
-//            session.setAttribute("loginUser", cBean);
-//            System.out.println("登入成功");
-//        } else {
-//            System.out.println("登入失敗");
-//        }
-//
-//        return "/coach/LoginSuccess";
-//    }
-//    @GetMapping("coachLogin")
-//    public String coachLogin(Model model) {
-//    	 return "/coach/LoginSuccess";
-//    }
+    // @GetMapping("coachLogin")
+    // public String coachLogin(Model model) {
+    // LoginBean lBean = new LoginBean();
+    // model.addAttribute("loginBean", lBean);
+    // return "coach/coachLogin";
+    // }
+    //
+    // @PostMapping("coachLogin")
+    // public String coachLoginCheck(LoginBean lBean, Model model, HttpSession session) {
+    // CoachBean cBean = null;
+    // cBean = service.findByAccountAndPassword(lBean.getUserAccount(), lBean.getUserPassword());
+    // if (cBean != null) {
+    // session.setAttribute("loginUser", cBean);
+    // System.out.println("登入成功");
+    // } else {
+    // System.out.println("登入失敗");
+    // }
+    //
+    // return "/coach/LoginSuccess";
+    // }
+    // @GetMapping("coachLogin")
+    // public String coachLogin(Model model) {
+    // return "/coach/LoginSuccess";
+    // }
 
-@GetMapping("coachClassAdd")
-public String coachClassAdd(Model model) {
+    @GetMapping("coachClassAdd")
+    public String coachClassAdd(Model model) {
         List<String> skList = skiService.listAllSkill();
         model.addAttribute("checkBoxList", skList);
         List<String> selectData = new ArrayList<String>();
@@ -149,13 +149,11 @@ public String coachClassAdd(Model model) {
         ClassBean cbean = new ClassBean();
         model.addAttribute("classBean", cbean);
 
-
         return "/coach/coachClassAdd";
     }
 
     @PostMapping("coachClassAdd")
-    public String coachClassAddCheck(ClassBean cBean,
-            @SessionAttribute("loginUser") CoachBean cBeann, Model model)
+    public String coachClassAddCheck(ClassBean cBean, @SessionAttribute("loginUser") CoachBean cBeann, Model model)
             throws ParseException, SerialException, SQLException, IOException {
         // new ClassValidator().validate(cBean, bindingResult);
         // if (bindingResult.hasErrors()) {
@@ -177,7 +175,6 @@ public String coachClassAdd(Model model) {
         // model.addAttribute("selectData", selectData);
         // return "/coach/coachClassAdd";
         // }
-
 
         Long datetime = System.currentTimeMillis();
         Timestamp timestamp = new Timestamp(datetime);
@@ -222,15 +219,6 @@ public String coachClassAdd(Model model) {
     @GetMapping("/updateClass")
     // public String updateClass(Model model, @PathVariable("id") Integer id) {
     public String updateClass(Model model, @RequestParam("Id") Integer id) {
-        // List<String> checkBoxData = new ArrayList<String>();
-        // checkBoxData.add("胸");
-        // checkBoxData.add("肩");
-        // checkBoxData.add("背");
-        // checkBoxData.add("腿");
-        // checkBoxData.add("跑步");
-        // checkBoxData.add("飛輪");
-        // checkBoxData.add("瑜珈");
-        // model.addAttribute("checkBoxData", checkBoxData);
         List<String> skList = skiService.listAllSkill();
         // System.out.println(skList);s
         model.addAttribute("checkBoxList", skList);
@@ -268,7 +256,6 @@ public String coachClassAdd(Model model) {
         }
         cBean.setClassLabel(st);
 
-
         return "/coach/coachClassDetail";
     }
 
@@ -288,17 +275,28 @@ public String coachClassAdd(Model model) {
             sBean.add(sBeann);
         }
         cBean.setsBean(sBean);
+        if (!cBean.getClaPhoto().isEmpty()) {
+            MultipartFile picture = cBean.getClaPhoto();
+            byte[] b = picture.getBytes();
+            Blob blob = new SerialBlob(b);
 
-        MultipartFile picture = cBean.getClaPhoto();
-        byte[] b = picture.getBytes();
-        Blob blob = new SerialBlob(b);
+            String fileName = picture.getOriginalFilename();
 
-        String fileName = picture.getOriginalFilename();
+            String mineType = picture.getContentType();
+            cBean.setClassPhoto(blob);
+            cBean.setClassFileName(fileName);
+            cBean.setClassPhotoMineType(mineType);
+        } else {
 
-        String mineType = picture.getContentType();
-        cBean.setClassPhoto(blob);
-        cBean.setClassFileName(fileName);
-        cBean.setClassPhotoMineType(mineType);
+            ClassBean cBeann = classService.getClassById(cBean.getClassId());
+            Blob blob = cBeann.getClassPhoto();
+            String fileName = cBeann.getClassFileName();
+            String mineType = cBeann.getClassPhotoMineType();
+            cBean.setClassPhoto(blob);
+            cBean.setClassFileName(fileName);
+            cBean.setClassPhotoMineType(mineType);
+
+        }
         classService.updateClass(cBean);
         return "redirect:/coach/coachClassList";
 
@@ -347,7 +345,6 @@ public String coachClassAdd(Model model) {
             return mBean;
         }
     }
-
 
     // @InitBinder
     // public void initBinder(WebDataBinder binder, WebRequest request) {

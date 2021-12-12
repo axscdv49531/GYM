@@ -110,7 +110,7 @@ function showCoachClassList(coachId){
         <c:import url="/top_memberlogin"></c:import>
     </div>
     </section>
-          <section style="background-color:white;" id="contant" class="contant main-heading team">
+          <section style="background-color:white;padding:30px" id="contant" class="contant main-heading team">
 	<div class="row">
 		<div class="container">
 			<div id="showcoachlist" border="1"></div>

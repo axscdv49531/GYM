@@ -81,6 +81,10 @@ function getMember(classId){
 function showClassList(){
 	document.getElementById("titlee").innerHTML = '課程清單'
 	document.getElementById("titleee").innerHTML = '顯示所有課程清單'
+		document.getElementById("search").style.visibility = 'visible';
+// 		visible
+// 		visibility:hidden
+// 		visibility:visible
 	
     $.ajax({
         type : 'post',
@@ -157,6 +161,7 @@ function showClassList(){
 }
 
 function showCoachList(){
+	document.getElementById("search").style.visibility = 'hidden';
 	load();
 }
 
@@ -231,6 +236,117 @@ function showCoachList(){
 //            }
 //         });            
 //     }
+
+        function searchDelete(){
+            document.getElementById("searchByClassName").value = "";
+            document.getElementById("searchByCoachName").selectedIndex=0;
+            document.getElementById("searchBySkillName").selectedIndex=0;
+            document.getElementById("searchByClassStatus").selectedIndex=0;
+            $('input[type=date]').val('');
+            showClassList();
+        }
+
+function search() {
+            var className = document.getElementById("searchByClassName").value;
+            var startDate = document.getElementById("searchByDateStart").value;
+            var endDate = document.getElementById("searchByDateEnd").value;
+            var skillTemp = document.getElementById("searchBySkillName");
+            var skillName = skillTemp.value;
+            var coachNameTemp = document.getElementById("searchByCoachName");
+            var coachName = coachNameTemp.value;
+            //      var statusTemp = document.getElementById("searchByClassStatus");
+            //      var status = coachNameTemp.value;
+            var statusTemp = document.getElementById("searchByClassStatus");
+            var status = statusTemp.value;
+            if(startDate.length == 0 || endDate.length == 0){
+                $('input[type=date]').val('');
+            }
+//             if(startDate.length == 0 || endDate.length == 0){
+//                 $('input[type=date]').val('');
+//             }
+
+            $.ajax({
+                        type : 'post',
+                        url : '/searchClass/',
+                        data : {
+                            cName : className,
+                            coaName : coachName,
+                            sName : skillName,
+                            sDate : startDate,
+                            eDate : endDate,
+                            cStatus : status
+                        },
+                        dataType : 'JSON',
+                        //                  contentType : 'application/json',
+                        success : function(data) {
+
+                            console.log('success:' + data);
+                            var json = JSON.stringify(data, null, 4);
+                            console.log('json:' + json);
+
+                            $('#showCoach').empty("");
+
+                            if (data == null) {
+                                $('#showCoach').prepend(
+                                        "<tr><td colspan='2'>暫無資料</td></tr>");
+                                ;
+                            } else {
+                                var div = $('#showCoach');
+                                div.append("<thead style='text-align:center'><th style='text-align:center'>課程名稱</th><th style='text-align:center'>課程種類</th><th style='text-align:center'>教練名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>開始時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style=''>課程價格</th><th style='text-align:center'>報名狀況</th><th style='text-align:center'>狀態</th><th style='display:block!important;'>動作</th></thead>");
+
+                                $.each(data, function(i, n) {
+                                    var skName = n.sBean[0].skillName;
+                                    
+                                    var member = getMember(n.classId);
+                                    
+                                    if(member == null){
+                                        member = "無人報名";
+                                    }
+                                    
+                                    var status = null;
+                                    var classDate = new Date(n.classDate + " " + n.classEndTime).getTime();
+                                    var today = new Date().getTime();
+                                    var d = today - classDate
+                                    if (d > 0) {
+                                        if (n.classAvaliable == 1) {
+                                            status = "已開課";
+                                        } else {
+                                            status = "無人報名，未開課";
+                                        }
+
+                                    } else {
+                                        status = "尚未開課";
+                                    }
+
+                                    
+                                    
+                                    var div2 = "<tr align='center'>"
+                                            + "<td style='text-align:left'>"
+                                            + n.className + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + skName + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.cBean.coachName + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.classDate + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.classStartTime + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.classEndTime + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.classDuration + "</td>"
+                                            + "<td style='text-align:left'>"
+                                            + n.classPrice + "</td>" + "<td style='text-align:left'>"+ member + "</td>" +"<td style='text-align:left'>"+ status + "</td>" + "<td style='text-align:left'>"
+                                            + "<input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/administrator/updateClass?id=" + n.classId + "' />" + "</td>" + "</tr>";
+                                    div.append(div2);
+                                });
+                                div.append("<input type='button' class='btn' value='新增課程' onclick=" + "window.location.href='/administrator/coachClassAdd'" + "></input>");
+                            }
+
+                        }
+                    });
+        
+        }
 	
 	
 	
@@ -251,7 +367,8 @@ function showCoachList(){
                             <input type="button" id="listChange" class='btn' value="教練清單" onclick="showCoachList()"></input>
 </div>
 
-<div  style="visibility:hidden">
+<div id="search" style="visibility:hidden;padding:10px">
+<!-- visibility:hidden -->
 課程名稱： <input type="text" placeholder="輸入內容" id="searchByClassName">
                         教練名稱： <select name="select" id="searchByCoachName">
                             <option selected="selected">請選擇</option>
