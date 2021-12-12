@@ -33,7 +33,7 @@ public class ItemTypeBean implements Serializable {
 	
 	@JsonIgnore
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "itemType", cascade = CascadeType.ALL)
-	private Set<CommodityBean> commodity = new LinkedHashSet<CommodityBean>();
+	private Set<CommodityBean> commodity = new LinkedHashSet<CommodityBean>();	
 
 	public Integer getTypeId() {
 		return typeId;

@@ -48,8 +48,9 @@ public class MemberBean implements Serializable {
 	private Date expirationdate;
 	private String emergencyContact;
 	private String emergencyPhone;
+	
 	private String fileName;
-
+	
 	@Transient
 	private String password1;
 

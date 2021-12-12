@@ -51,6 +51,8 @@ public class LoginUserDetailsService implements UserDetailsService {
 //				Collection<? extends GrantedAuthority> authorities= 
 //		                UserAuthorityUtils.createAuthorities(coach.get());
 				System.out.println(3);
+				
+				
 				return new User(coach.get().getCoachEmail(), coach.get().getCoachPassword(), Collections.emptyList());
 			}
 		} else {

@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import tw.gym.commodity.model.CommodityBean;
 import tw.gym.commodity.repository.CommodityRepository;
-import tw.gym.commodity.repository.OrderDetailRepository;
 
 @Service
 @Transactional
@@ -22,31 +21,24 @@ public class CommodityService {
 	@Autowired
 	CommodityRepository cdRepo;
 	
-	@Autowired
-	OrderDetailRepository odRepo;
-	
 	public CommodityBean insert(CommodityBean bean, boolean flag) {
-		if (flag) {
+		if (!flag) {
 			return cdRepo.save(bean);
 		}
 		bean.setLastUpdated(new Date(System.currentTimeMillis()));
 		bean.setOnSale(true);
 		return cdRepo.saveAndFlush(bean);
-	} 
+	}
 	
 	public boolean deleteById(Integer id) {
-		boolean flag = odRepo.existsOrderDetailByItemId(id);
-		System.out.println(flag);
-		if (flag) {
+		if(cdRepo.isComsumed(id)!= null) {
 			return false;
-		}
-		
+		}		
 		cdRepo.deleteById(id);
 		return true;
 	}
 	
 	public CommodityBean findById(Integer id) {
-		
 		Optional<CommodityBean> op = cdRepo.findById(id);
 		if (op.isEmpty()) {
 			return null;
@@ -56,10 +48,6 @@ public class CommodityService {
 	
 	public List<CommodityBean> findAll() {
 		return cdRepo.findAll();
-	}
-	
-	public Page<CommodityBean> findAllByPages(Pageable page) {
-		return cdRepo.findAll(page);
 	}
 	
 	public Page<CommodityBean> findAllByPages(Example<CommodityBean> example, Pageable page) {
@@ -73,4 +61,9 @@ public class CommodityService {
 	public List<String> findAllVendors(){
 		return cdRepo.findAllVendors();
 	}
+	
+	public List<CommodityBean> findAllWithoutDiscountRules(){
+		return cdRepo.findAllWithoutDiscountRules();
+	}
+	
 }
