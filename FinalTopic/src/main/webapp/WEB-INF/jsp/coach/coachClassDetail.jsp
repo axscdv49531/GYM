@@ -72,7 +72,7 @@ function print_value() {
                     </tr>
 			                 <tr>
                         <td align='right'>課程時長：</td>
-                        <td><form:input id="show" type="number" value="1" min="1"
+                        <td><form:input id="show" type="number" min="1"
                                 max="2" step="1" onchange="print_value();" path="classDuration" />小時<br>
                             <form:errors path="classDuration" />
                     </tr>
@@ -103,6 +103,7 @@ function print_value() {
                         <td><form:input path="claPhoto" type="file" /><br> <form:errors
                                 path="claPhoto" />
                     </tr>
+                    <form:input type="hidden" path="classAvaliable" />
 			<tr>
 				<td colspan='2' align='center'><input type='submit' name="edit"
 					value='提交'><input type='submit' name="delete" value='刪除'></td>

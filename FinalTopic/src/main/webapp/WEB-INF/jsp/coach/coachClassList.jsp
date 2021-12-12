@@ -92,10 +92,21 @@
 							;
 						} else {
 							var table = $('#showclasslist');
-							table
-									.append("<thead style='background-color:black'><tr><th style='text-align:center'>課程名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>上課時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style='text-align:center'>價格</th><th style='text-align:center'>教練</th><th style='text-align:center'>學員</th><th style='text-align:center'>課程狀態</th><th style='text-align:center'>操作</th></tr></thead>");
-
+							var tablehistory = $('#showclasslisthistory');
+							table.append("<thead style='background-color:black'><tr><th style='text-align:center'>課程名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>上課時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style='text-align:center'>價格</th><th style='text-align:center'>教練</th><th style='text-align:center'>學員</th><th style='text-align:center'>課程狀態</th><th style='text-align:center'>操作</th></tr></thead>");
+							tablehistory.append("<thead style='background-color:black'><tr><th style='text-align:center'>課程名稱</th><th style='text-align:center'>開課日期</th><th style='text-align:center'>上課時間</th><th style='text-align:center'>結束時間</th><th style='text-align:center'>課程時數</th><th style='text-align:center'>價格</th><th style='text-align:center'>教練</th><th style='text-align:center'>學員</th><th style='text-align:center'>課程狀態</th></tr></thead>");
 							$.each(data, function(i, n) {
+								
+								var today = new Date();
+                                var year = n.classDate.substring(4,0);
+                                var month = n.classDate.substring(5,7);
+                                var monthInt = parseInt(month)
+                                monthInt = monthInt - 1;
+                                var day = n.classDate.substring(8,10);
+                                var hour = n.classStartTime.substring(2,0);
+                                var min = n.classStartTime.substring(3,5);
+                                var sec = n.classStartTime.substring(6,8);
+                                var classExpireDay = new Date(year,monthInt,day,hour,min,sec)
 								
 								var member = getMember(n.classId);
 								
@@ -119,6 +130,7 @@
 									status = "尚未開課";
 								}
 
+								if(classExpireDay>today){
 								var tr = "<tbody><tr align='center'>" + "<td>"
 										+ n.className + "</td>" + "<td>"
 										+ n.classDate + "</td>" + "<td>"
@@ -131,6 +143,19 @@
 										+ status + "</td>"+"<td><input type='button' class='btn' style='float:none;margin-top:0' value='編輯' onclick=" + "location.href='/coach/updateClass?Id=" + n.classId + "' /></td></tr></tbody>";
 								//                        "<td><img width='50' height='50' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + n.coachAccount + " /></td>" +
 								table.append(tr);
+								}else{
+									var trhistory = "<tbody><tr align='center'>" + "<td>"
+                                    + n.className + "</td>" + "<td>"
+                                    + n.classDate + "</td>" + "<td>"
+                                    + n.classStartTime + "</td>" + "<td>"
+                                    + n.classEndTime + "</td>" + "<td>"
+                                    + n.classDuration + "</td>" + "<td>"
+                                    + n.classPrice + "</td>" + "<td>"
+                                    + n.cBean.coachName + "</td>" + "<td>"
+                                    + member + "</td>" + "<td>"
+                                    + status + "</td>"+"</tr></tbody>";
+									tablehistory.append(trhistory);
+								}
 							});
 						}
 					}
@@ -148,10 +173,19 @@ tbody:hover{
 	<div class="top">
 		<c:import url="/top_coachlogin"></c:import>
 	</div>
-	<div style="text-align:center;"><h1 style="display: inline-block;">開課紀錄</h1></div><hr style="border: 1px solid black;">
+	<div style="text-align:center;"><h1 style="display: inline-block;">即將開課</h1></div><hr style="border: 1px solid black;">
 	<div id="sidebar" class="left-bar" style="background-color:rgb(33, 37, 41);width:95%;margin-left:2.5%">
                      <div class="feature-matchs">
                         <table id="showclasslist" class="table table-bordered" style="font-size:15px;color:white;">
+                        
+                          </table>
+                     </div>
+                  </div>
+                  
+                    <div style="text-align:center;"><h1 style="display: inline-block;">課程歷史紀錄</h1></div><hr style="border: 1px solid black;">
+    <div id="sidebar" class="left-bar" style="background-color:rgb(33, 37, 41);width:95%;margin-left:2.5%">
+                     <div class="feature-matchs">
+                        <table id="showclasslisthistory" class="table table-bordered" style="font-size:15px;color:white;">
                         
                           </table>
                      </div>

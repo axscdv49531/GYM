@@ -60,12 +60,10 @@ public class AdministratorController {
     @Autowired
     ClassMemberService cmService;
 
-
     @GetMapping("coachPage")
     public String coachPage() {
         return "/coach/coachPage";
     }
-
 
     @GetMapping("coachList")
     public String listAllCoach(Model model) {
@@ -84,6 +82,7 @@ public class AdministratorController {
         radioData.add("女");
         model.addAttribute("radioData", radioData);
         CoachBean cBean = service.getCoachByAccount(account);
+
         // DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
         // cBean.setCoachBirthTemp(df.format(cBean.getCoachBirth()));
         System.out.println(cBean.getCoachGender());
@@ -95,16 +94,32 @@ public class AdministratorController {
 
     @PostMapping(value = "updateCoach", params = "edit")
     public String updateCoachData(CoachBean cBean) throws IOException, SerialException, SQLException {
-        MultipartFile picture = cBean.getcPhoto();
-        byte[] b = picture.getBytes();
-        Blob blob = new SerialBlob(b);
+        // MultipartFile picture = cBean.getcPhoto();
+        // byte[] b = picture.getBytes();
+        // Blob blob = new SerialBlob(b);
+        // String encodePwd = new BCryptPasswordEncoder().encode(cBean.getCoachPassword());
+        // cBean.setCoachPassword(encodePwd);
+        cBean.setCoachStatus(0);
 
-        String fileName = picture.getOriginalFilename();
+        if (!cBean.getcPhoto().isEmpty()) {
+            MultipartFile picture = cBean.getcPhoto();
+            byte[] b = picture.getBytes();
+            Blob blob = new SerialBlob(b);
+            String fileName = picture.getOriginalFilename();
+            String mineType = picture.getContentType();
+            cBean.setCoachPhoto(blob);
+            cBean.setFileName(fileName);
+            cBean.setCoachPhotoMineType(mineType);
+        } else {
+            CoachBean cBeann = service.getCoachByAccount(cBean.getCoachAccount());
+            Blob blob = cBeann.getCoachPhoto();
+            String fileName = cBeann.getFileName();
+            String mineType = cBeann.getCoachPhotoMineType();
+            cBean.setCoachPhoto(blob);
+            cBean.setFileName(fileName);
+            cBean.setCoachPhotoMineType(mineType);
 
-        String mineType = picture.getContentType();
-        cBean.setCoachPhoto(blob);
-        cBean.setFileName(fileName);
-        cBean.setCoachPhotoMineType(mineType);
+        }
         service.updateCoach(cBean);
         return "redirect:/administrator/coachAdminPage";
     }
@@ -186,17 +201,24 @@ public class AdministratorController {
             sBean.add(sBeann);
         }
         cBean.setsBean(sBean);
-
+        if (!cBean.getClaPhoto().isEmpty()) {
         MultipartFile picture = cBean.getClaPhoto();
         byte[] b = picture.getBytes();
         Blob blob = new SerialBlob(b);
-
         String fileName = picture.getOriginalFilename();
-
         String mineType = picture.getContentType();
         cBean.setClassPhoto(blob);
         cBean.setClassFileName(fileName);
         cBean.setClassPhotoMineType(mineType);
+    } else {
+        ClassBean cBeann = classService.getClassById(cBean.getClassId());
+        Blob blob = cBeann.getClassPhoto();
+        String fileName = cBeann.getClassFileName();
+        String mineType = cBeann.getClassPhotoMineType();
+        cBean.setClassPhoto(blob);
+        cBean.setClassFileName(fileName);
+        cBean.setClassPhotoMineType(mineType);
+    }
         classService.updateClass(cBean);
         return "redirect:/administrator/coachAdminPage";
 
@@ -280,6 +302,7 @@ public class AdministratorController {
         return "/administrator/coachAdd";
 
     }
+
     //
     @PostMapping("coachAdd")
     public String insertCoachData(CoachBean cbean) throws ParseException, IOException, SerialException, SQLException {
