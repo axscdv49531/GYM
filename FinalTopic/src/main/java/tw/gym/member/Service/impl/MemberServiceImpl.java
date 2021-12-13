@@ -83,8 +83,9 @@ public class MemberServiceImpl implements MemberService {
 
     @Override
     public MemberBean findByEmail(String email) {
+    	System.out.println(email);
         Optional<MemberBean> member = memberRepository.findByEmail(email);
-        // System.out.println(email);
+         System.out.println(email+"123456");
         // System.out.println(member);
         if (member.isEmpty()) {
             throw new UserNotFoundException("Can't Find User");

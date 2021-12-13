@@ -65,6 +65,30 @@ public class DepositeController {
 //		memberService.update(memberBean);		
 		return "member/depositeConfirm";
 	}
-
 	
+	@GetMapping(path = "/adminUpdateDeposite/{number}")
+	public String adminInsertDeposite(Model m, @PathVariable("number") Integer number) {
+		DepositeBean depositeBean = new DepositeBean();
+		m.addAttribute("depositeBean", depositeBean);
+		return "admin/DepositeForm";
+	}
+	@PostMapping("/adminUpdateDeposite/{number}")
+	public String adminUpdateDeposite(Model m, @ModelAttribute("depositeBean")DepositeBean depositeBean, @PathVariable("number") Integer number) {
+		depositeService.insertMemberNumber(depositeBean, number);
+		System.out.println(number);
+		System.out.println(depositeBean.getId());
+		Date date=new Date();
+		Timestamp timestamp = new Timestamp(date.getTime());
+		System.out.println("送出儲值訂單");
+		depositeBean.setTimestamp(timestamp);
+		depositeBean.setStatus("1");
+		depositeService.update(depositeBean);
+		Integer oldValue = memberService.findByNumber(number).getDeposite();
+		Integer newValue = depositeBean.getValue() + oldValue;
+		depositeBean.setTotal(newValue);
+		MemberBean memberBean=memberService.findByNumber(number);
+		memberBean.setDeposite(newValue);
+		memberService.update(memberBean);		
+		return "redirect:/findAllMember";
+	}
 }
