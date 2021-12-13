@@ -47,7 +47,7 @@
 
 
 	<div class="container"
-		style="background-color: #DEDEBE; width: 100%; height: 1000PX">
+		style="background-color: #DEDEBE; width: 100%; height: 2000PX">
 		<section id="top">
 			<header>
 				<div class="container">

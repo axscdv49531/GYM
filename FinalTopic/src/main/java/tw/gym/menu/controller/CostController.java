@@ -78,6 +78,8 @@ public class CostController {
 		map.put("人事成本", 0);
 		map.put("其他", 0);
 		
+		
+		
 		for (int i = 0; i < list.size(); i++) {
 			System.out.println(
 					"cost+++"+list.get(i).getCostitem() + "," + list.get(i).getCostprice() + "," + list.get(i).getCostday());

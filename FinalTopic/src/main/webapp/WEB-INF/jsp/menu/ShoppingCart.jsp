@@ -49,7 +49,7 @@
 </head>
 <body>
 
-<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 1000px ">
+<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 2000px ">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -211,7 +211,7 @@
 			<br>
 			<br>
 			<div style="margin-left: 150px">
-				<div style="font-size: 25px; height: 100px ;clear: both; text-align: center; margin-top: 300px ;color:white">查無訂單</div>
+				<div style="font-size: 25px; height: 100px ;clear: both; text-align: center; margin-top: 300px ;color:black">查無訂單</div>
 			</div>
 		</c:when>
 		<c:otherwise>
@@ -225,7 +225,7 @@
 					<a href="Menumain.controller" class="transition">繼續購物</a> 
 					&emsp;&emsp; 
 					
-					<a href="pay.Controller?orderId=${OrderMenuList.get(0).getOrderId()}"
+					<a href="pay.ControllerTest?orderId=${OrderMenuList.get(0).getOrderId()}"
 								class="transition" id="clickOrder">確認訂購</a> 
 					
 					<br> <br>
