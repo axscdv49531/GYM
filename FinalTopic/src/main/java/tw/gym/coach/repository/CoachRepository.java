@@ -1,5 +1,6 @@
 package tw.gym.coach.repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,4 +21,7 @@ public interface CoachRepository extends JpaRepository<CoachBean, Integer> {
 
     @Query(value = "select cb from CoachBean cb where cb.coachName = :coachName")
     CoachBean getCoachByName(String coachName);
+
+    @Query("select cb.coachName From CoachBean cb")
+    List<String> getCoachNameList();
 }

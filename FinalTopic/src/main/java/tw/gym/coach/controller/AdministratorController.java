@@ -353,7 +353,10 @@ public class AdministratorController {
         // } else {
         // System.out.println(model.getAttribute("classBean"));
         // }
-        List<String> name = classService.findClassCoach();
+        // List<String> name = classService.findClassCoach();
+        // model.addAttribute("coachList", name);
+
+        List<String> name = service.getCoachNameList();
         model.addAttribute("coachList", name);
         ClassBean cbean = new ClassBean();
         model.addAttribute("classBean", cbean);

@@ -66,4 +66,9 @@ public class CoachServiceImpl implements CoachService {
         return coaRepo.getCoachByName(coachName);
     }
 
+    @Override
+    public List<String> getCoachNameList() {
+        return coaRepo.getCoachNameList();
+    }
+
 }
