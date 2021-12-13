@@ -498,7 +498,7 @@ function arrayToJson(formArray){
 						</td>
 						<td><select name="period" id="period" class="form-control">
 								<option value="NONE" label="請選擇上課時段"></option>
-								<option  value="09:00-10:00">09:00-09:50</option>
+								<option  value="09:00-09:50">09:00-09:50</option>
 								<option  value="10:00-10:50">10:00-10:50</option>
 								<option  value="11:00-11:50">11:00-11:50</option>
 								<option  value="12:00-12:50">12:00-12:50</option>
@@ -576,7 +576,7 @@ function arrayToJson(formArray){
 
 <!-- 更新課程：模態框（Modal-->
 <div   class = "modal fade text-center"   id = "updatemyModal"   tabindex = " -1 "   role = "dialog"   aria-labelledby = " myModalLabel "   aria-hidden = " true " > 
-     <div   class = "modal-dialog" style="width:Auto; margin-top: 0px"> 
+     <div   class = "modal-dialog" style="width:Auto; margin-top: -200px"> 
          <div   class = "modal-content" style="width:500px ; text-align:center"> 
              <div   class = "modal-header" > 
                  <button  type = "button"   class = "close"   data-dismiss = "modal"  aria-hidden = "true" > × </button> 
@@ -613,7 +613,7 @@ function arrayToJson(formArray){
 						</td>
 						<td><select name="period" id="updateperiod" class="form-control">
 								<option value="NONE" label="請選擇上課時段"></option>
-								<option  value="09:00-10:00">09:00-09:50</option>
+								<option  value="09:00-09:50">09:00-09:50</option>
 								<option  value="10:00-10:50">10:00-10:50</option>
 								<option  value="11:00-11:50">11:00-11:50</option>
 								<option  value="12:00-12:50">12:00-12:50</option>

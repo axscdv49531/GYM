@@ -65,6 +65,18 @@ public class Member_CourseController {
 		m.addAttribute("dateList", dateList);
 		return "membercourse/courseSelectSytem";
 	}
+	// 前往沒登入的選課系統頁面
+	@GetMapping("/nologin_courseSelectSystem.controller")
+	public String nologincourseselectionmain(Model m) {
+
+		List<CoachBean> coachList = coaService.listAllCoach();
+		m.addAttribute("coachList", coachList);
+		
+		List<Date> dateList = cService.findAllDate();
+		m.addAttribute("dateList", dateList);
+		return "membercourse/courseSelectSytem";
+	}
+	
 
 	// 前往我的課程頁面
 	@GetMapping("/mycourseschedulemain.controller")

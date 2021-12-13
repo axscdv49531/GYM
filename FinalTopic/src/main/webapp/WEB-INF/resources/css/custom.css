@@ -1882,7 +1882,7 @@ body section#contant .post-info span h5 {
 }
 
 .btn:hover, .btn:focus {
-	background: #111;
+	background: #FF9224;
 	color: #fff !important;
 	transition: ease a11 1s;
 }
