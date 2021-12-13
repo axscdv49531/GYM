@@ -35,11 +35,11 @@ public interface CourseRepository extends JpaRepository<Course, Integer>,CourseR
 	@Query(value="from Course c where c.date >= :thismonday and c.date < :nextmonday and c.classroom= :classroom")
 	public List<Course> findOneWeekCourse(Date thismonday, Date nextmonday,String classroom);
 	
-	//批量刪除
-	 @Modifying
-	 @Transactional
-	 @Query("delete from Course c where c.id in (?1)")
-	 public void deleteBatch(List<Integer> ids);
+//	//批量刪除
+//	 @Modifying
+//	 @Transactional
+//	 @Query("delete from Course c where c.id in (?1)")
+//	 public void deleteBatch(List<Integer> ids);
 
 	
 

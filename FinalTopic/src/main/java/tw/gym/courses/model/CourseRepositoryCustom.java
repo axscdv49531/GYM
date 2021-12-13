@@ -15,4 +15,6 @@ public interface CourseRepositoryCustom {
 	public void stuNumMinus(Integer courseId);
 	
 	public void stuNumPlus(Integer courseId);
+	
+	public void deleteBatch(List<Integer> ids);
 }
