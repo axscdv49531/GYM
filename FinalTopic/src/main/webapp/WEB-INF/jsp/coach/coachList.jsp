@@ -84,7 +84,7 @@ function showCoachClassList(coachId){
 									.each(
 											data,
 											function(i, n) {
-												var div2 = "<div class='col-md-3 column' style='padding-right:15px;padding-left:15px'><div style='border-radius:0' class='card'><img style='width: 600px; height: 420px;' class='img-responsive' src="
+												var div2 = "<div class='col-md-3 column' style='padding-right:15px;padding-left:15px'><div style='border-radius:0' class='card'><img style='width: 600px; height: 500px;' class='img-responsive' src="
 														+ "<c:url value='/administrator/getCoachPicture?coachAccount=' />"
 														+ n.coachAccount
 														+ " alt='John' style='width:100%'><div class='center'><h4 style='margin: 20px 0 0 0;'>"
