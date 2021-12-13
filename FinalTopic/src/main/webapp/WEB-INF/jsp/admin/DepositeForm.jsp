@@ -1,79 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript">
-	function confirmDelete(number) {
-		var result = confirm("確定刪除此筆記錄(帳號:" + number.trim() + ")?");
-		if (result) {
-			document.forms[0].putOrDelete.name = "_method";
-			document.forms[0].putOrDelete.value = "DELETE";
-			return true;
-		}
-		return false;
-	}
-	
-	(function(document) {
-		  'use strict';
-
-		  // 建立 LightTableFilter
-		  var LightTableFilter = (function(Arr) {
-
-		    var _input;
-
-		    // 資料輸入事件處理函數
-		    function _onInputEvent(e) {
-		      _input = e.target;
-		      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-		      Arr.forEach.call(tables, function(table) {
-		        Arr.forEach.call(table.tBodies, function(tbody) {
-		          Arr.forEach.call(tbody.rows, _filter);
-		        });
-		      });
-		    }
-
-		    // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
-		    function _filter(row) {
-		      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-		      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-		    }
-
-		    return {
-		      // 初始化函數
-		      init: function() {
-		        var inputs = document.getElementsByClassName('light-table-filter');
-		        Arr.forEach.call(inputs, function(input) {
-		          input.oninput = _onInputEvent;
-		        });
-		      }
-		    };
-		  })(Array.prototype);
-
-		  // 網頁載入完成後，啟動 LightTableFilter
-		  document.addEventListener('readystatechange', function() {
-		    if (document.readyState === 'complete') {
-		      LightTableFilter.init();
-		    }
-		  });
-
-		})(document);
-</script>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../admintemplate/img/apple-icon.png">
 <link rel="icon" type="image/png"
 	href="../admintemplate/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin
-	Dashboard by Creative Tim</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
+<title>Insert title here</title>
 <!--     Fonts and icons     -->
 <link
 	href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
@@ -84,7 +27,6 @@
 <link href="../admintemplate/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../admintemplate/css/light-bootstrap-dashboard.css?v=2.0.0 "
 	rel="stylesheet" />
-<link href="../admintemplate/css/style.css" rel="stylesheet" />
 
 <!--   Core JS Files   -->
 <script src="../admintemplate/js/core/jquery.3.2.1.min.js"
@@ -110,10 +52,21 @@
 
 
 </head>
+<script type="text/javascript">
+	function confirmUpdate(number) {
+		var result = confirm("確定更新會員編號:" + number.trim() + "?");
+		if (result) {
+			return true;
+		}
+		return false;
+	}
+</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
+<script src="https://code.essoduke.org/js/twzipcode/twzipcode.js"></script>
+<script src="https://kit.fontawesome.com/e60209ac9e.js"></script>
 <body>
 	<div class="wrapper">
 		<div class="sidebar" data-image="../admintemplate/img/sidebar-0.jpg"
@@ -146,8 +99,8 @@
 							class="nc-icon nc-notes"></i>
 							<p>教練專區</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='/courseQuery' />"> <i
-							class="nc-icon nc-paper-2"></i>
+					<li><a class="nav-link" href="<c:url value='/courseQuery' />">
+							<i class="nc-icon nc-paper-2"></i>
 							<p>團體課程專區</p>
 					</a></li>
 					<li><a class="nav-link" href="./icons.html"> <i
@@ -233,67 +186,26 @@
 				</div>
 			</nav>
 			<!-- End Navbar -->
-			<form class="form-inline search-bar">
-				<div class="form-group">
-					<label for="exampleInputEmail2">會員查詢</label> 
-						<input type="search" class="form-control light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
-				</div>
-			</form>
-			<div align='center'>
-				<form:form method='POST' modelAttribute="memberBean">
-					<h3>會員資料</h3>
-					<hr>
-					<table border='1' class="order-table">
-					  <thead>
-						<tr>
-							<th width='70'>會員編號</th>
-							<th width='100'>姓名</th>
-							<th width='60'>性別</th>
-							<th width='160'>生日</th>
-							<th width='60'>詳細資料</th>
-							<th width='60'>編輯</th>
-							<th width='60'>刪除</th>
-							<th width='60'>Inbody</th>
-							<th width='60'>Inbody紀錄</th>
-							<th width='60'>會員繳費</th>
-							<th width='60'>會員繳費紀錄</th>
-							<th width='60'>會員儲值</th>
-							<th width='60'>會員儲值紀錄</th>
-						</tr>
-						  </thead>
-						<c:choose>
-							<c:when test="${not empty memberBeanList}">
-								<c:forEach var='member' items="${memberBeanList}">
-									<tr>
-										<td>${member.number}</td>
-										<td>${member.name}</td>
-										<td>${member.gender}</td>
-										<td>${member.birthday}</td>
-										<td><a href='selectMember/${member.number}'><input
-												type='button' value='詳細資料' class="btn btn-danger"></a></td>
-										<td><a href='modifyMember/${member.number}'><input
-												type='button' value='編輯' class="btn btn-danger"></a></td>
-										<td><a href='deleteMember/${member.number}'><input
-												type='button' value='刪除' class="btn btn-danger"
-												onclick="return confirmDelete('${member.number}');"></a></td>
-										<td><a href='insertInbody/${member.number}'><input
-												type='button' value='Inbody' class="btn btn-danger"></a></td>
-										<td><a href='selectInbody/${member.number}'><input
-												type='button' value='查詢' class="btn btn-danger"></a></td>
-										<td><a href='adminUpdateDeposite/${member.number}'><input
-												type='button' value='儲值' class="btn btn-danger"></a></td>
-										<td><a href='findAllDeposite/${member.number}'><input
-												type='button' value='查詢' class="btn btn-danger"></a></td>
-									</tr>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-				查無Member資料
-			</c:otherwise>
-						</c:choose>
-					</table>
-				</form:form>
-				<br> <a href="<c:url value='/' />">回首頁</a>
-			</div>
+
+	<div align="center">
+		<form:form method='POST' modelAttribute="depositeBean">
+
+			<fieldset class="fieldset-auto-width">
+				<legend>儲值</legend>
+				<table>
+					<tr>
+						<td align='right'>金額：<br>&nbsp;
+						</td>
+						<td><form:input path="value" /><br>&nbsp;</td>
+					</tr>
+					<tr>
+						<td colspan='2' align='center'><input class="update-modal" type='submit'
+							value='提交'></td>
+					</tr>
+				</table>
+			</fieldset>
+		</form:form>
+		<br> <a href="<c:url value='/' />">回首頁</a>
+	</div>
 </body>
 </html>

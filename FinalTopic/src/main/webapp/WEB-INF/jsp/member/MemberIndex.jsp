@@ -56,7 +56,7 @@
 							<div class="col-md-4">
 								<a class="logo" href="<c:url value='/' />">
 									<div class="logo-content">
-										<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
+										<img src="../images/springfitnesslogo6.png" alt="index" /> <h1>SPRINGFITNESS</h1>
 									</div>
 								</a>
 							</div>

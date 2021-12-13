@@ -154,6 +154,7 @@ public class MemberController {
 		memberBean.setMemberPhotoMineType(mineType);
 		memberBean.setPassword(encodePwd);
 		memberBean.setDeposite(0);
+		memberBean.setStatus(-1);
 		emailSerive.sendEmail(toEmail, subject, body);
 		memberService.insert(memberBean);
 		return "redirect:/findAllMember";
