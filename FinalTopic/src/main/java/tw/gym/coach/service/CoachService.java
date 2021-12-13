@@ -31,4 +31,6 @@ public interface CoachService {
 
     CoachBean getCoachByName(String coachName);
 
+    List<String> getCoachNameList();
+
 }
