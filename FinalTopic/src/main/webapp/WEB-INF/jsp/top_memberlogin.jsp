@@ -36,9 +36,9 @@
 		<div class="header-top">
 			<div class="row">
 				<div class="col-md-4">
-					<a class="logo" href="<c:url value='/' />">
+					<a class="logo" href="<c:url value='/login/MemberSuccess' />">
 						<div class="logo-content">
-							<img src="../images/springfitnesslogo6.png" alt="index" /> <b>SPRINGFITNESS</b>
+							<img src="../images/springfitnesslogo6.png" /> <b>SPRINGFITNESS</b>
 						</div>
 					</a>
 				</div>

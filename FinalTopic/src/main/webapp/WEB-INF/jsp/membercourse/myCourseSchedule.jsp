@@ -205,7 +205,7 @@ function showInformation(courseId,coachId) {
 }
  
    function dropCourse(courseId){	  
-	if(confirm("確實要退選"+courseId+"嗎?")){
+	if(confirm("確實要退選嗎?")){
 
 			$.ajax({
 				   type:'get',
@@ -213,13 +213,17 @@ function showInformation(courseId,coachId) {
 				   dataType:'JSON',
 				   contentType:'application.json',
 				   success: function(data){
-						alert("已經退選"+courseId+"！"); 
-						load(indexPage);
+						alert("已經退選！"); 
+						
+						//
 				   }
 				   });
+			window.location.reload();
 		
-	}else{alert("已經取消退選"+courseId+"的操作");
+	}else{alert("已經取消退選的操作");
 			  }	
+	//load(indexPage);
+	//window.location.reload();
 	} 
  	
 
@@ -303,6 +307,6 @@ function showInformation(courseId,coachId) {
 				</div>
 			</div>
 
-	<c:import url="/bottom"></c:import>
+
 </body>
 </html>

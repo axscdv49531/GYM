@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+s<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -130,7 +130,7 @@
 			;
 		} else {
 			var table = $('#showcourse');
-			table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th><th>加選課程</th></tr>");
+			table.append("<tr id='ptitle'><th>課程編號</th><th>課程名稱</th><th>課程總類</th><th>日期</th><th>課程時間</th><th>教室編號</th><th>授課老師</th><th>目前學生人數</th><th>學生人數上限</th><th>課程簡介</th></tr>");
 
 			$.each(data.pageContent,function(i, n) {
 				if(n.studentNum == n.maxStudentNum){
@@ -190,10 +190,7 @@
 										+ "<td><button id='' type='button' class='btn'  onclick='showInformation("
 										+ n.id + "," + n.coach.coachId
 										+ ")'>課程簡介</button></td>"
-										+ "<td><button id='' type='button' class='btn' onclick='selectCourse("
-										+ n.id + "," + n.studentNum + ","
-										+ n.maxStudentNum
-										+ ")'>加選課程</button></td>" + "</tr>";
+										+"</tr>";
 					}
 								table.append(tr);
 							});
@@ -392,8 +389,7 @@
 								<c:forEach var="onedate" items="${dateList}">
 									<option value="${onedate}">${onedate}</option>
 								</c:forEach>
-							</select> 
-							<select name="coachId" class="form-control" >
+							</select> <select name="coachId" class="form-control" >
 								<option value="" selected="selected">請選擇授課老師</option>
 								<c:forEach var="oneCoach" items="${coachList}">
 									<option value="${oneCoach.coachId}">${oneCoach.coachName}</option>
@@ -450,6 +446,5 @@
 				</div>
 			</div>
 
-	
 </body>
 </html>
