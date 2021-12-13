@@ -45,7 +45,7 @@
 									<div class="logo-content">
 										<img src="../images/springfitnesslogo6.png"
 											alt="index" />
-										<b>SPRINGFITNESS</b>
+										<h1>SPRINGFITNESS</h1>
 									</div>
 								</a>
 							</div>

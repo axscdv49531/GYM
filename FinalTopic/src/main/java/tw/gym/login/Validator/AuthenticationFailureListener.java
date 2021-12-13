@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -12,8 +13,8 @@ import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
-import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.MemberService;
 
 @Component
@@ -42,14 +43,11 @@ public class AuthenticationFailureListener implements AuthenticationFailureHandl
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
+		HttpSession session=request.getSession();
 		if (exception instanceof BadCredentialsException) {
-		     System.out.println("bad credentials");
+		     session.setAttribute("errorMsg", "帳號密碼錯誤");
 		     response.sendRedirect("/login/Member");
 		   }else if(exception.getCause() instanceof DisabledException) {	
-//		if (exception instanceof BadCredentialsException) {
-//			System.out.println("bad credentials");
-//			response.sendRedirect("/login/Member");
-//		}else if(exception instanceof DisabledException) {
 			String email = request.getParameter("username");
 			System.out.println("failure handler: "+ email+"1234");
 //			exception.getMessage();

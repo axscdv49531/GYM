@@ -255,8 +255,6 @@
 							<th width='60'>刪除</th>
 							<th width='60'>Inbody</th>
 							<th width='60'>Inbody紀錄</th>
-							<th width='60'>會員繳費</th>
-							<th width='60'>會員繳費紀錄</th>
 							<th width='60'>會員儲值</th>
 							<th width='60'>會員儲值紀錄</th>
 						</tr>

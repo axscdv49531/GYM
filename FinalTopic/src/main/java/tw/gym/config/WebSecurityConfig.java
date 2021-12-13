@@ -22,8 +22,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
 	
-//	@Autowired
-//	private AuthenticationFailureListener authenticationFailureListener;
+	@Autowired
+	private AuthenticationFailureListener authenticationFailureListener;
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -47,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().csrf().disable()
 			.formLogin().loginPage("/login/Member")
 			.successHandler(customAuthenticationSuccessHandler)
-			.failureHandler(new AuthenticationFailureListener());
+			.failureHandler(authenticationFailureListener);
 		
 	}
 
