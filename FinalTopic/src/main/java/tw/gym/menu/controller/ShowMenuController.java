@@ -83,7 +83,9 @@ public class ShowMenuController {
 			oService.insert(chekOrder);
 			return "redirect:shoppingCart.controller";
 		}
-		
+		if((MemberBean)httpSession.getAttribute("loginUser")==null) {
+			return "redirect:login/Member";
+		}
 		MemberBean member =(MemberBean)httpSession.getAttribute("loginUser");
 		Integer memberNumber= member.getNumber();
 		System.out.println(memberNumber+"memberNumber");

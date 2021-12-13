@@ -67,7 +67,6 @@ public class upLoadController {
 		
 		
 		Menu menu = new Menu();
-		
 		menu.setMenuName(menuName);
 		menu.setMenuQty(menuQty);
 		menu.setPrice(menuPrice);

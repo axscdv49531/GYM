@@ -49,7 +49,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 1000px ">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -197,13 +197,11 @@
 					</div>
 				</div>
 			</header>
-		</section>
-	</div>		
-
-	
-
-
-	<c:set var="sum" value="0"></c:set>
+			
+			<div class="full-slider" >
+				<div id="carousel-example-generic" class="carousel slide">
+				
+					<c:set var="sum" value="0"></c:set>
 
 	
 
@@ -219,7 +217,7 @@
 		<c:otherwise>
 
 			
-			<div style=" width: 100%; margin-top: 250px ;color: white">
+			<div style=" width: 100%;color: black">
 				<div id='totalprice' style="clear: both; margin-left: 150px; border-radius:0 px;height: 100px;">
 					<div style=" margin-left: 10px;">
 						<font size="6" style="line-height:100px ">您的訂購編號為:${orderId}</font> &emsp; &emsp;
@@ -227,7 +225,7 @@
 					<a href="Menumain.controller" class="transition">繼續購物</a> 
 					&emsp;&emsp; 
 					
-					<a href="pay.ControllerTest?orderId=${OrderMenuList.get(0).getOrderId()}"
+					<a href="pay.Controller?orderId=${OrderMenuList.get(0).getOrderId()}"
 								class="transition" id="clickOrder">確認訂購</a> 
 					
 					<br> <br>
@@ -289,6 +287,16 @@
 
 		</c:otherwise>
 	</c:choose>
+				
+				
+				</div>
+				</div>
+		</section>
+	</div>		
+
+	
+
+
 
 
 	<script>

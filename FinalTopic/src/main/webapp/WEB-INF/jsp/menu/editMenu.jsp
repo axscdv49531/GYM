@@ -38,11 +38,8 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-<<<<<<< HEAD
 <script src="/js/3dslider.js"></script>
-=======
     <script src="../js/3dslider.js"></script>
->>>>>>> origin/ryan1204
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>
@@ -59,7 +56,7 @@
 <body>
 
 
-<div class="container">
+<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 1000PX ">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -209,16 +206,9 @@
 					</div>
 				</div>
 			</header>
-		</section>
-	</div>		
-
-
-
-
-
-
-
-	<form:form action="ModifyShoppingcart.controller" method='POST'
+				<div class="full-slider" >
+				<div id="carousel-example-generic" class="carousel slide">
+					<form:form action="ModifyShoppingcart.controller" method='POST'
 		modelAttribute="updateOrderMenu">
 
 		<!--顯示資訊及訂餐-->
@@ -239,10 +229,24 @@
 			<div style="display: none">
 				<form:input path="id" />
 			</div>
-		 <input type="submit" value="更改此訂單" class="detailDiv01Font1" style="cursor: pointer;	background-color: 	#8E8E8E;"/>
+		 <input type="submit" value="更改此訂單" class="detailDiv01Font1" style="cursor: pointer;	background-color: #D6D6AD;"/>
 		</div>
 
 	</form:form>
+				
+				</div>
+				</div>
+
+		</section>
+	</div>		
+
+
+
+
+
+
+
+
 
 	<script>
 		document.getElementById("price").readOnly = true;

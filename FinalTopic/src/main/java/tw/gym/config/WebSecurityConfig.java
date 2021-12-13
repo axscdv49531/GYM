@@ -33,10 +33,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-			.antMatchers(HttpMethod.GET, "/insertMember/**").authenticated()
+			//.antMatchers(HttpMethod.GET, "/insertMember/**").authenticated()
 			.antMatchers(HttpMethod.GET, "/findAllMember/**").authenticated()
 			.antMatchers(HttpMethod.GET).permitAll()
-			.antMatchers(HttpMethod.POST, "/insertMember/**").authenticated()
+			//.antMatchers(HttpMethod.POST, "/insertMember/**").authenticated()
 			.antMatchers(HttpMethod.POST, "/findAllMember/**").authenticated()
 			.antMatchers(HttpMethod.POST).permitAll()
 			.anyRequest().authenticated()

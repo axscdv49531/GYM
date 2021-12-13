@@ -44,9 +44,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
-	
-	
-	<div class="container">
+
+
+	<div class="container"
+		style="background-color: #DEDEBE; width: 100%; height: 1000PX">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -179,8 +180,7 @@
 																</li>
 															</ul></li>
 
-														<li><a href="/Menumain.controller" >健康餐盒
-														</a></li>
+														<li><a href="/Menumain.controller">健康餐盒 </a></li>
 														<li><a href="news.html">周邊商品</a></li>
 
 													</ul>
@@ -194,28 +194,42 @@
 					</div>
 				</div>
 			</header>
-		</section>
-	</div>		
-
-	
-	
-	
-	
 
 
-	${payError}
+			<div class="full-slider">
+				<div id="carousel-example-generic" class="carousel slide">
 
-<div style="clear: both; width: 500px; margin: 0 auto;margin-top:300px">
-	<c:forEach var="list" items="${MenuList}">
-		
-			<div class="row"
-				style="text-align: center; border-style: solid; border-width: 1px; border-color: black; width: 300px; margin-bottom:20px; padding:10px;">
-				訂單編號:${ list.getOrderId()} <br>訂購餐點:${ list.getMenu().getMenuName()}
-				<br>訂購數量:${list.getQty()} <br>餐點價格:${list.getPrice() } <br>訂購時間:${list.getOrderTime() }
+
+
+					${payError}
+
+					<div
+						style="clear: both; width: 500px; margin: 0 auto; margin-top: 100px">
+						<c:forEach var="list" items="${MenuList}">
+
+							<div class="row"
+								style="text-align: center; border-style: solid; border-width: 1px; border-color: black; width: 300px; margin-bottom: 20px; padding: 10px;">
+								訂單編號:${ list.getOrderId()} <br>訂購餐點:${ list.getMenu().getMenuName()}
+								<br>訂購數量:${list.getQty()} <br>餐點價格:${list.getPrice() }
+								<br>訂購時間:${list.getOrderTime() }
+							</div>
+
+						</c:forEach>
+					</div>
+
+
+				</div>
 			</div>
-			
-	</c:forEach>
+
+		</section>
 	</div>
+
+
+
+
+
+
+
 
 
 </body>
