@@ -104,18 +104,16 @@
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 													class="caret"></span></a>
-												<ul class="dropdown-menu mega-dropdown-menu coach">
+												<ul style="margin-left: 240px;" class="dropdown-menu mega-dropdown-menu coach">
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">一對一課程</li>
-															<li><a class="dropdown-item"
-																href="/coach/coachClassAdd">新增課程</a></li>
-															<li><a class="dropdown-item"
-																href="/classIntroduction">課程介紹</a></li>
-															<li><a class="dropdown-item"
-																href="/coach/coachClassList">我的課程 </a></li>
-															<li><a class="dropdown-item"
-																href="/member/memberClassListHistory">我的課程(歷史紀錄) </a></li>
+                                                                        <li><a class="dropdown-item"
+                                                                            href="/coach/coachClassAdd">新增課程</a></li>
+<!--                                                                        <li><a class="dropdown-item" -->
+<!--                                                                            href="/classIntroduction">課程介紹</a></li> -->
+                                                                        <li><a class="dropdown-item"
+                                                                            href="/coach/coachClassList">我的課程 </a></li>
 														</ul>
 													</li>
 												</ul>

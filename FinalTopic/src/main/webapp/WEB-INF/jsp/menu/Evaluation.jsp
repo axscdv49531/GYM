@@ -234,7 +234,7 @@
 
 
 			<div style="margin-left: 20px;margin-top: 70px">
-		<textarea id="suggestion" rows="10" cols="40" placeholder="意見欄" style="background-color: #DEDEBE ; ; color: white"></textarea>
+		<textarea id="suggestion" rows="10" cols="40" placeholder="意見欄" style="background-color: #DEDEBE ; ; color: black"></textarea>
 		</div>	
 		
 		

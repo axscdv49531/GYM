@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ page language="java" import="java.net.InetAddress" %>
  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +24,10 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
+	<script>
+	var ip="${ip}";
+	
+	</script>
 </head>
 <body>
 
@@ -74,7 +80,7 @@
 			required data -->
 										<input type="text" size="100" width="100px" maxlength="100"
 											class="form-control" id="content"
-											value="http://192.168.138.235:8080/changeStatus.controller?id="
+											value="http://192.168.50.26:8080/changeStatus.controller?id="
 											style="display: none;" />
 									</div>
 								</div>
@@ -114,10 +120,11 @@
 							contentType : 'application/json',
 							success : function(data) {
 								function createQR(orderId){
-									var url = "https://chart.googleapis.com/chart?cht=qr&chl=http://192.168.50.26:8080/changeStatus.controller?id=" 
+									var url = "https://chart.googleapis.com/chart?cht=qr&chl=http://"
+												+ip+":8080/changeStatusQR.controller?id=" 
 												+ orderId + "&chs=160x160&chld=L|0";
 									image = "<img src=" + url + " class='qr-code img-thumbnail img-responsive' />";
-									button = "<a href='http://192.168.50.26:8080/changeStatus.controller?id=" 
+									button = "<a href='http://"+ip+":8080/changeStatus.controller?id=" 
 												+ orderId + "' style='margin:20px;padding:10px 20px;font-size:24px;background-color:white;'>出貨</a>"	
 									return image+button;
 								}
@@ -179,7 +186,7 @@
 															+ n.qty;
 													totalprice = totalprice
 															+ price;
-													tQuanty += n.id+":"+n.qty+"<br>";
+													tQuanty += n.food+" : "+n.qty+"<br>";
 
 													if (data.length == 0) {
 														tr = ('<tr><th scope="row">'

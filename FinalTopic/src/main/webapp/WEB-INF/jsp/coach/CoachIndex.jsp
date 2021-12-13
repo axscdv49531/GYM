@@ -120,8 +120,8 @@
 																		<li class="dropdown-header">一對一課程</li>
 																		<li><a class="dropdown-item"
 																			href="/coach/coachClassAdd">新增課程</a></li>
-																		<li><a class="dropdown-item"
-																			href="/classIntroduction">課程介紹</a></li>
+<!-- 																		<li><a class="dropdown-item" -->
+<!-- 																			href="/classIntroduction">課程介紹</a></li> -->
 																		<li><a class="dropdown-item"
 																			href="/coach/coachClassList">我的課程 </a></li>
 																	</ul>
