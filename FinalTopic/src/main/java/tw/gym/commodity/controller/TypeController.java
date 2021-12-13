@@ -23,7 +23,8 @@ public class TypeController {
 	ItemTypeService tService;
 	
 	@GetMapping("/admin/itemType")
-	public String toItemTypePage(){
+	public String toItemTypePage(Model m){
+		m.addAttribute("charMonth", tService.getChartMonth());
 		return "commodity/itemType";
 	}
 	
@@ -36,8 +37,7 @@ public class TypeController {
 	
 	@GetMapping("/admin/queryTypes")
 	@ResponseBody
-	public List<ItemTypeBean> getItemTypes(Model m){
-		m.addAttribute("charMonth", tService.getChartMonth());
+	public List<ItemTypeBean> getItemTypes(){
 		return tService.findAll();
 	}
 	
