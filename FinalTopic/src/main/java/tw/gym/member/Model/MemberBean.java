@@ -72,6 +72,7 @@ public class MemberBean implements Serializable {
 	Set<InbodyBean> inbody = new HashSet<>();
 
 	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	Set<DepositeBean> depositeBean = new HashSet<>();
 
 	// Dean

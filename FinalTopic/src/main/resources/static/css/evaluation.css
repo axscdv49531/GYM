@@ -1,13 +1,6 @@
 @charset "UTF-8";
 
 
-body{
-	background-image:url('images/starbackground3.jpg');
-	background-repeat: repeat;
-	background-color: rgba(0, 0, 0, .6);
-	
-}
-
 
 .maindiv{
 	position:relative;
@@ -43,10 +36,10 @@ font{
 	margin-top:30px;
 	margin-left:20px;
 	text-align: center;
-	background-color:#3C3C3C;
+	background-color:#DEDEBE ;
 	font-family:DFKai-sb;
-	color: white;
-	border-color:black; 
+	color:black;
+	border-color:black;
 }
 
 

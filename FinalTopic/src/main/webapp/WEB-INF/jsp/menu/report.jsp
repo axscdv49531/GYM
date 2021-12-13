@@ -43,17 +43,17 @@
 			<div style="width:100%;height:40px"></div>
 
 			<div style="width:100%;text-align:center">
-					<label for="from" style="font-family: DFKai-sb; font-size: 25px; ">From</label>
+					
 
 					<input type="text" id="setDate" name="setDate" class="date-picker"
 						style="font-family: DFKai-sb; font-size: 20px; cursor: pointer"
 						autocomplete="off"> 
-					<label for="to" style="font-family: DFKai-sb; font-size: 20px">to</label> 
+					
 					<input type="text" id="endDate" name="endDate"
-						style="font-family: DFKai-sb; font-size: 20px; cursor: pointer"
+						style="font-family: DFKai-sb; font-size: 20px; cursor: pointer;display: none"
 						autocomplete="off" readonly> 
 					<input type="button"  id="button"
-						style="font-family: DFKai-sb; font-size: 20px;cursor: pointer;padding:5px 10px;margin-left:10px;background-color:white;border:none" value="查詢">
+						style="font-family: DFKai-sb; font-size: 20px;cursor: pointer;padding:5px 10px;margin-left:10px;background-color:white;border:none" value="查詢日期">
 				
 
 			</div>	
@@ -124,13 +124,13 @@
       
       
       
-      <div class="row" style="margin:0 auto;width: 900px;margin-top:100px" >
+      <div class="row" style="margin:0 auto;width:900px;margin-top:100px" >
           <div class="col-lg-10 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
+              <div class="card"  style="width:900px;">
+                <div class="card-body" >
                   <h4 class="card-title" style="margin-top: 5px" >餐飲成本</h4>
                 
-                  <table style="font-size:16px;width:700px;height: 200px" >
+                  <table style="font-size:20px;width:880px;" >
                     <thead>
                       <tr style="background-color: #CCCCFF">
                         <td>產品名稱</td>
@@ -164,11 +164,11 @@
 
 		<div class="row" style="margin:0 auto;width: 900px;margin-top:100px" >
 		<div class="col-lg-10 grid-margin stretch-card">
-			<div class="card">
-				<div class="card-body">
+			<div class="card"  style="width:880px;">
+				<div class="card-body" >
 					<h4 class="card-title">損益表</h4>
 
-					<table style="font-size:16px;width:700px;height: 200px">
+					<table style="font-size:20px;width:850px;">
 						<tr style="background-color: #CCCCFF">
 							<td scope="row">項目</td>
 							<td scope="row">每月</td>

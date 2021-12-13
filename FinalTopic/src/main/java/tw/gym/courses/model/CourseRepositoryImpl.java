@@ -1,5 +1,7 @@
 package tw.gym.courses.model;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 
@@ -77,5 +79,12 @@ public class CourseRepositoryImpl implements CourseRepositoryCustom {
 		num--;
 		updatedcourse.setStudentNum(num);
 		cReps.save(updatedcourse);
+	}
+	
+	//自定義；批量刪除
+	public void deleteBatch(List<Integer> ids) {
+		for(Integer id:ids) {
+			cReps.deleteById(id);
+		}
 	}
 }

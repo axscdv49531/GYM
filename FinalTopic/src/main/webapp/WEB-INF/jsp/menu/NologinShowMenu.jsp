@@ -59,7 +59,7 @@
 </head>
 
 <body>
-	<div class="container">
+	<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 100% ">
 		<section id="top">
 			<header>
 				<div class="container">
@@ -201,12 +201,9 @@
 					</div>
 				</div>
 			</header>
-		</section>
-	</div>		
-
-
-
-			<div
+			<div class="full-slider">
+				<div id="carousel-example-generic" class="carousel slide">
+					<div
 				style="height: 55px; width: 55px; float: right; cursor: pointer; margin: 10px 20px; position: relative; display: none;">
 				<font size=4 color="red" style="float: right" id="cart_n">0</font> <a
 					href="shoppingCart.controller" class="transition"> <img
@@ -215,7 +212,7 @@
 				</a>
 			</div>
 
-			<div style="margin-top: 360px">
+			<div style="">
 				<!-- 主要DIV -->
 				<div class="mainDiv">
 					<h3 class="FontTitle"></h3>
@@ -307,12 +304,13 @@
 
 
 				<div id="suggestion"
-					style="border-style: solid; border-color: black; border-width: 1px; background-color: white; margin: 0 auto; overflow: auto; position: fixed; z-index: 999; left: 15%; top: 100px; width: 70%; height: 600px; display: none;">
+					style="border-style: solid; border-color: #D6D6AD; border-width: 1px; background-color: #D6D6AD; margin: 0 auto; overflow: auto; position: fixed; z-index: 999; left: 15%; top: 100px; width: 70%; height: 600px; display: none;">
+					
 					<img src="images/cross.png" onclick="suggestion_close()"
-						style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px; background-color: white">
+						style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px; background-color: #D6D6AD">
 					<br> <br>
 					<div id="suggestionText"
-						style="color: black; text-align: center; width: 90%; font-size: 20px;">
+						style="color: black; text-align: center; width: 90%; ">
 
 					</div>
 				</div>
@@ -320,6 +318,16 @@
 
 
 			</div>
+				</div>
+				</div>
+			
+			
+		</section>
+	</div>		
+
+
+
+		
 
 
 
@@ -468,14 +476,13 @@
       		var tr="";
       		
       		
-      		
       		var total=score[name][0]/score[name][1];
-      		$("#suggestionText").append("<div style='width:80%;'>網友評分:"+total.toFixed(1)+" 分"+"</div>");
+      		$("#suggestionText").append("<div style='width:80%;font-size:25px;font-family:DFKai-sb;'>網友評分:"+total.toFixed(1)+" 分"+"</div>");
       		$("#suggestionText").append("<br>");
       		for(var x=0;x<strAry.length-1;x++){
-      			$("#suggestionText").append("<div style='width:90%;float:left;border-style:solid;border-color:grey;border-width:1px;margin:20px 20px;padding:20px 20px;'>"
-              	+"<p style='float:left;'>網友 "+(x+1)+" 說 :</p> "
-              	+"<textarea cols='40' wrap='hard' style='border:none;outline:none;' readonly>"
+      			$("#suggestionText").append("<div style='width:55%;border-left-style:solid;border-left-color:grey;border-left-width:3px;margin:20px 20px;padding:20px 20px;border-radius:0px'>"
+              	+"&emsp;"+"<p style='float:left;font-size:25px;	font-family:DFKai-sb;'>網友 "+(x+1)+" 說 :</p> "
+              	+"<textarea cols='40' wrap='hard' style='border:none;outline:none;font-size:20px;font-family:DFKai-sb;' readonly>"
               	+strAry[x]
               	+"</textarea>"
               	+"<br></div>");

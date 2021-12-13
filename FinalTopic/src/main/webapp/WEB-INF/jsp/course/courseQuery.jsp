@@ -109,7 +109,7 @@ function showCourseList(data){
 			        	//"<td><a href='/course/showStudentQuery.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>查詢選課學生</button></a></td>"+
 			        	"<td><button id='' type='button' class='btn btn-danger' onclick='showStudent(" + n.id + ")'>查詢選課學生</button></td>"+
 			        	//"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>修改</button></a></td>"+
-			        	"<td><button  class = 'btn btn-danger' data-target='#updatemyModal'  data-toggle = 'modal' onclick='showOnUpdateForm(" + n.id + ")'>修改modal</button></td>"+		
+			        	"<td><button  class = 'btn btn-danger' data-target='#updatemyModal'  data-toggle = 'modal' onclick='showOnUpdateForm(" + n.id + ")'>修改</button></td>"+		
 			        	"<td><button id='' type='button' class='btn btn-danger' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
 			        	"<td><input type='checkbox' value='(" + n.id + ")' name='id'></td>"+
 			            "</tr>";
@@ -227,7 +227,7 @@ function sendQuery(indexPage){
 	
 	queryCondition = 'queryForm';
 	
-	var formArray = $("form").serializeArray()
+	var formArray = $("#queryForm").serializeArray()
 	var json = arrayToJson(formArray);
 	console.log(formArray);
 	console.log("json:"+json);
@@ -305,7 +305,7 @@ function showStudent(courseId){
 					   $('#showstudent').append("<tr><td colspan='2'>暫無資料</td></tr>");;
 				   }else{
 					   var stuTable = $('#showstudent');
-					   stuTable.append("<tr id='ptitle'><th>學生編號</th><th>學生名稱</th><th>學生性別</th><th>學生電話</th><th>學生信箱</th><th>緊急聯絡人</th><th>緊急聯絡人電話</th><th>修改</th><th>刪除</th></tr>");
+					   stuTable.append("<tr id='ptitle'><th>學生編號</th><th>學生名稱</th><th>學生性別</th><th>學生電話</th><th>學生信箱</th><th>緊急聯絡人</th><th>緊急聯絡人電話</th></tr>");
 					   
 					   $.each(data, function(i,n){
 						   
@@ -315,8 +315,8 @@ function showStudent(courseId){
 						            "<td>" + n.name + "</td>" + "<td>" + n.gender + "</td>" +
 						            "<td>" + n.phone + "</td>" + "<td>" + n.email + "</td>" + 
 						            "<td>" + n.emergencyContact + "</td>" + "<td>" + n.emergencyPhone + "</td>" + 
-						        	"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>修改</button></a></td>"+
-						        	"<td><button id='' type='button' class='btn btn-danger' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
+						        	//"<td><a href='/course/showUpdateForm.controller?courseId="+ n.id +"'><button id='' type='button' class='btn btn-danger'>修改</button></a></td>"+
+						        	//"<td><button id='' type='button' class='btn btn-danger' onclick='confirmDelete(" + n.id + ")'>刪除</button></td>"+
 						            "</tr>";
 						            stuTable.append(tr);
 					   });
@@ -583,7 +583,6 @@ function arrayToJson(formArray){
                  <h4 class = "modal-title"   id = "myModalLabel" > 更新課程 </h4> 
              </div > 
              <div class = "modal-body" > 
-             helllloooo
            <form id="updateform">
              	<table style="border-collapse: separate; border-spacing:0 10px;">
              	<input type = "hidden" name="id" id="updateid" />
@@ -702,14 +701,14 @@ function arrayToJson(formArray){
 <div class="form-inline">
 <fieldset>	
 	<legend>課程查詢表單</legend>
-		<a href="<c:url value='/thisweekcourse' />">本週課程</a>		
+<%-- 		<a href="<c:url value='/thisweekcourse' />">本週課程</a>		 --%>
 		<button class='btn btn-danger' onclick='todayCourse(1)'>當日課程</button>
 		<button class='btn btn-danger' onclick='showAllCourse(1)'>查詢所有課程</button>
 		
 	<br>
 	<br>
-	<form>
-
+<!-- 多條件查詢表單  -->
+	<form id="queryForm">
 	<select name="category" class="form-control">
 		<option value="" label="請選擇課程種類" selected="selected"></option>
 		<option value="舞蹈類課程" >舞蹈類課程</option>
