@@ -124,69 +124,69 @@
           time_zone;
   };
   
- //获取时间段 （一周的时间 七天）
+//  获取时间段 （一周的时间 七天）
 
-var formatDate = function(date) {
-	return date.toISOString().slice(0,10);
- };
+// var formatDate = function(date) {
+// 	return date.toISOString().slice(0,10);
+//  };
 
- var addDate = function(date, n) {
-	date.setDate(date.getDate() + n);
-	return date;
-};
+//  var addDate = function(date, n) {
+// 	date.setDate(date.getDate() + n);
+// 	return date;
+// };
 
-var setDate = function(date) {
-	var week = date.getDay() - 1;
-	date = addDate(date, week * -1);
-	var weekList = [];
-	for (var i = 0; i < 7; i++) {
-		weekList[i] = formatDate(i == 0 ? date : addDate(date, 1));
-	}
-	return weekList;
-};
+// var setDate = function(date) {
+// 	var week = date.getDay() - 1;
+// 	date = addDate(date, week * -1);
+// 	var weekList = [];
+// 	for (var i = 0; i < 7; i++) {
+// 		weekList[i] = formatDate(i == 0 ? date : addDate(date, 1));
+// 	}
+// 	return weekList;
+// };
 
 
-var today = formatDate(new Date()); //今日日期
-console.log('today: '+today);
+// var today = formatDate(new Date()); //今日日期
+// console.log('today: '+today);
 
   
 //獲取當周一到周日的格式化日期
 
 
-//   var now = new Date(new(Date)); //當前日期
-//   var nowDayOfWeek = now.getDay(); //今天本週的第幾天
-//   var nowDay = now.getDate(); //當前日
-//   var nowMonth = now.getMonth(); //當前月
-//   var nowYear = now.getFullYear(); //當前年
+  var now = new Date(new(Date)); //當前日期
+  var nowDayOfWeek = now.getDay(); //今天本週的第幾天
+  var nowDay = now.getDate(); //當前日
+  var nowMonth = now.getMonth(); //當前月
+  var nowYear = now.getFullYear(); //當前年
 
-//   if (nowDayOfWeek == 0) {
-//     mondayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 7);
-//     tuesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 6);
-//     wednesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 5);
-//     thursdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 4);
-//     fridayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 3);
-//     saturdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 2);
-//     sundayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 -1);
+  if (nowDayOfWeek == 0) {
+    mondayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 7);
+    tuesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 6);
+    wednesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 5);
+    thursdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 4);
+    fridayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 3);
+    saturdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 - 2);
+    sundayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 -1);
 
-//   } else {
-//     mondayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
-//     tuesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +1);
-//     wednesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +2);
-//     thursdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +3);
-//     fridayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +4);
-//     saturdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +5);
-//     sundayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 + 6);
-//   }
+  } else {
+    mondayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1);
+    tuesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +1);
+    wednesdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +2);
+    thursdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +3);
+    fridayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +4);
+    saturdayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 +5);
+    sundayDate = new Date(nowYear, nowMonth, nowDay - nowDayOfWeek + 1 + 6);
+  }
 
-//   var mondaystr = mondayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var tuesdaystr = tuesdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var wednesdaystr = wednesdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var thursdaystr = thursdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var fridaystr = fridayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var saturdaystr = saturdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
-//   var sundaystr = sundayDate.toISOString().slice(0,10); //格式化後，本周日的日期
+  var mondaystr = mondayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var tuesdaystr = tuesdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var wednesdaystr = wednesdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var thursdaystr = thursdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var fridaystr = fridayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var saturdaystr = saturdayDate.toISOString().slice(0,10); //格式化後，本周一的日期
+  var sundaystr = sundayDate.toISOString().slice(0,10); //格式化後，本周日的日期
   
-//   var dayStr = [mondaystr,tuesdaystr,wednesdaystr,thursdaystr,fridaystr,saturdaystr,sundaystr]
+  var dayStr = [mondaystr,tuesdaystr,wednesdaystr,thursdaystr,fridaystr,saturdaystr,sundaystr]
 
   const timetableType = [
     [{ index: '1', name: '09:00-09:50' }, 1],
@@ -227,8 +227,9 @@ for(let i=0;i<7;i++){
 
 /////////////顯示時間課表//////////////////////////////////
 var classroom='A'
-var thisWeek = setDate(addDate(new Date(), 0)); //本周
-var dayStr = thisWeek;
+//var thisWeek = setDate(addDate(new Date(), 0)); //本周
+//var lastWeek=setDate(addDate(new Date(),-7));
+//var dayStr = lastWeek;
 console.log(dayStr)
 
 var week = [
@@ -295,7 +296,7 @@ function showTimeTable(classroom,week){
 			contentType : 'application/json;charset=utf-8',
 			success : function(data) {
 				//showCourseList(data);
-				//console.log(data);
+				console.log(data);
 				
 
 			    $.each(data, function (i, n) {
@@ -326,6 +327,7 @@ function showTimeTable(classroom,week){
 			        }
 			      }
 			    }
+			    console.log(testtimtables)
 			    // 实例化(初始化课表)
 			    const timetable = new Timetables({
 			    category:categoryTB,
