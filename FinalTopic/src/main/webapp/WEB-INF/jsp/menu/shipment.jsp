@@ -74,7 +74,7 @@
 			required data -->
 										<input type="text" size="100" width="100px" maxlength="100"
 											class="form-control" id="content"
-											value="http://192.168.50.26:8080/changeStatus.controller?id="
+											value="http://192.168.138.235:8080/changeStatus.controller?id="
 											style="display: none;" />
 									</div>
 								</div>
