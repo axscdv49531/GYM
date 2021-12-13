@@ -50,7 +50,8 @@
 			<div class="form-floating">
 				<label for="floatingPassword">密碼</label><input type="password"
 					class="form-control" id="floatingPassword" placeholder="Password"
-					name="password">
+					name="password"/>
+					<span th:if="${param.error}">帳號或密碼錯誤，請重新輸入</span>
 			</div>
 
 			<div class="checkbox mb-3">
