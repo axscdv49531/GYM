@@ -36,20 +36,19 @@ public class CartController {
 	@Autowired
 	MemberService mbService;
 	
-//	@GetMapping("commCart/cart")
 	@GetMapping("/commcart")
 	public String toCartPage(Principal p, Model m) {
-//		MemberBean member = mbService.findByEmail(p.getName());
-//		if (member == null) {
-//			return "redirect:/";
-//		}
-//		m.addAttribute("MemberName", hideInfo(member.getName(), 0));
-//		m.addAttribute("MemberEmail", hideInfo(member.getEmail(), 1));
-//		m.addAttribute("MemberPhone", hideInfo(member.getPhone(), 2));
+		MemberBean member = mbService.findByEmail(p.getName());
+		if (member == null) {
+			return "redirect:/";
+		}
+		m.addAttribute("MemberName", hideInfo(member.getName(), 0));
+		m.addAttribute("MemberEmail", hideInfo(member.getEmail(), 1));
+		m.addAttribute("MemberPhone", hideInfo(member.getPhone(), 2));
 		
-		m.addAttribute("MemberName", hideInfo("金秀賢", 0));
-		m.addAttribute("MemberEmail", hideInfo("karischien@outlook.com", 1));
-		m.addAttribute("MemberPhone", hideInfo("0911895789", 2));
+//		m.addAttribute("MemberName", hideInfo("金秀賢", 0));
+//		m.addAttribute("MemberEmail", hideInfo("karischien@outlook.com", 1));
+//		m.addAttribute("MemberPhone", hideInfo("0911895789", 2));
 		return "commodityshop/showCart";
 	}
 	

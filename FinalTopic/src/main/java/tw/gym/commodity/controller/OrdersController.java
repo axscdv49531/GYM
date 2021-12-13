@@ -69,18 +69,18 @@ public class OrdersController {
 	
 	@GetMapping("/commorder/orderlog")
 	public String toOrderHistoryPage(Principal p) {
-//		MemberBean member = mbService.findByEmail(p.getName());
-//		if (member == null) {
-//			return "redirect:/";
-//		}
+		MemberBean member = mbService.findByEmail(p.getName());
+		if (member == null) {
+			return "redirect:/";
+		}
 		return "commodityshop/orderLog";
 	}	
 	
 	@GetMapping("/commorder/queryAllLog")
 	@ResponseBody
 	public List<OrdersBean> getAllOrdersWithMember(Principal p) {
-//		return orderService.findByMemberId(mbService.findByEmail(p.getName()).getNumber());
-		return orderService.findByMemberId(mbService.findByEmail("eeit134019@outlook.com").getNumber());
+		return orderService.findByMemberId(mbService.findByEmail(p.getName()).getNumber());
+//		return orderService.findByMemberId(mbService.findByEmail("eeit134019@outlook.com").getNumber());
 	}
 	
 	@DeleteMapping("commorder/cancel/{id}")
@@ -94,8 +94,8 @@ public class OrdersController {
 	@ResponseBody
 	public List<OrdersBean> getOrderLog(@RequestBody OrdersBean querybean, Principal p) {
 		System.out.println(querybean.getOrderId()+", "+ querybean.getOrderDate()+" ,"+ querybean.getPickUpDate()+" ,"+querybean.getMemberId()+", "+querybean.getStatus());
-//		querybean.setMemberId(mbService.findByEmail(p.getName()).getNumber());
-		querybean.setMemberId(mbService.findByEmail("eeit134019@outlook.com").getNumber());
+		querybean.setMemberId(mbService.findByEmail(p.getName()).getNumber());
+//		querybean.setMemberId(mbService.findByEmail("eeit134019@outlook.com").getNumber());
 		ExampleMatcher matcher = ExampleMatcher.matching();
 		Example<OrdersBean> example = Example.of(querybean, matcher);
 		return orderService.findAllByExample(example, Sort.by("orderDate").descending().and(Sort.by("totalAmt").descending()));
@@ -105,9 +105,9 @@ public class OrdersController {
 	@PostMapping("/commorder/processOrder")
 	public String toProcessOrder(@RequestParam("pickUpDate") String date, @RequestParam int payTerm, 
 			Principal p, Model m, WebRequest webRequest, SessionStatus status) {
-//		MemberBean member = mbService.findByEmail(p.getName());
+		MemberBean member = mbService.findByEmail(p.getName());
 		System.out.println(date);
-		MemberBean member = mbService.findByEmail("eeit134019@outlook.com");
+//		MemberBean member = mbService.findByEmail("eeit134019@outlook.com");
 		
 		Date today = new Date();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
