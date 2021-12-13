@@ -115,6 +115,34 @@ public class ShipmentController {
 	}
 	
 	
+	@GetMapping("/changeStatusQR.controller")
+	@ResponseBody
+	public String changeStatusQR(@RequestParam("id")Integer id,Model m,HttpSession httpSession) {
+		List<OrderMenu> orderMenu=Oservice.findAllByOrderId(id);
+	
+		Date day = new Date();
+		String toEmail="";
+		String userName="";
+		for(int i=0;i<orderMenu.size();i++) {
+			orderMenu.get(i).setStatuse("已出貨");
+			orderMenu.get(i).setDeliveryTime(day);
+			toEmail=orderMenu.get(i).getMemberBean().getEmail();
+			userName=orderMenu.get(i).getMemberBean().getName();
+			Oservice.update(orderMenu.get(i));
+		}
+		
+		System.out.println(toEmail+",toEmail");
+		System.out.println(userName+",userName");
+	
+	
+		String subject ="出貨通知";
+		String body =userName+"先生/小姐您好,您所訂購的餐點已出貨,請於5分鐘後至大聽取餐";
+		emailSerive.sendEmail(toEmail, subject, body);
+	
+		return 	"已出貨";
+	}
+	
+	
 	@GetMapping("/code.controller")
 	public String code() {
 		return "menu/code";

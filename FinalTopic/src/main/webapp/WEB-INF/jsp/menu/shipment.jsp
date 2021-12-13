@@ -121,7 +121,7 @@
 							success : function(data) {
 								function createQR(orderId){
 									var url = "https://chart.googleapis.com/chart?cht=qr&chl=http://"
-												+ip+":8080/changeStatus.controller?id=" 
+												+ip+":8080/changeStatusQR.controller?id=" 
 												+ orderId + "&chs=160x160&chld=L|0";
 									image = "<img src=" + url + " class='qr-code img-thumbnail img-responsive' />";
 									button = "<a href='http://"+ip+":8080/changeStatus.controller?id=" 
