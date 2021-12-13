@@ -80,12 +80,11 @@ function showCoachClassList(coachId){
 						} else {
 							var div = $('#showcoachlist');
 							//                    table.append("<tr id='ptitle'><th>教練大頭照</th><th>教練姓名</th></tr>");
-
 							$
 									.each(
 											data,
 											function(i, n) {
-												var div2 = "<div class='col-md-3 column' style='padding-right:15px;padding-left:15px'><div style='border-radius:0' class='card'><img class='img-responsive' src="
+												var div2 = "<div class='col-md-3 column' style='padding-right:15px;padding-left:15px'><div style='border-radius:0' class='card'><img style='width: 600px; height: 420px;' class='img-responsive' src="
 														+ "<c:url value='/administrator/getCoachPicture?coachAccount=' />"
 														+ n.coachAccount
 														+ " alt='John' style='width:100%'><div class='center'><h4 style='margin: 20px 0 0 0;'>"
@@ -112,9 +111,13 @@ function showCoachClassList(coachId){
     </section>
           <section style="background-color:white;padding:30px" id="contant" class="contant main-heading team">
 	<div class="row">
-		<div class="container">
+<!-- 		<div class="container"> -->
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="news-post-holder">
 			<div id="showcoachlist" border="1"></div>
-		</div>
+<!-- 		</div> -->
+	</div>
+	</div>
 	</div>
 	</section>
 </body>
