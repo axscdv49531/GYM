@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 
-	<link rel="apple-touch-icon" sizes="76x76" href="../admintemplate/img/apple-icon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../admintemplate/img/apple-icon.png">
     <link rel="icon" type="image/png" href="../admintemplate/img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     
@@ -51,7 +51,7 @@
                     </a>
                 </div>
                 <ul class="nav">
-                    <li class="nav-item active" >
+                    <li class="" >
                         <a class="nav-link" href="<c:url value='/adminindex' />">
                             <i class="nc-icon nc-chart-pie-35"></i>
                             <p>管理者首頁</p>
@@ -63,8 +63,8 @@
                             <p>會員資料專區</p>
                         </a>
                     </li>
-                    <li>
-                        <a class="nav-link " href="<c:url value='/administrator/coachAdminPage'/>">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="./table.html">
                             <i class="nc-icon nc-notes"></i>
                             <p>教練專區</p>
                         </a>
@@ -77,7 +77,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/ToShipmentPage.controller">
+                        <a class="nav-link" href="./icons.html">
                             <i class="nc-icon nc-atom"></i>
                             <p>訂餐系統專區</p>
                         </a>
