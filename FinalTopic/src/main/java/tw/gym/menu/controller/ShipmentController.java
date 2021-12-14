@@ -95,11 +95,14 @@ public class ShipmentController {
 		Date day = new Date();
 		String toEmail="";
 		String userName="";
+		Integer Orderid=0;
+		
 		for(int i=0;i<orderMenu.size();i++) {
 			orderMenu.get(i).setStatuse("已出貨");
 			orderMenu.get(i).setDeliveryTime(day);
 			toEmail=orderMenu.get(i).getMemberBean().getEmail();
 			userName=orderMenu.get(i).getMemberBean().getName();
+			Orderid=orderMenu.get(i).getOrderId();
 			Oservice.update(orderMenu.get(i));
 		}
 		
@@ -108,7 +111,7 @@ public class ShipmentController {
 	
 	
 		String subject ="出貨通知";
-		String body =userName+"先生/小姐您好,您所訂購的餐點已出貨,請於5分鐘後至大聽取餐";
+		String body =userName+"先生/小姐您好,"+"編號"+Orderid+"已出貨,請於5分鐘後至大聽取餐,若您對餐點有任何想法,請到下列網址提供您寶貴的意見http://192.168.138.236:8080/ToEvaluationMainPage";
 		emailSerive.sendEmail(toEmail, subject, body);
 	
 		return 	"redirect:ToShipmentPage.controller";
