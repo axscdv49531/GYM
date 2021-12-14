@@ -44,6 +44,7 @@ public class AdminController {
 	public String insert(Model m, @ModelAttribute("admin") Admin admin) {
 		String encodePwd = new BCryptPasswordEncoder().encode(admin.getPassword());
 		admin.setPassword(encodePwd);
+		admin.setStatus(1);
 		adminService.insert(admin);
 		return "redirect:/";
 	}
