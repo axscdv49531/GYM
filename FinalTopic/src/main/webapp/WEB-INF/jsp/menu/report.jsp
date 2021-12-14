@@ -326,6 +326,7 @@
 									var n=Number($("#Quanty"+i).html());
 									
 									var p=(Number(food[i][1]) - Number(cost.get(food[i][0])))*n;
+									console.log(p+","+food[i][1]+","+cost.get(food[i][0]));
 									income+=Number(food[i][1])*n;
 									foodCost+=Number(cost.get(food[i][0]))*n;
 									arrayP.push(p);
@@ -364,6 +365,7 @@
 									if(percent > 1) {
 										percent=1.0;
 									}
+									console.log(percent.toString()+",1 "+ arrayP[i]);
 									$("#chart"+i).css('--size', percent.toString());
 									$("#chart"+i).html(arrayP[i]+"("+parseInt(arrayP[i]*100/foodProfit)+"%)");
 								}
@@ -417,7 +419,8 @@
 					console.log("food: "+food);
 					
 					var q=$("#Quanty0").html();
-					if(q.length > 0) {
+					console.log("q: "+q);
+					if(parseInt(q) > 0 && q != "0") {
 						var total=0;
 						var foodCost=0;
 						var income=0;
@@ -451,6 +454,7 @@
 							if(percent > 1) {
 								percent=1.0;
 							}
+							console.log(percent.toString()+",2, "+ arrayP[i]);
 							$("#chart"+i).css('--size', percent.toString());
 							$("#chart"+i).html(arrayP[i]+"("+parseInt(arrayP[i]*100/foodProfit)+"%)");
 						}
