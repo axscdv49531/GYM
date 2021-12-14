@@ -40,7 +40,7 @@ $(document).ready(function() {
 });
 
 function autoKeyIn(){
-	document.getElementById("classname").value = "綜合格鬥";
+	document.getElementById("classname").value = "綜合格鬥專題展示用";
 	document.getElementById("datee").value = "2021-12-27";
 	document.getElementById("start").value = "09:00";
 	document.getElementById("show").value = "2";

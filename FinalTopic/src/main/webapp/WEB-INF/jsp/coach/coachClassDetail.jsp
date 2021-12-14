@@ -105,8 +105,8 @@ function print_value() {
                     </tr>
                     <form:input type="hidden" path="classAvaliable" />
 			<tr>
-				<td colspan='2' align='center'><input type='submit' name="edit"
-					value='提交'><input type='submit' name="delete" value='刪除'></td>
+				<td colspan='2' align='center'><input type='submit' class="btn" name="edit"
+					value='提交'><input type='submit' class="btn" name="delete" value='刪除'></td>
 			</tr>
 
 		</table>
