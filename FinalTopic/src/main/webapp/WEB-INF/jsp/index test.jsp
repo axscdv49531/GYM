@@ -143,15 +143,15 @@
 			</div>
 		</section>
 	</div>
-	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
-	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
-	<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a>
-	<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a>
-	<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
-	<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a>
-	<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a>
+<%-- 	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a> --%>
 
-	<a class="nav-link" href="<c:url value= '/adminindex'/>">管理者專區</a>
+<%-- 	<a class="nav-link" href="<c:url value= '/adminindex'/>">管理者專區</a> --%>
 
 
 </body>

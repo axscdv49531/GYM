@@ -16,8 +16,9 @@
 <!-- Site CSS -->
 <link rel="stylesheet" href="../css/style.css">
 <!-- Colors CSS -->
+<link rel="stylesheet" href="../css/colors.css">
 <!-- ALL VERSION CSS -->
-
+<link rel="stylesheet" href="../css/versions.css">
 <!-- Responsive CSS -->
 <link rel="stylesheet" href="../css/responsive.css">
 <!-- Custom CSS -->
@@ -35,59 +36,49 @@
 <link href="http://www.jqueryscript.net/css/jquerysctipttop.css"
 	rel="stylesheet" type="text/css">
 
-
-<script src="/js/3dslider.js"></script>
-
-    <script src="../js/3dslider.js"></script>
-
+<script src="../js/3dslider.js"></script>
 
 <!-- ALL JS FILES -->
 <script src="../js/all.js"></script>
 
 <!-- ALL PLUGINS -->
 <script src="../js/custom.js"></script>
-
-
 <link rel=stylesheet href="style.css">
 <link rel=stylesheet href="showMenu.css">
 <link rel=stylesheet href="editFrom.css">
-
-
-
-
-
 </head>
 
 <body>
-	<div class="container" style="background-color:	#DEDEBE ;width: 100%;height: 100% ">
+	<div class="container"
+		style="background-color: #DEDEBE; width: 100%; height: 100%">
 		<section id="top">
 			<header>
 				<div class="container">
 					<div class="header-top">
 						<div class="row">
-							<div class="col-md-6">
-								<div class="full">
-									<div class="logo">
-										<a href="<c:url value='/login/MemberSuccess' />"><img
-											src="../images/springfitnesslogo6.png" alt="index" /></a>
+							<div class="col-md-4">
+								<a class="logo" href="<c:url value='/login/MemberSuccess' />">
+									<div class="logo-content">
+										<img src="../images/springfitnesslogo6.png" alt="index" />
+										<h1>SPRINGFITNESS</h1>
 									</div>
-								</div>
+								</a>
 							</div>
-							<div class="col-md-6">
+							<div class="col-md-8 header-button-container">
 								<div class="right_top_section">
-									<%-- <c:out value="${loginUser.name },歡迎您" /> --%>
 									<!-- button section -->
 									<ul class="login">
 										<li class="login-modal"><a
-											href="<c:url value='/login/page' />" class="login"><svg
-													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-													fill="currentColor" class="bi bi-lock-fill"
-													viewBox="0 0 16 16">
+											href="/updatePassword/<c:out value='${loginUser.number}' />"
+											class="login"> <svg xmlns="http://www.w3.org/2000/svg"
+													width="16" height="16" fill="currentColor"
+													class="bi bi-lock-fill" viewBox="0 0 16 16">
                                                     <path
 														d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
-                                                </svg><i class="fa fa-user"></i>密碼變更</a></li>
+                                                </svg><i class="fa fa-user"></i>密碼變更
+										</a></li>
 										<li class="logout-modal"><a
-											href="<c:url value='/logout' />" class="logout"><svg
+											href="<c:url value='/logout' />" class="login"><svg
 													xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 													fill="currentColor" class="bi bi-person-fill"
 													viewBox="0 0 16 16">
@@ -151,26 +142,29 @@
 																		<li><a class="dropdown-item"
 																			href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
 																		</li>
+																		<li><a class="dropdown-item"
+																			href="/updateDeposite/<c:out value='${loginUser.number}' />">我要儲值</a>
+																		</li>
 																	</ul>
 																</li>
 															</ul></li>
-														<li class="dropdown-header"><a
-															href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-														<!--                                                         <li><a href="/classRes">預約私人課程</a></li> -->
-
+														<li><a href="<c:url value= '/member/showCoachList'/>">教練師資</a></li>
 														<li class="dropdown mega-dropdown"><a href="#"
 															class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 																class="caret"></span></a>
-															<ul class="dropdown-menu mega-dropdown-menu member">
+															<ul class="dropdown-menu mega-dropdown-menu coach">
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">一對一課程</li>
 																		<li><a class="dropdown-item"
-																			href="/classReservation">課程預約</a></li>
+																			href="/member/classReservation">課程預約</a></li>
 																		<li><a class="dropdown-item"
 																			href="/classIntroduction">課程介紹</a></li>
 																		<li><a class="dropdown-item"
-																			href="/memberViewClassLists">我的課程 </a></li>
+																			href="/member/memberViewClassLists">我的課程 </a></li>
+																		<li><a class="dropdown-item"
+																			href="/member/memberClassListHistory">我的課程(歷史紀錄)
+																		</a></li>
 																	</ul>
 																</li>
 															</ul>
@@ -191,13 +185,19 @@
 																	</ul>
 																</li>
 															</ul></li>
-
-														<li><a href="shoppingCart.controller" >購物車 
-														</a></li>
-														<li><a href="ToEvaluationMainPage" >餐點滿意度調查
-														</a></li>
-														<li><a href="news.html">周邊商品</a></li>
-
+														<li class="dropdown mega-dropdown"><a href="#"
+															class="dropdown-toggle" data-toggle="dropdown">健康餐盒<span
+																class="caret"></span></a>
+															<ul class="dropdown-menu mega-dropdown-menu food-menu">
+																<li class="col-sm-12">
+																	<ul>
+																		<li class="dropdown-header">餐點</li>
+																		<li><a href="shoppingCart.controller" style="color:black">購物車 </a></li>
+																		<li><a href="ToEvaluationMainPage" style="color:black">餐點滿意度調查 </a></li>
+																	</ul>
+																</li>
+															</ul></li>
+														<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 													</ul>
 												</div>
 											</nav>
@@ -209,140 +209,138 @@
 					</div>
 				</div>
 			</header>
-			
-			
-			<div class="full-slider" >
+
+
+			<div class="full-slider">
 				<div id="carousel-example-generic" class="carousel slide">
-				
-				
-			<div
-				style="height: 55px; width: 55px; float: right; cursor: pointer; margin: 10px 20px; position: relative; display: none;">
-				<font size=4 color="red" style="float: right" id="cart_n">0</font> <a
-					href="shoppingCart.controller" class="transition"> <img
-					id="cart" src="images/carts.png"
-					style="height: 50px; width: 50px; position: absolute; top: 10px; right: 10px;">
-				</a>
-			</div>
-
-			<div style="">
-				<!-- 主要DIV -->
-				<div class="mainDiv">
-					<h3 class="FontTitle"></h3>
-					<c:forEach var="menuList" items="${MenuList}" varStatus="index">
 
 
-						<div class="PictureDivR">
+					<div
+						style="height: 55px; width: 55px; float: right; cursor: pointer; margin: 10px 20px; position: relative; display: none;">
+						<font size=4 color="red" style="float: right" id="cart_n">0</font>
+						<a href="shoppingCart.controller" class="transition"> <img
+							id="cart" src="images/carts.png"
+							style="height: 50px; width: 50px; position: absolute; top: 10px; right: 10px;">
+						</a>
+					</div>
 
-							<div style="float: left">
-								<img id="image1" src="images/${menuList.getMenuName()}.png"
-									class="img01">
-							</div>
+					<div style="">
+						<!-- 主要DIV -->
+						<div class="mainDiv">
+							<h3 class="FontTitle"></h3>
+							<c:forEach var="menuList" items="${MenuList}" varStatus="index">
 
-							<div style="float: right; width: 600px; height: 200px">
 
+								<div class="PictureDivR">
 
+									<div style="float: left">
+										<img id="image1" src="images/${menuList.getMenuName()}.png"
+											class="img01">
+									</div>
+
+									<div style="float: right; width: 600px; height: 200px">
 
 
 
-								<div
-									style="margin-left: 25px; margin-top: 25px; font-family: DFKai-sb; font-size: 25px; float: left">${menuList.getMenuName()}</div>
-
-								<div
-									style="margin-left: 25px; margin-top: 25px; font-family: DFKai-sb; font-size: 25px; float: right">.............................${menuList.getPrice()}</div>
 
 
+										<div
+											style="margin-left: 25px; margin-top: 25px; font-family: DFKai-sb; font-size: 25px; float: left">${menuList.getMenuName()}</div>
 
-								<div
-									style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 40px; float: left"
-									id="score${index.index}">綜合評分&emsp;</div>
-								<div
-									style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 40px; float: right; cursor: pointer;"
-									onclick="checkSuggestion('${menuList.getMenuName()}')">查看網友評論</div>
+										<div
+											style="margin-left: 25px; margin-top: 25px; font-family: DFKai-sb; font-size: 25px; float: right">.............................${menuList.getPrice()}</div>
 
 
-								<div
-									style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 170px; clear: both">${menuList.getMenudetail() }
-									<div
-										style="float: right; text-decoration: underline; cursor: pointer"
-										id="clickOrder${index.index}"
-										onclick="order('${menuList.getMenuName()}', '${menuList.getPrice()}')">點此訂購</div>
+
+										<div
+											style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 40px; float: left"
+											id="score${index.index}">綜合評分&emsp;</div>
+										<div
+											style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 40px; float: right; cursor: pointer;"
+											onclick="checkSuggestion('${menuList.getMenuName()}')">查看網友評論</div>
+
+
+										<div
+											style="margin-left: 25px; font-family: DFKai-sb; font-size: 25px; margin-top: 170px; clear: both">${menuList.getMenudetail() }
+											<div
+												style="float: right; text-decoration: underline; cursor: pointer"
+												id="clickOrder${index.index}"
+												onclick="order('${menuList.getMenuName()}', '${menuList.getPrice()}')">點此訂購</div>
+
+										</div>
+
+
+
+									</div>
 
 								</div>
 
-
-
-							</div>
-
+							</c:forEach>
 						</div>
 
-					</c:forEach>
-				</div>
+						<form:form action="OrderMenu.controller" method='POST'
+							modelAttribute="orderMenu">
 
-				<form:form action="OrderMenu.controller" method='POST'
-					modelAttribute="orderMenu">
+							<!--顯示資訊及訂餐-->
+							<div class="detailDiv01" id="showDetail1"
+								style="position: fixed; z-index: 999">
+								<img src="images/cross.png" onclick="order_close()"
+									style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px">
+								<br>
+								<form:select path="menu.menuName" size="1"
+									class="detailDiv01Font1" id="menuSelect">
+									<br>
+									<option value="0" style="background-color: #D6D6AD">請選擇餐點</option>
+									<c:forEach var="menuList" items="${MenuList}">
+										<option value="${menuList.getMenuName()}"
+											style="background-color: #D6D6AD">${menuList.getMenuName()}</option>
+									</c:forEach>
 
-					<!--顯示資訊及訂餐-->
-					<div class="detailDiv01" id="showDetail1"
-						style="position: fixed; z-index: 999">
-						<img src="images/cross.png" onclick="order_close()"
-							style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px">
-						<br>
-						<form:select path="menu.menuName" size="1"
-							class="detailDiv01Font1" id="menuSelect">
-							<br>
-							<option value="0" style="background-color: 	#D6D6AD">請選擇餐點</option>
-							<c:forEach var="menuList" items="${MenuList}">
-								<option value="${menuList.getMenuName()}" style="background-color: #D6D6AD">${menuList.getMenuName()}</option>
-							</c:forEach>
+								</form:select>
+								<br> <font size="5" class="detailDiv01Font2">價格:</font>
+								<form:input path="price" id="price2" class="detailDiv01Font2"
+									value="0" size="2" />
+								<br> <br> <font class="detailDiv01Font2">數量:</font> <img
+									src="images/MinusSign.svg" class="minusIcon"
+									style="cursor: pointer" />
+								<form:input path="qty" class="detailDiv01Font3" size="2"
+									id="menuqty" value="1" />
+								<img src="images/plus.svg" class="plusIcon"
+									style="cursor: pointer; margin: 0px;" /><input type="submit"
+									value="加入購物車" class="detailDiv01Font1" id="orderButton" />
+							</div>
+						</form:form>
 
-						</form:select>
-						<br> <font size="5" class="detailDiv01Font2">價格:</font>
-						<form:input path="price" id="price2" class="detailDiv01Font2"
-							value="0" size="2" />
-						<br> <br> <font class="detailDiv01Font2">數量:</font> <img
-							src="images/MinusSign.svg" class="minusIcon"
-							style="cursor: pointer" />
-						<form:input path="qty" class="detailDiv01Font3" size="2"
-							id="menuqty" value="1" />
-						<img src="images/plus.svg" class="plusIcon"
-							style="cursor: pointer;margin:0px;" /><input
-							type="submit" value="加入購物車" class="detailDiv01Font1"
-							id="orderButton" />
+
+
+
+
+						<div id="suggestion"
+							style="border-style: solid; border-color: #D6D6AD; border-width: 1px; background-color: #D6D6AD; margin: 0 auto; overflow: auto; position: fixed; z-index: 999; left: 15%; top: 100px; width: 70%; height: 600px; display: none;">
+
+							<img src="images/cross.png" onclick="suggestion_close()"
+								style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px; background-color: #D6D6AD">
+							<br> <br>
+							<div id="suggestionText"
+								style="color: black; text-align: center; width: 90%;"></div>
+						</div>
+
+
+
 					</div>
-				</form:form>
 
 
-
-
-
-				<div id="suggestion"
-					style="border-style: solid; border-color: #D6D6AD; border-width: 1px; background-color: #D6D6AD; margin: 0 auto; overflow: auto; position: fixed; z-index: 999; left: 15%; top: 100px; width: 70%; height: 600px; display: none;">
-					
-					<img src="images/cross.png" onclick="suggestion_close()"
-						style="height: 25px; width: 25px; float: right; cursor: pointer; margin: 10px 10px; background-color: #D6D6AD">
-					<br> <br>
-					<div id="suggestionText"
-						style="color: black; text-align: center; width: 90%; ">
-
-					</div>
 				</div>
-
-
-
 			</div>
-				
-				
-				</div>
-				</div>
-			
+
 		</section>
-	</div>		
+	</div>
 
 
 
 
 
-			<script>
+	<script>
 		var data = {
 			<c:forEach var="menuList" items="${MenuList}" varStatus="loop">
 	            '${menuList.getMenuName()}': ${menuList.getPrice()}${!loop.last ? ',' : ''}
@@ -594,5 +592,6 @@
 
 	</script>
 </body>
+
 
 </html>
