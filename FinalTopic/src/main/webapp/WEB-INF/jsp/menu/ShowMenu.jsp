@@ -192,6 +192,7 @@
 																<li class="col-sm-12">
 																	<ul>
 																		<li class="dropdown-header">餐點</li>
+																		<li><a href="/Menumain.controller" style="color:black">菜單 </a></li>
 																		<li><a href="shoppingCart.controller" style="color:black">購物車 </a></li>
 																		<li><a href="ToEvaluationMainPage" style="color:black">餐點滿意度調查 </a></li>
 																	</ul>
