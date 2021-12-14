@@ -92,4 +92,18 @@ public class DepositeController {
 		memberService.update(memberBean);		
 		return "redirect:/findAllMember";
 	}
+	@GetMapping("/adminAllDeposite/{number}")
+	public String findAllDeposite(Model model, @PathVariable("number") Integer number) {
+		List<DepositeBean> depositeBean = depositeService.findAllByMember(number);
+		model.addAttribute(depositeBean);
+		return "administrator/allDeposite";
+	}
+	
+	@GetMapping("/findDepositeMember")
+	public String depositeSelectAll(Model model) {
+		List<MemberBean> memberBean = memberService.findAll();
+		model.addAttribute(memberBean);
+		return "administrator/ShowDepositeMember";
+	}
+	
 }

@@ -83,14 +83,7 @@
                             <p>返回管理者首頁</p>
                         </a>
                     </li>
-                  
-                 
-                    <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
-                        </a>
-                    </li>
+
                     <li class="nav-item active active-pro">
                         <a class="nav-link active" href="/">
                             <i class="nc-icon nc-alien-33"></i>

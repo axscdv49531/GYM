@@ -67,51 +67,34 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-			<div class="sidebar-wrapper">
+						<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li><a class="nav-link" href="<c:url value='/adminindex' />">
-							<i class="nc-icon nc-chart-pie-35"></i>
-							<p>管理者首頁</p>
-					</a></li>
-					<li class="nav-item active dropdown nav-item"><a
-						class="dropdown-toggle nav-link" data-toggle="dropdown"
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value= '/insertMember'/>"> <i
 							class="nc-icon nc-circle-09"></i>
-							<p>會員資料專區</p>
-					</a>
-						<ul class="dropdown-menu">
-							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
-							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-							<a class="dropdown-item" href="#">會員儲值</a>
-							<a class="dropdown-item" href="#">會員會費查詢</a>
-						</ul></li>
-					<li><a class="nav-link" href="<c:url value='' />"> <i
+							<p>新增會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findAllMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
+							<p>查詢會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findInbodyMember'/>"> <i
 							class="nc-icon nc-notes"></i>
-							<p>教練專區</p>
+							<p>會員Inbody分析</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='/courseQuery' />"> <i
-							class="nc-icon nc-paper-2"></i>
-							<p>團體課程專區</p>
+					<li><a class="nav-link"
+						href="<c:url value= '/findDepositeMember'/>"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>會員儲值紀錄</p>
 					</a></li>
-					<li><a class="nav-link" href="./icons.html"> <i
-							class="nc-icon nc-atom"></i>
-							<p>訂餐系統專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./maps.html"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>周邊商品專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./notifications.html"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="/"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Back to Spring Fitness</p>
+					<li><a class="nav-link" href="<c:url value='/adminindex' />">
+							<i class="nc-icon nc-chart-pie-35"></i>
+							<p>返回管理者首頁</p>
 					</a></li>
 				</ul>
 			</div>
@@ -188,15 +171,16 @@
 						<br>&nbsp;
 			</c:if>
 					<h3>會員資料</h3>
-					<table border='1'>
+					<table border='1' style="padding: 2px">
 						<tr>
 							<th width='80'>會員編號</th>
-							<th width='60'>姓名</th>
-							<th width='40'>性別</th>
+							<th width='80'>姓名</th>
+							<th width='50'>性別</th>
 							<th width='100'>生日</th>
 							<th width='60'>電話</th>
 							<th width='160'>Email</th>
 							<th width='360'>地址</th>
+							<th width='100'>點數餘額</th>
 							<th width='100'>入會時間</th>
 							<th width='90'>緊急連絡人</th>
 							<th width='120'>緊急連絡人電話</th>
@@ -210,6 +194,7 @@
 							<td>${memberBean.email}</td>
 							<td>${memberBean.county}${memberBean.district}
 								${memberBean.address}</td>
+							<td>${memberBean.deposite}</td>
 							<td>${memberBean.expirationdate}</td>
 							<td>${memberBean.emergencyContact}</td>
 							<td>${memberBean.emergencyPhone}</td>

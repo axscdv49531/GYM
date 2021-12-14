@@ -1,21 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
+<script type="text/javascript">
+	function confirmDelete(number) {
+		var result = confirm("確定刪除此筆記錄(帳號:" + number.trim() + ")?");
+		if (result) {
+			document.forms[0].putOrDelete.name = "_method";
+			document.forms[0].putOrDelete.value = "DELETE";
+			return true;
+		}
+		return false;
+	}
+
+	(function(document) {
+		'use strict';
+
+		// 建立 LightTableFilter
+		var LightTableFilter = (function(Arr) {
+
+			var _input;
+
+			// 資料輸入事件處理函數
+			function _onInputEvent(e) {
+				_input = e.target;
+				var tables = document.getElementsByClassName(_input
+						.getAttribute('data-table'));
+				Arr.forEach.call(tables, function(table) {
+					Arr.forEach.call(table.tBodies, function(tbody) {
+						Arr.forEach.call(tbody.rows, _filter);
+					});
+				});
+			}
+
+			// 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
+			function _filter(row) {
+				var text = row.textContent.toLowerCase(), val = _input.value
+						.toLowerCase();
+				row.style.display = text.indexOf(val) === -1 ? 'none'
+						: 'table-row';
+			}
+
+			return {
+				// 初始化函數
+				init : function() {
+					var inputs = document
+							.getElementsByClassName('light-table-filter');
+					Arr.forEach.call(inputs, function(input) {
+						input.oninput = _onInputEvent;
+					});
+				}
+			};
+		})(Array.prototype);
+
+		// 網頁載入完成後，啟動 LightTableFilter
+		document.addEventListener('readystatechange', function() {
+			if (document.readyState === 'complete') {
+				LightTableFilter.init();
+			}
+		});
+
+	})(document);
+</script>
 <meta charset="UTF-8">
-<title>編輯會員資料</title>
+<title>Insert title here</title>
 
 <link rel="apple-touch-icon" sizes="76x76"
 	href="../admintemplate/img/apple-icon.png">
 <link rel="icon" type="image/png"
 	href="../admintemplate/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin
-	Dashboard by Creative Tim</title>
+<title>會員查詢</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
@@ -29,6 +87,7 @@
 <link href="../admintemplate/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../admintemplate/css/light-bootstrap-dashboard.css?v=2.0.0 "
 	rel="stylesheet" />
+<link href="../admintemplate/css/style.css" rel="stylesheet" />
 
 <!--   Core JS Files   -->
 <script src="../admintemplate/js/core/jquery.3.2.1.min.js"
@@ -54,21 +113,10 @@
 
 
 </head>
-<script type="text/javascript">
-	function confirmUpdate(number) {
-		var result = confirm("確定更新會員編號:" + number.trim() + "?");
-		if (result) {
-			return true;
-		}
-		return false;
-	}
-</script>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery-twzipcode@1.7.14/jquery.twzipcode.min.js"></script>
-<script src="https://code.essoduke.org/js/twzipcode/twzipcode.js"></script>
-<script src="https://kit.fontawesome.com/e60209ac9e.js"></script>
 <body>
 	<div class="wrapper">
 		<div class="sidebar" data-image="../admintemplate/img/sidebar-0.jpg"
@@ -173,143 +221,55 @@
 				</div>
 			</nav>
 			<!-- End Navbar -->
-			<div class="content">
-				<div class="container-fluid">
-					<!-- 					<div align="center"> -->
-					<form:form method='POST' modelAttribute="memberBean"
-						enctype='multipart/form-data'>
-						<input type="hidden" name="noname" id='putOrDelete' value="">
-						<c:if test='${memberBean.number != null}'>
-							<form:hidden path="number" />
-							<form:hidden path="password" />
-							<form:hidden path="deposite" />
-							<form:hidden path="status" />
-						</c:if>
-						<fieldset class="fieldset-auto-width">
-							<legend>會員資料</legend>
-							<form>
-								<div class="row">
-									<div class="col-md-4 px-1">
-										<div class="form-group">
-											<label>姓名：</label>
-											<form:input path="name" class="form-control" placeholder="姓名" />
-											<form:errors path="name" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-8 pl-1">
-										<div class="form-group">
-											<label for="exampleInputEmail1">Email：</label>
-											<form:input path="email" class="form-control"
-												placeholder="name@example.com" />
-											<form:errors path="email" cssClass="error" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4 pr-1">
-										<div class="form-group" align="center">
-											<form:label path="gender">性別：</form:label>
-											<br>
-											<form:radiobutton path="gender" value="男" label="男" />
-											<form:radiobutton path="gender" value="女" label="女" />
-											<form:errors path="gender" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-4 pl-1">
-										<div class="form-group">
-											<label>生日 <font size='-3' color='blue'>(yyyy-MM-dd)</font>：
-											</label>
-											<form:input type="date" path="birthday" class="form-control" />
-											<form:errors path="birthday" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-4 pl-1">
-										<div class="form-group">
-											<label>手機：</label>
-											<form:input path="phone" class="form-control"
-												placeholder="phone" />
-											<form:errors path="phone" cssClass="error" />
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-12">
-										<div class="form-group">
-											<label>地址；</label>
-											<div id="twzipcode"
-												class="form-row example-1 d-flex  mb-2 act-set">
-												<div class="form-group col">
-													<div data-role="county" data-style="form-control"
-														data-name="county" data-value="${memberBean.county}"></div>
-												</div>
-												<div class="form-group col">
-													<div data-role="district" data-style="form-control"
-														data-name="district" data-value="${memberBean.district}"></div>
-												</div>
-												<div class="form-group col">
-													<div data-role="zipcode" data-style="form-control"
-														data-name="zipcode" data-value=""></div>
-												</div>
-												<form:input type="text" size="40" id="twzipcode"
-													path="address" class="form-control"
-													placeholder="Home Address" />
-												<form:errors path="address" cssClass="error" />
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="row">
-									<div class="col-md-4 pl-1">
-										<div class="form-group">
-											<label>入會時間:</label>
-											<form:input type="date" path="expirationdate"
-												class="form-control" />
-											<form:errors path="expirationdate" cssClass="error" />
-										</div>
-									</div>
-									<div class="col-md-4 pl-1">
-										<div class="form-group">
-											<label>緊急聯絡人：</label>
-											<form:input path="emergencyContact" class="form-control"
-												placeholder="緊急聯絡人" />
-											<form:errors path="emergencyContact" cssClass="error" />
-
-										</div>
-									</div>
-									<div class="col-md-4 pl-1">
-										<div class="form-group">
-											<label>緊急聯絡人電話：</label>
-											<form:input type="number" path="emergencyPhone"
-												class="form-control" placeholder="phone" />
-											<form:errors path="emergencyPhone" cssClass="error" />
-										</div>
-									</div>
-								</div>
-
-								<div class="row">
-									<div class="col-md-4">
-										<label>大頭照：</label>
-										<form:input path="mPhoto" type="file" />
-										<br>
-										<form:errors path="mPhoto" />
-									</div>
-									<div class="col-md-6"></div>
-									<button type="submit" class="btn btn-info btn-fill pull-right"
-										value='送出' name='updateBtn'
-										onclick="return confirmUpdate('${memberBean.number}');">送出
-									</button>
-								</div>
-								<div class="clearfix"></div>
-							</form>
-						</fieldset>
-					</form:form>
-					<a href="<c:url value='/findAllMember' />">回前頁</a>
+			<form class="form-inline search-bar">
+				<div class="form-group">
+					<label for="exampleInputEmail2">會員查詢</label> <input type="search"
+						class="form-control light-table-filter" data-table="order-table"
+						placeholder="請輸入關鍵字">
 				</div>
+			</form>
+			<div align='center'>
+				<form:form method='POST' modelAttribute="memberBean">
+					<h3>會員Inbody</h3>
+					<hr>
+					<table border='1' class="order-table">
+						<thead>
+							<tr>
+								<th width='120'>會員編號</th>
+								<th width='100'>姓名</th>
+								<th width='60'>性別</th>
+								<th width='160'>生日</th>
+								<th width='360'>Email</th>
+								<th width='60'>詳細資料</th>
+								<th width='120'>Inbody</th>
+								<th width='120'>Inbody紀錄</th>
+							</tr>
+						</thead>
+						<c:choose>
+							<c:when test="${not empty memberBeanList}">
+								<c:forEach var='member' items="${memberBeanList}">
+									<tr>
+										<td>${member.number}</td>
+										<td>${member.name}</td>
+										<td>${member.gender}</td>
+										<td>${member.birthday}</td>
+										<td>${member.email}</td>
+										<td><a href='selectMember/${member.number}'><input
+												type='button' value='詳細資料' class="btn btn-danger"></a></td>
+										<td><a href='insertInbody/${member.number}'><input
+												type='button' value='輸入' class="btn btn-danger"></a></td>
+										<td><a href='adminFindInbody/${member.number}'><input
+												type='button' value='查詢' class="btn btn-danger"></a></td>
+									</tr>
+								</c:forEach>
+							</c:when>
+							<c:otherwise>
+				查無Member資料
+			</c:otherwise>
+						</c:choose>
+					</table>
+				</form:form>
+				<br> <a href="<c:url value='/' />">回首頁</a>
 			</div>
-		</div>
-	</div>
-	<script>
-		$("#twzipcode").twzipcode();
-	</script>
 </body>
 </html>

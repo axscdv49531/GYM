@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="./table.html">
+                        <a class="nav-link" href="<c:url value='/administrator/coachAdminPage'/>">
                             <i class="nc-icon nc-notes"></i>
                             <p>教練專區</p>
                         </a>
@@ -77,21 +77,15 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./icons.html">
+                        <a class="nav-link" href="/ToShipmentPage.controller">
                             <i class="nc-icon nc-atom"></i>
                             <p>訂餐系統專區</p>
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="./maps.html">
+                        <a class="nav-link" href="<c:url value='/admin/commodity' />">
                             <i class="nc-icon nc-money-coins"></i>
                             <p>周邊商品專區</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="nav-link" href="./notifications.html">
-                            <i class="nc-icon nc-bell-55"></i>
-                            <p>Notifications</p>
                         </a>
                     </li>
                     <li class="nav-item active active-pro">
