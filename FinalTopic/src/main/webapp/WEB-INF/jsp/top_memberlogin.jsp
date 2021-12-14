@@ -172,6 +172,7 @@
 																style="color: black">購物車 </a></li>
 															<li><a href="/ToEvaluationMainPage"
 																style="color: black">餐點滿意度調查 </a></li>
+															<li><a href="/Menumain.controller" style="color:black">菜單 </a></li>
 														</ul>
 													</li>
 												</ul></li>
