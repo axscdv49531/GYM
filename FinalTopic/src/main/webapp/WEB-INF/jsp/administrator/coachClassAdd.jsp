@@ -36,6 +36,17 @@ $(document).ready(function() {
 
 });
 
+function autoKeyIn(){
+    document.getElementById("classname").value = "瑜珈專題展示用";
+    document.getElementById("coach").value = "神力女超人";
+    document.getElementById("datee").value = "2022-01-05";
+    document.getElementById("start").value = "13:00";
+    document.getElementById("show").value = "2";
+    document.getElementById("end").value = "15:00";
+    document.getElementById("price").value = "1000";
+    document.getElementById("description").value = "運用懸掛的布，透過地心引力增加身體的協調感與核心力量的穩定性，並改善身體的柔軟度。因許多動作都會纏着各個淋巴位置，能有效改善內分泌、淋巴、消化及血液循環系統。";
+}
+
 function My_Date() { 
 	var date = new Date();
 	var datee = date.getFullYear() +  date.getMonth() + ( date.getDate() + 1);
@@ -78,13 +89,13 @@ function My_Date() {
 				<table style="border-collapse:separate; border-spacing:0px 10px;">
 					<tr>
 						<td align='right'>課程名稱：</td>
-						<td><form:input path="className" /><br>
+						<td><form:input id="classname" path="className" /><br>
 						<form:errors path="className" />
 					</tr>
 					
 					<tr>
                         <td align='right'>教練：</td>
-                        <td><form:select path="coach">
+                        <td><form:select id="coach" path="coach">
                                 <form:options items="${coachList}" />
 
                             </form:select> <br> <form:errors path="coach" />
@@ -118,12 +129,12 @@ function My_Date() {
 					</tr>
 					<tr>
 						<td align='right'>課程價格：</td>
-						<td><form:input path="classPrice" /><br> <form:errors
+						<td><form:input id="price" path="classPrice" /><br> <form:errors
 								path="classPrice" />
 					</tr>
 					<tr>
 						<td align='right'>課程描述：</td>
-						<td><form:textarea path="classDescription" /><br> <form:errors
+						<td><form:textarea id="description" path="classDescription" /><br> <form:errors
 								path="classDescription" />
 					</tr>
 					<tr>
@@ -143,6 +154,7 @@ function My_Date() {
 
 				</table>
 <!-- 				</fieldset> -->
+<input type="button" id="auto" class="btn" value="一鍵輸入" onclick="autoKeyIn()"/>
 			</form:form>
 <!-- 			</div> -->
 <!-- 		</div> -->
