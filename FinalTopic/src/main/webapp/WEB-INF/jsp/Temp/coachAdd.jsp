@@ -42,19 +42,7 @@
 <!-- <script src="../admintemplate/js/plugins/bootstrap-notify.js"></script> -->
 <!-- <script src="../admintemplate/js/light-bootstrap-dashboard.js?v=2.0.0 " type="text/javascript"></script> -->
 <!-- <script src="../admintemplate/js/demo.js"></script> -->
-<script>
-function autoKeyIn(){
-	document.getElementById("name").value = "葉問";
-	document.getElementById("account").value = "Ipman";
-	document.getElementById("boy").checked = true;
-	document.getElementById("email").value = "ipman@gmail.com";
-	document.getElementById("phone").value = "0912273856";
-	document.getElementById("exp").value = "13";
-	document.getElementById("address").value = "彰化縣和美鎮和旺街18號";
-	document.getElementById("birth").value = "1984-11-06";
-	
-}
-</script>
+
 
 </head>
 <body>
@@ -71,12 +59,12 @@ function autoKeyIn(){
 		<table>
 			<tr>
 				<td align='right'>姓名：</td>
-				<td><form:input id="name" path="coachName" /><br> <form:errors
+				<td><form:input path="coachName" /><br> <form:errors
 						path="coachName" />
 			</tr>
 			<tr>
 				<td align='right'>帳號：</td>
-				<td><form:input id="account" path="coachAccount" /><br> <form:errors
+				<td><form:input path="coachAccount" /><br> <form:errors
 						path="coachAccount" />
 			</tr>
 			<tr>
@@ -84,41 +72,34 @@ function autoKeyIn(){
 				<td><form:input type="password" readonly="true"
 						path="coachPassword" /><br> <form:errors path="coachPassword" />
 			</tr>
-<!-- 			<tr> -->
-<!-- 				<td align='right'>性別：</td> -->
-<%-- 				<td><form:radiobuttons items="${radioData}" path="coachGender" /><br> --%>
-<%-- 					<form:errors path="coachGender" /> --%>
-<!-- 			</tr> -->
-<tr>
-         <td><form:label path="coachGender">性別：</form:label></td>
-         <td>
-            <form:radiobutton path="coachGender" id="boy" value="男" label="男" />
-            <form:radiobutton path="coachGender" id="girl" value="女" label="女" />
-         </td>
-      </tr> 
+			<tr>
+				<td align='right'>性別：</td>
+				<td><form:radiobuttons items="${radioData}" path="coachGender" /><br>
+					<form:errors path="coachGender" />
+			</tr>
 			<tr>
 				<td align='right'>信箱：</td>
-				<td><form:input id="email" path="coachEmail" /><br> <form:errors
+				<td><form:input path="coachEmail" /><br> <form:errors
 						path="coachEmail" />
 			</tr>
 			<tr>
 				<td align='right'>手機：</td>
-				<td><form:input id="phone" path="coachPhone" /><br> <form:errors
+				<td><form:input path="coachPhone" /><br> <form:errors
 						path="coachPhone" />
 			</tr>
 			<tr>
 				<td align='right'>經驗：</td>
-				<td><form:input id="exp" path="coachExp" /><br> <form:errors
+				<td><form:input path="coachExp" /><br> <form:errors
 						path="coachExp" />
 			</tr>
 			<tr>
 				<td align='right'>地址：</td>
-				<td><form:input id="address" path="coachAddress" /><br>
+				<td><form:input path="coachAddress" /><br>
 					<form:errors path="coachAddress" />
 			</tr>
 			<tr>
 				<td align='right'>生日：</td>
-				<td><form:input id="birth" type="date" path="coachBirth" /><br>
+				<td><form:input type="date" path="coachBirth" /><br>
 					<form:errors path="coachBirth" />
 			</tr>
 			<tr>
@@ -127,11 +108,10 @@ function autoKeyIn(){
 						path="cPhoto" />
 			</tr>
 			<tr>
-				<td colspan='2' align='center'><input class="btn" type='submit' value='提交'></td>
+				<td colspan='2' align='center'><input type='submit' value='提交'></td>
 			</tr>
 
 		</table>
-		<input type="button" id="auto" class="btn" value="一鍵輸入" onclick="autoKeyIn()"/>
 	</form:form>
 	
 	           </div>

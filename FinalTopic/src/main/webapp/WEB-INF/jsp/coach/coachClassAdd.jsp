@@ -39,6 +39,18 @@ $(document).ready(function() {
 
 });
 
+function autoKeyIn(){
+// 	var ll = ['拳擊'];
+	document.getElementById("classname").value = "綜合格鬥";
+	document.getElementById("datee").value = "2021-12-27";
+	document.getElementById("start").value = "09:00";
+	document.getElementById("show").value = "2";
+	document.getElementById("end").value = "11:00";
+	document.getElementById("price").value = "1300";
+	document.getElementById("description").value = "使用雙拳、雙腳、雙膝及雙肘做攻擊，強調反應與全身的協調性，訓練到身體每個部位的肌群與心肺能力，可消耗掉更多的卡路里，也可提升自我保護的實用技能。";
+	document.getElementById("labell").items = ll;
+}
+
 function My_Date() { 
     var date = new Date();
     var datee = date.getFullYear() +  date.getMonth() + ( date.getDate() + 1);
@@ -79,7 +91,7 @@ function My_Date() {
 				<table>
 					<tr>
 						<td align='right'>課程名稱：</td>
-						<td><form:input path="className" /><br>
+						<td><form:input id="classname" path="className" /><br>
 						<form:errors path="className" />
 					</tr>
 					<tr>
@@ -110,17 +122,17 @@ function My_Date() {
 					</tr>
 					<tr>
 						<td align='right'>課程價格：</td>
-						<td><form:input path="classPrice" /><br> <form:errors
+						<td><form:input id="price" path="classPrice" /><br> <form:errors
 								path="classPrice" />
 					</tr>
 					<tr>
 						<td align='right'>課程描述：</td>
-						<td><form:textarea path="classDescription" /><br> <form:errors
+						<td><form:textarea id="description" path="classDescription" /><br> <form:errors
 								path="classDescription" />
 					</tr>
 					<tr>
 						<td align='right'>課程標籤：</td>
-						<td><form:checkboxes items="${checkBoxList}"
+						<td><form:checkboxes id="labell" items="${checkBoxList}"
 								path="classLabel" /><br> <form:errors path="classLabel" />
 					</tr>
 					<tr>
@@ -130,10 +142,11 @@ function My_Date() {
 					</tr>
 					<form:input type="hidden" value="0" path="classAvaliable" />
 					<tr>
-						<td colspan='2' align='center'><input type='submit' value='提交'></td>
+						<td colspan='2' align='center'><input class="btn" type='submit' value='提交'></td>
 					</tr>
 
 				</table>
+				<input type="button" id="auto" class="btn" value="一鍵輸入" onclick="autoKeyIn()"/>
 <!-- 				</fieldset> -->
 			</form:form>
 <!-- 			</div> -->
