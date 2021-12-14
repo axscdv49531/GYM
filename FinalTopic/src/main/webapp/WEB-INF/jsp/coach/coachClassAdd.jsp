@@ -40,7 +40,6 @@ $(document).ready(function() {
 });
 
 function autoKeyIn(){
-// 	var ll = ['拳擊'];
 	document.getElementById("classname").value = "綜合格鬥";
 	document.getElementById("datee").value = "2021-12-27";
 	document.getElementById("start").value = "09:00";
@@ -48,7 +47,6 @@ function autoKeyIn(){
 	document.getElementById("end").value = "11:00";
 	document.getElementById("price").value = "1300";
 	document.getElementById("description").value = "使用雙拳、雙腳、雙膝及雙肘做攻擊，強調反應與全身的協調性，訓練到身體每個部位的肌群與心肺能力，可消耗掉更多的卡路里，也可提升自我保護的實用技能。";
-	document.getElementById("labell").items = ll;
 }
 
 function My_Date() { 
