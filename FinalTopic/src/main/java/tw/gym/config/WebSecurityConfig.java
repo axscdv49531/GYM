@@ -39,6 +39,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.POST, "/insertMember/**").authenticated()
 			.antMatchers(HttpMethod.POST, "/findAllMember/**").authenticated()
 			.antMatchers(HttpMethod.POST).permitAll()
+			.antMatchers(HttpMethod.DELETE).permitAll()
+			.antMatchers(HttpMethod.PUT).permitAll()
 			.anyRequest().authenticated()
 			.and()
 			.rememberMe()
