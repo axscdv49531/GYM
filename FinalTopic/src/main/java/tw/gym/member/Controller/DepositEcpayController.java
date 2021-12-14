@@ -84,7 +84,7 @@ public class DepositEcpayController {
 			mbService.update(memberBean);
 			m.addAttribute("DepositeBean", deposite);
 			dpService.update(deposite.get());
-			return "member/MemberProfile";
+			return "redirect:/MemberProfile";
 		}
 
 		System.out.println("付款失敗");

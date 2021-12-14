@@ -38,7 +38,8 @@
 				<div class="col-md-4">
 					<a class="logo" href="<c:url value='/' />">
 						<div class="logo-content">
-							<img src="../images/springfitnesslogo6.png" alt="index" /> <h1>SPRINGFITNESS</h1>
+							<img src="../images/springfitnesslogo6.png" alt="index" />
+							<h1>SPRINGFITNESS</h1>
 						</div>
 					</a>
 				</div>
@@ -92,14 +93,11 @@
 											<li class="active"><a href="<c:url value='/' />">主頁</a></li>
 											<li><a href="about.html">關於</a></li>
 											<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-											<li><a href="news.html">預約私人課程</a></li>
-											<li><a href="/courseSelectSystem">團體課程</a></li>
-
-											<li class="dropdown mega-dropdown"><a href="#"
-												class="dropdown-toggle" data-toggle="dropdown">團體課程<span
-													class="caret"></span></a>
+											<li><a href="<c:url value='/login/Member' />">預約私人課程</a></li>
+											<li><a
+												href="/membercourse/nologin_courseSelectSystem.controller">團體課程</a></li>
 											<li><a href="/nologinMenumain.controller">健康餐盒</a></li>
-											<li><a href="news.html">周邊商品</a></li>
+											<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 										</ul>
 									</div>
 								</nav>

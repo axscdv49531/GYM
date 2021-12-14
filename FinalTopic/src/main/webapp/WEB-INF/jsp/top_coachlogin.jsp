@@ -38,7 +38,8 @@
 				<div class="col-md-4">
 					<a class="logo" href="<c:url value='/' />">
 						<div class="logo-content">
-							<img src="../images/springfitnesslogo6.png" alt="index" /> <h1>SPRINGFITNESS</h1>
+							<img src="../images/springfitnesslogo6.png" alt="index" />
+							<h1>SPRINGFITNESS</h1>
 						</div>
 					</a>
 				</div>
@@ -104,21 +105,22 @@
 											<li class="dropdown mega-dropdown"><a href="#"
 												class="dropdown-toggle" data-toggle="dropdown ">預約私人課程<span
 													class="caret"></span></a>
-												<ul style="margin-left: 240px;" class="dropdown-menu mega-dropdown-menu coach">
+												<ul style="margin-left: 240px;"
+													class="dropdown-menu mega-dropdown-menu coach">
 													<li class="col-sm-12">
 														<ul>
 															<li class="dropdown-header">一對一課程</li>
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/coach/coachClassAdd">新增課程</a></li>
-<!--                                                                        <li><a class="dropdown-item" -->
-<!--                                                                            href="/classIntroduction">課程介紹</a></li> -->
-                                                                        <li><a class="dropdown-item"
-                                                                            href="/coach/coachClassList">我的課程 </a></li>
+															<li><a class="dropdown-item"
+																href="/coach/coachClassAdd">新增課程</a></li>
+															<!--                                                                        <li><a class="dropdown-item" -->
+															<!--                                                                            href="/classIntroduction">課程介紹</a></li> -->
+															<li><a class="dropdown-item"
+																href="/coach/coachClassList">我的課程 </a></li>
 														</ul>
 													</li>
 												</ul>
 											<li><a href="news.html">健康餐盒</a></li>
-											<li><a href="news.html">周邊商品</a></li>
+											<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 
 										</ul>
 									</div>

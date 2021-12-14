@@ -27,7 +27,14 @@
 						<c:forEach var='deposite' items="${depositeBeanList}">
 							<c:if test="${deposite.status==1}">
 								<tr>
-									<td>${deposite.timestamp}</td>
+									<td id= '${deposite.id}'><script>
+										var time = '${deposite.timestamp}'
+										console.log(time);
+										var datetime = time.substring(10, 0)
+										console.log(datetime);
+										document.getElementById('${deposite.id}').innerHTML = datetime;
+									</script></td>
+									<%-- 									<td>${deposite.timestamp}</td> --%>
 									<td>${deposite.value}</td>
 									<td>${deposite.total}</td>
 								</tr>
