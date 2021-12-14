@@ -116,7 +116,7 @@
 								
 								var status = null;
 								var classDate = new Date(n.classDate + " "
-										+ n.classEndTime).getTime();
+										+ n.classStartTime).getTime();
 								var today = new Date().getTime();
 								var d = today - classDate
 								if (d > 0) {
