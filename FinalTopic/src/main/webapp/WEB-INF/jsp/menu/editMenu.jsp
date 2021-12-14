@@ -55,7 +55,7 @@
 </head>
 <body>
 	<div class="container"
-		style="background-color: #DEDEBE; width: 100%; height: 100%">
+		style="background-color: #DEDEBE; width: 100%; height: 1000px">
 		<section id="top">
 			<header>
 				<div class="container">
