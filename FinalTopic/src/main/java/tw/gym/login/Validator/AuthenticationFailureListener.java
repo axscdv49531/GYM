@@ -43,10 +43,10 @@ public class AuthenticationFailureListener implements AuthenticationFailureHandl
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
 			AuthenticationException exception) throws IOException, ServletException {
-		HttpSession session=request.getSession();
+//		HttpSession session=request.getSession();
 		if (exception instanceof BadCredentialsException) {
-		     session.setAttribute("errorMsg", "帳號密碼錯誤");
-		     response.sendRedirect("/login/Member");
+//		     session.setAttribute("errorMsg", "帳號密碼錯誤");
+		     response.sendRedirect("/login/Membererror");
 		   }else if(exception.getCause() instanceof DisabledException) {	
 			String email = request.getParameter("username");
 			System.out.println("failure handler: "+ email+"1234");

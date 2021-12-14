@@ -53,6 +53,7 @@ public class DepositeController {
 		System.out.println(depositeBean.getId());
 		Date date=new Date();
 		Timestamp timestamp = new Timestamp(date.getTime());
+		String time=timestamp.toString();
 		System.out.println("送出儲值訂單");
 		depositeBean.setTimestamp(timestamp);
 		depositeBean.setStatus("0");

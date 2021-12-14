@@ -38,7 +38,8 @@
 				<div class="col-md-4">
 					<a class="logo" href="<c:url value='/login/MemberSuccess' />">
 						<div class="logo-content">
-							<img src="../images/springfitnesslogo6.png" /> <h1>SPRINGFITNESS</h1>
+							<img src="../images/springfitnesslogo6.png" />
+							<h1>SPRINGFITNESS</h1>
 						</div>
 					</a>
 				</div>
@@ -160,9 +161,21 @@
 														</ul>
 													</li>
 												</ul></li>
-
-											<li><a href="/Menumain.controller">健康餐盒</a></li>
-											<li><a href="news.html">周邊商品</a></li>
+											<li class="dropdown mega-dropdown"><a href="#"
+												class="dropdown-toggle" data-toggle="dropdown">健康餐盒<span
+													class="caret"></span></a>
+												<ul class="dropdown-menu mega-dropdown-menu food-menu">
+													<li class="col-sm-12">
+														<ul>
+															<li class="dropdown-header">餐點</li>
+															<li><a href="/shoppingCart.controller"
+																style="color: black">購物車 </a></li>
+															<li><a href="/ToEvaluationMainPage"
+																style="color: black">餐點滿意度調查 </a></li>
+														</ul>
+													</li>
+												</ul></li>
+											<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 
 										</ul>
 									</div>

@@ -43,8 +43,7 @@
 							<div class="col-md-4">
 								<a class="logo" href="<c:url value='/' />">
 									<div class="logo-content">
-										<img src="../images/springfitnesslogo6.png"
-											alt="index" />
+										<img src="../images/springfitnesslogo6.png" alt="index" />
 										<h1>SPRINGFITNESS</h1>
 									</div>
 								</a>
@@ -64,12 +63,11 @@
 
 										<li>
 											<div class="context-option">
-												<a href="#"><svg
-															xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-															fill="currentColor" class="bi bi-envelope"
-															viewBox="0 0 16 16">
+												<a href="#"><svg xmlns="http://www.w3.org/2000/svg"
+														width="16" height="16" fill="currentColor"
+														class="bi bi-envelope" viewBox="0 0 16 16">
   									  <path
-																d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
+															d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
 									</svg><i class="fa fa-envelope"></i>聯絡我們</a>
 											</div>
 										</li>
@@ -100,10 +98,9 @@
 														<li class="active"><a href="<c:url value='/' />">主頁</a></li>
 														<li><a href="about.html">關於</a></li>
 														<li><a href="<c:url value= '/showCoachList'/>">教練師資</a></li>
-														<li><a href="news.html">預約私人課程</a></li>
-														<li><a href="/membercourse/nologin_courseSelectSystem.controller">團體課程</a></li>
-
-							
+														<li><a href="<c:url value='/login/Member' />">預約私人課程</a></li>
+														<li><a
+															href="/membercourse/nologin_courseSelectSystem.controller">團體課程</a></li>
 														<li><a href="/nologinMenumain.controller">健康餐盒</a></li>
 														<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 													</ul>
@@ -131,14 +128,10 @@
 									<div class="slider-contant"
 										data-animation="animated fadeInRight">
 										<h3>
-											全民健身，男女老少<br>
-											動起來吧!<br>
-											给自己一個更好的未來。
+											全民健身，男女老少<br> 動起來吧!<br> 给自己一個更好的未來。
 										</h3>
 										<h3 class="text-yellow">立即體驗</h3>
-										<p>
-											填寫資料馬上送免費健身體驗14天
-										</p>
+										<p>填寫資料馬上送免費健身體驗14天</p>
 										<p>立即預約體驗(02)2777-0168</p>
 										<button class="btn btn-primary btn-lg">深入了解</button>
 									</div>
@@ -150,15 +143,15 @@
 			</div>
 		</section>
 	</div>
-	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
-	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
-	<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a>
-	<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a>
-	<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a>
-	<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a>
-	<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a>
-	
-		<a class="nav-link" href="<c:url value= '/adminindex'/>">管理者專區</a>
+<%-- 	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/courseQuery'/>">管理員課程系統(測試用暫存)</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/courseSelectSystem'/>">會員選課系統(測試用暫存)</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/coach/coachAdd'/>">新增教練</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/administrator/coachPage'/>">修改教練</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/testcoach'/>">教練清單test</a> --%>
+
+<%-- 	<a class="nav-link" href="<c:url value= '/adminindex'/>">管理者專區</a> --%>
 
 
 </body>

@@ -1,17 +1,18 @@
-//package tw.gym.member.Controller;
-//
-//import javax.servlet.http.HttpSession;
-//
-//import org.springframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.GetMapping;
-//
-//@Controller
-//public class LoginController {
-//    @GetMapping("/login/Member")
-//    public String MemberLogin( HttpSession session){
-//    	session.removeAttribute("errorMsg");
-//    	return "LoginMember";
-//    }
+package tw.gym.member.Controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class LoginController {
+	@GetMapping("/login/Membererror")
+	public String MemberLogin(Model m) {
+		String errorMsg = "帳號或密碼錯誤!";
+		m.addAttribute("errorMsg", errorMsg);
+		return "LoginMember";
+	}
 //	
 //	@PostMapping("/login")
 //	public String login(String username, String password, HttpServletRequest req) {
@@ -23,4 +24,4 @@
 //		}
 //		return "failed";
 //	}
-//}
+}

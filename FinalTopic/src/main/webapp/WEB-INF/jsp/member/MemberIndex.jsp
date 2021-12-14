@@ -56,7 +56,8 @@
 							<div class="col-md-4">
 								<a class="logo" href="<c:url value='/login/MemberSuccess' />">
 									<div class="logo-content">
-										<img src="../images/springfitnesslogo6.png" alt="index" /> <h1>SPRINGFITNESS</h1>
+										<img src="../images/springfitnesslogo6.png" alt="index" />
+										<h1>SPRINGFITNESS</h1>
 									</div>
 								</a>
 							</div>
@@ -181,8 +182,20 @@
 																	</ul>
 																</li>
 															</ul></li>
-
-														<li><a href="/Menumain.controller">健康餐盒</a></li>
+														<li class="dropdown mega-dropdown"><a href="#"
+															class="dropdown-toggle" data-toggle="dropdown">健康餐盒<span
+																class="caret"></span></a>
+															<ul class="dropdown-menu mega-dropdown-menu food-menu">
+																<li class="col-sm-12">
+																	<ul>
+																		<li class="dropdown-header">餐點</li>
+																		<li><a href="/shoppingCart.controller"
+																			style="color: black">購物車 </a></li>
+																		<li><a href="/ToEvaluationMainPage"
+																			style="color: black">餐點滿意度調查 </a></li>
+																	</ul>
+																</li>
+															</ul></li>
 														<li><a href="<c:url value= '/commodity'/>">周邊商品</a></li>
 
 													</ul>
@@ -210,14 +223,10 @@
 									<div class="slider-contant"
 										data-animation="animated fadeInRight">
 										<h3>
-											全民健身，男女老少<br>
-											動起來吧!<br>
-											给自己一個更好的未來。
+											全民健身，男女老少<br> 動起來吧!<br> 给自己一個更好的未來。
 										</h3>
 										<h3 class="text-yellow">立即體驗</h3>
-										<p>
-											填寫資料馬上送免費健身體驗14天
-										</p>
+										<p>填寫資料馬上送免費健身體驗14天</p>
 										<p>立即預約體驗(02)2777-0168</p>
 										<button class="btn btn-primary btn-lg">深入了解</button>
 									</div>
@@ -229,8 +238,8 @@
 			</div>
 		</section>
 	</div>
-	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a>
-	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a>
+<%-- 	<a class="nav-link" href="<c:url value= '/insertMember'/>">新增會員資料</a> --%>
+<%-- 	<a class="nav-link" href="<c:url value= '/findAllMember'/>">查詢會員資料</a> --%>
 
 </body>
 </html>
