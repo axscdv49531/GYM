@@ -68,7 +68,7 @@
                         	   var json = JSON.stringify(data, null, 4);
                             console.log('json:' + json);
 	if(data.responseText == ''){
-		alert("衝堂預約失敗");
+		alert("課程衝堂，預約失敗");
 		load();
 	}else{
 		alert("預約成功");

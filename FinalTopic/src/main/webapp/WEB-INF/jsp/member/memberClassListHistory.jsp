@@ -135,7 +135,7 @@ console.log(n.classId)
                                         + n.classDuration + "</td>" + "<td>"
                                         + n.classPrice + "</td>" + "<td>"
                                         + n.cBean.coachName + "</td>" + "<td>"
-                                        + status + "</td>"+"<td><input type='button' class='btn' style='float:none;margin-top:0' value='取消課程' onclick='cancelConfirm(" + n.classId + ")'" + "/></td></tr></tbody>";
+                                        + status + "</td>"+"<td><p><input type='button' style='float:none' value='查看' class='btn' onclick=" + "location.href='/member/memberViewClassDetailPerson?Id=" + n.classId + "' /><input type='button' class='btn' style='float:none;margin-top:0' value='取消課程' onclick='cancelConfirm(" + n.classId + ")'" + "/></p></td></tr></tbody>";
                                 //                        "<td><img width='50' height='50' src=" + "<c:url value='/administrator/getCoachPicture?coachAccount=' />" + n.coachAccount + " /></td>" +
                                 table.append(tr);
                                 }else{
