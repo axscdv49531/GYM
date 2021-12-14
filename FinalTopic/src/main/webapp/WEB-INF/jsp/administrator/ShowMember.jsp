@@ -15,51 +15,55 @@
 		}
 		return false;
 	}
-	
+
 	(function(document) {
-		  'use strict';
+		'use strict';
 
-		  // 建立 LightTableFilter
-		  var LightTableFilter = (function(Arr) {
+		// 建立 LightTableFilter
+		var LightTableFilter = (function(Arr) {
 
-		    var _input;
+			var _input;
 
-		    // 資料輸入事件處理函數
-		    function _onInputEvent(e) {
-		      _input = e.target;
-		      var tables = document.getElementsByClassName(_input.getAttribute('data-table'));
-		      Arr.forEach.call(tables, function(table) {
-		        Arr.forEach.call(table.tBodies, function(tbody) {
-		          Arr.forEach.call(tbody.rows, _filter);
-		        });
-		      });
-		    }
+			// 資料輸入事件處理函數
+			function _onInputEvent(e) {
+				_input = e.target;
+				var tables = document.getElementsByClassName(_input
+						.getAttribute('data-table'));
+				Arr.forEach.call(tables, function(table) {
+					Arr.forEach.call(table.tBodies, function(tbody) {
+						Arr.forEach.call(tbody.rows, _filter);
+					});
+				});
+			}
 
-		    // 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
-		    function _filter(row) {
-		      var text = row.textContent.toLowerCase(), val = _input.value.toLowerCase();
-		      row.style.display = text.indexOf(val) === -1 ? 'none' : 'table-row';
-		    }
+			// 資料篩選函數，顯示包含關鍵字的列，其餘隱藏
+			function _filter(row) {
+				var text = row.textContent.toLowerCase(), val = _input.value
+						.toLowerCase();
+				row.style.display = text.indexOf(val) === -1 ? 'none'
+						: 'table-row';
+			}
 
-		    return {
-		      // 初始化函數
-		      init: function() {
-		        var inputs = document.getElementsByClassName('light-table-filter');
-		        Arr.forEach.call(inputs, function(input) {
-		          input.oninput = _onInputEvent;
-		        });
-		      }
-		    };
-		  })(Array.prototype);
+			return {
+				// 初始化函數
+				init : function() {
+					var inputs = document
+							.getElementsByClassName('light-table-filter');
+					Arr.forEach.call(inputs, function(input) {
+						input.oninput = _onInputEvent;
+					});
+				}
+			};
+		})(Array.prototype);
 
-		  // 網頁載入完成後，啟動 LightTableFilter
-		  document.addEventListener('readystatechange', function() {
-		    if (document.readyState === 'complete') {
-		      LightTableFilter.init();
-		    }
-		  });
+		// 網頁載入完成後，啟動 LightTableFilter
+		document.addEventListener('readystatechange', function() {
+			if (document.readyState === 'complete') {
+				LightTableFilter.init();
+			}
+		});
 
-		})(document);
+	})(document);
 </script>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -69,8 +73,7 @@
 <link rel="icon" type="image/png"
 	href="../admintemplate/img/favicon.ico">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<title>Light Bootstrap Dashboard - Free Bootstrap 4 Admin
-	Dashboard by Creative Tim</title>
+<title>會員查詢</title>
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
 	name='viewport' />
@@ -128,44 +131,29 @@
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li><a class="nav-link" href="<c:url value='/adminindex' />">
-							<i class="nc-icon nc-chart-pie-35"></i>
-							<p>管理者首頁</p>
-					</a></li>
-					<li class="nav-item active dropdown nav-item"><a
-						class="dropdown-toggle nav-link" data-toggle="dropdown"
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value= '/insertMember'/>"> <i
 							class="nc-icon nc-circle-09"></i>
-							<p>會員資料專區</p>
-					</a>
-						<ul class="dropdown-menu">
-							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
-							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-						</ul></li>
-					<li><a class="nav-link" href="<c:url value='' />"> <i
+							<p>新增會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findAllMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
+							<p>查詢會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findInbodyMember'/>"> <i
 							class="nc-icon nc-notes"></i>
-							<p>教練專區</p>
+							<p>會員Inbody分析</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='/courseQuery' />"> <i
-							class="nc-icon nc-paper-2"></i>
-							<p>團體課程專區</p>
+					<li><a class="nav-link"
+						href="<c:url value= '/findDepositeMember'/>"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>會員儲值紀錄</p>
 					</a></li>
-					<li><a class="nav-link" href="./icons.html"> <i
-							class="nc-icon nc-atom"></i>
-							<p>訂餐系統專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./maps.html"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>周邊商品專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./notifications.html"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="/"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Back to Spring Fitness</p>
+					<li><a class="nav-link" href="<c:url value='/adminindex' />">
+							<i class="nc-icon nc-chart-pie-35"></i>
+							<p>返回管理者首頁</p>
 					</a></li>
 				</ul>
 			</div>
@@ -235,8 +223,9 @@
 			<!-- End Navbar -->
 			<form class="form-inline search-bar">
 				<div class="form-group">
-					<label for="exampleInputEmail2">會員查詢</label> 
-						<input type="search" class="form-control light-table-filter" data-table="order-table" placeholder="請輸入關鍵字">
+					<label for="exampleInputEmail2">會員查詢</label> <input type="search"
+						class="form-control light-table-filter" data-table="order-table"
+						placeholder="請輸入關鍵字">
 				</div>
 			</form>
 			<div align='center'>
@@ -244,21 +233,18 @@
 					<h3>會員資料</h3>
 					<hr>
 					<table border='1' class="order-table">
-					  <thead>
-						<tr>
-							<th width='70'>會員編號</th>
-							<th width='100'>姓名</th>
-							<th width='60'>性別</th>
-							<th width='160'>生日</th>
-							<th width='60'>詳細資料</th>
-							<th width='60'>編輯</th>
-							<th width='60'>刪除</th>
-							<th width='60'>Inbody</th>
-							<th width='60'>Inbody紀錄</th>
-							<th width='60'>會員儲值</th>
-							<th width='60'>會員儲值紀錄</th>
-						</tr>
-						  </thead>
+						<thead>
+							<tr>
+								<th width='120'>會員編號</th>
+								<th width='100'>姓名</th>
+								<th width='60'>性別</th>
+								<th width='160'>生日</th>
+								<th width='360'>Email</th>
+								<th width='60'>詳細資料</th>
+								<th width='60'>編輯</th>
+								<th width='60'>刪除</th>
+							</tr>
+						</thead>
 						<c:choose>
 							<c:when test="${not empty memberBeanList}">
 								<c:forEach var='member' items="${memberBeanList}">
@@ -267,6 +253,7 @@
 										<td>${member.name}</td>
 										<td>${member.gender}</td>
 										<td>${member.birthday}</td>
+										<td>${member.email}</td>
 										<td><a href='selectMember/${member.number}'><input
 												type='button' value='詳細資料' class="btn btn-danger"></a></td>
 										<td><a href='modifyMember/${member.number}'><input
@@ -274,14 +261,6 @@
 										<td><a href='deleteMember/${member.number}'><input
 												type='button' value='刪除' class="btn btn-danger"
 												onclick="return confirmDelete('${member.number}');"></a></td>
-										<td><a href='insertInbody/${member.number}'><input
-												type='button' value='Inbody' class="btn btn-danger"></a></td>
-										<td><a href='selectInbody/${member.number}'><input
-												type='button' value='查詢' class="btn btn-danger"></a></td>
-										<td><a href='adminUpdateDeposite/${member.number}'><input
-												type='button' value='儲值' class="btn btn-danger"></a></td>
-										<td><a href='findAllDeposite/${member.number}'><input
-												type='button' value='查詢' class="btn btn-danger"></a></td>
 									</tr>
 								</c:forEach>
 							</c:when>

@@ -76,49 +76,34 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-			<div class="sidebar-wrapper">
+						<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li><a class="nav-link" href="<c:url value='/adminindex' />">
-							<i class="nc-icon nc-chart-pie-35"></i>
-							<p>管理者首頁</p>
-					</a></li>
-					<li class="nav-item active dropdown nav-item"><a
-						class="dropdown-toggle nav-link" data-toggle="dropdown"
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value= '/insertMember'/>"> <i
 							class="nc-icon nc-circle-09"></i>
-							<p>會員資料專區</p>
-					</a>
-						<ul class="dropdown-menu">
-							<a class="dropdown-item" href="<c:url value= '/insertMember'/>">新增會員</a>
-							<a class="dropdown-item" href="<c:url value= '/findAllMember'/>">查詢會員名單</a>
-						</ul></li>
-					<li><a class="nav-link" href="<c:url value='' />"> <i
+							<p>新增會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findAllMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
+							<p>查詢會員</p>
+					</a></li>
+					<li><a class="nav-link"
+						href="<c:url value= '/findInbodyMember'/>"> <i
 							class="nc-icon nc-notes"></i>
-							<p>教練專區</p>
+							<p>會員Inbody分析</p>
 					</a></li>
-					<li><a class="nav-link" href="<c:url value='/courseQuery' />">
-							<i class="nc-icon nc-paper-2"></i>
-							<p>團體課程專區</p>
+					<li><a class="nav-link"
+						href="<c:url value= '/findDepositeMember'/>"> <i
+							class="nc-icon nc-money-coins"></i>
+							<p>會員儲值紀錄</p>
 					</a></li>
-					<li><a class="nav-link" href="./icons.html"> <i
-							class="nc-icon nc-atom"></i>
-							<p>訂餐系統專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./maps.html"> <i
-							class="nc-icon nc-pin-3"></i>
-							<p>周邊商品專區</p>
-					</a></li>
-					<li><a class="nav-link" href="./notifications.html"> <i
-							class="nc-icon nc-bell-55"></i>
-							<p>Notifications</p>
-					</a></li>
-					<li class="nav-item active active-pro"><a
-						class="nav-link active" href="/"> <i
-							class="nc-icon nc-alien-33"></i>
-							<p>Back to Spring Fitness</p>
+					<li><a class="nav-link" href="<c:url value='/adminindex' />">
+							<i class="nc-icon nc-chart-pie-35"></i>
+							<p>返回管理者首頁</p>
 					</a></li>
 				</ul>
 			</div>

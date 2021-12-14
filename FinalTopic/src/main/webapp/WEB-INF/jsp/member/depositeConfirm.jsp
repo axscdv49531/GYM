@@ -224,7 +224,7 @@
 
 							<td colspan="2" align="center"><a
 								href="<c:url value='/depositeControl/${depositeBean.id}'/>"
-								class="transition" id="clickOrder">確認訂購</a></td>
+								class="transition" id="clickOrder">確認儲值</a></td>
 						</tr>
 					</table>
 				</form:form>

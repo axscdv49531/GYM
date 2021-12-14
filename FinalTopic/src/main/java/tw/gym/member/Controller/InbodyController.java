@@ -11,16 +11,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import tw.gym.member.Model.InbodyBean;
+import tw.gym.member.Model.MemberBean;
 import tw.gym.member.Service.InbodyService;
+import tw.gym.member.Service.MemberService;
 
 @Controller
 public class InbodyController {
 
 	private InbodyService inbodyService;
+	
+	private MemberService memberService;
 
 	@Autowired
-	public InbodyController(InbodyService inbodyService) {
+	public InbodyController(InbodyService inbodyService , MemberService memberService ) {
 		this.inbodyService = inbodyService;
+		this.memberService = memberService;
 	}
 
 	@GetMapping("/selectInbody/{number}")
@@ -56,5 +61,25 @@ public class InbodyController {
 	public String deleteMemberData(@PathVariable("no") Integer no ) throws SQLException {
 		inbodyService.deleteById(no);
 		return "redirect:/member/selectInbody/{number}";
+	}
+	
+	
+	@GetMapping("/adminFindInbody/{number}")
+	public String findAllInbody(Model model, @PathVariable("number") Integer number) {
+
+		List<InbodyBean> inbodyBean = inbodyService.findAllByMember(number);
+
+		model.addAttribute(inbodyBean);
+//		MemberBean[] beanArray = memberBean.toArray(new MemberBean[0]);
+//		model.addAttribute(beanArray);
+		return "administrator/allInbody";
+	}
+	
+	
+	@GetMapping("/findInbodyMember")
+	public String inbodySelectAll(Model model) {
+		List<MemberBean> memberBean = memberService.findAll();
+		model.addAttribute(memberBean);
+		return "administrator/ShowInbodyMember";
 	}
 }
