@@ -93,11 +93,15 @@ public class MembersController {
         claService.setAvaliable(1, classIdd);
         memberService.insertReservation(cmBean);
         System.out.println(cBean.getClassAvaliable());
+        CoachBean cBeann = claService.findCoachByClassId(classIdd);
+
         String email = mBean.getEmail();
         String subject = "一對一課程預約成功通知信";
-        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
-                + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+        String body = mBean.getName() + " 先生/小姐,您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
+                + "\n" + "授課教練：" + cBeann.getCoachName() + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間："
+                + cBean.getClassStartTime() + "~"
                 + cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
+
 
         emailSerive.sendEmail(email, subject, body);
 
@@ -155,10 +159,14 @@ public class MembersController {
         Integer classIdd = Integer.parseInt(classId);
         memberService.deleteByClassId(classIdd, 0);
         ClassBean cBean = claService.getClassById(classIdd);
+
+        CoachBean cBeann = claService.findCoachByClassId(classIdd);
         String email = mBean.getEmail();
         String subject = "一對一課程取消預約成功通知信";
-        String body = mBean.getName() + ",您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
-                + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+        String body = mBean.getName() + " 先生/小姐,您好：" + "\n\n\n" + "您已成功取消預約課程，資訊如下：" + "\n\n" + "課程名稱："
+                + cBean.getClassName()
+                + "\n" + "授課教練：" + cBeann.getCoachName() + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間："
+                + cBean.getClassStartTime() + "~"
                 + cBean.getClassEndTime() + "\n" + "\n\n\n" + "期待您再次光臨！";
 
         emailSerive.sendEmail(email, subject, body);

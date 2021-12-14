@@ -48,6 +48,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import tw.gym.coach.model.ClassBean;
 import tw.gym.coach.model.ClassMemberBean;
+import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.model.SkillBean;
 import tw.gym.coach.service.ClassMemberService;
 import tw.gym.coach.service.ClassService;
@@ -579,10 +580,13 @@ public class MemberController {
 		cmBean.setRegisterDate(timestamp);
 		// memberService.insertReservation(cmBean, 1, classId);
 
+        CoachBean cBeann = claService.findCoachByClassId(classId);
+
 		String email = mBean.getEmail();
 		String subject = "一對一課程預約成功通知信";
-		String body = mBean.getName() + ",您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName() + "\n"
-				+ "上課日期：" + cBean.getClassDate() + "\n" + "上課時間：" + cBean.getClassStartTime() + "~"
+        String body = mBean.getName() + " 先生/小姐,您好：" + "\n\n\n" + "您的預約資訊如下：" + "\n\n" + "課程名稱：" + cBean.getClassName()
+                + "\n" + "授課教練：" + cBeann.getCoachName() + "\n" + "上課日期：" + cBean.getClassDate() + "\n" + "上課時間："
+                + cBean.getClassStartTime() + "~"
 				+ cBean.getClassEndTime() + "\n\n\n" + "感謝您的預約！";
 
 		emailSerive.sendEmail(email, subject, body);
