@@ -46,7 +46,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 				} else {
 					Integer aStatus = admin.get().getStatus();
 					if (aStatus == -1) {
-						throw new DisabledException(admin.get().getId() +"It is first login. Password change is required!");
+						throw new DisabledException(admin.get().getNumber() +"It is first login. Password change is required!");
 					}
 					System.out.println(1000);
 					return new User(admin.get().getEmail(), admin.get().getPassword(), Collections.emptyList());

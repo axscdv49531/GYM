@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import com.itextpdf.text.PageSize;
 
 import tw.gym.courses.model.Course;
 import tw.gym.courses.model.CourseService;
+import tw.gym.member.Model.MemberBean;
 
 @RestController
 @RequestMapping("course")
@@ -52,8 +54,12 @@ public class PdfController {
     //從瀏覽器直接顯示pdf
     //顯示我的課程PDF
     @GetMapping("/viewpdf/mycourses") //http://localhost:8081/course/viewpdf/mycourses
-    public ModelAndView mycoursesviewpdf() {
-    	Integer memberNumber = 1001;
+    public ModelAndView mycoursesviewpdf(HttpSession session) {
+    	//Integer memberNumber = 1001;
+    	
+		MemberBean member =(MemberBean)session.getAttribute("loginUser");
+//		Integer memberNumber = 1001;
+		Integer memberNumber= member.getNumber();
     	
         List<Course> courseList = cSerivce.findAllByMember(memberNumber);
         Map<String, Object> model = new HashMap<>();

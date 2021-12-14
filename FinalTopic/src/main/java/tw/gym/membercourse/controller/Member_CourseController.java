@@ -74,7 +74,7 @@ public class Member_CourseController {
 		
 		List<Date> dateList = cService.findAllDate();
 		m.addAttribute("dateList", dateList);
-		return "membercourse/courseSelectSytem";
+		return "membercourse/nologin_courseSelectSytem";
 	}
 	
 
