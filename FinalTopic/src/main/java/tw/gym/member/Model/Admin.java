@@ -15,7 +15,7 @@ public class Admin {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Integer number;
 	
 	private String email;
 	
@@ -23,12 +23,12 @@ public class Admin {
 
 	private Integer status;
 	
-	public Integer getId() {
-		return id;
+	public Integer getNumber() {
+		return number;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setNumber(Integer number) {
+		this.number = number;
 	}
 
 	public String getEmail() {

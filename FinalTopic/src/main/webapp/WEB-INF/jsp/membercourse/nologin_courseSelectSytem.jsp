@@ -1,4 +1,4 @@
-s<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -356,7 +356,7 @@ s<%@ page language="java" contentType="text/html; charset=UTF-8"
 
 <body class="game-info">
 	<div class="top">
-		<c:import url="/top_memberlogin"></c:import>
+		<c:import url="/top_nologin"></c:import>
 	</div>
 
 		<div class="row" style="margin-left:15px;margin-top:150px">

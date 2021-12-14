@@ -64,7 +64,6 @@
 	}
 
 	function selectCourse(courseId, stuNum, maxStuNum) {
-	//if(	${loginUser.number} == null )
 		
 		if (confirm("確實要加選嗎?")) {
 			if (stuNum >= maxStuNum) { //檢查選課人數
