@@ -233,7 +233,7 @@
 					<a href="Menumain.controller" class="transition">繼續購物</a> 
 					&emsp;&emsp; 
 					
-					<a href="pay.ControllerTest?orderId=${OrderMenuList.get(0).getOrderId()}"
+					<a href="pay.Controller?orderId=${OrderMenuList.get(0).getOrderId()}"
 								class="transition" id="clickOrder">確認訂購</a> 
 					
 					<br> <br>
