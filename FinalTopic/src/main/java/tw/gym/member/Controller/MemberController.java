@@ -442,7 +442,7 @@ public class MemberController {
 		member.setPassword(newPwd);
 		member.setStatus(0);
 		memberService.update(member);
-		return "redirect:/login/MemberSuccess";
+		return "redirect:/login/Member";
 	}
 
 	@InitBinder
