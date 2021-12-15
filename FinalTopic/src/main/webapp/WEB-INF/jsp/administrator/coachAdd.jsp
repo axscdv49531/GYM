@@ -60,7 +60,7 @@ function autoKeyIn(){
 <body>
 <div class="wrapper">
 <%--        <c:import url="/adminsidebar"></c:import>  --%>
-       <c:import url="/adminCoursesidebar"></c:import> 
+       <c:import url="/adminCoachsidebar"></c:import> 
         <div class="main-panel">
             <c:import url="/adminnavbar"></c:import> 
             <div class="content">
@@ -68,7 +68,7 @@ function autoKeyIn(){
 	<form:form method='Post' modelAttribute="coachBean"
 		enctype='multipart/form-data'>
 		<legend>教練資料</legend>
-		<table>
+		<table style="border-collapse:separate; border-spacing:0px 10px;">
 			<tr>
 				<td align='right'>姓名：</td>
 				<td><form:input id="name" path="coachName" /><br> <form:errors

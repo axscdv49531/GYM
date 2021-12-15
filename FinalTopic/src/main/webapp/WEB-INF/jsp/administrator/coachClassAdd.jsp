@@ -72,7 +72,7 @@ function My_Date() {
 <body>
 <div class="wrapper">
 <%--        <c:import url="/adminsidebar"></c:import>  --%>
-       <c:import url="/adminCoursesidebar"></c:import> 
+       <c:import url="/adminCoachsidebar"></c:import> 
         <div class="main-panel">
             <c:import url="/adminnavbar"></c:import> 
             <div class="content">
@@ -149,7 +149,7 @@ function My_Date() {
 					</tr>
 					<form:input type="hidden" value="0" path="classAvaliable" />
 					<tr>
-						<td colspan='2' align='center'><input type='submit' value='提交'></td>
+						<td colspan='2' align='center'><input class="btn" type='submit' value='提交'></td>
 					</tr>
 
 				</table>

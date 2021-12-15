@@ -77,7 +77,7 @@
 		<form:input type="hidden" path="coachId" />
 		<br>
 		<form:errors path="coachId" />
-		<table>
+		<table style="border-collapse:separate; border-spacing:0px 10px;">
 			<tr>
 				<td align='right'>姓名：</td>
 				<td><form:input path="coachName" /><br> <form:errors
