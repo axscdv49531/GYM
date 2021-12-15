@@ -134,9 +134,6 @@
 																			href="/selectInbody/<c:out value='${loginUser.number}' />">Inbody紀錄</a>
 																		</li>
 																		<li><a class="dropdown-item"
-																			href="/selectPayment/<c:out value='${loginUser.number}' />">會費紀錄
-																		</a></li>
-																		<li><a class="dropdown-item"
 																			href="/findAllDeposite/<c:out value='${loginUser.number}' />">儲值紀錄</a>
 																		</li>
 																		<li><a class="dropdown-item"
