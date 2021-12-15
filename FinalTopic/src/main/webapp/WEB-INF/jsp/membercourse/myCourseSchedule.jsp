@@ -214,11 +214,11 @@ function showInformation(courseId,coachId) {
 				   contentType:'application.json',
 				   success: function(data){
 						alert("已經退選！"); 
-						
+						window.location.reload();
 						//
 				   }
 				   });
-			window.location.reload();
+			
 		
 	}else{alert("已經取消退選的操作");
 			  }	

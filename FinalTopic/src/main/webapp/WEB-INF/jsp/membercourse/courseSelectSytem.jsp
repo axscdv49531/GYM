@@ -78,6 +78,7 @@
 						console.log(data);
 						if(null != data && "" != data){ 
 							alert("加選成功！");
+							window.location.reload();
 							
 						}else{//表示已加選
 							alert("您已經加選，請勿重複選課！");
@@ -85,7 +86,7 @@
 						}
 					}
 				});
-				window.location.reload();
+				
 			}
 		} else {
 			alert("已經取消加選" + courseId + "的操作");

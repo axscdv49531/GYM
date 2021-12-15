@@ -23,6 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.itextpdf.text.log.SysoCounter;
+
 import tw.gym.coach.model.CoachBean;
 import tw.gym.coach.service.CoachService;
 import tw.gym.courses.model.CourseService;
@@ -154,14 +156,21 @@ System.out.println("success");
 			// 不為空，表示已有選課紀錄
 			for (Member_Course onemc : mcList) {
 				// 若有一筆紀錄為已加選，表示有選上該課程
-				if (onemc.getState().equals("已加選"))
+				if (onemc.getState().equals("已加選")) {
 					System.out.println("重複");
 					return null ;
+					}
+				if(onemc.getState().equals("已退選")) {
+					// 有選課紀錄，但沒有已加選：加選！
+					System.out.println("退選改加選");
+					cService.stuNumPlus(courseId); // 更新Course 人數
+					emailSerive.sendEmail(toEmail,subject, body);
+					mc.setId(onemc.getId());
+					return mcService.updateMC(mc);
+				}
 			}
-			// 有選課紀錄，但沒有已加選：加選！
-			cService.stuNumPlus(courseId); // 更新Course 人數
-			emailSerive.sendEmail(toEmail,subject, body);
-			return mcService.insertMC(mc);
+			return null;
+				
 
 		} else {
 			// 為空，沒有選課紀錄：加選！
