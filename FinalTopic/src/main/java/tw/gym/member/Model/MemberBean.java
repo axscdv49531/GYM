@@ -66,9 +66,11 @@ public class MemberBean implements Serializable {
 	private String memberPhotoMineType;
 
 	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	Set<PaymentBean> payment = new HashSet<>();
 
 	@OneToMany(mappedBy = "memberBean")
+	@JsonIgnore
 	Set<InbodyBean> inbody = new HashSet<>();
 
 	@OneToMany(mappedBy = "memberBean")
