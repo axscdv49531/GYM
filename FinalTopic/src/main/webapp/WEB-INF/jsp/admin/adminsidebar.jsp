@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li>
-                        <a class="nav-link" href="<c:url value= '/insertMember'/>">
+                        <a class="nav-link" href="<c:url value= '/findAllMember'/>">
                             <i class="nc-icon nc-circle-09"></i>
                             <p>會員資料專區</p>
                         </a>
