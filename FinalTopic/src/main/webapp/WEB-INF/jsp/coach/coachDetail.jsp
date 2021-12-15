@@ -66,7 +66,7 @@
 
 <div class="wrapper">
 <%--        <c:import url="/adminsidebar"></c:import>  --%>
-       <c:import url="/adminCoursesidebar"></c:import> 
+       <c:import url="/adminCoachsidebar"></c:import> 
         <div class="main-panel">
             <c:import url="/adminnavbar"></c:import> 
             <div class="content">
