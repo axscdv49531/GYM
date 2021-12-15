@@ -131,17 +131,17 @@
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li class="nav-item active"><a class="nav-link"
-						href="<c:url value= '/insertMember'/>"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>新增會員</p>
-					</a></li>
 					<li><a class="nav-link"
 						href="<c:url value= '/findAllMember'/>"> <i
 							class="nc-icon nc-circle-09"></i>
 							<p>查詢會員</p>
 					</a></li>
 					<li><a class="nav-link"
+						href="<c:url value= '/insertMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
+							<p>新增會員</p>
+					</a></li>
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value= '/findInbodyMember'/>"> <i
 							class="nc-icon nc-notes"></i>
 							<p>會員Inbody分析</p>
@@ -195,7 +195,7 @@
 							</a></li>
 						</ul>
 						<ul class="navbar-nav ml-auto">
-							<li class="nav-item"><a class="nav-link" href="#pablo">
+							<li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">
 									<span class="no-icon">Account</span>
 							</a></li>
 							<li class="nav-item dropdown"><a

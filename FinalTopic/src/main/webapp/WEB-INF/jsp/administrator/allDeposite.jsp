@@ -28,6 +28,7 @@
 <link href="../admintemplate/css/bootstrap.min.css" rel="stylesheet" />
 <link href="../admintemplate/css/light-bootstrap-dashboard.css?v=2.0.0 "
 	rel="stylesheet" />
+<link href="../admintemplate/css/style.css" rel="stylesheet" />
 
 <!--   Core JS Files   -->
 <script src="../admintemplate/js/core/jquery.3.2.1.min.js"
@@ -71,22 +72,22 @@
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
 				<ul class="nav">
-					<li class="nav-item active"><a class="nav-link"
-						href="<c:url value= '/insertMember'/>"> <i
-							class="nc-icon nc-circle-09"></i>
-							<p>新增會員</p>
-					</a></li>
 					<li><a class="nav-link"
 						href="<c:url value= '/findAllMember'/>"> <i
 							class="nc-icon nc-circle-09"></i>
 							<p>查詢會員</p>
 					</a></li>
 					<li><a class="nav-link"
+						href="<c:url value= '/insertMember'/>"> <i
+							class="nc-icon nc-circle-09"></i>
+							<p>新增會員</p>
+					</a></li>
+					<li><a class="nav-link"
 						href="<c:url value= '/findInbodyMember'/>"> <i
 							class="nc-icon nc-notes"></i>
 							<p>會員Inbody分析</p>
 					</a></li>
-					<li><a class="nav-link"
+					<li class="nav-item active"><a class="nav-link"
 						href="<c:url value= '/findDepositeMember'/>"> <i
 							class="nc-icon nc-money-coins"></i>
 							<p>會員儲值紀錄</p>
@@ -153,7 +154,7 @@
 									<div class="divider"></div>
 									<a class="dropdown-item" href="#">Separated link</a>
 								</div></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo">
+							<li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">
 									<span class="no-icon">Log out</span>
 							</a></li>
 						</ul>
