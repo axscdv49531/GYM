@@ -278,10 +278,13 @@
 										<br>
 										<form:errors path="mPhoto" />
 									</div>
-									<div class="col-md-6"></div>
-									<button type="submit" class="btn btn-info btn-fill pull-right">送出</button>
-									<input type="button" value="一鍵輸入"
-										class="btn btn-info btn-fill pull-right" onclick="auto()">
+									<div class="col-md-4"></div>
+									<div class="col-md-2">
+									<button type="submit" class="btn btn-info btn-fill pull-right">送出</button></div>
+									<div class="col-md-2">
+										<input type="button" value="一鍵輸入"
+											class="btn btn-info btn-fill pull-right" onclick="auto()">
+									</div>
 								</div>
 								<div class="clearfix"></div>
 							</form>
