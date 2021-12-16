@@ -213,7 +213,7 @@
 									<div class="divider"></div>
 									<a class="dropdown-item" href="#">Separated link</a>
 								</div></li>
-							<li class="nav-item"><a class="nav-link" href="#pablo">
+							<li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">
 									<span class="no-icon">Log out</span>
 							</a></li>
 						</ul>

@@ -76,7 +76,7 @@
 
         Tip 2: you can also add an image using data-image tag
     -->
-						<div class="sidebar-wrapper">
+			<div class="sidebar-wrapper">
 				<div class="logo">
 					<a href="#" class="simple-text"> ADMIN </a>
 				</div>
@@ -86,9 +86,8 @@
 							class="nc-icon nc-circle-09"></i>
 							<p>查詢會員</p>
 					</a></li>
-					<li><a class="nav-link"
-						href="<c:url value= '/insertMember'/>"> <i
-							class="nc-icon nc-circle-09"></i>
+					<li><a class="nav-link" href="<c:url value= '/insertMember'/>">
+							<i class="nc-icon nc-circle-09"></i>
 							<p>新增會員</p>
 					</a></li>
 					<li class="nav-item active"><a class="nav-link"
@@ -163,71 +162,87 @@
 									<div class="divider"></div>
 									<a class="dropdown-item" href="#">Separated link</a>
 								</div></li>
-							<li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">
-									<span class="no-icon">Log out</span>
+							<li class="nav-item"><a class="nav-link"
+								href="<c:url value='/logout' />"> <span class="no-icon">Log
+										out</span>
 							</a></li>
 						</ul>
 					</div>
 				</div>
 			</nav>
 			<!-- End Navbar -->
-</head>
-<body>
-	<div align="center">
-		<form:form method='POST' modelAttribute="inbodyBean">
-		
-			<fieldset class="fieldset-auto-width">
-				<legend>會員身體組成分析(Inbody)</legend>
-				<table>
+			</head>
+			<body>
+				<div align="center">
+					<form:form method='POST' modelAttribute="inbodyBean">
 
-					<tr>
-						<td align='right'>檢測日期：<br>&nbsp;
-						</td>
-						<td><form:input type="date" path="measurementDate" /><br>&nbsp;</td>
-					</tr>
-					<tr>
-						<td align='right'>身高：<br>&nbsp;
-						</td>
-						<td><form:input path="height" /><br>&nbsp;</td>
-					</tr>
+						<fieldset class="fieldset-auto-width">
+							<legend>會員身體組成分析(Inbody)</legend>
+							<table>
 
-					<tr>
-						<td align='right'>體重：<br>&nbsp;
-						</td>
-						<td><form:input path="weight" /><br>&nbsp;</td>
-					</tr>
+								<tr>
+									<td align='right'>檢測日期：<br>&nbsp;
+									</td>
+									<td><form:input type="date" path="measurementDate"
+											id="date" /><br>&nbsp;</td>
+								</tr>
+								<tr>
+									<td align='right'>身高：<br>&nbsp;
+									</td>
+									<td><form:input path="height" id="height" /><br>&nbsp;</td>
+								</tr>
 
-					<tr>
-						<td align='right'>骨骼肌重：<br>&nbsp;
-						</td>
-						<td><form:input path="smm" /><br>&nbsp;</td>
-					</tr>
+								<tr>
+									<td align='right'>體重：<br>&nbsp;
+									</td>
+									<td><form:input path="weight" id="weight" /><br>&nbsp;</td>
+								</tr>
 
-					<tr>
-						<td align='right'>體脂肪重：<br>&nbsp;
-						</td>
-						<td><form:input path="bodyFatMass" /><br>&nbsp;</td>
-					</tr>
+								<tr>
+									<td align='right'>骨骼肌重：<br>&nbsp;
+									</td>
+									<td><form:input path="smm" id="smm" /><br>&nbsp;</td>
+								</tr>
 
-					<tr>
-						<td align='right'>BMI:<br>&nbsp;
-						</td>
-						<td><form:input path="bmi" /><br>&nbsp;</td>
-					</tr>
+								<tr>
+									<td align='right'>體脂肪重：<br>&nbsp;
+									</td>
+									<td><form:input path="bodyFatMass" id="bodyFatMass" /><br>&nbsp;</td>
+								</tr>
 
-					<tr>
-						<td align='right'>體脂肪率：<br>&nbsp;
-						</td>
-						<td><form:input path="pbf" /><br>&nbsp;</td>
-					</tr>
-					<tr>
-						<td colspan='2' align='center'><input type='submit'
-							value='提交'></td>
-					</tr>
-				</table>
-			</fieldset>
-		</form:form>
-		<br> <a href="<c:url value='/' />">回首頁</a>
-	</div>
-</body>
+								<tr>
+									<td align='right'>BMI:<br>&nbsp;
+									</td>
+									<td><form:input path="bmi" id="bmi" /><br>&nbsp;</td>
+								</tr>
+
+								<tr>
+									<td align='right'>體脂肪率：<br>&nbsp;
+									</td>
+									<td><form:input path="pbf" id="pbf" /><br>&nbsp;</td>
+								</tr>
+								<tr>
+									<td colspan='2' align='center'><input type="button"
+										value="一鍵輸入" class="btn btn-info btn-fill pull-right" style="margin:30px;"
+										onclick="auto()"> <input type='submit' value='提交'
+										class="btn btn-info btn-fill pull-right"  style="margin:30px;"></td>
+
+								</tr>
+							</table>
+						</fieldset>
+					</form:form>
+					<br> <a href="<c:url value= '/findInbodyMember'/>">回前頁</a>
+				</div>
+				<script>
+					function auto() {
+						document.getElementById("date").value = "2021-12-15";
+						document.getElementById("height").value = "172";
+						document.getElementById("weight").value = "70.4";
+						document.getElementById("smm").value = "32.8";
+						document.getElementById("bodyFatMass").value = "11.7";
+						document.getElementById("bmi").value = "23.7";
+						document.getElementById("pbf").value = "18.4";
+					}
+				</script>
+			</body>
 </html>

@@ -210,7 +210,7 @@
 				</c:choose>
 			</table>
 		</form:form>
-		<br>  <a href="<c:url value='/login/MemberSuccess' />">回前頁</a>
+		<br>  <a href="<c:url value= '/findInbodyMember'/>">回前頁</a>
 	</div>
 </body>
 </html>

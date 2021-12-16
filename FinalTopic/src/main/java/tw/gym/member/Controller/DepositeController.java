@@ -90,7 +90,7 @@ public class DepositeController {
 		MemberBean memberBean=memberService.findByNumber(number);
 		memberBean.setDeposite(newValue);
 		memberService.update(memberBean);		
-		return "redirect:/findAllMember";
+		return "redirect:/findDepositeMember";
 	}
 	@GetMapping("/adminAllDeposite/{number}")
 	public String findAllDeposite(Model model, @PathVariable("number") Integer number) {

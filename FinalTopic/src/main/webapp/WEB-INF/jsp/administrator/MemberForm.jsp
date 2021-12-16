@@ -155,8 +155,9 @@
 									<div class="divider"></div>
 									<a class="dropdown-item" href="#">Separated link</a>
 								</div></li>
-							<li class="nav-item"><a class="nav-link" href="<c:url value='/logout' />">
-									<span class="no-icon">Log out</span>
+							<li class="nav-item"><a class="nav-link"
+								href="<c:url value='/logout' />"> <span class="no-icon">Log
+										out</span>
 							</a></li>
 						</ul>
 					</div>
@@ -175,7 +176,8 @@
 									<div class="col-md-4 px-1">
 										<div class="form-group">
 											<label>姓名：</label>
-											<form:input path="name" class="form-control" placeholder="姓名" />
+											<form:input path="name" class="form-control" placeholder="姓名"
+												id="name" />
 											<form:errors path="name" cssClass="error" />
 										</div>
 									</div>
@@ -183,7 +185,7 @@
 										<div class="form-group">
 											<label for="exampleInputEmail1">Email：</label>
 											<form:input path="email" class="form-control"
-												placeholder="name@example.com" />
+												placeholder="name@example.com" id="email" />
 											<form:errors path="email" cssClass="error" />
 										</div>
 									</div>
@@ -193,7 +195,7 @@
 										<div class="form-group" align="center">
 											<form:label path="gender">性別：</form:label>
 											<br>
-											<form:radiobutton path="gender" value="男" label="男" />
+											<form:radiobutton path="gender" value="男" label="男" id="man" />
 											<form:radiobutton path="gender" value="女" label="女" />
 											<form:errors path="gender" cssClass="error" />
 										</div>
@@ -202,7 +204,8 @@
 										<div class="form-group">
 											<label>生日 <font size='-3' color='blue'>(yyyy-MM-dd)</font>：
 											</label>
-											<form:input type="date" path="birthday" class="form-control" />
+											<form:input type="date" path="birthday" class="form-control"
+												id="birth" />
 											<form:errors path="birthday" cssClass="error" />
 										</div>
 									</div>
@@ -210,7 +213,7 @@
 										<div class="form-group">
 											<label>手機：</label>
 											<form:input path="phone" class="form-control"
-												placeholder="phone" />
+												placeholder="phone" id="phone" />
 											<form:errors path="phone" cssClass="error" />
 										</div>
 									</div>
@@ -222,17 +225,17 @@
 											<div id="twzipcode" class="form-row">
 												<div class="form-group col">
 													<div data-role="county" data-style="form-control"
-														data-name="county" data-value=""></div>
+														data-name="county" data-value="" id="county"></div>
 												</div>
 												<div class="form-group col">
 													<div data-role="district" data-style="form-control"
-														data-name="district" data-value=""></div>
+														data-name="district" data-value="" id="district"></div>
 												</div>
 												<div class="form-group col">
 													<div data-role="zipcode" data-style="form-control"
-														data-name="zipcode" data-value=""></div>
+														data-name="zipcode" data-value="" id="zipcode"></div>
 												</div>
-												<form:input type="text" size="40" id="twzipcode"
+												<form:input type="text" size="40" id="address"
 													path="address" class="form-control"
 													placeholder="Home Address" />
 												<form:errors path="address" cssClass="error" />
@@ -245,7 +248,7 @@
 										<div class="form-group">
 											<label>入會時間:</label>
 											<form:input type="date" path="expirationdate"
-												class="form-control" />
+												class="form-control" id="expirationdate" />
 											<form:errors path="expirationdate" cssClass="error" />
 										</div>
 									</div>
@@ -253,7 +256,7 @@
 										<div class="form-group">
 											<label>緊急聯絡人：</label>
 											<form:input path="emergencyContact" class="form-control"
-												placeholder="緊急聯絡人" />
+												placeholder="緊急聯絡人" id="emergencyContact" />
 											<form:errors path="emergencyContact" cssClass="error" />
 
 										</div>
@@ -262,7 +265,7 @@
 										<div class="form-group">
 											<label>緊急聯絡人電話：</label>
 											<form:input type="number" path="emergencyPhone"
-												class="form-control" placeholder="phone" />
+												class="form-control" placeholder="phone" id="emergencyPhone" />
 											<form:errors path="emergencyPhone" cssClass="error" />
 										</div>
 									</div>
@@ -275,8 +278,13 @@
 										<br>
 										<form:errors path="mPhoto" />
 									</div>
-									<div class="col-md-6"></div>
-									<button type="submit" class="btn btn-info btn-fill pull-right">送出</button>
+									<div class="col-md-4"></div>
+									<div class="col-md-2">
+									<button type="submit" class="btn btn-info btn-fill pull-right">送出</button></div>
+									<div class="col-md-2">
+										<input type="button" value="一鍵輸入"
+											class="btn btn-info btn-fill pull-right" onclick="auto()">
+									</div>
 								</div>
 								<div class="clearfix"></div>
 							</form>
@@ -288,6 +296,20 @@
 	</div>
 	<script>
 		$("#twzipcode").twzipcode();
+	</script>
+	<script>
+		function auto() {
+			document.getElementById("name").value = "高宜謙";
+			document.getElementById("email").value = "ryan4165@gmail.com";
+			document.getElementById("man").checked = true;
+			document.getElementById("birth").value = "1993-06-29";
+			document.getElementById("phone").value = "0910272835";
+			document.getElementById("zipcode").value = "238";
+			document.getElementById("address").value = "學勤路410號27樓";
+			document.getElementById("expirationdate").value = "2021-12-15";
+			document.getElementById("emergencyContact").value = "高阿謙";
+			document.getElementById("emergencyPhone").value = "0987654321";
+		}
 	</script>
 </body>
 </html>

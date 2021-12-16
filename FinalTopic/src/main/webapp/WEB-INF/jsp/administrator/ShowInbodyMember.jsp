@@ -269,7 +269,6 @@
 						</c:choose>
 					</table>
 				</form:form>
-				<br> <a href="<c:url value='/' />">回首頁</a>
 			</div>
 </body>
 </html>

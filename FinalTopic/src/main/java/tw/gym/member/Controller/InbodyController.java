@@ -53,7 +53,7 @@ public class InbodyController {
 	@PostMapping(path = "/insertInbody/{number}")
 	public String save(InbodyBean inbodyBean, @PathVariable("number") Integer number) {
 		inbodyService.insertByMember(inbodyBean, number);
-		return "redirect:/findAllMember";
+		return "redirect:/findInbodyMember";
 	}
 
 
